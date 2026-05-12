@@ -1,0 +1,63 @@
+{
+  "phdScholars": [
+    {
+      "id": "1",
+      "name": "Gautami Jagdeo",
+      "role": "PhD Scholar"
+    },
+    {
+      "id": "2",
+      "name": "Seema Jaiswal",
+      "role": "PhD Scholar"
+    },
+    {
+      "id": "3",
+      "name": "Matilda",
+      "role": "PhD Scholar"
+    },
+    {
+      "id": "4",
+      "name": "Raja",
+      "role": "PhD Scholar"
+    },
+    {
+      "id": "1774361137785",
+      "name": "Jhanvi",
+      "role": "PhD Scholar"
+    }
+  ],
+  "researchAssociates": [
+    {
+      "id": "5",
+      "name": "Shivani",
+      "role": "Research Associate"
+    },
+    {
+      "id": "6",
+      "name": "Shraddha",
+      "role": "Research Associate"
+    },
+    {
+      "id": "1774390824274",
+      "name": "Bhavi",
+      "role": "Research Associate"
+    }
+  ],
+  "interns": [
+    {
+      "id": "7",
+      "name": "Bushra",
+      "role": "Intern"
+    },
+    {
+      "id": "8",
+      "name": "Shreerag",
+      "role": "Intern"
+    },
+    {
+      "id": "9",
+      "name": "Obyed",
+      "role": "Intern"
+    }
+  ]
+}

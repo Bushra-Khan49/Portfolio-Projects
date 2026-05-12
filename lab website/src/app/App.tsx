@@ -1,0 +1,2413 @@
+import { useState, useRef, useEffect } from "react";
+import {
+  Moon,
+  Sun,
+  Menu,
+  X,
+  ChevronDown,
+  ArrowRight,
+  Target,
+  Users,
+  BookOpen,
+  UserPlus,
+  Mail,
+  MapPin,
+  Calendar,
+  TrendingUp,
+  Lock,
+  ExternalLink,
+  Globe,
+  Upload,
+  Building2,
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+} from "lucide-react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { toast, Toaster } from "sonner";
+import herbalOmicsImage from "figma:asset/12651f34c50fd4fc58576727d80fb36252506e6e.png";
+import scisLogo from "figma:asset/9e3e8bd05d7dbe5a5e29def8128a98f35eb1cf75.png";
+
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [showJoinForm, setShowJoinForm] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Refined parallax - slower, more subtle
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", "40%"],
+  );
+  const imageOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.7],
+    [1, 0.05],
+  );
+
+  // Navigation scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setNavScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Countdown timer effect
+  useEffect(() => {
+    const eventDate = new Date(
+      "February 5, 2026 15:00:00 GMT+0530",
+    ).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance > 0) {
+        setCountdown({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) /
+              (1000 * 60 * 60),
+          ),
+          minutes: Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60),
+          ),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      } else {
+        setCountdown({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const validateForm = (formData: FormData): Record<string, string> => {
+    const errors: Record<string, string> = {};
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const joiningDate = formData.get("joiningDate") as string;
+    const endingDate = formData.get("endingDate") as string;
+
+    if (!name || name.trim().length < 3) {
+      errors.name = "Name must be at least 3 characters";
+    }
+
+    if (!email || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      errors.email = "Please enter a valid email address";
+    }
+
+    if (!joiningDate) {
+      errors.joiningDate = "Joining date is required";
+    }
+
+    if (!endingDate) {
+      errors.endingDate = "Ending date is required";
+    }
+
+    if (joiningDate && endingDate && new Date(endingDate) <= new Date(joiningDate)) {
+      errors.endingDate = "Ending date must be after joining date";
+    }
+
+    return errors;
+  };
+
+  const navigationItems = [
+    { id: "home", label: "Home" },
+    { id: "research", label: "Research" },
+    { id: "facilities", label: "Facilities" },
+    { id: "progress", label: "Lab Progress" },
+    { id: "goals", label: "Goals" },
+    { id: "pi", label: "Principal Investigator" },
+    { id: "members", label: "Members" },
+    { id: "join", label: "Join the Lab" },
+    { id: "contact", label: "Contact" },
+  ];
+
+  const researchAreas = [
+    {
+      title: "Herbal Genomics",
+      desc: "Decoding the genetic blueprint of medicinal and horticultural plants",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1579154204845-5d7f8d4dc785?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxETkElMjBnZW5vbWUlMjBzZXF1ZW5jaW5nJTIwbGFib3JhdG9yeXxlbnwxfHx8fDE3NzAyODcxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+    {
+      title: "Omics Integration",
+      desc: "Integrative transcriptomics, proteomics, and metabolomics for systems-level understanding",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1518516278006-4aca92806257?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwc2NpZW5jZSUyMHZpc3VhbGl6YXRpb24lMjBjb2xvcmZ1bHxlbnwxfHx8fDE3NzAyODcxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+    {
+      title: "Protein Structure & Function",
+      desc: "Protein modelling and functional analysis of molecular mechanisms involved in plant development and stress responses",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1709227371218-35ef4d1d91f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm90ZWluJTIwbW9sZWN1bGFyJTIwc3RydWN0dXJlfGVufDF8fHx8MTc3MDI4NzExMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+    {
+      title: "Systems Biology",
+      desc: "Network-level analysis of regulatory pathways governing plant growth, development, and adaptation",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1738082956220-a1f20a8632ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9sb2dpY2FsJTIwbmV0d29yayUyMHBhdGh3YXlzfGVufDF8fHx8MTc3MDI4NzExMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+    {
+      title: "Computational Analysis",
+      desc: "NGS data analysis, big-data biology, and computational modelling for plant omics research",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1669023414162-5bb06bbff0ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9pbmZvcm1hdGljcyUyMGNvbXB1dGVyJTIwYW5hbHlzaXN8ZW58MXx8fHwxNzcwMjg3MTExfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+  ];
+
+  const upcomingPresentations = [
+    {
+      date: "February 5, 2026",
+      topic:
+        "Silicon-mediated stress tolerance in Mentha species",
+      presenter: "Priya Sharma",
+      time: "3:00 PM IST",
+    },
+    {
+      date: "February 5, 2026",
+      topic:
+        "Transcriptomic analysis of drought response pathways",
+      presenter: "Gautami Gajdeyo",
+      time: "4:30 PM IST",
+    },
+    {
+      date: "February 5, 2026",
+      topic:
+        "Metabolite profiling in medicinal plants under biotic stress",
+      presenter: "Seema Jaiswal",
+      time: "6:00 PM IST",
+    },
+  ];
+
+  const labGoals = [
+    {
+      title: "Complete Mentha genome assembly",
+      progress: 75,
+      deadline: "March 2026",
+      description:
+        "High-quality reference genome for Mentha arvensis with complete annotation of gene families involved in essential oil biosynthesis.",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1654636509498-8610bfa36fae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGFudCUyMGdlbm9tZSUyMHJlc2VhcmNoJTIwbWljcm9zY29wZXxlbnwxfHx8fDE3NzAzOTg4OTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+    {
+      title:
+        "Establish silicon response network in medicinal plants",
+      progress: 60,
+      deadline: "June 2026",
+      description:
+        "Comprehensive network analysis identifying key regulatory hubs governing silicon-mediated stress tolerance mechanisms.",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1738082956220-a1f20a8632ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9sb2dpY2FsJTIwbmV0d29yayUyMHBhdGh3YXlzfGVufDF8fHx8MTc3MDI4NzExMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+    {
+      title: "Publish metabolomics analysis pipeline",
+      progress: 40,
+      deadline: "August 2026",
+      description:
+        "Open-source computational pipeline for untargeted metabolomics data processing with advanced statistical validation.",
+      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1554475900-0a0350e3fc7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXRhYm9sb21pY3MlMjBjaGVtaWNhbCUyMGNvbXBvdW5kcyUyMGNvbG9yZnVsfGVufDF8fHx8MTc3MDM5ODg5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    },
+  ];
+
+  const recentPublications = [
+    {
+      title:
+        'Silicon: A "Quasi-Essential" Element\'s Role in Plant Physiology and Development',
+      journal: "Frontiers in Plant Science",
+      year: 2023,
+      if: 5.6,
+    },
+    {
+      title:
+        "Mentha arvensis and Mentha × piperita – Vital Herbs with Myriads of Pharmaceutical Benefits",
+      journal: "Horticulturae",
+      year: 2023,
+      if: 3.1,
+    },
+  ];
+
+  const teamMembers = [
+    {
+      name: "Dr. Abinaya Manivannan",
+      role: "Principal Investigator",
+      category: "PI",
+    },
+    {
+      name: "Gautami Gajdeyo",
+      role: "PhD Scholar",
+      category: "PhD",
+    },
+    {
+      name: "Seema Jaiswal",
+      role: "PhD Scholar",
+      category: "PhD",
+    },
+    { name: "Matilda", role: "PhD Scholar", category: "PhD" },
+    { name: "Raja", role: "PhD Scholar", category: "PhD" },
+    {
+      name: "Shivani",
+      role: "Research Associate",
+      category: "RA",
+    },
+    {
+      name: "Shraddha",
+      role: "Research Associate",
+      category: "RA",
+    },
+    { name: "Bushra", role: "Intern", category: "Intern" },
+    { name: "Shreerag", role: "Intern", category: "Intern" },
+    { name: "Obyed", role: "Intern", category: "Intern" },
+  ];
+
+  return (
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode
+          ? "bg-gray-900 text-white"
+          : "bg-[#FAFAFA] text-gray-900"
+      }`}
+      style={{ fontFamily: "Inter, sans-serif" }}
+    >
+      {/* Toast Notifications */}
+      <Toaster
+        position="top-right"
+        expand={false}
+        richColors
+        theme={darkMode ? "dark" : "light"}
+        toastOptions={{
+          style: {
+            background: darkMode ? "#1F2937" : "#FFFFFF",
+            border: darkMode ? "1px solid #374151" : "1px solid #E5E7EB",
+            color: darkMode ? "#F9FAFB" : "#111827",
+          },
+        }}
+      />
+      
+      {/* NAVIGATION - Magic scroll effect */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          navScrolled
+            ? "bg-gray-900/98 border-gray-700 shadow-2xl backdrop-blur-xl"
+            : darkMode
+              ? "bg-gray-900/95 border-gray-800"
+              : "bg-white/95 border-stone-200"
+        } backdrop-blur-md border-b`}
+        style={{ height: "72px" }}
+      >
+        <div className="max-w-[1280px] mx-auto px-20 h-full flex items-center justify-between">
+          {/* Logos side-by-side */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="flex items-center"
+            >
+              <img
+                src={scisLogo}
+                alt="Herbal Omics Lab"
+                className="h-12 w-auto object-contain"
+                style={{
+                  filter:
+                    navScrolled || darkMode
+                      ? "brightness(0.9)"
+                      : "brightness(1)",
+                }}
+              />
+            </button>
+            <a
+              href="https://jnu.ac.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center"
+            >
+              <img
+                src={scisLogo}
+                alt="JNU"
+                className="h-12 w-auto object-contain"
+                style={{
+                  filter:
+                    navScrolled || darkMode
+                      ? "brightness(0.9)"
+                      : "brightness(1)",
+                }}
+              />
+            </a>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-2">
+            {navigationItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  navScrolled
+                    ? "text-gray-300 hover:text-emerald-400 hover:bg-gray-800"
+                    : darkMode
+                      ? "text-gray-300 hover:text-emerald-400 hover:bg-gray-800"
+                      : "text-gray-700 hover:text-emerald-700 hover:bg-stone-100"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowLogin(!showLogin)}
+              className={`hidden lg:flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                navScrolled
+                  ? "text-gray-300 hover:bg-gray-800"
+                  : darkMode
+                    ? "text-gray-300 hover:bg-gray-800"
+                    : "text-gray-700 hover:bg-stone-100"
+              }`}
+            >
+              <Lock className="w-4 h-4" />
+              <span className="text-xs">Login</span>
+            </button>
+
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className={`p-2 rounded-lg transition-colors duration-300 ${
+                navScrolled
+                  ? "bg-gray-800 text-yellow-400"
+                  : darkMode
+                    ? "bg-gray-800 text-yellow-400"
+                    : "bg-stone-100 text-gray-700"
+              }`}
+            >
+              {darkMode ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`lg:hidden p-2 rounded-lg ${
+                navScrolled
+                  ? "bg-gray-800 text-gray-300"
+                  : darkMode
+                    ? "bg-gray-800 text-gray-300"
+                    : "bg-stone-100 text-gray-700"
+              }`}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div
+            className={`lg:hidden border-t ${navScrolled || darkMode ? "border-gray-800 bg-gray-900" : "border-stone-200 bg-white"}`}
+          >
+            <div className="px-6 py-4 space-y-2">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-300 ${
+                    navScrolled || darkMode
+                      ? "text-gray-300 hover:bg-gray-800"
+                      : "text-gray-700 hover:bg-stone-100"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Join Form Modal */}
+      {showJoinForm && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center p-6"
+          style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className={`w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl ${
+              darkMode
+                ? "bg-gray-800 border-gray-700"
+                : "bg-white border-stone-200"
+            } border p-8`}
+            style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.3)" }}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h2
+                className="font-bold"
+                style={{
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "32px",
+                }}
+              >
+                Join Our Lab
+              </h2>
+              <button
+                onClick={() => setShowJoinForm(false)}
+                className={`p-2 rounded-lg transition-colors ${darkMode ? "hover:bg-gray-700" : "hover:bg-stone-100"}`}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <form
+              className="space-y-6"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                
+                // Validate form
+                const errors = validateForm(formData);
+                setFormErrors(errors);
+
+                if (Object.keys(errors).length > 0) {
+                  toast.error("Please fix the errors in the form", {
+                    duration: 3000,
+                    icon: <AlertCircle className="w-5 h-5" />,
+                  });
+                  return;
+                }
+
+                // Set loading state
+                setFormLoading(true);
+
+                // Simulate API call (replace with actual API call)
+                try {
+                  await new Promise((resolve) => setTimeout(resolve, 1500));
+                  
+                  const data = Object.fromEntries(formData.entries());
+                  const mailtoLink =
+                    `mailto:abinaya@mail.jnu.ac.in?subject=Lab Application - ${data.name}&body=
+Name: ${data.name}
+Location: ${data.city}, ${data.state}, ${data.country}
+Current Institute: ${data.institute}
+Work Position: ${data.position}
+Email: ${data.email}
+Joining Date: ${data.joiningDate}
+Ending Date: ${data.endingDate}
+Work Period: ${data.period} months
+Previous Research Topic: ${data.topic}
+                  `.trim();
+
+                  window.location.href = mailtoLink;
+                  
+                  toast.success("Application submitted successfully! We will contact you via email.", {
+                    duration: 4000,
+                    icon: <CheckCircle2 className="w-5 h-5" />,
+                  });
+                  
+                  setShowJoinForm(false);
+                  setFormErrors({});
+                } catch (error) {
+                  toast.error("Submission failed. Please try again.", {
+                    duration: 4000,
+                    icon: <AlertCircle className="w-5 h-5" />,
+                  });
+                } finally {
+                  setFormLoading(false);
+                }
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                      formErrors.name
+                        ? "border-red-500 bg-red-50/5 focus:ring-red-500"
+                        : darkMode
+                        ? "bg-gray-700 border-gray-600 text-white focus:ring-emerald-500"
+                        : "bg-white border-stone-300 text-gray-900 focus:ring-emerald-500"
+                    } focus:outline-none focus:ring-2`}
+                  />
+                  {formErrors.name && (
+                    <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{formErrors.name}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                      formErrors.email
+                        ? "border-red-500 bg-red-50/5 focus:ring-red-500"
+                        : darkMode
+                        ? "bg-gray-700 border-gray-600 text-white focus:ring-emerald-500"
+                        : "bg-white border-stone-300 text-gray-900 focus:ring-emerald-500"
+                    } focus:outline-none focus:ring-2`}
+                  />
+                  {formErrors.email && (
+                    <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{formErrors.email}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    City *
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      darkMode
+                        ? "bg-gray-700 border-gray-600 text-white"
+                        : "bg-white border-stone-300 text-gray-900"
+                    } focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    State *
+                  </label>
+                  <input
+                    type="text"
+                    name="state"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      darkMode
+                        ? "bg-gray-700 border-gray-600 text-white"
+                        : "bg-white border-stone-300 text-gray-900"
+                    } focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Country *
+                  </label>
+                  <input
+                    type="text"
+                    name="country"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      darkMode
+                        ? "bg-gray-700 border-gray-600 text-white"
+                        : "bg-white border-stone-300 text-gray-900"
+                    } focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Current Institute *
+                  </label>
+                  <input
+                    type="text"
+                    name="institute"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      darkMode
+                        ? "bg-gray-700 border-gray-600 text-white"
+                        : "bg-white border-stone-300 text-gray-900"
+                    } focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Work Position *
+                  </label>
+                  <input
+                    type="text"
+                    name="position"
+                    required
+                    placeholder="e.g., PhD Student, Postdoc, etc."
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      darkMode
+                        ? "bg-gray-700 border-gray-600 text-white"
+                        : "bg-white border-stone-300 text-gray-900"
+                    } focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Work Period *
+                  </label>
+                  <select
+                    name="period"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      darkMode
+                        ? "bg-gray-700 border-gray-600 text-white"
+                        : "bg-white border-stone-300 text-gray-900"
+                    } focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                  >
+                    <option value="3">3 Months</option>
+                    <option value="6">6 Months</option>
+                    <option value="12">12 Months</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Joining Date *
+                  </label>
+                  <input
+                    type="date"
+                    name="joiningDate"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                      formErrors.joiningDate
+                        ? "border-red-500 bg-red-50/5 focus:ring-red-500"
+                        : darkMode
+                        ? "bg-gray-700 border-gray-600 text-white focus:ring-emerald-500"
+                        : "bg-white border-stone-300 text-gray-900 focus:ring-emerald-500"
+                    } focus:outline-none focus:ring-2`}
+                  />
+                  {formErrors.joiningDate && (
+                    <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{formErrors.joiningDate}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label
+                    className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                  >
+                    Ending Date *
+                  </label>
+                  <input
+                    type="date"
+                    name="endingDate"
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                      formErrors.endingDate
+                        ? "border-red-500 bg-red-50/5 focus:ring-red-500"
+                        : darkMode
+                        ? "bg-gray-700 border-gray-600 text-white focus:ring-emerald-500"
+                        : "bg-white border-stone-300 text-gray-900 focus:ring-emerald-500"
+                    } focus:outline-none focus:ring-2`}
+                  />
+                  {formErrors.endingDate && (
+                    <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{formErrors.endingDate}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label
+                  className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                >
+                  Previous Research Topic *
+                </label>
+                <textarea
+                  name="topic"
+                  required
+                  rows={4}
+                  placeholder="Describe your previous research work..."
+                  className={`w-full px-4 py-3 rounded-lg border ${
+                    darkMode
+                      ? "bg-gray-700 border-gray-600 text-white"
+                      : "bg-white border-stone-300 text-gray-900"
+                  } focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                />
+              </div>
+
+              <div>
+                <label
+                  className={`block mb-2 text-sm font-medium ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                >
+                  Upload CV/Resume
+                </label>
+                <div
+                  className={`border-2 border-dashed rounded-lg p-6 text-center ${
+                    darkMode
+                      ? "border-gray-600 bg-gray-700/30"
+                      : "border-stone-300 bg-stone-50"
+                  }`}
+                >
+                  <Upload
+                    className={`w-8 h-8 mx-auto mb-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}
+                  />
+                  <p
+                    className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                  >
+                    Drag and drop your file here or{" "}
+                    <span className="text-emerald-600 cursor-pointer">
+                      browse
+                    </span>
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    PDF, DOC, DOCX (max 5MB)
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 pt-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowJoinForm(false);
+                    setFormErrors({});
+                  }}
+                  disabled={formLoading}
+                  className={`flex-1 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                    formLoading
+                      ? "opacity-50 cursor-not-allowed"
+                      : darkMode
+                      ? "bg-gray-700 hover:bg-gray-600 text-gray-300"
+                      : "bg-stone-200 hover:bg-stone-300 text-gray-700"
+                  }`}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={formLoading}
+                  className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
+                    formLoading
+                      ? "bg-emerald-500 cursor-not-allowed"
+                      : "bg-emerald-600 hover:bg-emerald-700"
+                  } text-white`}
+                >
+                  {formLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Submitting...</span>
+                    </>
+                  ) : (
+                    "Submit Application"
+                  )}
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
+      )}
+
+      {/* HERO SECTION - Minimal, rock only */}
+      <section
+        id="home"
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{ paddingTop: "72px" }}
+      >
+        {/* Parallax Background Image - centered slightly above vertical center */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            y: imageY,
+            opacity: imageOpacity,
+            top: "-5%",
+          }}
+        >
+          <img
+            src={herbalOmicsImage}
+            alt="Herbal Omics Lab"
+            className="w-full max-w-4xl h-auto object-contain"
+            style={{
+              filter: darkMode
+                ? "brightness(0.85)"
+                : "brightness(1)",
+            }}
+          />
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          <span
+            className={`text-xs uppercase tracking-wider ${darkMode ? "text-gray-500" : "text-gray-400"}`}
+          >
+            Scroll
+          </span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <ChevronDown
+              className={`w-5 h-5 ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+            />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* RESEARCH SNAPSHOT - 96px padding, refined glassmorphism */}
+      <section
+        id="research"
+        className={`px-6 ${darkMode ? "bg-gray-800" : "bg-white"}`}
+        style={{ paddingTop: "96px", paddingBottom: "96px" }}
+      >
+        <div className="max-w-[1280px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2
+              className="mb-4"
+              style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: "40px",
+                fontWeight: 700,
+                lineHeight: 1.3,
+              }}
+            >
+              What We Study
+            </h2>
+            <div
+              className={`w-20 h-1 mx-auto ${darkMode ? "bg-emerald-400" : "bg-emerald-700"}`}
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {researchAreas.map((area, index) => (
+              <motion.div
+                key={area.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                className={`group rounded-xl border transition-all duration-300 flex flex-col overflow-hidden cursor-pointer ${
+                  darkMode
+                    ? "bg-gray-700/10 border-gray-600/30 hover:border-emerald-400/50 hover:shadow-2xl hover:shadow-emerald-500/10"
+                    : "bg-white/10 border-stone-200 hover:border-emerald-700/50 hover:shadow-2xl hover:shadow-emerald-700/10"
+                }`}
+                style={{
+                  backdropFilter: "blur(10px)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                }}
+              >
+                {/* Header Background Image */}
+                <div
+                  className="relative h-32 w-full overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${area.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div
+                    className={`absolute inset-0 ${
+                      darkMode
+                        ? "bg-gray-900/60"
+                        : "bg-white/40"
+                    }`}
+                    style={{ backdropFilter: "blur(2px)" }}
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-8 flex flex-col flex-grow">
+                  <h3
+                    className="font-semibold mb-3"
+                    style={{
+                      fontSize: "24px",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {area.title}
+                  </h3>
+                  <p
+                    className={`mb-6 flex-grow ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                    style={{
+                      fontSize: "16px",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {area.desc}
+                  </p>
+                  <button
+                    className={`flex items-center gap-2 text-sm font-medium transition-all duration-300 group-hover:gap-3 ${
+                      darkMode
+                        ? "text-emerald-400"
+                        : "text-emerald-700"
+                    }`}
+                  >
+                    Explore <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIMENTAL SYSTEMS - 96px padding */}
+      <section
+        id="facilities"
+        className={`px-6 ${darkMode ? "bg-gray-900" : "bg-stone-50"}`}
+        style={{ paddingTop: "96px", paddingBottom: "96px" }}
+      >
+        <div className="max-w-[1280px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2
+              className="mb-4"
+              style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: "40px",
+                fontWeight: 700,
+                lineHeight: 1.3,
+              }}
+            >
+              Living Experimental Systems
+            </h2>
+            <div
+              className={`w-20 h-1 mx-auto ${darkMode ? "bg-emerald-400" : "bg-emerald-700"}`}
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Smart Greenhouse - warmer tone */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+              className={`rounded-2xl border overflow-hidden transition-all duration-300 cursor-pointer ${
+                darkMode
+                  ? "bg-gray-800/50 border-gray-700/50 hover:border-emerald-400/50 hover:shadow-2xl hover:shadow-emerald-500/10"
+                  : "bg-white/50 border-stone-200 hover:border-emerald-700/50 hover:shadow-2xl hover:shadow-emerald-700/10"
+              }`}
+              style={{
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+              }}
+            >
+              {/* Header Background Image */}
+              <div
+                className="relative h-40 w-full overflow-hidden"
+                style={{
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1768847537055-b001f4022276?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbmhvdXNlJTIwcGxhbnRzJTIwZ3Jvd2luZyUyMGVudmlyb25tZW50fGVufDF8fHx8MTc3MDI4NzI1N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div
+                  className={`absolute inset-0 ${
+                    darkMode ? "bg-gray-900/60" : "bg-white/40"
+                  }`}
+                  style={{ backdropFilter: "blur(2px)" }}
+                />
+              </div>
+
+              {/* Content */}
+              <div style={{ padding: "32px" }}>
+                <h3
+                  className="font-bold mb-4"
+                  style={{
+                    fontFamily: "Playfair Display, serif",
+                    fontSize: "28px",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  Smart Greenhouse System
+                </h3>
+                <p
+                  className={`mb-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                  style={{ fontSize: "17px", lineHeight: 1.6 }}
+                >
+                  Controlled-environment chambers enabling
+                  precise regulation of temperature, humidity,
+                  light, and soil parameters for plant
+                  physiology and stress-response studies.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div
+                    className={`p-4 rounded-2xl ${darkMode ? "bg-gray-700/50" : "bg-stone-50/80"}`}
+                    style={{ backdropFilter: "blur(8px)" }}
+                  >
+                    <div
+                      className={`font-bold mb-1 ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                      style={{ fontSize: "28px" }}
+                    >
+                      24°C
+                    </div>
+                    <div
+                      className="text-gray-500"
+                      style={{
+                        fontSize: "13px",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      Average Temperature
+                    </div>
+                  </div>
+                  <div
+                    className={`p-4 rounded-2xl ${darkMode ? "bg-gray-700/50" : "bg-stone-50/80"}`}
+                    style={{ backdropFilter: "blur(8px)" }}
+                  >
+                    <div
+                      className={`font-bold mb-1 ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                      style={{ fontSize: "28px" }}
+                    >
+                      65%
+                    </div>
+                    <div
+                      className="text-gray-500"
+                      style={{
+                        fontSize: "13px",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      Relative Humidity
+                    </div>
+                  </div>
+                </div>
+                <button
+                  className={`flex items-center gap-2 font-medium text-sm transition-all duration-300 ${
+                    darkMode
+                      ? "text-emerald-400"
+                      : "text-emerald-700"
+                  }`}
+                >
+                  View Details{" "}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Lab Systems - cooler tone */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+              className={`rounded-2xl border overflow-hidden transition-all duration-300 cursor-pointer ${
+                darkMode
+                  ? "bg-gray-800/50 border-gray-700/50 hover:border-emerald-400/50 hover:shadow-2xl hover:shadow-emerald-500/10"
+                  : "bg-white/50 border-stone-200 hover:border-emerald-700/50 hover:shadow-2xl hover:shadow-emerald-700/10"
+              }`}
+              style={{
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+              }}
+            >
+              {/* Header Background Image */}
+              <div
+                className="relative h-40 w-full overflow-hidden"
+                style={{
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1595154038281-4beb9195415b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYWJvcmF0b3J5JTIwdGlzc3VlJTIwY3VsdHVyZSUyMHBldHJpJTIwZGlzaHxlbnwxfHx8fDE3NzAyODcyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div
+                  className={`absolute inset-0 ${
+                    darkMode ? "bg-gray-900/60" : "bg-white/40"
+                  }`}
+                  style={{ backdropFilter: "blur(2px)" }}
+                />
+              </div>
+
+              {/* Content */}
+              <div style={{ padding: "32px" }}>
+                <h3
+                  className="font-bold mb-4"
+                  style={{
+                    fontFamily: "Playfair Display, serif",
+                    fontSize: "28px",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  In-Vitro Culture & Laminar Systems
+                </h3>
+                <p
+                  className={`mb-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                  style={{ fontSize: "17px", lineHeight: 1.6 }}
+                >
+                  Sterile tissue culture facilities equipped
+                  with laminar airflow systems for aseptic plant
+                  propagation, micropropagation, and controlled
+                  experimental studies.
+                </p>
+                <div
+                  className={`p-4 rounded-2xl mb-6 ${darkMode ? "bg-gray-700/50" : "bg-stone-50/80"}`}
+                  style={{ backdropFilter: "blur(8px)" }}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span
+                      className="font-medium"
+                      style={{ fontSize: "14px" }}
+                    >
+                      Active Cultures
+                    </span>
+                    <span
+                      className={`font-semibold ${darkMode ? "text-blue-400" : "text-blue-700"}`}
+                      style={{ fontSize: "14px" }}
+                    >
+                      156 lines
+                    </span>
+                  </div>
+                  <div
+                    className={`w-full h-2 rounded-full ${darkMode ? "bg-gray-600" : "bg-stone-200"}`}
+                  >
+                    <div
+                      className={`h-full rounded-full ${darkMode ? "bg-blue-400" : "bg-blue-700"}`}
+                      style={{ width: "78%" }}
+                    />
+                  </div>
+                </div>
+                <button
+                  className={`flex items-center gap-2 font-medium text-sm transition-all duration-300 ${
+                    darkMode ? "text-blue-400" : "text-blue-700"
+                  }`}
+                >
+                  View Details{" "}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* WEEKLY PROGRESS - 96px padding, scrollable widget */}
+      <section
+        id="progress"
+        className={`px-6 ${darkMode ? "bg-gray-800" : "bg-white"}`}
+        style={{ paddingTop: "96px", paddingBottom: "96px" }}
+      >
+        <div className="max-w-[1280px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2
+              className="mb-4"
+              style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: "40px",
+                fontWeight: 700,
+                lineHeight: 1.3,
+              }}
+            >
+              Weekly Research Progress
+            </h2>
+            <div
+              className={`w-20 h-1 mx-auto mb-6 ${darkMode ? "bg-emerald-400" : "bg-emerald-700"}`}
+            />
+            <p
+              className={
+                darkMode ? "text-gray-400" : "text-gray-600"
+              }
+              style={{ fontSize: "18px", lineHeight: 1.6 }}
+            >
+              Transparent, continuous, and accountable science
+            </p>
+          </motion.div>
+
+          {/* Widget Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {/* Scrollable Events Widget */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className={`rounded-2xl border ${
+                darkMode
+                  ? "bg-gray-700/30 border-gray-600/30"
+                  : "bg-white/50 border-stone-200"
+              }`}
+              style={{
+                padding: "32px",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+                maxHeight: "500px",
+              }}
+            >
+              <div
+                className={`inline-block px-3 py-1 rounded-full mb-6 ${darkMode ? "bg-emerald-500/20 text-emerald-400" : "bg-emerald-100 text-emerald-700"}`}
+                style={{
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  letterSpacing: "0.05em",
+                }}
+              >
+                UPCOMING EVENTS
+              </div>
+
+              {/* Scrollable Container */}
+              <div
+                className="space-y-4 overflow-y-auto pr-2"
+                style={{ maxHeight: "360px" }}
+              >
+                {upcomingPresentations.map(
+                  (presentation, index) => (
+                    <div
+                      key={index}
+                      className={`p-4 rounded-xl border transition-all duration-300 hover:shadow-md cursor-pointer ${
+                        darkMode
+                          ? "bg-gray-600/30 border-gray-500/30 hover:border-emerald-400/40 hover:shadow-emerald-500/10"
+                          : "bg-stone-50 border-stone-200 hover:border-emerald-700/40 hover:shadow-emerald-700/10"
+                      }`}
+                    >
+                      <h4
+                        className="font-bold mb-3"
+                        style={{
+                          fontSize: "18px",
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {presentation.topic}
+                      </h4>
+
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`p-1.5 rounded-lg ${darkMode ? "bg-gray-500/30" : "bg-white"}`}
+                          >
+                            <Users
+                              className={`w-3.5 h-3.5 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+                            />
+                          </div>
+                          <div>
+                            <div className="text-xs text-gray-500">
+                              Presenter
+                            </div>
+                            <div
+                              className={`font-semibold ${darkMode ? "text-gray-200" : "text-gray-800"}`}
+                              style={{ fontSize: "14px" }}
+                            >
+                              {presentation.presenter}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`p-1.5 rounded-lg ${darkMode ? "bg-gray-500/30" : "bg-white"}`}
+                          >
+                            <Calendar
+                              className={`w-3.5 h-3.5 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+                            />
+                          </div>
+                          <div>
+                            <div className="text-xs text-gray-500">
+                              Schedule
+                            </div>
+                            <div
+                              className={`font-semibold ${darkMode ? "text-gray-200" : "text-gray-800"}`}
+                              style={{ fontSize: "14px" }}
+                            >
+                              {presentation.time}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
+            </motion.div>
+
+            {/* Countdown Widget */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: 0.1,
+                ease: "easeOut",
+              }}
+              className={`rounded-2xl border ${
+                darkMode
+                  ? "bg-gradient-to-br from-emerald-900/30 to-gray-700/30 border-emerald-500/30"
+                  : "bg-gradient-to-br from-emerald-50/80 to-white border-emerald-200"
+              }`}
+              style={{
+                padding: "32px",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+              }}
+            >
+              <div
+                className={`inline-block px-3 py-1 rounded-full mb-4 ${darkMode ? "bg-emerald-500/30 text-emerald-300" : "bg-emerald-200 text-emerald-800"}`}
+                style={{
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  letterSpacing: "0.05em",
+                }}
+              >
+                TIME REMAINING
+              </div>
+
+              <div className="grid grid-cols-4 gap-3">
+                {/* Days */}
+                <div
+                  className={`text-center p-4 rounded-xl ${darkMode ? "bg-gray-700/50" : "bg-white/70"}`}
+                  style={{ backdropFilter: "blur(8px)" }}
+                >
+                  <div
+                    className={`font-bold ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                    style={{ fontSize: "32px", lineHeight: 1 }}
+                  >
+                    {countdown.days}
+                  </div>
+                  <div
+                    className="text-xs text-gray-500 mt-2"
+                    style={{
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    Days
+                  </div>
+                </div>
+
+                {/* Hours */}
+                <div
+                  className={`text-center p-4 rounded-xl ${darkMode ? "bg-gray-700/50" : "bg-white/70"}`}
+                  style={{ backdropFilter: "blur(8px)" }}
+                >
+                  <div
+                    className={`font-bold ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                    style={{ fontSize: "32px", lineHeight: 1 }}
+                  >
+                    {countdown.hours}
+                  </div>
+                  <div
+                    className="text-xs text-gray-500 mt-2"
+                    style={{
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    Hours
+                  </div>
+                </div>
+
+                {/* Minutes */}
+                <div
+                  className={`text-center p-4 rounded-xl ${darkMode ? "bg-gray-700/50" : "bg-white/70"}`}
+                  style={{ backdropFilter: "blur(8px)" }}
+                >
+                  <div
+                    className={`font-bold ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                    style={{ fontSize: "32px", lineHeight: 1 }}
+                  >
+                    {countdown.minutes}
+                  </div>
+                  <div
+                    className="text-xs text-gray-500 mt-2"
+                    style={{
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    Mins
+                  </div>
+                </div>
+
+                {/* Seconds */}
+                <div
+                  className={`text-center p-4 rounded-xl ${darkMode ? "bg-gray-700/50" : "bg-white/70"}`}
+                  style={{ backdropFilter: "blur(8px)" }}
+                >
+                  <div
+                    className={`font-bold ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                    style={{ fontSize: "32px", lineHeight: 1 }}
+                  >
+                    {countdown.seconds}
+                  </div>
+                  <div
+                    className="text-xs text-gray-500 mt-2"
+                    style={{
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    Secs
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className={`mt-6 pt-6 border-t ${darkMode ? "border-gray-600/50" : "border-stone-200"}`}
+              >
+                <div className="text-center">
+                  <div className="text-xs text-gray-500 mb-1">
+                    NEXT EVENT
+                  </div>
+                  <div
+                    className={`font-semibold ${darkMode ? "text-gray-200" : "text-gray-800"}`}
+                    style={{ fontSize: "16px" }}
+                  >
+                    {upcomingPresentations[0].date}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                darkMode
+                  ? "bg-gray-700/50 hover:bg-gray-600/50 text-gray-300"
+                  : "bg-stone-100 hover:bg-stone-200 text-gray-700"
+              }`}
+              style={{ fontSize: "15px" }}
+            >
+              View All Sessions{" "}
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* GOALS & MILESTONES - Image-based cards with hover effect */}
+      <section
+        id="goals"
+        className={`px-6 ${darkMode ? "bg-gray-900" : "bg-stone-50"}`}
+        style={{ paddingTop: "96px", paddingBottom: "96px" }}
+      >
+        <div className="max-w-[1280px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2
+              className="mb-4"
+              style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: "40px",
+                fontWeight: 700,
+                lineHeight: 1.3,
+              }}
+            >
+              Our Goals & Milestones
+            </h2>
+            <div
+              className={`w-20 h-1 mx-auto ${darkMode ? "bg-emerald-400" : "bg-emerald-700"}`}
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {labGoals.map((goal, index) => (
+              <motion.a
+                key={goal.title}
+                href={goal.link}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: -12,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                className="group relative rounded-2xl overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-2xl hover:shadow-emerald-500/20"
+                style={{
+                  height: "500px",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                }}
+              >
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  style={{
+                    backgroundImage: `url(${goal.image})`,
+                  }}
+                />
+
+                {/* Gradient Overlay - starts from bottom */}
+                <div
+                  className={`absolute inset-0 transition-all duration-500 ${
+                    darkMode
+                      ? "bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent group-hover:from-gray-900/95 group-hover:via-gray-900/90"
+                      : "bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent group-hover:from-stone-900/95 group-hover:via-stone-900/85"
+                  }`}
+                />
+
+                {/* Content */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <h3
+                    className="font-bold text-white mb-3 transition-all duration-300"
+                    style={{
+                      fontSize: "24px",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {goal.title}
+                  </h3>
+
+                  {/* Progress Bar - always visible */}
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-white/80 text-sm">
+                        Progress
+                      </span>
+                      <span className="text-emerald-400 font-bold text-xl">
+                        {goal.progress}%
+                      </span>
+                    </div>
+                    <div className="w-full h-3 rounded-full bg-white/20 overflow-hidden relative">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all duration-500 relative overflow-hidden"
+                        style={{ width: `${goal.progress}%` }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Description - revealed on hover */}
+                  <p className="text-white/90 text-sm mb-4 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-40 transition-all duration-500">
+                    {goal.description}
+                  </p>
+
+                  {/* Deadline & Link */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/70 text-sm">
+                      Target: {goal.deadline}
+                    </span>
+                    <div className="flex items-center gap-2 text-emerald-400 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="text-sm font-medium">
+                        Learn More
+                      </span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                darkMode
+                  ? "bg-gray-800/50 hover:bg-gray-700/50 text-gray-300"
+                  : "bg-white hover:bg-stone-50 text-gray-700 border border-stone-300"
+              }`}
+              style={{ fontSize: "15px" }}
+            >
+              See All Goals <TrendingUp className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* PI SECTION - Two columns: Left (photo+info) Right (publications) */}
+      <section
+        id="pi"
+        className={`px-6 ${darkMode ? "bg-gray-800" : "bg-white"}`}
+        style={{ paddingTop: "128px", paddingBottom: "128px" }}
+      >
+        <div className="max-w-[1280px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2
+              className="mb-4"
+              style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: "40px",
+                fontWeight: 700,
+                lineHeight: 1.3,
+              }}
+            >
+              Principal Investigator
+            </h2>
+            <div
+              className={`w-20 h-1 mx-auto ${darkMode ? "bg-emerald-400" : "bg-emerald-700"}`}
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left Column - PI Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className={`rounded-2xl ${darkMode ? "bg-gray-700/30" : "bg-stone-50/50"}`}
+              style={{ padding: "48px" }}
+            >
+              {/* Photo at top center */}
+              <div
+                className={`w-48 h-48 rounded-2xl mx-auto mb-8 ${
+                  darkMode ? "bg-gray-600" : "bg-stone-300"
+                }`}
+                style={{
+                  border: `2px solid ${darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"}`,
+                }}
+              >
+                {/* Placeholder for PI photo */}
+              </div>
+
+              <div className="text-center mb-6">
+                <h3
+                  className="font-bold mb-2"
+                  style={{
+                    fontFamily: "Playfair Display, serif",
+                    fontSize: "32px",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Dr. Abinaya Manivannan
+                </h3>
+                <p
+                  className={`mb-2 ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                  style={{ fontSize: "18px", fontWeight: 500 }}
+                >
+                  Assistant Professor
+                </p>
+                <p
+                  className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                  style={{ fontSize: "15px", lineHeight: 1.6 }}
+                >
+                  HerbalOMICS and Bio-Innovation Laboratory
+                  <br />
+                  School of Computational and Integrative
+                  Sciences
+                  <br />
+                  Jawaharlal Nehru University, New Delhi
+                </p>
+              </div>
+
+              {/* Contact Information */}
+              <div
+                className={`mb-8 space-y-3 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                style={{ fontSize: "15px" }}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  <a
+                    href="mailto:abinaya@mail.jnu.ac.in"
+                    className="hover:text-emerald-600 transition-colors duration-300"
+                  >
+                    abinaya@mail.jnu.ac.in
+                  </a>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  <a
+                    href="mailto:abinayamanivannan@gmail.com"
+                    className="hover:text-emerald-600 transition-colors duration-300"
+                  >
+                    abinayamanivannan@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  <span>Room No. 38, SCIS, JNU</span>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <Globe className="w-4 h-4" />
+                  <a
+                    href="https://jnu.ac.in/Faculty/abinaya/cv.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-600 transition-colors duration-300 flex items-center gap-1"
+                  >
+                    Personal Webpage{" "}
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Personal Note */}
+              <div
+                className={`space-y-4 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                style={{ fontSize: "16px", lineHeight: 1.7 }}
+              >
+                <p>
+                  "Science is not just about discovery—it is
+                  about understanding the questions worth
+                  asking. In our laboratory, medicinal plants
+                  are explored as dynamic biological systems
+                  shaped by molecular regulation, environment,
+                  and evolutionary processes."
+                </p>
+                <p>
+                  "My vision is to integrate rigorous
+                  computational biology with controlled
+                  experimental systems, fostering transparency,
+                  accountability, and collaborative scientific
+                  growth."
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Publications */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <h3
+                className="font-bold mb-6"
+                style={{
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "28px",
+                }}
+              >
+                Publications & Insights
+              </h3>
+
+              <div className="space-y-6">
+                {recentPublications.map((pub, index) => (
+                  <div
+                    key={index}
+                    className={`rounded-xl border transition-all duration-300 hover:shadow-lg cursor-pointer ${
+                      darkMode
+                        ? "bg-gray-700/30 border-gray-600/30 hover:border-emerald-400/50 hover:shadow-emerald-500/10"
+                        : "bg-stone-50/50 border-stone-200 hover:border-emerald-700/50 hover:shadow-emerald-700/10"
+                    }`}
+                    style={{ padding: "24px" }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <BookOpen
+                        className={`w-6 h-6 flex-shrink-0 mt-1 ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
+                      />
+                      <div className="flex-1">
+                        <h4
+                          className="font-bold mb-3"
+                          style={{
+                            fontSize: "17px",
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {pub.title}
+                        </h4>
+                        <div className="flex flex-wrap items-center gap-4">
+                          <span
+                            className={`italic ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                            style={{ fontSize: "14px" }}
+                          >
+                            {pub.journal}, {pub.year}
+                          </span>
+                          <span
+                            className={`px-3 py-1 rounded-full font-semibold ${
+                              darkMode
+                                ? "bg-emerald-900/30 text-emerald-400"
+                                : "bg-emerald-100 text-emerald-700"
+                            }`}
+                            style={{ fontSize: "12px" }}
+                          >
+                            IF: {pub.if}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Additional Publications Placeholder */}
+                <div
+                  className={`p-6 rounded-xl border-2 border-dashed text-center ${
+                    darkMode
+                      ? "border-gray-600 bg-gray-700/20"
+                      : "border-stone-300 bg-stone-50"
+                  }`}
+                >
+                  <BookOpen
+                    className={`w-8 h-8 mx-auto mb-3 ${darkMode ? "text-gray-500" : "text-gray-400"}`}
+                  />
+                  <p
+                    className={`mb-4 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                    style={{ fontSize: "15px" }}
+                  >
+                    More publications available
+                  </p>
+                  <button
+                    className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg font-medium transition-all duration-300 ${
+                      darkMode
+                        ? "bg-gray-700/50 hover:bg-gray-600/50 text-gray-300"
+                        : "bg-white hover:bg-stone-100 text-gray-700 border border-stone-300"
+                    }`}
+                    style={{ fontSize: "14px" }}
+                  >
+                    View All Publications{" "}
+                    <ExternalLink className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* TEAM SECTION - Tree format with hierarchy */}
+      <section
+        id="members"
+        className={`px-6 ${darkMode ? "bg-gray-900" : "bg-stone-50"}`}
+        style={{ paddingTop: "96px", paddingBottom: "96px" }}
+      >
+        <div className="max-w-[1280px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2
+              className="mb-4"
+              style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: "40px",
+                fontWeight: 700,
+                lineHeight: 1.3,
+              }}
+            >
+              Our Team
+            </h2>
+            <div
+              className={`w-20 h-1 mx-auto ${darkMode ? "bg-emerald-400" : "bg-emerald-700"}`}
+            />
+          </motion.div>
+
+          <div className="space-y-12">
+            {/* Principal Investigator - Top Center */}
+            <div>
+              <h3
+                className={`font-semibold mb-6 text-center ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                style={{ fontSize: "18px" }}
+              >
+                Principal Investigator
+              </h3>
+              <div className="flex justify-center">
+                {teamMembers
+                  .filter((m) => m.category === "PI")
+                  .map((member, index) => (
+                    <motion.div
+                      key={member.name}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeOut",
+                      }}
+                      whileHover={{
+                        y: -6,
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
+                      className={`rounded-2xl border text-center transition-all duration-300 ${
+                        darkMode
+                          ? "bg-gray-800/50 border-gray-700/50 hover:border-emerald-400/50 hover:shadow-xl hover:shadow-emerald-500/10"
+                          : "bg-white/50 border-stone-200 hover:border-emerald-700/50 hover:shadow-xl hover:shadow-emerald-700/10"
+                      }`}
+                      style={{
+                        padding: "32px",
+                        backdropFilter: "blur(10px)",
+                        width: "280px",
+                      }}
+                    >
+                      <div
+                        className={`w-32 h-32 rounded-full mx-auto mb-4 ${
+                          darkMode
+                            ? "bg-gray-700"
+                            : "bg-stone-200"
+                        }`}
+                      />
+                      <h4
+                        className="font-semibold mb-1"
+                        style={{ fontSize: "16px" }}
+                      >
+                        {member.name}
+                      </h4>
+                      <p
+                        className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        style={{ fontSize: "14px" }}
+                      >
+                        {member.role}
+                      </p>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
+
+            {/* PhD Scholars */}
+            <div>
+              <h3
+                className={`font-semibold mb-6 text-center ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                style={{ fontSize: "18px" }}
+              >
+                PhD Scholars
+              </h3>
+              <div className="flex flex-wrap justify-center gap-6">
+                {teamMembers
+                  .filter((m) => m.category === "PhD")
+                  .map((member, index) => (
+                    <motion.div
+                      key={member.name}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        delay: index * 0.1,
+                        ease: "easeOut",
+                      }}
+                      whileHover={{
+                        y: -6,
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
+                      className={`rounded-2xl border text-center transition-all duration-300 ${
+                        darkMode
+                          ? "bg-gray-800/30 border-gray-700/30 hover:border-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/10"
+                          : "bg-white/30 border-stone-200 hover:border-emerald-700/40 hover:shadow-lg hover:shadow-emerald-700/10"
+                      }`}
+                      style={{
+                        padding: "24px",
+                        backdropFilter: "blur(8px)",
+                        width: "220px",
+                      }}
+                    >
+                      <div
+                        className={`w-24 h-24 rounded-full mx-auto mb-4 ${
+                          darkMode
+                            ? "bg-gray-700"
+                            : "bg-stone-200"
+                        }`}
+                      />
+                      <h4
+                        className="font-semibold mb-1"
+                        style={{ fontSize: "15px" }}
+                      >
+                        {member.name}
+                      </h4>
+                      <p
+                        className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        style={{ fontSize: "13px" }}
+                      >
+                        {member.role}
+                      </p>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
+
+            {/* Research Associates */}
+            <div>
+              <h3
+                className={`font-semibold mb-6 text-center ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                style={{ fontSize: "18px" }}
+              >
+                Research Associates
+              </h3>
+              <div className="flex flex-wrap justify-center gap-6">
+                {teamMembers
+                  .filter((m) => m.category === "RA")
+                  .map((member, index) => (
+                    <motion.div
+                      key={member.name}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        delay: index * 0.1,
+                        ease: "easeOut",
+                      }}
+                      whileHover={{
+                        y: -6,
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
+                      className={`rounded-2xl border text-center transition-all duration-300 ${
+                        darkMode
+                          ? "bg-gray-800/30 border-gray-700/30 hover:border-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/10"
+                          : "bg-white/30 border-stone-200 hover:border-emerald-700/40 hover:shadow-lg hover:shadow-emerald-700/10"
+                      }`}
+                      style={{
+                        padding: "24px",
+                        backdropFilter: "blur(8px)",
+                        width: "220px",
+                      }}
+                    >
+                      <div
+                        className={`w-24 h-24 rounded-full mx-auto mb-4 ${
+                          darkMode
+                            ? "bg-gray-700"
+                            : "bg-stone-200"
+                        }`}
+                      />
+                      <h4
+                        className="font-semibold mb-1"
+                        style={{ fontSize: "15px" }}
+                      >
+                        {member.name}
+                      </h4>
+                      <p
+                        className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        style={{ fontSize: "13px" }}
+                      >
+                        {member.role}
+                      </p>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
+
+            {/* Interns - Bottom */}
+            <div>
+              <h3
+                className={`font-semibold mb-6 text-center ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+                style={{ fontSize: "18px" }}
+              >
+                Interns
+              </h3>
+              <div className="flex flex-wrap justify-center gap-6">
+                {teamMembers
+                  .filter((m) => m.category === "Intern")
+                  .map((member, index) => (
+                    <motion.div
+                      key={member.name}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        delay: index * 0.1,
+                        ease: "easeOut",
+                      }}
+                      whileHover={{
+                        y: -4,
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
+                      className={`rounded-xl border text-center transition-all duration-300 ${
+                        darkMode
+                          ? "bg-gray-800/20 border-gray-700/20 hover:border-emerald-400/30 hover:shadow-md hover:shadow-emerald-500/10"
+                          : "bg-white/20 border-stone-200 hover:border-emerald-700/30 hover:shadow-md hover:shadow-emerald-700/10"
+                      }`}
+                      style={{
+                        padding: "20px",
+                        backdropFilter: "blur(6px)",
+                        width: "180px",
+                      }}
+                    >
+                      <div
+                        className={`w-20 h-20 rounded-full mx-auto mb-3 ${
+                          darkMode
+                            ? "bg-gray-700"
+                            : "bg-stone-200"
+                        }`}
+                      />
+                      <h4
+                        className="font-semibold mb-1"
+                        style={{ fontSize: "14px" }}
+                      >
+                        {member.name}
+                      </h4>
+                      <p
+                        className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        style={{ fontSize: "12px" }}
+                      >
+                        {member.role}
+                      </p>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* JOIN THE LAB - With background image and form */}
+      <section
+        id="join"
+        className="relative px-6"
+        style={{
+          paddingTop: "96px",
+          paddingBottom: "96px",
+          backgroundImage:
+            "url(https://images.unsplash.com/photo-1758685848567-a24f55473cc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2llbnRpc3RzJTIwd29ya2luZyUyMHRvZ2V0aGVyJTIwZnJpZW5kbHl8ZW58MXx8fHwxNzcwMzk4ODk3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/85 to-gray-900/90" />
+
+        <div className="relative max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <UserPlus className="w-16 h-16 mx-auto mb-8 text-emerald-400" />
+            <h2
+              className="mb-6 text-white"
+              style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: "40px",
+                fontWeight: 700,
+                lineHeight: 1.3,
+              }}
+            >
+              Work With Us
+            </h2>
+            <p
+              className="mb-10 max-w-2xl mx-auto text-white/90"
+              style={{ fontSize: "18px", lineHeight: 1.7 }}
+            >
+              We welcome motivated students and researchers
+              interested in medicinal plants, omics-driven
+              biology, and controlled-environment
+              experimentation.
+            </p>
+            <button
+              onClick={() => setShowJoinForm(true)}
+              className="px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:translate-y-[-2px] hover:shadow-2xl bg-emerald-600 hover:bg-emerald-700 text-white group flex items-center gap-2"
+              style={{
+                fontSize: "17px",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
+              }}
+            >
+              Join the Lab
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FOOTER - Dark theme */}
+      <footer
+        id="contact"
+        className="px-6 border-t bg-gray-900 border-gray-800"
+        style={{ paddingTop: "64px", paddingBottom: "64px" }}
+      >
+        <div className="max-w-[1280px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <h3
+                className="font-bold mb-4 text-white"
+                style={{
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "20px",
+                }}
+              >
+                Herbal Omics Lab
+              </h3>
+              <p
+                className="text-gray-400"
+                style={{ fontSize: "15px", lineHeight: 1.6 }}
+              >
+                School of Computational and Integrative Sciences
+                <br />
+                Jawaharlal Nehru University
+                <br />
+                New Delhi, India
+              </p>
+            </div>
+
+            <div>
+              <h4
+                className="font-semibold mb-4 text-white"
+                style={{ fontSize: "16px" }}
+              >
+                Contact
+              </h4>
+              <div
+                className="space-y-3 text-gray-400"
+                style={{ fontSize: "15px" }}
+              >
+                <a
+                  href="mailto:abinaya@mail.jnu.ac.in"
+                  className="flex items-center gap-2 hover:text-emerald-400 transition-colors duration-300"
+                >
+                  <Mail className="w-4 h-4" />
+                  abinaya@mail.jnu.ac.in
+                </a>
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 mt-0.5" />
+                  <span>Room 38, SCIS, JNU</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4
+                className="font-semibold mb-4 text-white"
+                style={{ fontSize: "16px" }}
+              >
+                Quick Links
+              </h4>
+              <div
+                className="space-y-2 text-gray-400"
+                style={{ fontSize: "15px" }}
+              >
+                <button
+                  onClick={() => scrollToSection("research")}
+                  className="block hover:text-emerald-400 transition-colors duration-300"
+                >
+                  Research
+                </button>
+                <button
+                  onClick={() => scrollToSection("goals")}
+                  className="block hover:text-emerald-400 transition-colors duration-300"
+                >
+                  Goals
+                </button>
+                <button
+                  onClick={() => scrollToSection("join")}
+                  className="block hover:text-emerald-400 transition-colors duration-300"
+                >
+                  Join the Lab
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="pt-8 border-t text-center border-gray-800 text-gray-500"
+            style={{ fontSize: "14px" }}
+          >
+            <p>
+              © 2024 Herbal Omics Lab, Jawaharlal Nehru
+              University. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

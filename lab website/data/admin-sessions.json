@@ -1,0 +1,75 @@
+{
+  "meeting": {
+    "title": "OMICS FOR METHANOGENESIS",
+    "number": "2nd ",
+    "purpose": "WORK UPDATE\n",
+    "date": "2026-04-15",
+    "time": "10:20",
+    "location": "Room No. 38, SCIS, JNU"
+  },
+  "presenters": [
+    {
+      "id": "1775594056450",
+      "presenter": "Gautami Jagdeo",
+      "topic": "Transcriptomic analysis of drought response pathways",
+      "time": "11:00 A.M.",
+      "status": "scheduled"
+    },
+    {
+      "id": "1775594057783",
+      "presenter": "Raja ",
+      "topic": " High-throughput annotation of secondary metabolites",
+      "time": "12:30 P.M.",
+      "status": "scheduled"
+    },
+    {
+      "id": "1775594058300",
+      "presenter": "Seema Jaiswal",
+      "topic": "Targeted genome editing strategies in medicinal herbs",
+      "time": "1:45 P.M.",
+      "status": "scheduled"
+    }
+  ],
+  "history": [
+    {
+      "id": "1775594051716",
+      "title": "Lab Meeting",
+      "number": "1st",
+      "purpose": "Weekly research presentations and discussion",
+      "date": "2026-04-15",
+      "time": "10:00",
+      "location": "Room No. 38, SCIS, JNU",
+      "presenters": [
+        {
+          "id": "2",
+          "presenter": "Gautami Jagdeo",
+          "topic": "Transcriptomic analysis of drought response pathways",
+          "time": "1:30 PM IST",
+          "status": "scheduled"
+        },
+        {
+          "id": "1",
+          "presenter": "Priya Sharma",
+          "topic": "Silicon-mediated stress tolerance in Mentha species",
+          "time": "11:00 AM IST",
+          "status": "scheduled"
+        },
+        {
+          "id": "3",
+          "presenter": "Seema Jaiswal",
+          "topic": "High-throughput annotation of secondary metabolites",
+          "time": "3:00 PM IST",
+          "status": "scheduled"
+        },
+        {
+          "id": "4",
+          "presenter": "Matilda",
+          "topic": "Targeted genome editing strategies in medicinal herbs",
+          "time": "4:30 PM IST",
+          "status": "scheduled"
+        }
+      ],
+      "archivedAt": "2026-04-07T20:34:11.716Z"
+    }
+  ]
+}

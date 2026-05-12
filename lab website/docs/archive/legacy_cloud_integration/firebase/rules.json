@@ -1,0 +1,30 @@
+{
+    "rules": {
+        "dashboard_data": {
+            ".read": "auth != null && (auth.token.role === 'pi' || auth.token.role === 'ra' || auth.token.role === 'intern' || auth.token.role === 'viewer')",
+            "projects": {
+                "$projectId": {
+                    ".write": "auth != null && auth.token.role === 'pi'",
+                    ".validate": "newData.hasChildren(['title', 'progressPercent'])",
+                    "progressPercent": {
+                        ".write": "auth != null && (auth.token.role === 'pi' || auth.token.role === 'ra')",
+                        ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+                    },
+                    "description": {
+                        ".write": "auth != null && (auth.token.role === 'pi' || auth.token.role === 'ra')"
+                    }
+                }
+            },
+            "research_notes": {
+                ".write": "auth != null && (auth.token.role === 'pi' || auth.token.role === 'ra' || auth.token.role === 'intern')"
+            },
+            "users": {
+                ".write": "auth != null && auth.token.role === 'pi'",
+                ".read": "auth != null && auth.token.role === 'pi'"
+            },
+            "public_blog": {
+                ".write": "auth != null && auth.token.role === 'pi'"
+            }
+        }
+    }
+}

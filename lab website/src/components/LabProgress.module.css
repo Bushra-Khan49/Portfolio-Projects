@@ -1,0 +1,191 @@
+.progressSection {
+    background-color: var(--color-bg-light);
+    /* Dark Green */
+    padding: 6rem 0;
+}
+
+.header {
+    margin-bottom: 4rem;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: stretch;
+}
+
+.timerSection {
+    background-color: var(--color-meeting-card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    color: var(--color-card-text);
+    position: sticky;
+    top: 120px;
+    height: max-content;
+}
+
+.timerHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.timerIcon {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+.timerTitle {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--color-card-text);
+}
+
+.timerSubtitle {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timerGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    background: rgba(45, 106, 79, 0.05);
+    /* very light sage tint */
+    padding: 2rem;
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(45, 106, 79, 0.2);
+}
+
+.timeBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timeVal {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.timeLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+/* Sessions Right Side */
+.sessionsWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.sessionsTitle {
+    font-size: 1.25rem;
+    color: var(--color-text-inverse);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sessionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* Scrollbar styling */
+.sessionsList::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sessionsList::-webkit-scrollbar-track {
+    background: var(--color-bg-gray);
+    border-radius: 4px;
+}
+
+.sessionsList::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+}
+
+.sessionsList::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+.sessionCard {
+    background-color: var(--color-meeting-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.sessionCard:hover {
+    transform: translateX(-8px);
+    box-shadow: 0 16px 40px rgba(45, 106, 79, 0.4);
+    /* intense green glow */
+    border-color: rgba(45, 106, 79, 0.6);
+}
+
+.sessionCardTitle {
+    font-size: 1.25rem;
+    color: var(--color-card-text);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+}
+
+.sessionDetails {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.detailIcon {
+    color: var(--color-primary);
+}
+
+.sessionTime {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+    .content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .timerSection {
+        position: static;
+    }
+}

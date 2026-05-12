@@ -1,0 +1,123 @@
+.facilitiesSection {
+    background-color: var(--color-bg-white);
+    padding: 6rem 0;
+}
+
+.header {
+    margin-bottom: 3rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--color-facility-card-bg);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(45, 106, 79, 0.25);
+    border-color: rgba(45, 106, 79, 0.4);
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.cardImage {
+    object-fit: cover;
+}
+
+.cardContent {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.cardTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-card-text);
+    font-weight: 700;
+}
+
+.cardDesc {
+    color: var(--color-card-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+}
+
+.statBox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: rgba(45, 106, 79, 0.05);
+    /* very light sage tint */
+    border: 1px solid rgba(82, 183, 136, 0.2);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+}
+
+.card:hover .statBox {
+    background: rgba(45, 106, 79, 0.1);
+}
+
+.statLabel {
+    font-size: 0.70rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    font-weight: 700;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+.learnMore {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-primary);
+    display: inline-block;
+    margin-top: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.learnMore:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

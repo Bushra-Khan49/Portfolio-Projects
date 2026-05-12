@@ -1,0 +1,30 @@
+[
+  {
+    "id": "smart-greenhouse",
+    "title": "Smart Greenhouse System",
+    "description": "Controlled-environment chambers enabling precise regulation of temperature, humidity, light, and soil parameters for plant physiology and stress-response studies.",
+    "stats": [
+      {
+        "label": "AVERAGE TEMPERATURE",
+        "value": "24°C"
+      },
+      {
+        "label": "RELATIVE HUMIDITY",
+        "value": "65%"
+      }
+    ],
+    "image": "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "in-vitro-culture",
+    "title": "In-Vitro Culture & Laminar Systems",
+    "description": "Sterile tissue culture facilities equipped with laminar airflow systems for aseptic plant propagation, micropropagation, and controlled experimental studies.",
+    "stats": [
+      {
+        "label": "Active Cultures",
+        "value": "156 lines"
+      }
+    ],
+    "image": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=600"
+  }
+]

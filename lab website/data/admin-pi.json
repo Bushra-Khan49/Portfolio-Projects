@@ -1,0 +1,52 @@
+{
+  "name": "Dr. Abinaya Manivannan",
+  "role": "Assistant Professor",
+  "affiliation": "HerbalOMICS and Bio-Innovation Laboratory, School of Computational and Integrative Sciences, Jawaharlal Nehru University, New Delhi.",
+  "email": "abinaya@mail.jnu.ac.in",
+  "altEmail": "abinayamanivannan@gmail.com",
+  "location": "Room No. 38, SCIS, JNU",
+  "quote": "\"Science is not just about discovery—it is about understanding the questions worth asking. In our laboratory, medicinal plants are explored as dynamic biological systems shaped by molecular regulation, environment, and evolutionary processes.\"",
+  "featuredPublication": "\"Mentha arvensis and Mentha x piperita – Vital Herbs with Myriads of Pharmaceutical Benefits\" (Horticulturae, 2023 | IF: 3.1)",
+  "publications": [
+    {
+      "id": "1",
+      "title": "Mentha arvensis and Mentha x piperita – Vital Herbs with Myriads of Pharmaceutical Benefits",
+      "link": "https://doi.org/10.3390/horticulturae9020283"
+    },
+    {
+      "id": "2",
+      "title": "Blue LED light enhances growth, phytochemical contents, and antioxidant enzyme activities of Rehmannia glutinosa cultured in vitro",
+      "link": "https://doi.org/10.1007/s13580-015-0114-1"
+    },
+    {
+      "id": "3",
+      "title": "Genome-wide Identification of Biosynthetic Gene Clusters for Secondary Metabolites in Medicinal Plants",
+      "link": ""
+    },
+    {
+      "id": "4",
+      "title": "Advanced Computational Pipelines for Untargeted Plant Metabolomics",
+      "link": ""
+    },
+    {
+      "id": "5",
+      "title": "Molecular Mechanisms of Stress Adaptation in Horticultural Crops",
+      "link": ""
+    },
+    {
+      "id": "6",
+      "title": "Comparative Genomics of Traditional Medicinal Plants",
+      "link": ""
+    },
+    {
+      "id": "7",
+      "title": "Secondary Metabolite Profiling Under Abiotic Stress Conditions",
+      "link": ""
+    },
+    {
+      "id": "8",
+      "title": "Next-Generation Sequencing Applications in Plant Biology",
+      "link": ""
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1774365074595",
+    "submittedAt": "2026-03-24T15:11:14.595Z",
+    "status": "pending",
+    "name": "Bushra Khan",
+    "email": "bushra024.k@gmail.com",
+    "city": "New Delhi ",
+    "state": "Delhi",
+    "country": "India",
+    "institute": "Jamia Hamdard",
+    "position": "Intern",
+    "period": "3 Months",
+    "joinDate": "2026-04-02",
+    "endDate": "2026-07-03",
+    "topic": "i worked on benchmarking tools for protein production like alphafold, rosettafold, etc.",
+    "resumePath": "/uploads/applications/bushra-khan-1774365074625.pdf",
+    "resumeFilename": "Bushra Khan CV.pdf"
+  }
+]

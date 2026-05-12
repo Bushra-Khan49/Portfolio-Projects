@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mentha-genome",
+    "title": "Complete Mentha genome assembly",
+    "description": "Finalizing the long-read sequencing and chromosome-scale assembly of Mentha species to uncover essential oil biosynthesis genes.",
+    "progress": 62,
+    "target": "March 2026",
+    "image": "/uploads/goal-mentha-genome.jpg"
+  },
+  {
+    "id": "silicon-network",
+    "title": "Establish silicon response network",
+    "description": "Mapping the transcriptomic and metabolomic changes in medicinal plants under silicon-mediated stress alleviation.",
+    "progress": 60,
+    "target": "June 2026",
+    "image": "/uploads/goal-silicon-network.jpg"
+  },
+  {
+    "id": "metabolomics-pipeline",
+    "title": "Publish metabolomics pipeline",
+    "description": "Deploying an open-source computational pipeline for high-throughput untargeted plant metabolomics analysis.",
+    "progress": 40,
+    "target": "August 2026",
+    "image": "/uploads/goal-metabolomics-pipeline.jpg"
+  }
+]

@@ -1,0 +1,295 @@
+.pageWrapper {
+    min-height: 100vh;
+    background-color: #1b4332;
+    color: #ffffff;
+    padding-top: 10rem; /* More space so title clears the navbar */
+    padding-bottom: 0; /* Footer sits at the natural page bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ─── Header ──────────────────────────────────────── */
+.pageHeader {
+    text-align: center;
+    margin-bottom: 5rem;  /* More breathing room before the panel */
+    padding: 0 1.5rem;
+}
+
+.mainTitle {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+/* Single blue line after title only */
+.titleLine {
+    width: 80px;
+    height: 5px;
+    background-color: #1e3a8a;
+    border-radius: 3px;
+    margin: 0 auto 1.75rem;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.15rem;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ─── Main Layout (Left-aligned panel) ───────────── */
+.mainSection {
+    padding: 0 2.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    margin-bottom: 8rem; /* gap between card and footer */
+    flex: 1; /* fills remaining page height so footer is at the bottom */
+}
+
+.layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    /* card stretches to fill available height */
+    min-height: calc(100vh - 24rem);
+}
+
+/* ─── Sidebar ─────────────────────────────────────── */
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    padding: 2rem 0 2rem;
+    position: sticky;
+    top: 10rem;
+    z-index: 2;
+}
+
+/* Bold thick "Focus Areas" heading */
+.sidebarLabel {
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.25rem;
+    padding-left: 1.25rem;
+    line-height: 1;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.navBtn {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid transparent;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    line-height: 1.35;
+    position: relative;
+    z-index: 1;
+}
+
+.navBtn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255,255,255,0.08);
+}
+
+/*
+ * BRIDGE EFFECT:
+ * Active tab = white bg + flat right edge.
+ * Negative margin extends it to touch the card — same white, so they merge.
+ */
+.navBtnActive {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-weight: 700;
+    border-color: transparent !important;
+    border-radius: 14px 0 0 14px !important;
+    margin-right: -24px;
+    padding-right: calc(1.25rem + 24px);
+    z-index: 3;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ─── Floating Dashboard Card ─────────────────────── */
+.card {
+    flex: 1;
+    align-self: stretch; /* card fills the layout height */
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.06),
+        0 24px 64px rgba(0, 0, 0, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    min-height: 520px;
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.4s ease;
+}
+
+.card:hover {
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.08),
+        0 32px 80px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ─── Card: Text Side (Left 62%) ─────────────────── */
+.textSide {
+    flex: 0 0 62%;
+    padding: 3.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+}
+
+/*
+ * Neumorphic pill — inset shadow creates the soft embedded 3D effect
+ */
+.topicPill {
+    display: inline-flex;
+    align-items: center;
+    background: #eef2f7;
+    color: #334155;
+    border-radius: 100px;
+    padding: 0.5rem 1.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    width: fit-content;
+    box-shadow:
+        inset 3px 3px 6px rgba(0, 0, 0, 0.08),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.85),
+        0 1px 3px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.cardTitle {
+    font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    margin: 0;
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    transition: color 0.3s ease;
+}
+
+.cardTitleLine {
+    width: 48px;
+    height: 4px;
+    background: #1e3a8a;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    transition: width 0.4s ease;
+}
+
+.cardDesc {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #475569;
+    margin: 0;
+}
+
+.comingSoon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    font-style: italic;
+    width: fit-content;
+}
+
+/* ─── Card: Image Side (Right 38%) ───────────────── */
+.imageSide {
+    flex: 0 0 38%;
+    position: relative;
+    overflow: hidden; /* Clean edges — no corner modifications */
+    transition: filter 0.4s ease;
+}
+
+/* Image fills the area — NO curve/notch modifications */
+.imageEl {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card:hover .imageEl {
+    transform: scale(1.04);
+}
+
+/*
+ * Step badge — sits on TOP of the image at bottom-right.
+ * Simple, clean circle, no notch/cut-out.
+ */
+.stepBadge {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.88rem;
+    color: #1e3a8a;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.22),
+        0 0 0 2px rgba(255,255,255,0.5);
+    letter-spacing: -0.02em;
+    transition: transform 0.3s ease;
+}
+
+.stepBadge:hover {
+    transform: scale(1.1);
+}
+
+/* ─── Mobile ──────────────────────────────────────── */
+@media (max-width: 960px) {
+    .mainSection { padding: 0 1.5rem; }
+    .layout { flex-direction: column; gap: 2rem; }
+    .sidebar { width: 100%; position: relative; top: 0; padding: 0; }
+    .nav { flex-direction: row; flex-wrap: wrap; }
+    .navBtnActive {
+        border-radius: 14px !important;
+        margin-right: 0;
+        padding-right: 1.25rem;
+    }
+    .card { flex-direction: column; }
+    .textSide { flex: none; padding: 2.5rem 2rem; }
+    .imageSide { flex: none; height: 260px; }
+}
