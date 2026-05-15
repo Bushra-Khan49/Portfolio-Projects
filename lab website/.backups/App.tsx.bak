@@ -25,8 +25,8 @@ import {
 } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { toast, Toaster } from "sonner";
-import herbalOmicsImage from "figma:asset/12651f34c50fd4fc58576727d80fb36252506e6e.png";
-import scisLogo from "figma:asset/9e3e8bd05d7dbe5a5e29def8128a98f35eb1cf75.png";
+const herbalOmicsImage = "/hero-nexus.jpg";
+const scisLogo = "/hero-nexus.jpg";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -160,148 +160,161 @@ function App() {
 
   const researchAreas = [
     {
-      title: "Herbal Genomics",
-      desc: "Decoding the genetic blueprint of medicinal and horticultural plants",
+      title: "Nexus Genomics & Sequencing",
+      desc: "Decoding the genetic blueprint of complex biological systems",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1579154204845-5d7f8d4dc785?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxETkElMjBnZW5vbWUlMjBzZXF1ZW5jaW5nJTIwbGFib3JhdG9yeXxlbnwxfHx8fDE3NzAyODcxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/herbal-genomics-new.jpg",
     },
     {
-      title: "Omics Integration",
-      desc: "Integrative transcriptomics, proteomics, and metabolomics for systems-level understanding",
+      title: "Systems Bio-Innovation",
+      desc: "Integrative multi-omics analysis for a systems-level understanding of life",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1518516278006-4aca92806257?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwc2NpZW5jZSUyMHZpc3VhbGl6YXRpb24lMjBjb2xvcmZ1bHxlbnwxfHx8fDE3NzAyODcxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/omics-integration-new.jpg",
     },
     {
-      title: "Protein Structure & Function",
-      desc: "Protein modelling and functional analysis of molecular mechanisms involved in plant development and stress responses",
+      title: "Molecular Architecture",
+      desc: "Structural analysis of biological molecules and their intricate functions",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1709227371218-35ef4d1d91f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm90ZWluJTIwbW9sZWN1bGFyJTIwc3RydWN0dXJlfGVufDF8fHx8MTc3MDI4NzExMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/protein-structure-new.png",
     },
     {
-      title: "Systems Biology",
-      desc: "Network-level analysis of regulatory pathways governing plant growth, development, and adaptation",
+      title: "Predictive Modelling",
+      desc: "Network-level simulations of regulatory pathways and biological responses",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1738082956220-a1f20a8632ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9sb2dpY2FsJTIwbmV0d29yayUyMHBhdGh3YXlzfGVufDF8fHx8MTc3MDI4NzExMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/hero-crystal.png",
     },
     {
-      title: "Computational Analysis",
-      desc: "NGS data analysis, big-data biology, and computational modelling for plant omics research",
+      title: "Computational Discovery",
+      desc: "Big-data analytics and advanced bioinformatic pipeline development",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1669023414162-5bb06bbff0ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9pbmZvcm1hdGljcyUyMGNvbXB1dGVyJTIwYW5hbHlzaXN8ZW58MXx8fHwxNzcwMjg3MTExfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/omics-integration-new.jpg",
     },
   ];
 
   const upcomingPresentations = [
     {
-      date: "February 5, 2026",
+      date: "June 15, 2026",
       topic:
-        "Silicon-mediated stress tolerance in Mentha species",
-      presenter: "Priya Sharma",
-      time: "3:00 PM IST",
+        "Predictive Frameworks for Systems Bio-Innovation",
+      presenter: "Dr. Evelyn Vance",
+      time: "10:00 AM",
     },
     {
-      date: "February 5, 2026",
+      date: "June 15, 2026",
       topic:
-        "Transcriptomic analysis of drought response pathways",
-      presenter: "Gautami Gajdeyo",
-      time: "4:30 PM IST",
+        "High-Throughput Genomic Assembly Strategies",
+      presenter: "Alice Vance",
+      time: "11:30 AM",
     },
     {
-      date: "February 5, 2026",
+      date: "June 15, 2026",
       topic:
-        "Metabolite profiling in medicinal plants under biotic stress",
-      presenter: "Seema Jaiswal",
-      time: "6:00 PM IST",
+        "Integrating Multi-Omics Data in Precision Biology",
+      presenter: "Ethan Hunt",
+      time: "2:00 PM",
     },
   ];
 
   const labGoals = [
     {
-      title: "Complete Mentha genome assembly",
-      progress: 75,
-      deadline: "March 2026",
+      title: "Biological System Mapping",
+      progress: 80,
+      deadline: "April 2026",
       description:
-        "High-quality reference genome for Mentha arvensis with complete annotation of gene families involved in essential oil biosynthesis.",
+        "Completing a comprehensive genomic and transcriptomic atlas for target biological systems to uncover novel regulatory networks.",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1654636509498-8610bfa36fae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGFudCUyMGdlbm9tZSUyMHJlc2VhcmNoJTIwbWljcm9zY29wZXxlbnwxfHx8fDE3NzAzOTg4OTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/herbal-genomics-new.jpg",
+      id: "nexus-genome-atlas"
     },
     {
-      title:
-        "Establish silicon response network in medicinal plants",
-      progress: 60,
-      deadline: "June 2026",
+      title: "Predictive Analysis Deployment",
+      progress: 65,
+      deadline: "July 2026",
       description:
-        "Comprehensive network analysis identifying key regulatory hubs governing silicon-mediated stress tolerance mechanisms.",
+        "Developing and deploying an AI-driven platform for predicting biological system responses to multi-factor stimuli.",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1738082956220-a1f20a8632ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9sb2dpY2FsJTIwbmV0d29yayUyMHBhdGh3YXlzfGVufDF8fHx8MTc3MDI4NzExMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/hero-crystal.png",
+      id: "predictive-platform"
     },
     {
-      title: "Publish metabolomics analysis pipeline",
-      progress: 40,
-      deadline: "August 2026",
+      title: "Open-Access Research Framework",
+      progress: 45,
+      deadline: "September 2026",
       description:
-        "Open-source computational pipeline for untargeted metabolomics data processing with advanced statistical validation.",
+        "Launching a standardized research framework for integrated discovery, promoting collaborative and reproducible science.",
       link: "#",
       image:
-        "https://images.unsplash.com/photo-1554475900-0a0350e3fc7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXRhYm9sb21pY3MlMjBjaGVtaWNhbCUyMGNvbXBvdW5kcyUyMGNvbG9yZnVsfGVufDF8fHx8MTc3MDM5ODg5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "/omics-integration-new.jpg",
+      id: "open-source-discovery"
+    },
+    {
+      title: "Translational Discovery Scaling",
+      progress: 30,
+      deadline: "December 2026",
+      description:
+        "Scaling our computational discovery pipeline to support large-scale translational research projects globally.",
+      link: "#",
+      image:
+        "/goal-mentha-genome.jpg",
+      id: "translational-scaling"
     },
   ];
 
   const recentPublications = [
     {
       title:
-        'Silicon: A "Quasi-Essential" Element\'s Role in Plant Physiology and Development',
-      journal: "Frontiers in Plant Science",
-      year: 2023,
-      if: 5.6,
+        'Next-Generation Computational Frameworks for Predictive Systems Biology',
+      journal: "Nexus Systems Journal",
+      year: 2025,
+      if: 14.2,
     },
     {
       title:
-        "Mentha arvensis and Mentha × piperita – Vital Herbs with Myriads of Pharmaceutical Benefits",
-      journal: "Horticulturae",
-      year: 2023,
-      if: 3.1,
+        "Integrated Genomic Mapping of Multi-Layered Biological Responses",
+      journal: "Nexus Plant Biology",
+      year: 2024,
+      if: 8.4,
     },
   ];
 
   const teamMembers = [
     {
-      name: "Dr. Abinaya Manivannan",
-      role: "Principal Investigator",
+      name: "Dr. Evelyn Vance",
+      role: "Lead Research Scientist",
       category: "PI",
     },
     {
-      name: "Gautami Gajdeyo",
+      name: "Alice Vance",
       role: "PhD Scholar",
       category: "PhD",
     },
     {
-      name: "Seema Jaiswal",
+      name: "Clara Oswald",
       role: "PhD Scholar",
       category: "PhD",
     },
-    { name: "Matilda", role: "PhD Scholar", category: "PhD" },
-    { name: "Raja", role: "PhD Scholar", category: "PhD" },
+    { name: "Diana Prince", role: "PhD Scholar", category: "PhD" },
+    { name: "Ethan Hunt", role: "PhD Scholar", category: "PhD" },
     {
-      name: "Shivani",
+      name: "Grace Shelby",
       role: "Research Associate",
       category: "RA",
     },
     {
-      name: "Shraddha",
+      name: "Hannah Abbott",
       role: "Research Associate",
       category: "RA",
     },
-    { name: "Bushra", role: "Intern", category: "Intern" },
-    { name: "Shreerag", role: "Intern", category: "Intern" },
-    { name: "Obyed", role: "Intern", category: "Intern" },
+    { name: "Mia Chen", role: "Intern", category: "Intern" },
+    { name: "David Park", role: "Intern", category: "Intern" },
+    { name: "Sofia Rossi", role: "Intern", category: "Intern" },
   ];
 
   return (
@@ -348,7 +361,7 @@ function App() {
             >
               <img
                 src={scisLogo}
-                alt="Herbal Omics Lab"
+                alt="Nexus Genomics Institute"
                 className="h-12 w-auto object-contain"
                 style={{
                   filter:
@@ -358,24 +371,7 @@ function App() {
                 }}
               />
             </button>
-            <a
-              href="https://jnu.ac.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-            >
-              <img
-                src={scisLogo}
-                alt="JNU"
-                className="h-12 w-auto object-contain"
-                style={{
-                  filter:
-                    navScrolled || darkMode
-                      ? "brightness(0.9)"
-                      : "brightness(1)",
-                }}
-              />
-            </a>
+
           </div>
 
           {/* Desktop Navigation */}
@@ -534,7 +530,7 @@ function App() {
                   
                   const data = Object.fromEntries(formData.entries());
                   const mailtoLink =
-                    `mailto:abinaya@mail.jnu.ac.in?subject=Lab Application - ${data.name}&body=
+                    `mailto:evelyn.vance@nexus-genomics.org?subject=Lab Application - ${data.name}&body=
 Name: ${data.name}
 Location: ${data.city}, ${data.state}, ${data.country}
 Current Institute: ${data.institute}
@@ -576,6 +572,7 @@ Previous Research Topic: ${data.topic}
                     type="text"
                     name="name"
                     required
+                    placeholder="e.g., Alice Vance"
                     className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
                       formErrors.name
                         ? "border-red-500 bg-red-50/5 focus:ring-red-500"
@@ -628,6 +625,7 @@ Previous Research Topic: ${data.topic}
                     type="text"
                     name="city"
                     required
+                    placeholder="e.g., Horizon City"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       darkMode
                         ? "bg-gray-700 border-gray-600 text-white"
@@ -646,6 +644,7 @@ Previous Research Topic: ${data.topic}
                     type="text"
                     name="state"
                     required
+                    placeholder="e.g., California"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       darkMode
                         ? "bg-gray-700 border-gray-600 text-white"
@@ -682,6 +681,7 @@ Previous Research Topic: ${data.topic}
                     type="text"
                     name="institute"
                     required
+                    placeholder="e.g., University of Horizon"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       darkMode
                         ? "bg-gray-700 border-gray-600 text-white"
@@ -892,7 +892,7 @@ Previous Research Topic: ${data.topic}
         >
           <img
             src={herbalOmicsImage}
-            alt="Herbal Omics Lab"
+            alt="Nexus Genomics Institute"
             className="w-full max-w-4xl h-auto object-contain"
             style={{
               filter: darkMode
@@ -1096,7 +1096,7 @@ Previous Research Topic: ${data.topic}
                 className="relative h-40 w-full overflow-hidden"
                 style={{
                   backgroundImage:
-                    "url(https://images.unsplash.com/photo-1768847537055-b001f4022276?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbmhvdXNlJTIwcGxhbnRzJTIwZ3Jvd2luZyUyMGVudmlyb25tZW50fGVufDF8fHx8MTc3MDI4NzI1N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)",
+                    "url(/dashboard-greenhouse.png)",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -1175,6 +1175,7 @@ Previous Research Topic: ${data.topic}
                   </div>
                 </div>
                 <button
+                  onClick={() => window.location.href = '/facilities?id=smart-greenhouse'}
                   className={`flex items-center gap-2 font-medium text-sm transition-all duration-300 ${
                     darkMode
                       ? "text-emerald-400"
@@ -1212,7 +1213,7 @@ Previous Research Topic: ${data.topic}
                 className="relative h-40 w-full overflow-hidden"
                 style={{
                   backgroundImage:
-                    "url(https://images.unsplash.com/photo-1595154038281-4beb9195415b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYWJvcmF0b3J5JTIwdGlzc3VlJTIwY3VsdHVyZSUyMHBldHJpJTIwZGlzaHxlbnwxfHx8fDE3NzAyODcyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)",
+                    "url(/protein-structure-new.png)",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -1274,6 +1275,7 @@ Previous Research Topic: ${data.topic}
                   </div>
                 </div>
                 <button
+                  onClick={() => window.location.href = '/facilities?id=laminar-systems'}
                   className={`flex items-center gap-2 font-medium text-sm transition-all duration-300 ${
                     darkMode ? "text-blue-400" : "text-blue-700"
                   }`}
@@ -1698,9 +1700,12 @@ Previous Research Topic: ${data.topic}
                     <span className="text-white/70 text-sm">
                       Target: {goal.deadline}
                     </span>
-                    <div className="flex items-center gap-2 text-emerald-400 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div 
+                      onClick={(e) => { e.preventDefault(); window.location.href = `/goals?id=${goal.id || index}`; }}
+                      className="flex items-center gap-2 text-emerald-400 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    >
                       <span className="text-sm font-medium">
-                        Learn More
+                        Explore Details
                       </span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -1712,6 +1717,7 @@ Previous Research Topic: ${data.topic}
 
           <div className="text-center mt-12">
             <button
+              onClick={() => window.location.href = '/goals'}
               className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                 darkMode
                   ? "bg-gray-800/50 hover:bg-gray-700/50 text-gray-300"
@@ -1719,7 +1725,7 @@ Previous Research Topic: ${data.topic}
               }`}
               style={{ fontSize: "15px" }}
             >
-              See All Goals <TrendingUp className="w-4 h-4" />
+              Explore All Details <TrendingUp className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -1786,7 +1792,7 @@ Previous Research Topic: ${data.topic}
                     lineHeight: 1.2,
                   }}
                 >
-                  Dr. Abinaya Manivannan
+                  Dr. Evelyn Vance
                 </h3>
                 <p
                   className={`mb-2 ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}
@@ -1803,7 +1809,7 @@ Previous Research Topic: ${data.topic}
                   School of Computational and Integrative
                   Sciences
                   <br />
-                  Jawaharlal Nehru University, New Delhi
+                  Advanced Systems Bio-Innovation Hub, Horizon City
                 </p>
               </div>
 
@@ -1815,31 +1821,29 @@ Previous Research Topic: ${data.topic}
                 <div className="flex items-center justify-center gap-2">
                   <Mail className="w-4 h-4" />
                   <a
-                    href="mailto:abinaya@mail.jnu.ac.in"
+                    href="mailto:evelyn.vance@nexus-genomics.org"
                     className="hover:text-emerald-600 transition-colors duration-300"
                   >
-                    abinaya@mail.jnu.ac.in
+                    evelyn.vance@nexus-genomics.org
                   </a>
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <Mail className="w-4 h-4" />
                   <a
-                    href="mailto:abinayamanivannan@gmail.com"
+                    href="mailto:evelyn.vance.research@gmail.com"
                     className="hover:text-emerald-600 transition-colors duration-300"
                   >
-                    abinayamanivannan@gmail.com
+                    evelyn.vance.research@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <MapPin className="w-4 h-4" />
-                  <span>Room No. 38, SCIS, JNU</span>
+                  <span>Building 4, Wing B</span>
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <Globe className="w-4 h-4" />
                   <a
-                    href="https://jnu.ac.in/Faculty/abinaya/cv.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
                     className="hover:text-emerald-600 transition-colors duration-300 flex items-center gap-1"
                   >
                     Personal Webpage{" "}
@@ -2256,7 +2260,7 @@ Previous Research Topic: ${data.topic}
           paddingTop: "96px",
           paddingBottom: "96px",
           backgroundImage:
-            "url(https://images.unsplash.com/photo-1758685848567-a24f55473cc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2llbnRpc3RzJTIwd29ya2luZyUyMHRvZ2V0aGVyJTIwZnJpZW5kbHl8ZW58MXx8fHwxNzcwMzk4ODk3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)",
+            "url(/hero-nexus.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -2323,17 +2327,13 @@ Previous Research Topic: ${data.topic}
                   fontSize: "20px",
                 }}
               >
-                Herbal Omics Lab
+                Nexus Genomics Institute
               </h3>
               <p
                 className="text-gray-400"
                 style={{ fontSize: "15px", lineHeight: 1.6 }}
               >
-                School of Computational and Integrative Sciences
-                <br />
-                Jawaharlal Nehru University
-                <br />
-                New Delhi, India
+                Advanced Systems Bio-Innovation Hub
               </p>
             </div>
 
@@ -2349,15 +2349,15 @@ Previous Research Topic: ${data.topic}
                 style={{ fontSize: "15px" }}
               >
                 <a
-                  href="mailto:abinaya@mail.jnu.ac.in"
+                  href="mailto:evelyn.vance@nexus-genomics.org"
                   className="flex items-center gap-2 hover:text-emerald-400 transition-colors duration-300"
                 >
                   <Mail className="w-4 h-4" />
-                  abinaya@mail.jnu.ac.in
+                  evelyn.vance@nexus-genomics.org
                 </a>
                 <div className="flex items-start gap-2">
                   <MapPin className="w-4 h-4 mt-0.5" />
-                  <span>Room 38, SCIS, JNU</span>
+                  <span>Building 4, Wing B</span>
                 </div>
               </div>
             </div>
@@ -2400,7 +2400,7 @@ Previous Research Topic: ${data.topic}
             style={{ fontSize: "14px" }}
           >
             <p>
-              © 2024 Herbal Omics Lab, Jawaharlal Nehru
+              © 2024 Nexus Genomics Institute, Advanced Systems
               University. All rights reserved.
             </p>
           </div>

@@ -22,18 +22,19 @@ export default function Hero() {
 
     return (
         <section ref={containerRef} className={styles.heroSection}>
-            <motion.div className={styles.backgroundContainer} style={{ y }}>
-                {/* Fixed floating rock image uploaded by user */}
+            <motion.div className={styles.imageWrapper} style={{ y }}>
+                {/* Fixed floating rock image uploaded by user — No stretching */}
                 <Image
-                    src="/hero-rock.jpg"
+                    src="/hero-nexus.jpg"
                     alt="Floating rock with medicinal plants"
-                    fill
-                    className={styles.bgImage}
+                    width={1800}
+                    height={1600}
+                    className={styles.brandImage}
                     priority
                 />
             </motion.div>
 
-            <div className={`container ${styles.content}`}>
+            <div className={styles.content}>
                 <motion.button
                     className={styles.scrollIndicator}
                     onClick={scrollToNext}

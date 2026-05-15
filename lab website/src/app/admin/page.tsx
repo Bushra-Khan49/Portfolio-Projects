@@ -3,7 +3,7 @@
 /**
  * 🛠️ PI ADMIN DASHBOARD (MAIN ENTRY)
  * ---------------------------------
- * This is the central command center for the Herbal Omics Lab CMS.
+ * This is the central command center for the Nexus Genomics Institute CMS.
  * 
  * DESIGN PATTERN:
  * - Single Page Application (SPA) inside a Next.js route.
@@ -23,7 +23,7 @@ import {
     LayoutDashboard, FlaskConical, Target, CalendarDays, Users, LogOut,
     Plus, Edit2, Trash2, Upload, ImageIcon, X, Check, Loader2,
     Save, GripVertical, Clock, MapPin, Hash, FileText, Download,
-    ChevronRight, UserCheck, BookOpen, Beaker, Eye, History, AlertCircle, Link2, Settings
+    ChevronRight, UserCheck, BookOpen, Beaker, Eye, EyeOff, History, AlertCircle, Link2, Settings
 } from 'lucide-react';
 import { researchData, facilitiesData, goalsData } from '@/data/mockData';
 import Image from 'next/image';
@@ -127,22 +127,30 @@ export default function AdminDashboard() {
     const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
     const [activeTab, setActiveTab] = useState('overview');
     const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+    const [showPassword, setShowPassword] = useState(false);
 
-    // Security Gate: Check for session on mount
+    // Security Gate: Verify JWT cookie on mount via server-side check
     useEffect(() => {
-        const isDev = process.env.NODE_ENV === 'development';
-        const auth = sessionStorage.getItem('isAdminAuthenticated');
-
-        // Allow access if authenticated OR if in development mode for easier debugging
-        if (auth === 'true' || isDev) {
-            setIsAuthorized(true);
-        } else {
-            router.push('/');
+        async function verifyAuth() {
+            try {
+                const res = await fetch('/api/auth');
+                const data = await res.json();
+                if (res.ok && data.authenticated) {
+                    setIsAuthorized(true);
+                } else {
+                    router.push('/');
+                }
+            } catch {
+                router.push('/');
+            }
         }
+        verifyAuth();
     }, [router]);
 
-    function handleSignOut() {
-        sessionStorage.removeItem('isAdminAuthenticated');
+    async function handleSignOut() {
+        try {
+            await fetch('/api/auth', { method: 'DELETE' });
+        } catch { /* proceed to redirect regardless */ }
         router.push('/');
     }
 
@@ -177,7 +185,7 @@ export default function AdminDashboard() {
             {/* Sidebar */}
             <aside style={{ width: '280px', backgroundColor: 'var(--color-bg-white)', borderRight: '1px solid var(--color-border)', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ padding: '2rem 1.5rem', borderBottom: '1px solid var(--color-border)' }}>
-                    <h2 style={{ fontSize: '1.25rem', color: 'var(--color-primary)', fontWeight: 700, fontFamily: 'var(--font-serif)' }}>Herbal Omics Lab</h2>
+                    <h2 style={{ fontSize: '1.25rem', color: 'var(--color-primary)', fontWeight: 700, fontFamily: 'var(--font-serif)' }}>Nexus Genomics Institute</h2>
                     <p style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', marginTop: '0.25rem' }}>Admin Portal</p>
                 </div>
                 <nav style={{ padding: '1.5rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', flexGrow: 1 }}>
@@ -201,7 +209,7 @@ export default function AdminDashboard() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', padding: '0 0.5rem' }}>
                         <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'var(--color-primary)', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold' }}>A</div>
                         <div>
-                            <p style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--color-text-main)' }}>Dr. Abinaya</p>
+                            <p style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--color-text-main)' }}>Dr. Evelyn Vance</p>
                             <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>PI / Admin</p>
                         </div>
                     </div>
@@ -272,7 +280,7 @@ function OverviewTab({ onNavigate }: { onNavigate: (tab: string) => void }) {
     return (
         <div>
             <h1 style={{ fontSize: '2rem', color: 'var(--color-text-main)', marginBottom: '0.5rem' }}>Dashboard Overview</h1>
-            <p style={{ color: 'var(--color-text-muted)', marginBottom: '2.5rem' }}>Welcome back, Dr. Abinaya. Here&apos;s a snapshot of your lab.</p>
+            <p style={{ color: 'var(--color-text-muted)', marginBottom: '2.5rem' }}>Welcome back, Dr. Evelyn. Here&apos;s a snapshot of your lab.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
                 {cards.map(c => (
                     <div key={c.label} style={{
@@ -343,7 +351,13 @@ function SessionsTab({ showToast }: { showToast: (m: string, t: 'success' | 'err
     const [previewCSV, setPreviewCSV] = useState<boolean>(false);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=sessions').then(r => r.json()).then(setData);
+        fetch('/api/admin-data?type=sessions')
+            .then(r => r.json())
+            .then(d => {
+                if (d && !d.error) setData(d);
+                else showToast('Failed to load sessions', 'error');
+            })
+            .catch(() => showToast('Network error loading sessions', 'error'));
     }, []);
 
     // Memoized flat CSV data for preview/export
@@ -727,8 +741,17 @@ function TeamTab({ showToast }: { showToast: (m: string, t: 'success' | 'error')
     const [cropTarget, setCropTarget] = useState<{ file: File; memberKey: string } | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=team').then(r => r.json()).then(setData);
-        fetch('/api/team-images').then(r => r.json()).then(setTeamImages);
+        fetch('/api/admin-data?type=team')
+            .then(r => r.json())
+            .then(d => {
+                if (d && !d.error) setData(d);
+                else showToast('Failed to load team data', 'error');
+            });
+        fetch('/api/team-images')
+            .then(r => r.json())
+            .then(d => {
+                if (d && !d.error) setTeamImages(d);
+            });
     }, []);
 
     async function save(updated: TeamData) {
@@ -890,8 +913,17 @@ function PITab({ showToast }: { showToast: (m: string, t: 'success' | 'error') =
     const [cropTarget, setCropTarget] = useState<{ file: File; memberKey: string } | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=pi').then(r => r.json()).then(setData);
-        fetch('/api/team-images').then(r => r.json()).then(setTeamImages);
+        fetch('/api/admin-data?type=pi')
+            .then(r => r.json())
+            .then(d => {
+                if (d && !d.error) setData(d);
+                else showToast('Failed to load PI profile', 'error');
+            });
+        fetch('/api/team-images')
+            .then(r => r.json())
+            .then(d => {
+                if (d && !d.error) setTeamImages(d);
+            });
     }, []);
 
     async function save() {
@@ -1057,8 +1089,20 @@ function ApplicationsTab({ showToast }: { showToast: (m: string, t: 'success' | 
     const [viewingDoc, setViewingDoc] = useState<{ path: string; name: string } | null>(null);
 
     useEffect(() => {
-        fetch('/api/applications').then(r => r.json()).then(d => { setApps(d); setLoading(false); });
+        fetch('/api/applications')
+            .then(r => r.json())
+            .then(d => {
+                if (Array.isArray(d)) setApps(d);
+                else showToast('Failed to load applications', 'error');
+                setLoading(false);
+            })
+            .catch(() => {
+                showToast('Network error loading applications', 'error');
+                setLoading(false);
+            });
     }, []);
+
+    if (loading || !Array.isArray(apps)) return <div style={{ padding: '3rem', textAlign: 'center' }}><Loader2 size={24} style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }} /> Loading applications...</div>;
 
     async function updateStatus(id: string, status: string) {
         try {
@@ -1187,7 +1231,13 @@ function ResearchTab({ showToast }: { showToast: (m: string, t: 'success' | 'err
     const [cropTarget, setCropTarget] = useState<{ file: File; id: string } | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=research').then(r => r.json()).then(d => { setData(d); setLoading(false); });
+        fetch('/api/admin-data?type=research')
+            .then(r => r.json())
+            .then(d => {
+                if (Array.isArray(d)) setData(d);
+                else showToast('Failed to load research areas', 'error');
+                setLoading(false);
+            });
     }, []);
 
     async function save() {
@@ -1234,7 +1284,7 @@ function ResearchTab({ showToast }: { showToast: (m: string, t: 'success' | 'err
         setUploading(null);
     }
 
-    if (loading) return <div style={{ padding: '3rem', textAlign: 'center' }}><Loader2 size={24} style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }} /> Loading research areas...</div>;
+    if (loading || !Array.isArray(data)) return <div style={{ padding: '3rem', textAlign: 'center' }}><Loader2 size={24} style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }} /> Loading research areas...</div>;
 
     return (
         <div>
@@ -1320,7 +1370,13 @@ function FacilitiesTab({ showToast }: { showToast: (m: string, t: 'success' | 'e
     const [cropTarget, setCropTarget] = useState<{ file: File; id: string } | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=facilities').then(r => r.json()).then(d => { setData(d); setLoading(false); });
+        fetch('/api/admin-data?type=facilities')
+            .then(r => r.json())
+            .then(d => {
+                if (Array.isArray(d)) setData(d);
+                else showToast('Failed to load facilities', 'error');
+                setLoading(false);
+            });
     }, []);
 
     async function save() {
@@ -1367,7 +1423,7 @@ function FacilitiesTab({ showToast }: { showToast: (m: string, t: 'success' | 'e
         setUploading(null);
     }
 
-    if (loading) return <div style={{ padding: '3rem', textAlign: 'center' }}><Loader2 size={24} style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }} /> Loading facilities...</div>;
+    if (loading || !Array.isArray(data)) return <div style={{ padding: '3rem', textAlign: 'center' }}><Loader2 size={24} style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }} /> Loading facilities...</div>;
 
     return (
         <div>
@@ -1482,7 +1538,13 @@ function GoalsTab({ showToast }: { showToast: (m: string, t: 'success' | 'error'
     const [cropTarget, setCropTarget] = useState<{ file: File; id: string } | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=goals').then(r => r.json()).then(d => { setData(d); setLoading(false); });
+        fetch('/api/admin-data?type=goals')
+            .then(r => r.json())
+            .then(d => {
+                if (Array.isArray(d)) setData(d);
+                else showToast('Failed to load goals', 'error');
+                setLoading(false);
+            });
     }, []);
 
     async function save() {
@@ -1529,7 +1591,7 @@ function GoalsTab({ showToast }: { showToast: (m: string, t: 'success' | 'error'
         setUploading(null);
     }
 
-    if (loading) return <div style={{ padding: '3rem', textAlign: 'center' }}><Loader2 size={24} style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }} /> Loading goals...</div>;
+    if (loading || !Array.isArray(data)) return <div style={{ padding: '3rem', textAlign: 'center' }}><Loader2 size={24} style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }} /> Loading goals...</div>;
 
     return (
         <div>
@@ -1614,9 +1676,13 @@ function GoalsTab({ showToast }: { showToast: (m: string, t: 'success' | 'error'
 function SettingsTab({ showToast }: { showToast: (m: string, t: 'success' | 'error') => void }) {
     const [settings, setSettings] = useState({ adminId: '', password: '' });
     const [saving, setSaving] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=settings').then(r => r.json()).then(setSettings);
+        fetch('/api/admin-data?type=settings').then(r => r.json()).then(data => {
+            // API only returns adminId now (password is never sent to client)
+            setSettings(prev => ({ ...prev, adminId: data.adminId || '' }));
+        });
     }, []);
 
     async function save() {
@@ -1658,13 +1724,25 @@ function SettingsTab({ showToast }: { showToast: (m: string, t: 'success' | 'err
 
                     <div>
                         <label style={labelStyle}>Admin Password</label>
-                        <input 
-                            type="password"
-                            style={inputStyle} 
-                            value={settings.password} 
-                            onChange={e => setSettings({ ...settings, password: e.target.value })} 
-                            placeholder="Enter new password"
-                        />
+                        <div style={{ position: 'relative' }}>
+                            <input 
+                                type={showPassword ? "text" : "password"}
+                                style={{ ...inputStyle, paddingRight: '3rem' }} 
+                                value={settings.password} 
+                                onChange={e => setSettings({ ...settings, password: e.target.value })} 
+                                placeholder="Enter new password"
+                            />
+                            <button 
+                                onClick={() => setShowPassword(!showPassword)}
+                                style={{
+                                    position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)',
+                                    background: 'none', border: 'none', color: 'var(--color-text-muted)', cursor: 'pointer',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.25rem'
+                                }}
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                        </div>
                         <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '0.4rem' }}>Ensure your password is secure and not easily guessable.</p>
                     </div>
                 </div>

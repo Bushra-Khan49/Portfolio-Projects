@@ -10,10 +10,10 @@ import LoginModal from '@/components/ui/LoginModal';
 
 const NAV_LINKS = [
     { name: 'Home', href: '/' },
-    { name: 'Research', href: '/#research' },
-    { name: 'Facilities', href: '/#facilities' },
+    { name: 'Research', href: '/research' },
+    { name: 'Facilities', href: '/facilities' },
+    { name: 'Strategic Goals', href: '/goals' },
     { name: 'Lab Progress', href: '/#progress' },
-    { name: 'Goals', href: '/#goals' },
     { name: 'Principal Investigator', href: '/#pi' },
     { name: 'Members', href: '/#team' },
     { name: 'Join the Lab', href: '/join' },
@@ -66,13 +66,11 @@ export default function Navigation() {
 
                     {/* Logo */}
                     <div className={styles.logoGroup}>
-                        <div className={styles.logos}>
-                            <Image src="/jnu-logo.jpg" alt="JNU Logo" width={56} height={56} className={styles.navLogoImg} />
-                        </div>
+
                         <Link href="/" className={styles.logoText}>
-                            <span>Herbal</span>
-                            <span>Omics</span>
-                            <span>Lab</span>
+                            <span>Nexus</span>
+                            <span>Genomics</span>
+                            <span>Institute</span>
                         </Link>
                     </div>
 

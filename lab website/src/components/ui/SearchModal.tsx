@@ -1,42 +1,69 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Loader2, FileText, FlaskConical, Presentation, X } from 'lucide-react';
+import { Search, Loader2, FlaskConical, Target, FileText, Presentation, MapPin, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+
+interface SearchResult {
+    type: 'research' | 'facility' | 'goal' | 'publication' | 'session';
+    title: string;
+    excerpt: string;
+    link: string;
+}
+
+const typeIcons: Record<string, React.ReactNode> = {
+    research: <FlaskConical size={16} />,
+    facility: <MapPin size={16} />,
+    goal: <Target size={16} />,
+    publication: <FileText size={16} />,
+    session: <Presentation size={16} />,
+};
+
+const typeLabels: Record<string, string> = {
+    research: 'Research',
+    facility: 'Facilities',
+    goal: 'Goals',
+    publication: 'Publications',
+    session: 'Sessions',
+};
 
 export default function SearchModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
     const [query, setQuery] = useState('');
     const [isSearching, setIsSearching] = useState(false);
+    const [results, setResults] = useState<SearchResult[]>([]);
     const [hasSearched, setHasSearched] = useState(false);
 
-    // Debounce hook simulation for Sanity GROQ execution
+    // Debounced search against the real API
     useEffect(() => {
-        if (!query) {
+        if (!query || query.length < 2) {
             setIsSearching(false);
             setHasSearched(false);
+            setResults([]);
             return;
         }
 
         setIsSearching(true);
         setHasSearched(false);
 
-        const handler = setTimeout(() => {
-            // Simulate API fetch from GROQ endpoint defined in queries.ts
-            console.log(`Executing global GROQ search for: ${query}`);
+        const handler = setTimeout(async () => {
+            try {
+                const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+                const data = await res.json();
+                setResults(data.results || []);
+            } catch {
+                setResults([]);
+            }
             setIsSearching(false);
             setHasSearched(true);
-        }, 500);
+        }, 300);
 
         return () => clearTimeout(handler);
     }, [query]);
 
-    // Command+K listener
+    // ESC to close
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                // Toggle logic would be handled by parent state
-            }
             if (e.key === 'Escape' && isOpen) {
                 onClose();
             }
@@ -44,6 +71,13 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean, onCl
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isOpen, onClose]);
+
+    // Group results by type
+    const grouped = results.reduce<Record<string, SearchResult[]>>((acc, r) => {
+        if (!acc[r.type]) acc[r.type] = [];
+        acc[r.type].push(r);
+        return acc;
+    }, {});
 
     return (
         <AnimatePresence>
@@ -68,7 +102,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean, onCl
                             <Search className="search-icon" size={20} />
                             <input
                                 type="text"
-                                placeholder="Search publications, projects, or presentations..."
+                                placeholder="Search research, facilities, goals, publications..."
                                 className="search-input"
                                 autoFocus
                                 value={query}
@@ -85,11 +119,11 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean, onCl
 
                             {!query && (
                                 <div className="search-empty">
-                                    <p className="search-heading">Recent Searches</p>
+                                    <p className="search-heading">Search Tips</p>
                                     <div className="recent-list">
-                                        <button className="recent-item">Mentha silicon pathway</button>
-                                        <button className="recent-item">Drought stress proteomics</button>
-                                        <button className="recent-item">Abinaya publications 2023</button>
+                                        <button className="recent-item" onClick={() => setQuery('genomics')}>genomics</button>
+                                        <button className="recent-item" onClick={() => setQuery('protein')}>protein</button>
+                                        <button className="recent-item" onClick={() => setQuery('greenhouse')}>greenhouse</button>
                                     </div>
                                 </div>
                             )}
@@ -107,30 +141,28 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean, onCl
                                 </div>
                             )}
 
-                            {hasSearched && query && (
-                                <div className="search-results">
-                                    {/* Mock logic showing grouped schema responses from GROQ */}
-                                    <div className="result-group">
-                                        <p className="search-heading">Publications (1)</p>
-                                        <a href="#" className="result-item">
-                                            <div className="result-icon-wrapper"><FileText size={16} /></div>
-                                            <div className="result-text">
-                                                <span className="result-title">Mentha arvensis – Vital Herbs with Myriads of Benefits</span>
-                                                <span className="result-excerpt">Horticulturae, 2023 | IF: 3.1...</span>
-                                            </div>
-                                        </a>
-                                    </div>
+                            {hasSearched && query && results.length === 0 && (
+                                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--color-text-muted)' }}>
+                                    <p>No results found for &ldquo;{query}&rdquo;</p>
+                                </div>
+                            )}
 
-                                    <div className="result-group">
-                                        <p className="search-heading">Projects (1)</p>
-                                        <a href="#" className="result-item">
-                                            <div className="result-icon-wrapper"><FlaskConical size={16} /></div>
-                                            <div className="result-text">
-                                                <span className="result-title">Complete Mentha genome assembly</span>
-                                                <span className="result-excerpt">Status: Ongoing • 75% Completed</span>
-                                            </div>
-                                        </a>
-                                    </div>
+                            {hasSearched && results.length > 0 && (
+                                <div className="search-results">
+                                    {Object.entries(grouped).map(([type, items]) => (
+                                        <div key={type} className="result-group">
+                                            <p className="search-heading">{typeLabels[type] || type} ({items.length})</p>
+                                            {items.map((item, idx) => (
+                                                <Link key={idx} href={item.link} className="result-item" onClick={onClose}>
+                                                    <div className="result-icon-wrapper">{typeIcons[item.type]}</div>
+                                                    <div className="result-text">
+                                                        <span className="result-title">{item.title}</span>
+                                                        <span className="result-excerpt">{item.excerpt}</span>
+                                                    </div>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    ))}
                                 </div>
                             )}
 

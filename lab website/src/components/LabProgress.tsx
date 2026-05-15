@@ -33,13 +33,14 @@ const initialSessions: SessionsData = {
         purpose: '',
         date: '2026-04-15',
         time: '10:00',
-        location: 'Room No. 38, SCIS, JNU',
+        location: 'Building 4, Wing B',
     },
     presenters: [],
 };
 
 export default function LabProgress() {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [isPast, setIsPast] = useState(false);
     const data = useLiveData<SessionsData>('sessions', initialSessions);
 
     // Dynamic countdown based on admin-set date
@@ -55,8 +56,11 @@ export default function LabProgress() {
 
             if (distance < 0) {
                 setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                setIsPast(true);
                 return;
             }
+
+            setIsPast(false);
 
             setTimeLeft({
                 days: Math.floor(distance / (1000 * 60 * 60 * 24)),
@@ -104,28 +108,37 @@ export default function LabProgress() {
                             </p>
                         </div>
 
-                        <div className={styles.timerGrid}>
-                            <div className={styles.timeBox}>
-                                <span className={styles.timeVal}>{String(timeLeft.days).padStart(2, '0')}</span>
-                                <span className={styles.timeLabel}>Days</span>
+                        {isPast ? (
+                            <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+                                <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'rgba(255,255,255,0.9)', marginBottom: '0.5rem' }}>This session has concluded</p>
+                                <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' }}>{meetingDateDisplay}</p>
                             </div>
-                            <div className={styles.timeBox}>
-                                <span className={styles.timeVal}>{String(timeLeft.hours).padStart(2, '0')}</span>
-                                <span className={styles.timeLabel}>Hours</span>
-                            </div>
-                            <div className={styles.timeBox}>
-                                <span className={styles.timeVal}>{String(timeLeft.minutes).padStart(2, '0')}</span>
-                                <span className={styles.timeLabel}>Mins</span>
-                            </div>
-                            <div className={styles.timeBox}>
-                                <span className={styles.timeVal}>{String(timeLeft.seconds).padStart(2, '0')}</span>
-                                <span className={styles.timeLabel}>Secs</span>
-                            </div>
-                        </div>
+                        ) : (
+                            <>
+                                <div className={styles.timerGrid}>
+                                    <div className={styles.timeBox}>
+                                        <span className={styles.timeVal}>{String(timeLeft.days).padStart(2, '0')}</span>
+                                        <span className={styles.timeLabel}>Days</span>
+                                    </div>
+                                    <div className={styles.timeBox}>
+                                        <span className={styles.timeVal}>{String(timeLeft.hours).padStart(2, '0')}</span>
+                                        <span className={styles.timeLabel}>Hours</span>
+                                    </div>
+                                    <div className={styles.timeBox}>
+                                        <span className={styles.timeVal}>{String(timeLeft.minutes).padStart(2, '0')}</span>
+                                        <span className={styles.timeLabel}>Mins</span>
+                                    </div>
+                                    <div className={styles.timeBox}>
+                                        <span className={styles.timeVal}>{String(timeLeft.seconds).padStart(2, '0')}</span>
+                                        <span className={styles.timeLabel}>Secs</span>
+                                    </div>
+                                </div>
 
-                        <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', marginTop: '1rem' }}>
-                            {meetingDateDisplay}
-                        </p>
+                                <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', marginTop: '1rem' }}>
+                                    {meetingDateDisplay}
+                                </p>
+                            </>
+                        )}
                     </div>
 
                     {/* Scrollable Presentations on Right */}
@@ -134,7 +147,7 @@ export default function LabProgress() {
                             Presentations for {meetingDateDisplay}
                         </h4>
                         <div className={styles.sessionsList}>
-                            {data?.presenters?.map((session: any) => (
+                            {data?.presenters?.map((session: Presenter) => (
                                 <div key={session.id} className={styles.sessionCard}>
                                     <h3 className={styles.sessionCardTitle}>{session.topic}</h3>
                                     <div className={styles.sessionDetails}>

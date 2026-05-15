@@ -3,8 +3,9 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    background-color: var(--color-nav-bg);
+    z-index: 9998;
+    background-color: #000000;
+    backdrop-filter: blur(10px);
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     padding: 1.5rem 0;
     height: 100px;
@@ -17,6 +18,19 @@
     height: 80px;
     padding: 0;
     box-shadow: var(--shadow-md);
+    background-color: #000000;
+    backdrop-filter: blur(10px);
+}
+
+.scrolled .logoText,
+.scrolled .link,
+.scrolled .iconBtn,
+.scrolled .mobileMenuBtn {
+    color: #ffffff;
+}
+
+.scrolled .joinBtn {
+    color: #ffffff;
 }
 
 .hidden {

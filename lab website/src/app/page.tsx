@@ -7,6 +7,7 @@ import Goals from '@/components/Goals';
 import TeamAndPI from '@/components/TeamAndPI';
 import JoinLab from '@/components/JoinLab';
 import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <TeamAndPI />
       <JoinLab />
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }

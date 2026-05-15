@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -9,17 +9,16 @@ export default function Footer() {
                 {/* Brand & Address - Left */}
                 <div className={styles.brandSection}>
                     <div className={styles.logoGroup}>
-                        <Image src="/jnu-logo.jpg" alt="JNU Logo" width={48} height={48} className={styles.footerLogoImg} />
                         <div className={styles.logoText}>
-                            <span>Herbal</span>
-                            <span>Omics</span>
-                            <span>Lab</span>
+                            <span>Nexus</span>
+                            <span>Genomics</span>
+                            <span>Institute</span>
                         </div>
                     </div>
                     <p className={styles.address}>
-                        School of Computational and Integrative Sciences<br />
-                        Jawaharlal Nehru University<br />
-                        New Delhi, India 110067
+                        Nexus Genomics Institute<br />
+                        Advanced Systems Bio-Innovation Hub<br />
+                        Horizon City, HC 94016
                     </p>
                 </div>
 
@@ -28,11 +27,11 @@ export default function Footer() {
                     <h4 className={styles.columnTitle}>Contact</h4>
                     <p className={styles.contactLine}>
                         <strong>Email:</strong><br />
-                        abinaya@mail.jnu.ac.in
+                        evelyn.vance@nexus-genomics.org
                     </p>
                     <p className={styles.contactLine}>
                         <strong>Location:</strong><br />
-                        Room 38, SCIS, JNU
+                        Building 4, Wing B
                     </p>
                 </div>
 
@@ -56,7 +55,7 @@ export default function Footer() {
                         <Link href="/privacy" className={styles.legalLink}>Privacy Policy</Link>
                         <Link href="/terms" className={styles.legalLink}>Terms of Use</Link>
                     </div>
-                    <p className={styles.copyrightText}>© Herbal Omics Lab by Abinnaya Manivannan | Developed &amp; Maintained by Bushra Khan</p>
+                    <p className={styles.copyrightText}>© Systems Bio-Innovation Hub | Maintained by Nexus Systems Research Group</p>
                 </div>
             </div>
         </footer>

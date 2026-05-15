@@ -15,8 +15,23 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Herbal Omics Lab | JNU",
-  description: "Transparent, continuous, and accountable science at Jawaharlal Nehru University.",
+  title: "Nexus Genomics Institute",
+  description: "Advanced predictive modeling and multi-omics integration at Nexus Genomics Institute.",
+  openGraph: {
+    title: "Nexus Genomics Institute",
+    description: "Pioneering advanced predictive modeling and multi-omics integration for systems biology.",
+    type: "website",
+    siteName: "Nexus Genomics Institute",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nexus Genomics Institute",
+    description: "Pioneering advanced predictive modeling and multi-omics integration for systems biology.",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

@@ -165,7 +165,7 @@ export default function JoinLabPage() {
                 <div className="glass-card" style={{ padding: '3.5rem', width: '100%', maxWidth: '800px' }}>
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                         <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-main)', fontFamily: 'var(--font-sans)', fontWeight: 800 }}>Join the Lab</h1>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem' }}>Submit your application to join HerbalOMICS Lab.</p>
+                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem' }}>Submit your application to join Nexus Genomics Institute.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', position: 'relative' }}>
@@ -176,7 +176,7 @@ export default function JoinLabPage() {
                                 type="text" id="name" required
                                 className={`form-input focus-elevate ${errors.name ? 'input-error' : ''}`}
                                 disabled={isSubmitting}
-                                placeholder="e.g. Priya Sharma"
+                                placeholder="e.g. Alice Vance"
                                 value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
                             />
                             {errors.name && <span className="error-text"><AlertCircle size={14} />{errors.name}</span>}
@@ -188,7 +188,7 @@ export default function JoinLabPage() {
                                 type="email" id="email" required
                                 className={`form-input focus-elevate ${errors.email ? 'input-error' : ''}`}
                                 disabled={isSubmitting}
-                                placeholder="e.g. priya.sharma@university.edu"
+                                placeholder="e.g. alice.vance@university.edu"
                                 value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
                             />
                             {errors.email && <span className="error-text"><AlertCircle size={14} />{errors.email}</span>}
@@ -197,7 +197,7 @@ export default function JoinLabPage() {
                         <div className="form-group">
                             <label htmlFor="city" className="form-label">City *</label>
                             <input type="text" id="city" className={`form-input focus-elevate ${errors.city ? 'input-error' : ''}`} required disabled={isSubmitting}
-                                placeholder="e.g. New Delhi"
+                                placeholder="e.g. Horizon City"
                                 value={formData.city} onChange={e => setFormData({ ...formData, city: e.target.value })} />
                             {errors.city && <span className="error-text"><AlertCircle size={14} />{errors.city}</span>}
                         </div>
@@ -205,7 +205,7 @@ export default function JoinLabPage() {
                         <div className="form-group">
                             <label htmlFor="state" className="form-label">State *</label>
                             <input type="text" id="state" className={`form-input focus-elevate ${errors.state ? 'input-error' : ''}`} required disabled={isSubmitting}
-                                placeholder="e.g. Delhi"
+                                placeholder="e.g. California"
                                 value={formData.state} onChange={e => setFormData({ ...formData, state: e.target.value })} />
                             {errors.state && <span className="error-text"><AlertCircle size={14} />{errors.state}</span>}
                         </div>
@@ -213,7 +213,7 @@ export default function JoinLabPage() {
                         <div className="form-group">
                             <label htmlFor="country" className="form-label">Country *</label>
                             <input type="text" id="country" className={`form-input focus-elevate ${errors.country ? 'input-error' : ''}`} required disabled={isSubmitting}
-                                placeholder="e.g. India"
+                                placeholder="e.g. USA"
                                 value={formData.country} onChange={e => setFormData({ ...formData, country: e.target.value })} />
                             {errors.country && <span className="error-text"><AlertCircle size={14} />{errors.country}</span>}
                         </div>
@@ -221,7 +221,7 @@ export default function JoinLabPage() {
                         <div className="form-group">
                             <label htmlFor="institute" className="form-label">Current Institute *</label>
                             <input type="text" id="institute" className={`form-input focus-elevate ${errors.institute ? 'input-error' : ''}`} required disabled={isSubmitting}
-                                placeholder="e.g. Jawaharlal Nehru University"
+                                placeholder="e.g. University of Horizon"
                                 value={formData.institute} onChange={e => setFormData({ ...formData, institute: e.target.value })} />
                             {errors.institute && <span className="error-text"><AlertCircle size={14} />{errors.institute}</span>}
                         </div>

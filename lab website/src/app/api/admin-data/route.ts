@@ -3,6 +3,7 @@ import { readFile, writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { existsSync } from 'fs';
 import { revalidatePath } from 'next/cache';
+import { requireAdmin, hashPassword, isHashed } from '@/lib/auth';
 
 /**
  * 🛰️ ADMIN DATA API (THE BRAIN)
@@ -45,13 +46,12 @@ function getDefaults(type: string) {
                 purpose: 'Weekly research presentations and discussion',
                 date: '2026-04-15',
                 time: '10:00',
-                location: 'Room No. 38, SCIS, JNU',
+                location: 'Building 4, Wing B',
             },
             presenters: [
-                { id: '1', presenter: 'Priya Sharma', topic: 'Silicon-mediated stress tolerance in Mentha species', time: '11:00 AM IST', status: 'scheduled' },
-                { id: '2', presenter: 'Gautami Gajdeyo', topic: 'Transcriptomic analysis of drought response pathways', time: '1:30 PM IST', status: 'scheduled' },
-                { id: '3', presenter: 'Seema Jaiswal', topic: 'High-throughput annotation of secondary metabolites', time: '3:00 PM IST', status: 'scheduled' },
-                { id: '4', presenter: 'Matilda', topic: 'Targeted genome editing strategies in medicinal herbs', time: '4:30 PM IST', status: 'scheduled' },
+                { id: '1', presenter: 'Alice Vance', topic: 'Predictive modeling of secondary metabolite pathways', time: '11:00 AM', status: 'scheduled' },
+                { id: '2', presenter: 'Clara Oswald', topic: 'Multi-omics integration architectures', time: '1:30 PM', status: 'scheduled' },
+                { id: '3', presenter: 'Diana Prince', topic: 'High-throughput annotation pipelines', time: '3:00 PM', status: 'scheduled' },
             ],
             history: [],
         };
@@ -59,37 +59,39 @@ function getDefaults(type: string) {
     if (type === 'team') {
         return {
             phdScholars: [
-                { id: '1', name: 'Gautami Gajdeyo', role: 'PhD Scholar' },
-                { id: '2', name: 'Seema Jaiswal', role: 'PhD Scholar' },
-                { id: '3', name: 'Matilda', role: 'PhD Scholar' },
-                { id: '4', name: 'Raja', role: 'PhD Scholar' },
+                { id: '1', name: 'Alice Vance', role: 'PhD Scholar' },
+                { id: '2', name: 'Clara Oswald', role: 'PhD Scholar' },
+                { id: '3', name: 'Diana Prince', role: 'PhD Scholar' },
+                { id: '4', name: 'Ethan Hunt', role: 'PhD Scholar' },
+                { id: '1774361137785', name: 'Fiona Gallagher', role: 'PhD Scholar' }
             ],
             researchAssociates: [
-                { id: '5', name: 'Shivani', role: 'Research Associate' },
-                { id: '6', name: 'Shraddha', role: 'Research Associate' },
+                { id: '5', name: 'Grace Shelby', role: 'Research Associate' },
+                { id: '6', name: 'Hannah Abbott', role: 'Research Associate' },
+                { id: '1774390824274', name: 'Iris West', role: 'Research Associate' }
             ],
             interns: [
-                { id: '7', name: 'Bushra', role: 'Intern' },
-                { id: '8', name: 'Shreerag', role: 'Intern' },
-                { id: '9', name: 'Obyed', role: 'Intern' },
+                { id: '7', name: 'Jane Doe', role: 'Intern' },
+                { id: '8', name: 'Kevin Malone', role: 'Intern' },
+                { id: '9', name: 'Leo Davidson', role: 'Intern' },
             ],
         };
     }
     if (type === 'pi') {
         return {
-            name: 'Dr. Abinaya Manivannan',
-            role: 'Assistant Professor',
-            affiliation: 'HerbalOMICS and Bio-Innovation Laboratory, School of Computational and Integrative Sciences, Jawaharlal Nehru University, New Delhi.',
-            email: 'abinaya@mail.jnu.ac.in',
-            altEmail: 'abinayamanivannan@gmail.com',
-            location: 'Room No. 38, SCIS, JNU',
-            quote: '"Science is not just about discovery—it is about understanding the questions worth asking. In our laboratory, medicinal plants are explored as dynamic biological systems shaped by molecular regulation, environment, and evolutionary processes."',
-            featuredPublication: '"Mentha arvensis and Mentha x piperita – Vital Herbs with Myriads of Pharmaceutical Benefits" (Horticulturae, 2023 | IF: 3.1)',
+            name: 'Dr. Evelyn Vance',
+            role: 'Lead Research Scientist',
+            affiliation: 'Advanced Systems Bio-Innovation Hub, Nexus Genomics Institute, Horizon City.',
+            email: 'evelyn.vance@nexus-genomics.org',
+            altEmail: 'evelyn.vance.research@gmail.com',
+            location: 'Building 4, Wing B, Horizon City',
+            quote: '"Innovation lies at the intersection of biological complexity and robust computational architecture. We model life to decode its underlying algorithms."',
+            featuredPublication: '"Next-Generation Computational Frameworks for Predictive Systems Biology" (Nature Systems, 2025 | IF: 14.2)',
             publications: [
                 {
                     id: '1',
-                    title: 'Mentha arvensis and Mentha x piperita – Vital Herbs with Myriads of Pharmaceutical Benefits',
-                    link: 'https://doi.org/10.3390/horticulturae9020283'
+                    title: 'Next-Generation Computational Frameworks for Predictive Systems Biology',
+                    link: 'https://doi.org/10.1038/s41540-025-example1'
                 }
             ],
         };
@@ -103,21 +105,79 @@ function getDefaults(type: string) {
     }
     if (type === 'facilities') {
         return [
-            { id: 'smart-greenhouse', title: 'Smart Greenhouse System', description: 'Controlled-environment chambers enabling precise regulation of temperature, humidity, light, and soil parameters.', image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&q=80&w=600' },
-            { id: 'in-vitro-culture', title: 'In-Vitro Culture & Laminar Systems', description: 'Sterile tissue culture facilities equipped with laminar airflow systems for aseptic plant propagation.', image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=600' },
+            {
+                id: 'smart-greenhouse',
+                title: 'Smart Greenhouse System',
+                description: 'Controlled-environment chambers enabling precise regulation of temperature, humidity, light, and soil parameters for plant physiology and stress-response studies.',
+                longDesc: 'Our Smart Greenhouse System represents the pinnacle of controlled-environment agriculture. It features a networked array of IoT sensors that monitor every aspect of plant growth in real-time. Researchers can simulate diverse climatic conditions, from arid deserts to tropical rainforests, allowing for unprecedented studies into plant resilience and adaptive mechanisms.',
+                stats: [
+                    { label: 'TEMP RANGE', value: '18-28°C (Std: 22°C)' },
+                    { label: 'CURRENT TEMP', value: '24.2°C' },
+                    { label: 'HUMIDITY RANGE', value: '55-75% (Std: 60%)' },
+                    { label: 'CURRENT HUMIDITY', value: '64.8%' },
+                    { label: 'SOIL MOISTURE', value: '35-50% (Std: 40%)' },
+                    { label: 'CURRENT MOISTURE', value: '41.5%' },
+                    { label: 'CO2 LEVELS', value: '400-1200ppm (Std: 800)' },
+                    { label: 'SENSORS', value: '524 Nodes' }
+                ],
+                image: '/dashboard-greenhouse.png'
+            },
+            {
+                id: 'laminar-systems',
+                title: 'In-Vitro Culture & Laminar Systems',
+                description: 'Sterile tissue culture facilities equipped with laminar airflow systems for aseptic plant propagation, micropropagation, and controlled experimental studies.',
+                longDesc: 'The In-Vitro Culture facility is designed for high-precision botanical research requiring absolute sterility. Our ISO-certified clean rooms house multiple laminar flow cabinets that provide Class 100 air quality for aseptic handling.',
+                stats: [
+                    { label: 'AIR VELOCITY', value: '0.36-0.54m/s (Std: 0.45)' },
+                    { label: 'CURRENT VELOCITY', value: '0.46m/s' },
+                    { label: 'HEPA FILTER', value: 'H14 Efficiency (99.995%)' },
+                    { label: 'CLEAN CLASS', value: 'ISO 5 (Class 100)' },
+                    { label: 'ACTIVE CULTURES', value: '182 Lines' },
+                    { label: 'SUCCESS RATE', value: '98.5%' }
+                ],
+                image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800'
+            }
         ];
     }
     if (type === 'goals') {
         return [
-            { id: 'mentha-genome', title: 'Complete Mentha genome assembly', description: 'Finalizing the long-read sequencing and chromosome-scale assembly of Mentha species.', progress: 75, target: 'March 2026', image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=800' },
-            { id: 'silicon-network', title: 'Establish silicon response network', description: 'Mapping the transcriptomic and metabolomic changes in medicinal plants.', progress: 60, target: 'June 2026', image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=800' },
+            {
+                id: 'nexus-genome-atlas',
+                title: 'Biological System Mapping',
+                description: 'Completing a comprehensive genomic and transcriptomic atlas for target biological systems to uncover novel regulatory networks.',
+                longDesc: 'Our primary strategic goal is the construction of a multi-dimensional "Life Map" for priority biological systems. This involves the complete de novo assembly of complex genomes and the exhaustive mapping of their expression profiles across various developmental stages and environmental conditions.',
+                progress: 80,
+                target: 'April 2026',
+                image: '/herbal-genomics-new.jpg',
+                breakdown: [
+                    { label: 'Phase 1: Genome Assembly', plan: 'De novo assembly of 10 priority systems', achieved: '100%', remaining: '0%', desc: 'Complete chromosomal-level assembly for all target species.' },
+                    { label: 'Phase 2: Expression Mapping', plan: 'Exhaustive transcriptome profiling', achieved: '85%', remaining: '15%', desc: 'Mapping spatio-temporal expression patterns.' },
+                    { label: 'Phase 3: Network Annotation', plan: 'Regulatory hub identification', achieved: '60%', remaining: '40%', desc: 'Annotating core transcription factor networks.' },
+                    { label: 'Phase 4: Functional Validation', plan: 'In-silico knockouts and verification', achieved: '40%', remaining: '60%', desc: 'Validating predicted hubs via computational modeling.' },
+                    { label: 'Phase 5: Atlas Integration', plan: 'Final multi-omics data merge', achieved: '20%', remaining: '80%', desc: 'Merging all datasets into a centralized knowledge base.' }
+                ]
+            },
+            {
+                id: 'predictive-platform',
+                title: 'Predictive Analysis Deployment',
+                description: 'Developing and deploying an AI-driven platform for predicting biological system responses to multi-factor stimuli.',
+                longDesc: 'We are building the next generation of predictive biology. Our AI platform integrates vast amounts of multi-omics data to simulate biological responses with high fidelity.',
+                progress: 65,
+                target: 'July 2026',
+                image: '/hero-crystal.png',
+                breakdown: [
+                    { label: 'Phase 1: Core Engine', plan: 'Neural network architecture design', achieved: '100%', remaining: '0%', desc: 'Building the fundamental AI processing layer.' },
+                    { label: 'Phase 2: Data Integration', plan: 'Multi-omics data ingestion pipeline', achieved: '80%', remaining: '20%', desc: 'Connecting diverse biological data streams.' },
+                    { label: 'Phase 3: Model Training', plan: 'Large-scale parameter optimization', achieved: '60%', remaining: '40%', desc: 'Training the platform on existing datasets.' },
+                    { label: 'Phase 4: Predictive Testing', plan: 'Blind-validation against known results', achieved: '30%', remaining: '70%', desc: 'Testing accuracy on historical biological data.' },
+                    { label: 'Phase 5: Global Deployment', plan: 'Production-ready UI/UX rollout', achieved: '10%', remaining: '90%', desc: 'Final scaling for international research use.' }
+                ]
+            }
         ];
     }
     if (type === 'settings') {
-        return {
-            adminId: 'abinaya222@gmail.com',
-            password: 'herbalomicspanel'
-        };
+        // No hardcoded credentials — settings must be initialized via /api/auth
+        return { adminId: '' };
     }
     return {};
 }
@@ -144,19 +204,49 @@ export async function GET(request: NextRequest) {
         // Return defaults if file doesn't exist
         const defaults = getDefaults(type);
         await writeJSON(FILE_MAP[type], defaults);
+        // Never send password to client
+        if (type === 'settings') {
+            const settingsDefaults = defaults as { adminId: string; password: string };
+            return NextResponse.json({ adminId: settingsDefaults.adminId });
+        }
         return NextResponse.json(defaults);
     }
-    return NextResponse.json(data);
+    // Never send password to client
+    if (type === 'settings') {
+        return NextResponse.json({ adminId: data.adminId || '' }, {
+            headers: { 'Cache-Control': 'no-store, max-age=0' },
+        });
+    }
+    return NextResponse.json(data, {
+        headers: {
+            'Cache-Control': 'no-store, max-age=0',
+        },
+    });
 }
 
-// POST — Save data for a specific type
+// POST — Save data for a specific type (requires admin authentication)
 export async function POST(request: NextRequest) {
+    // Auth & CSRF check
+    const authError = await requireAdmin(request);
+    if (authError) return authError;
+
     try {
         const body = await request.json();
         const { type, data } = body;
 
         if (!type || !FILE_MAP[type]) {
             return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
+        }
+
+        // Input validation: reject excessively large payloads
+        const serialized = JSON.stringify(data);
+        if (serialized.length > 500_000) {
+            return NextResponse.json({ error: 'Payload too large' }, { status: 413 });
+        }
+
+        // If saving settings, hash the password before writing
+        if (type === 'settings' && data.password && !isHashed(data.password)) {
+            data.password = await hashPassword(data.password);
         }
 
         await writeJSON(FILE_MAP[type], data);

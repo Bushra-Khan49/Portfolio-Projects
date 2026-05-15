@@ -6,6 +6,7 @@ import { goalsData } from '@/data/mockData';
 import styles from './Goals.module.css';
 import { useLiveData } from '@/hooks/useLiveData';
 import { useState, useEffect } from 'react';
+import type { Goal } from '@/types';
 
 export default function Goals() {
     const data = useLiveData('goals', goalsData);
@@ -24,10 +25,10 @@ export default function Goals() {
                 </div>
 
                 <div className={styles.grid}>
-                    {data.map((goal: any) => (
+                    {data.map((goal: Goal) => (
                         <div key={goal.id} className={styles.goalCard}>
                             <Image
-                                src={imgTimestamp ? `${goal.image}?t=${imgTimestamp}` : goal.image}
+                                src={imgTimestamp ? `${goal.image}${goal.image.includes('?') ? '&' : '?'}t=${imgTimestamp}` : goal.image}
                                 alt={goal.title}
                                 fill
                                 className={styles.cardImage}
@@ -52,7 +53,7 @@ export default function Goals() {
                                         </div>
                                         <span className={styles.progressText}>{goal.progress}%</span>
                                     </div>
-                                    <Link href={`/goals/${goal.id}`} className={styles.learnMore}>
+                                    <Link href={`/goals?id=${goal.id}`} className={styles.learnMore}>
                                         Explore Details &rarr;
                                     </Link>
                                 </div>
@@ -62,7 +63,7 @@ export default function Goals() {
                 </div>
 
                 <div className={styles.footer}>
-                    <Link href="/#goals" className={styles.seeAll}>
+                    <Link href="/goals" className={styles.seeAll}>
                         See All Goals &rarr;
                     </Link>
                 </div>

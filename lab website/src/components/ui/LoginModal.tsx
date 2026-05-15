@@ -1,52 +1,50 @@
 'use client';
 
 /**
- * 🔒 SECURITY MODAL (THE GATEKEEPER)
+ * 🔒 SECURITY MODAL
  * ---------------------------------
- * This component provides System Authentication for the PI Admin Panel.
+ * Provides authentication for the PI Admin Panel.
  * 
  * FEATURES:
- * - Real-time validation: Fetches current credentials from admin-settings.json.
- * - Anti-Brute Force Pattern: Simulates network delay (800ms) to discourage botting.
+ * - Server-side validation: Credentials are sent to /api/auth and validated on the server.
+ * - Anti-Brute Force: Server adds artificial delay on failed attempts.
  * - Session Management: Sets 'isAdminAuthenticated' in sessionStorage upon success.
  */
 
-
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lock, AlertCircle, Loader2 } from 'lucide-react';
+import { Lock, AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react';
 
 export default function LoginModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
     const [adminId, setAdminId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [validCredentials, setValidCredentials] = useState({ adminId: 'abinaya222@gmail.com', password: 'herbalomicspanel' });
+    const [showPassword, setShowPassword] = useState(false);
 
-    // Fetch latest credentials from settings
-    useEffect(() => {
-        if (isOpen) {
-            fetch('/api/admin-data?type=settings')
-                .then(r => r.json())
-                .then(setValidCredentials)
-                .catch(err => console.error('Failed to fetch auth settings:', err));
-        }
-    }, [isOpen]);
-
-    // Simulating Firebase Auth RBAC validation state
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
         setError(null);
 
-        // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 800));
+        try {
+            const res = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ adminId, password }),
+            });
 
-        if (adminId === validCredentials.adminId && password === validCredentials.password) {
-            sessionStorage.setItem('isAdminAuthenticated', 'true');
-            window.location.href = '/admin'; // Proceed to PI Dashboard
-        } else {
-            setError('Invalid credentials or account disabled.');
+            const data = await res.json();
+
+            if (res.ok && data.authenticated) {
+                // Auth cookie is set by the server (httpOnly) — no client-side storage needed
+                window.location.href = '/admin';
+            } else {
+                setError(data.error || 'Invalid credentials.');
+                setIsSubmitting(false);
+            }
+        } catch {
+            setError('Network error. Please try again.');
             setIsSubmitting(false);
         }
     };
@@ -73,8 +71,8 @@ export default function LoginModal({ isOpen, onClose }: { isOpen: boolean, onClo
                             <div className="login-icon-bg">
                                 <Lock size={24} color="var(--color-primary)" />
                             </div>
-                            <h2>System Authentication</h2>
-                            <p>Firebase RBAC Secure Login</p>
+                            <h2>Admin Authentication</h2>
+                            <p>Restricted access — authorized personnel only</p>
                         </div>
 
                         <form onSubmit={handleLogin} className="login-form">
@@ -103,53 +101,46 @@ export default function LoginModal({ isOpen, onClose }: { isOpen: boolean, onClo
 
                             <div className="form-group">
                                 <label>Password</label>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className={`form-input focus-elevate ${error ? 'input-error' : ''}`}
-                                    required
-                                    placeholder="••••••••"
-                                />
+                                <div style={{ position: 'relative' }}>
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className={`form-input focus-elevate ${error ? 'input-error' : ''}`}
+                                        required
+                                        placeholder="••••••••"
+                                        style={{ paddingRight: '2.5rem' }}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        style={{
+                                            position: 'absolute',
+                                            right: '12px',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'rgba(0,0,0,0.3)',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            alignItems: 'center'
+                                        }}
+                                    >
+                                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                    </button>
+                                </div>
                             </div>
 
-                            <div className="login-meta">
-                                <label className="checkbox-wrap">
-                                    <input type="checkbox" />
-                                    <span>Remember securely</span>
-                                    <div className="checkbox-indicator"></div>
-                                </label>
-                                <a href="#" className="forgot-link">Reset Access</a>
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="btn btn-primary login-btn"
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? <Loader2 className="spinner" size={20} /> : 'Authenticate Session'}
-                            </button>
-
-                            {process.env.NODE_ENV === 'development' && (
+                            <div style={{ marginTop: '1.5rem' }}>
                                 <button
-                                    type="button"
-                                    onClick={() => {
-                                        sessionStorage.setItem('isAdminAuthenticated', 'true');
-                                        window.location.href = '/admin';
-                                    }}
-                                    className="btn"
-                                    style={{
-                                        marginTop: '1rem',
-                                        width: '100%',
-                                        backgroundColor: '#f3f4f6',
-                                        color: '#374151',
-                                        border: '1px dashed #d1d5db',
-                                        fontSize: '0.8rem'
-                                    }}
+                                    type="submit"
+                                    className="btn btn-primary login-btn"
+                                    disabled={isSubmitting}
                                 >
-                                    🛠️ Dev Mode: Quick Access
+                                    {isSubmitting ? <Loader2 className="spinner" size={20} /> : 'Authenticate'}
                                 </button>
-                            )}
+                            </div>
                         </form>
 
                         <button className="login-close" onClick={onClose}>Cancel</button>

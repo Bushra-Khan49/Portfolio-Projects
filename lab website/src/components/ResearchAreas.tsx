@@ -6,6 +6,7 @@ import { researchData } from '@/data/mockData';
 import styles from './ResearchAreas.module.css';
 import { useLiveData } from '@/hooks/useLiveData';
 import { useState, useEffect } from 'react';
+import type { ResearchArea } from '@/types';
 
 export default function ResearchAreas() {
     const data = useLiveData('research', researchData);
@@ -25,7 +26,7 @@ export default function ResearchAreas() {
                 </div>
 
                 <div className={styles.grid}>
-                    {data.map((area: any) => (
+                    {data.map((area: ResearchArea) => (
                         <div key={area.id} className={styles.card}>
                             <div className={styles.imageWrapper}>
                                 <Image

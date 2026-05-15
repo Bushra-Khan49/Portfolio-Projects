@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { teamData } from '@/data/mockData';
 import styles from './TeamAndPI.module.css';
 import { useLiveData } from '@/hooks/useLiveData';
+import type { TeamMember, Publication } from '@/types';
 
 // Helper to generate member keys matching the admin dashboard logic
 function getMemberKey(role: string, name?: string): string {
@@ -51,7 +52,7 @@ export default function TeamAndPI() {
             } catch { /* silent */ }
         };
         fetchImages();
-        const interval = setInterval(fetchImages, 4000);
+        const interval = setInterval(fetchImages, 60000);
         return () => clearInterval(interval);
     }, []);
 
@@ -93,9 +94,9 @@ export default function TeamAndPI() {
 
                             <div className={styles.piPublication}>
                                 <span className={styles.pubSubtitle}>Selected Publications</span>
-                                {publications.filter((p: any) => p.title.trim()).length > 0 ? (
+                                {publications.filter((p: Publication) => p.title.trim()).length > 0 ? (
                                     <ul className={styles.pubList}>
-                                        {publications.filter((p: any) => p.title.trim()).map((pub: any) => (
+                                        {publications.filter((p: Publication) => p.title.trim()).map((pub: Publication) => (
                                             <li key={pub.id} className={styles.pubItem}>
                                                 <div className={styles.pubBullet} />
                                                 {pub.link ? (
@@ -147,7 +148,7 @@ export default function TeamAndPI() {
                         <div className={styles.treeLevel}>
                             <h3 className={styles.levelTitle}>PhD Scholars</h3>
                             <div className={styles.nodesGrid}>
-                                {(team.phdScholars || []).filter((m: any) => m && m.name).map((member: any) => {
+                                {(team.phdScholars || []).filter((m: TeamMember) => m && m.name).map((member: TeamMember) => {
                                     const key = getMemberKey('phd', member.name);
                                     return (
                                         <div key={member.id} className={styles.personCard}>
@@ -166,7 +167,7 @@ export default function TeamAndPI() {
                         <div className={styles.treeLevel}>
                             <h3 className={styles.levelTitle}>Research Associates</h3>
                             <div className={styles.nodesGrid}>
-                                {(team.researchAssociates || []).filter((m: any) => m && m.name).map((member: any) => {
+                                {(team.researchAssociates || []).filter((m: TeamMember) => m && m.name).map((member: TeamMember) => {
                                     const key = getMemberKey('ra', member.name);
                                     return (
                                         <div key={member.id} className={styles.personCard}>
@@ -185,7 +186,7 @@ export default function TeamAndPI() {
                         <div className={styles.treeLevel}>
                             <h3 className={styles.levelTitle}>Interns</h3>
                             <div className={styles.nodesGrid}>
-                                {(team.interns || []).filter((m: any) => m && m.name).map((member: any) => {
+                                {(team.interns || []).filter((m: TeamMember) => m && m.name).map((member: TeamMember) => {
                                     const key = getMemberKey('intern', member.name);
                                     return (
                                         <div key={member.id} className={styles.personCard}>
