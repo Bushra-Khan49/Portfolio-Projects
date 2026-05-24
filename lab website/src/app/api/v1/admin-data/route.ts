@@ -31,13 +31,113 @@ async function readJSON(filename: string): Promise<any> {
     }
 }
 
+import { z } from 'zod';
+
+const fileLocks = new Map<string, Promise<void>>();
+
 async function writeJSON(filename: string, data: any) {
     if (!existsSync(DATA_DIR)) await mkdir(DATA_DIR, { recursive: true });
     const targetPath = join(DATA_DIR, filename);
     const tempPath = `${targetPath}.tmp`;
-    await writeFile(tempPath, JSON.stringify(data, null, 2));
-    await rename(tempPath, targetPath);
+
+    // Queue up writes to the same file to prevent concurrency collisions
+    const existingPromise = fileLocks.get(filename) || Promise.resolve();
+    const nextPromise = existingPromise.then(async () => {
+        await writeFile(tempPath, JSON.stringify(data, null, 2));
+        await rename(tempPath, targetPath);
+    }).catch(err => {
+        console.error(`Concurrency write error for ${filename}:`, err);
+    });
+
+    fileLocks.set(filename, nextPromise);
+    await nextPromise;
 }
+
+const schemas: Record<string, z.ZodType<any>> = {
+    sessions: z.object({
+        meeting: z.object({
+            title: z.string(),
+            number: z.string(),
+            purpose: z.string(),
+            date: z.string(),
+            time: z.string(),
+            location: z.string(),
+        }),
+        presenters: z.array(z.object({
+            id: z.string(),
+            presenter: z.string(),
+            topic: z.string(),
+            time: z.string(),
+            status: z.string()
+        })),
+        history: z.array(z.any()).optional()
+    }),
+    team: z.object({
+        phdScholars: z.array(z.object({ id: z.string(), name: z.string(), role: z.string().optional() })),
+        researchAssociates: z.array(z.object({ id: z.string(), name: z.string(), role: z.string().optional() })),
+        interns: z.array(z.object({ id: z.string(), name: z.string(), role: z.string().optional() }))
+    }),
+    pi: z.object({
+        name: z.string(),
+        role: z.string(),
+        affiliation: z.string(),
+        email: z.string(),
+        altEmail: z.string(),
+        location: z.string(),
+        quote: z.string(),
+        featuredPublication: z.string(),
+        publications: z.array(z.object({ id: z.string(), title: z.string(), link: z.string().optional().nullable() }))
+    }),
+    research: z.object({
+        pageTitle: z.string(),
+        pageSubtitle: z.string(),
+        sidebarLabel: z.string(),
+        areas: z.array(z.object({
+            id: z.string(),
+            title: z.string(),
+            shortDesc: z.string(),
+            longDesc: z.string().optional(),
+            image: z.string()
+        }))
+    }),
+    facilities: z.array(z.object({
+        id: z.string(),
+        title: z.string(),
+        description: z.string(),
+        longDesc: z.string(),
+        stats: z.array(z.object({ label: z.string(), value: z.string() })),
+        image: z.string()
+    })),
+    goals: z.array(z.object({
+        id: z.string(),
+        title: z.string(),
+        description: z.string(),
+        longDesc: z.string(),
+        progress: z.number(),
+        target: z.string(),
+        image: z.string(),
+        breakdown: z.array(z.object({
+            label: z.string(),
+            plan: z.string(),
+            achieved: z.string(),
+            remaining: z.string(),
+            desc: z.string(),
+            lastUpdated: z.string().optional(),
+            details: z.string().optional()
+        }))
+    })),
+    settings: z.object({
+        adminId: z.string(),
+        password: z.string().optional()
+    }),
+    about: z.object({
+        speech: z.object({ title: z.string(), content: z.string(), author: z.string(), designation: z.string() }),
+        mission: z.object({ title: z.string(), content: z.string() }),
+        vision: z.object({ title: z.string(), content: z.string() }),
+        history: z.array(z.object({ year: z.string(), event: z.string() })),
+        social: z.object({ whatsapp: z.string(), email: z.string(), linkedin: z.string(), twitter: z.string() })
+    })
+};
 
 // Default data structures
 function getDefaults(type: string) {
@@ -292,10 +392,35 @@ export async function POST(request: NextRequest) {
             data.password = await hashPassword(data.password);
         }
 
+        // Validate payload structure using schema library at the API boundary
+        const schema = schemas[type];
+        if (schema) {
+            const validationResult = schema.safeParse(data);
+            if (!validationResult.success) {
+                return NextResponse.json({ 
+                    error: 'Validation failed', 
+                    details: validationResult.error.format() 
+                }, { status: 400 });
+            }
+        }
+
         await writeJSON(FILE_MAP[type], data);
+
+        // Broadcast real-time updates via WebSockets
+        try {
+            const { wsManager } = await import('@/lib/ws');
+            wsManager.broadcast(type, data);
+        } catch (err) {
+            console.error('[WS] Failed to broadcast update:', err);
+        }
         
-        // Purge Next.js cache for the main site
+        // Purge Next.js cache across all public routes to force global re-indexing
         revalidatePath('/');
+        revalidatePath('/research');
+        revalidatePath('/facilities');
+        revalidatePath('/goals');
+        revalidatePath('/about');
+        revalidatePath('/join');
         
         return NextResponse.json({ success: true });
     } catch (error) {

@@ -97,9 +97,9 @@ export default function JoinLabPage() {
     };
 
     const handleFileChange = (file: File) => {
-        const maxSize = 10 * 1024 * 1024; // 10MB
+        const maxSize = 5 * 1024 * 1024; // 5MB
         if (file.size > maxSize) {
-            setErrors(prev => ({ ...prev, resume: 'File must be less than 10MB.' }));
+            setErrors(prev => ({ ...prev, resume: 'File must be less than 5MB.' }));
             return;
         }
         setSelectedFile(file);
@@ -168,7 +168,7 @@ export default function JoinLabPage() {
                         <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem' }}>Submit your application to join Nexus Genomics Institute.</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', position: 'relative' }}>
+                    <form onSubmit={handleSubmit} noValidate style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', position: 'relative' }}>
 
                         <div className="form-group">
                             <label htmlFor="name" className="form-label">Full Name *</label>
@@ -317,7 +317,7 @@ export default function JoinLabPage() {
                                     <>
                                         <UploadCloud size={32} style={{ margin: '0 auto 1rem auto', color: isDragging ? 'var(--color-primary)' : 'var(--color-primary)' }} />
                                         <p>{isDragging ? 'Drop your file here' : 'Drag and drop your file here or click to browse'}</p>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', marginTop: '0.5rem' }}>PDF, DOC, DOCX, JPG, PNG • Max 10MB</p>
+                                        <p style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', marginTop: '0.5rem' }}>PDF, DOC, DOCX, JPG, PNG • Max 5MB</p>
                                     </>
                                 )}
                             </div>

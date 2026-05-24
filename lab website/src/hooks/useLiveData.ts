@@ -1,22 +1,27 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 /**
- * 🔄 LIVE DATA HOOK
+ * 🔄 LIVE DATA HOOK (WITH WEBSOCKETS & POLLING FALLBACK)
  * -----------------
- * Polls the admin-data API at a configurable interval for real-time content sync.
+ * Attempts to connect to a WebSocket server for instant, real-time push updates.
+ * Falls back to throttled HTTP polling if WebSockets are unreachable or disconnected.
  *
  * OPTIMIZATIONS:
- * - Default interval is 60s for public pages (was 3s — 95% reduction in API calls).
- * - Pauses polling when the browser tab is not visible (saves bandwidth).
- * - Admin pages can pass a shorter interval (e.g. 10000ms) for faster preview.
+ * - Real-time WebSocket pushes (0s delay for updates).
+ * - Automatic HTTP polling fallback (default: 60s) to keep data synchronized.
+ * - Pauses HTTP polling when the browser tab is not visible (saves bandwidth).
+ * - Automatic WebSocket reconnection with delay.
  */
 export function useLiveData<T>(type: string, initialData: T, intervalMs: number = 60000) {
     const [data, setData] = useState<T>(initialData);
+    const wsRef = useRef<WebSocket | null>(null);
+    const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const fetchData = useCallback(async () => {
-        // Skip polling when the tab is in background
+        // Skip fetching when the tab is in background
         if (document.hidden) return;
 
         try {
@@ -31,21 +36,87 @@ export function useLiveData<T>(type: string, initialData: T, intervalMs: number 
     }, [type]);
 
     useEffect(() => {
-        // Initial fetch
+        // Fetch fresh data immediately on mount
         fetchData();
 
-        // Polling interval
-        const interval = setInterval(fetchData, intervalMs);
-
-        // Pause/resume on visibility change
+        // Pause/resume polling on visibility change
         const handleVisibility = () => {
             if (!document.hidden) fetchData();
         };
         document.addEventListener('visibilitychange', handleVisibility);
 
+        // WS Connection function
+        const connectWS = () => {
+            if (typeof window === 'undefined') return;
+
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            // Connect to local port 3001 in dev, or same domain behind proxy in prod
+            const wsUrl = window.location.port === '3000'
+                ? `${protocol}//${window.location.hostname}:3001`
+                : `${protocol}//${window.location.host}/ws`;
+
+            console.log(`[WS-Client] Connecting to ${wsUrl} for type: ${type}`);
+            const ws = new WebSocket(wsUrl);
+            wsRef.current = ws;
+
+            ws.onopen = () => {
+                console.log(`[WS-Client] Connected successfully for type: ${type}`);
+                // Once connected, clear any active HTTP polling to save client/server resources
+                if (pollingIntervalRef.current) {
+                    clearInterval(pollingIntervalRef.current);
+                    pollingIntervalRef.current = null;
+                }
+            };
+
+            ws.onmessage = (event) => {
+                try {
+                    const msg = JSON.parse(event.data);
+                    if (msg.type === type) {
+                        console.log(`[WS-Client] Received real-time update for ${type}:`, msg.data);
+                        setData(msg.data);
+                    }
+                } catch (err) {
+                    console.error('[WS-Client] Error parsing message:', err);
+                }
+            };
+
+            ws.onclose = (event) => {
+                console.log(`[WS-Client] Connection closed for type: ${type}. Code: ${event.code}. Reconnecting in 5s...`);
+                wsRef.current = null;
+
+                // Start HTTP polling as backup since WebSocket is disconnected
+                if (!pollingIntervalRef.current) {
+                    pollingIntervalRef.current = setInterval(fetchData, intervalMs);
+                }
+
+                // Reconnect attempt
+                reconnectTimeoutRef.current = setTimeout(connectWS, 5000);
+            };
+
+            ws.onerror = (err) => {
+                console.error(`[WS-Client] WebSocket error for type ${type}:`, err);
+                ws.close();
+            };
+        };
+
+        // Start connection
+        connectWS();
+
+        // Fallback polling in case WebSocket doesn't connect initially
+        pollingIntervalRef.current = setInterval(fetchData, intervalMs);
+
         return () => {
-            clearInterval(interval);
             document.removeEventListener('visibilitychange', handleVisibility);
+            
+            if (wsRef.current) {
+                wsRef.current.close();
+            }
+            if (reconnectTimeoutRef.current) {
+                clearTimeout(reconnectTimeoutRef.current);
+            }
+            if (pollingIntervalRef.current) {
+                clearInterval(pollingIntervalRef.current);
+            }
         };
     }, [type, intervalMs, fetchData]);
 

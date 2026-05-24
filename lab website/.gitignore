@@ -42,3 +42,7 @@ next-env.d.ts
 
 # uploaded team images (managed via admin panel)
 /public/uploads/
+
+# playwright testing outputs
+/playwright-report/
+/test-results/
