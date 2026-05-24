@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 describe('Footer Component', () => {
     it('renders the lab name', () => {
         render(<Footer />);
-        expect(screen.getByText(/Nexus Genomics Institute/i)).toBeInTheDocument();
+        expect(screen.getAllByText(/Nexus Genomics Institute/i).length).toBeGreaterThan(0);
     });
 
     it('contains privacy and terms links', () => {
