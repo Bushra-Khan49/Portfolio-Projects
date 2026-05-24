@@ -2,6 +2,19 @@
 
 All notable changes to the Nexus Genomics Institute portal are documented here.
 
+## [1.2.0] — 2026-05-25
+
+### Features
+- Transitioned countdown clock and schedules from polling to real-time WebSockets
+- Added secure server-side API proxy route under `/api/v1/proxy` to secure third-party tokens
+- Introduced automated integration flows and browser testing via Playwright E2E tests
+
+### Security
+- Aligned client-side file upload limits from 10MB to 5MB to match server-side logic
+
+### Testing
+- Excluded E2E files from Jest unit tests running to separate integration and unit flows
+
 ## [1.1.0] — 2026-05-15
 
 ### Security
