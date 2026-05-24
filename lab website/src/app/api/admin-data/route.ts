@@ -82,7 +82,7 @@ function getDefaults(type: string) {
             name: 'Dr. Evelyn Vance',
             role: 'Lead Research Scientist',
             affiliation: 'Advanced Systems Bio-Innovation Hub, Nexus Genomics Institute, Horizon City.',
-            email: 'evelyn.vance@nexus-genomics.org',
+            email: 'evelyn.vance@nexusgenomics.edu',
             altEmail: 'evelyn.vance.research@gmail.com',
             location: 'Building 4, Wing B, Horizon City',
             quote: '"Innovation lies at the intersection of biological complexity and robust computational architecture. We model life to decode its underlying algorithms."',
@@ -97,11 +97,16 @@ function getDefaults(type: string) {
         };
     }
     if (type === 'research') {
-        return [
-            { id: 'herbal-genomics', title: 'Herbal Genomics', shortDesc: 'Decoding the genetic blueprint of medicinal and horticultural plants.', image: '/herbal-genomics-new.jpg' },
-            { id: 'omics-integration', title: 'Omics Integration', shortDesc: 'Integrative transcriptomics, proteomics, and metabolomics for systems-level understanding.', image: '/omics-integration-new.jpg' },
-            { id: 'protein-structure', title: 'Protein Structure & Function', shortDesc: 'Protein modelling and functional analysis of molecular mechanisms involved in plant development and stress responses.', image: '/protein-structure-new.png' },
-        ];
+        return {
+            pageTitle: "Research Areas",
+            pageSubtitle: "Exploring the molecular frontiers of herbal genomics and plant systems biology to unlock nature's therapeutic potential.",
+            sidebarLabel: "Focus Areas",
+            areas: [
+                { id: 'herbal-genomics', title: 'Herbal Genomics', shortDesc: 'Decoding the genetic blueprint of medicinal and horticultural plants. Exploring the molecular frontiers of herbal genomics and plant systems biology to unlock nature\'s therapeutic potential through high-resolution genome mapping and annotation.', image: '/herbal-genomics-new.jpg' },
+                { id: 'omics-integration', title: 'Omics Integration', shortDesc: 'Integrative transcriptomics, proteomics, and metabolomics for systems-level understanding. We synthesize multi-layered biological data to decipher the complex interactions governing plant secondary metabolism and therapeutic compound biosynthesis.', image: '/omics-integration-new.jpg' },
+                { id: 'protein-structure', title: 'Protein Structure & Function', shortDesc: 'Protein modelling and functional analysis of molecular mechanisms involved in plant development and stress responses. Investigating the structural dynamics of key regulatory enzymes to predict and enhance medicinal plant productivity under fluctuating environments.', image: '/protein-structure-new.png' },
+            ]
+        };
     }
     if (type === 'facilities') {
         return [
@@ -179,6 +184,35 @@ function getDefaults(type: string) {
         // No hardcoded credentials — settings must be initialized via /api/auth
         return { adminId: '' };
     }
+    if (type === 'about') {
+        return {
+            speech: {
+                title: "A Message from the Director",
+                content: "Welcome to the Nexus Genomics Institute...",
+                author: "Dr. Evelyn Vance",
+                designation: "Principal Investigator & Founding Director"
+            },
+            mission: {
+                title: "Our Mission",
+                content: "To push the boundaries of genomic research..."
+            },
+            vision: {
+                title: "Our Vision",
+                content: "To become a global leader in personalized medicine..."
+            },
+            history: [
+                { "year": "2020", "event": "Foundation of Nexus Genomics Institute." },
+                { "year": "2022", "event": "Successful integration of the first AI-driven sequencer." },
+                { "year": "2024", "event": "Global recognition for the Herbal Omics Initiative." }
+            ],
+            social: {
+                whatsapp: "",
+                email: "vance.nexus@nexusgenomics.edu",
+                linkedin: "",
+                twitter: ""
+            }
+        };
+    }
     return {};
 }
 
@@ -190,6 +224,7 @@ const FILE_MAP: Record<string, string> = {
     facilities: 'admin-facilities.json',
     goals: 'admin-goals.json',
     settings: 'admin-settings.json',
+    about: 'admin-about.json',
 };
 
 // GET — Return data for a specific type

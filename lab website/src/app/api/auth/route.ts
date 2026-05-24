@@ -38,8 +38,8 @@ async function getCredentials(): Promise<{ adminId: string; passwordHash: string
     }
 
     // First-time setup: create settings file with hashed default password
-    const defaultId = 'vance.nexus@institute.org';
-    const defaultHash = await hashPassword('nexus-vance-2026');
+    const defaultId = 'Admin ID';
+    const defaultHash = await hashPassword('Password');
     await writeFile(SETTINGS_PATH, JSON.stringify({ adminId: defaultId, password: defaultHash }, null, 2));
     return { adminId: defaultId, passwordHash: defaultHash };
 }

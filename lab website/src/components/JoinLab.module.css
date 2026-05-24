@@ -50,14 +50,15 @@
 .joinBtn {
     background-color: var(--color-accent);
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.1rem; /* Reduced from 1.4rem */
     font-weight: 700;
-    padding: 1rem 3rem;
-    border-radius: var(--border-radius-sm);
+    padding: 1rem 3rem; /* Reduced from 1.5rem 4rem */
+    border-radius: var(--border-radius-md);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.12em;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin-top: 1.5rem;
 }
 
 .joinBtn:hover {

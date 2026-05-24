@@ -8,18 +8,24 @@ import TeamAndPI from '@/components/TeamAndPI';
 import JoinLab from '@/components/JoinLab';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import ErrorBoundary from '@/components/ui/ErrorBoundary';
 
+/**
+ * Homepage — assembles all lab sections in order.
+ * Each section is wrapped in an ErrorBoundary so a crash in one
+ * section doesn't take down the entire page.
+ */
 export default function Home() {
   return (
     <main>
       <Navigation />
-      <Hero />
-      <ResearchAreas />
-      <Facilities />
-      <LabProgress />
-      <Goals />
-      <TeamAndPI />
-      <JoinLab />
+      <ErrorBoundary><Hero /></ErrorBoundary>
+      <ErrorBoundary><ResearchAreas /></ErrorBoundary>
+      <ErrorBoundary><Facilities /></ErrorBoundary>
+      <ErrorBoundary><LabProgress /></ErrorBoundary>
+      <ErrorBoundary><Goals /></ErrorBoundary>
+      <ErrorBoundary><TeamAndPI /></ErrorBoundary>
+      <ErrorBoundary><JoinLab /></ErrorBoundary>
       <Footer />
       <ScrollToTop />
     </main>

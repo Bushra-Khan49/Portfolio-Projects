@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
     return (
-        <div style={{ minHeight: '100vh', backgroundColor: 'var(--color-bg-white)', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ minHeight: '100vh', backgroundColor: 'var(--admin-bg)', fontFamily: 'var(--font-sans)' }}>
             <div className="container" style={{ maxWidth: '800px', padding: '6rem 1.5rem 4rem' }}>
                 <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-primary)', fontWeight: 600, marginBottom: '2rem', fontSize: '0.9rem' }}>
                     ← Back to Home
@@ -30,7 +30,7 @@ export default function TermsPage() {
                     <p style={{ marginBottom: '1rem' }}>Nexus Genomics Institute is not liable for any damages arising from the use of this website. The site is provided &quot;as is&quot; without warranties of any kind.</p>
 
                     <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginTop: '2rem', marginBottom: '0.75rem' }}>5. Contact</h2>
-                    <p style={{ marginBottom: '1rem' }}>For questions regarding these terms, contact: evelyn.vance@nexus-genomics.org</p>
+                    <p style={{ marginBottom: '1rem' }}>For questions regarding these terms, contact: evelyn.vance@nexusgenomics.edu</p>
                 </div>
             </div>
         </div>

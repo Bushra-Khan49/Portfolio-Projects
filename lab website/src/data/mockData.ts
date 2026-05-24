@@ -184,7 +184,7 @@ export const teamData = {
         name: 'Dr. Evelyn Vance',
         role: 'Lead Research Scientist',
         affiliation: 'Advanced Systems Bio-Innovation Hub, Nexus Genomics Institute, Horizon City.',
-        email: 'evelyn.vance@nexus-genomics.org',
+        email: 'evelyn.vance@nexusgenomics.edu',
         altEmail: 'evelyn.vance.research@gmail.com',
         location: 'Building 4, Wing B, Horizon City',
         quote: '"Innovation lies at the intersection of biological complexity and robust computational architecture. We model life to decode its underlying algorithms."',
@@ -193,7 +193,7 @@ export const teamData = {
             {
                 id: '1',
                 title: 'Next-Generation Computational Frameworks for Predictive Systems Biology',
-                link: 'https://nexus-genomics.org/publications/predictive-systems-biology-2025'
+                link: 'https://nexusgenomics.edu/publications/predictive-systems-biology-2025'
             }
         ]
     },

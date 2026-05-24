@@ -1,7 +1,7 @@
 .pageWrapper {
     min-height: 100vh;
-    background-color: #1b4332;
-    color: #ffffff;
+    background-color: #1b4332 !important;
+    color: #ffffff !important;
     padding-top: 10rem; /* More space so title clears the navbar */
     padding-bottom: 0; /* Footer sits at the natural page bottom */
     display: flex;
@@ -28,7 +28,7 @@
 .titleLine {
     width: 80px;
     height: 5px;
-    background-color: #1e3a8a;
+    background-color: var(--color-primary);
     border-radius: 3px;
     margin: 0 auto 1.75rem;
 }
@@ -200,7 +200,7 @@
 .cardTitleLine {
     width: 48px;
     height: 4px;
-    background: #1e3a8a;
+    background: var(--color-primary);
     border-radius: 2px;
     margin-top: 0.5rem;
     transition: width 0.4s ease;
@@ -266,7 +266,7 @@
     justify-content: center;
     font-weight: 900;
     font-size: 0.88rem;
-    color: #1e3a8a;
+    color: var(--color-primary);
     box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.22),
         0 0 0 2px rgba(255,255,255,0.5);
@@ -276,6 +276,56 @@
 
 .stepBadge:hover {
     transform: scale(1.1);
+}
+
+:global([data-theme='dark']) .pageWrapper {
+    background-color: #0b1c15 !important;
+}
+
+:global([data-theme='dark']) .mainTitle {
+    color: #ffffff !important;
+}
+
+:global([data-theme='dark']) .subtitle {
+    color: #ffffff !important;
+}
+
+:global([data-theme='dark']) .sidebarLabel {
+    color: #ffffff !important;
+}
+
+:global([data-theme='dark']) .navBtn {
+    color: #ffffff !important;
+}
+
+:global([data-theme='dark']) .navBtnActive {
+    background: #1b4332 !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme='dark']) .card {
+    background: #1b4332 !important;
+}
+
+:global([data-theme='dark']) .topicPill {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+:global([data-theme='dark']) .cardTitle {
+    color: #ffffff !important;
+}
+
+:global([data-theme='dark']) .cardDesc {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+:global([data-theme='dark']) .stepBadge {
+    background: #1b4332 !important;
+    color: #ffffff !important;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.4),
+        0 0 0 2px rgba(255, 255, 255, 0.1) !important;
 }
 
 /* ─── Mobile ──────────────────────────────────────── */

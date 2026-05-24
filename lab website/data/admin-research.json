@@ -2,37 +2,37 @@
   {
     "id": "herbal-genomics",
     "title": "Herbal Genomics",
-    "shortDesc": "Decoding the genetic blueprint of medicinal and horticultural plants.",
+    "shortDesc": "Decoding the genetic blueprint of medicinal and horticultural plants. Exploring the molecular frontiers of herbal genomics and plant systems biology to unlock nature's therapeutic potential through high-resolution genome mapping and annotation.",
     "image": "/herbal-genomics-new.jpg"
   },
   {
     "id": "omics-integration",
     "title": "Omics Integration",
-    "shortDesc": "Integrative transcriptomics, proteomics, and metabolomics for systems-level understanding.",
+    "shortDesc": "Integrative transcriptomics, proteomics, and metabolomics for systems-level understanding. We synthesize multi-layered biological data to decipher the complex interactions governing plant secondary metabolism and therapeutic compound biosynthesis.",
     "image": "/omics-integration-new.jpg"
   },
   {
     "id": "protein-structure",
     "title": "Protein Structure & Function",
-    "shortDesc": "Protein modelling and functional analysis of molecular mechanisms involved in plant development and stress responses.",
+    "shortDesc": "Protein modelling and functional analysis of molecular mechanisms involved in plant development and stress responses. Investigating the structural dynamics of key regulatory enzymes to predict and enhance medicinal plant productivity under fluctuating environments.",
     "image": "/protein-structure-new.png"
   },
   {
     "id": "systems-biology",
     "title": "Systems Biology",
-    "shortDesc": "Network-level analysis of regulatory pathways governing plant growth, development and adaptation.",
+    "shortDesc": "Network-level analysis of regulatory pathways governing plant growth, development and adaptation. Utilizing computational frameworks to map gene-regulatory networks that drive phenotypic plasticity and evolutionary transitions in herbal species.",
     "image": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=600"
   },
   {
     "id": "computational-analysis",
     "title": "Computational Analysis",
-    "shortDesc": "NGS data analysis, big-data biology, and computational modelling for plant omics research.",
+    "shortDesc": "NGS data analysis, big-data biology, and computational modelling for plant omics research. Developing custom bioinformatics pipelines for large-scale comparative genomics and phylogenomic reconstruction of non-model medicinal plants.",
     "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=600"
   },
   {
     "id": "phytochemistry-drug-discovery",
     "title": "Phytochemistry & Drug Discovery",
-    "shortDesc": "Isolation, characterization, and pharmacological evaluation of bioactive plant compounds for novel therapeutic agents.",
+    "shortDesc": "Isolation, characterization, and pharmacological evaluation of bioactive plant compounds for novel therapeutic agents. Bridging the gap between traditional herbal wisdom and modern molecular pharmacology to identify candidates for the next generation of natural drugs.",
     "image": "/uploads/research-phytochemistry-drug-discovery.jpg"
   }
 ]

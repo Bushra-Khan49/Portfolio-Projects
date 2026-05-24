@@ -1,6 +1,5 @@
 .progressSection {
-    background-color: var(--color-bg-light);
-    /* Dark Green */
+    background-color: var(--color-bg-deep); /* Dark Green as requested */
     padding: 6rem 0;
 }
 
@@ -55,14 +54,74 @@
 }
 
 .timerGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    background: rgba(45, 106, 79, 0.05);
-    /* very light sage tint */
-    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem; /* Perfectly uniform spacing */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
     border-radius: var(--border-radius-md);
-    border: 1px solid rgba(45, 106, 79, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    justify-content: center;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.daysBox, .timeBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Clear padding for fixed size */
+    border-radius: 8px;
+    width: 80px;    /* Perfectly uniform width */
+    height: 80px;   /* Perfectly uniform height */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+
+.daysBox {
+    background: #1b4332; /* Dark Green */
+    color: #ffffff;      /* Light Text */
+}
+
+.timeBox {
+    background: #ffffff; /* Light Background */
+    color: #1b4332;      /* Dark Text */
+}
+
+.daysBox .timeVal {
+    color: #ffffff;
+}
+
+.daysBox .timeLabel {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.timeVal {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1b4332; /* Dark Green for light boxes */
+    line-height: 1;
+}
+
+.timeLabel {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #40916c; /* Medium Green */
+    font-weight: 700;
+    margin-top: 0.25rem;
+}
+
+.colon {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #52b788;
+    margin: 0; /* Remove padding for perfect centering */
+    display: flex;
+    align-items: center;
 }
 
 .timeBox {
@@ -70,6 +129,11 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+}
+
+.daysBox .timeVal {
+    color: white;
+    font-size: 2.4rem; /* Reduced from 3.5rem */
 }
 
 .timeVal {

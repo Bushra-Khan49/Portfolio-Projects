@@ -38,6 +38,38 @@
         "value": "524 Nodes"
       }
     ],
+    "projects": [
+      {
+        "name": "Drought Resilience Profiling in Triticum aestivum (Wheat)",
+        "settings": [
+          { "key": "Temperature Profile", "value": "28°C Day / 22°C Night" },
+          { "key": "Humidity Target", "value": "40% (Induced Drought Stress)" },
+          { "key": "Soil Moisture", "value": "Maintained at exactly 25% VWC" },
+          { "key": "CO2 Concentration", "value": "Ambient (410 ppm)" },
+          { "key": "Lighting", "value": "800 µmol/m²/s (14h Photoperiod)" }
+        ]
+      },
+      {
+        "name": "Elevated CO2 Growth Dynamics in Glycine max (Soybean)",
+        "settings": [
+          { "key": "Temperature Profile", "value": "25°C Day / 20°C Night" },
+          { "key": "Humidity Target", "value": "65% Constant" },
+          { "key": "Soil Moisture", "value": "Maintained at 45% VWC" },
+          { "key": "CO2 Concentration", "value": "Enriched (800 ppm)" },
+          { "key": "Lighting", "value": "Full Spectrum LED, 600 µmol/m²/s" }
+        ]
+      },
+      {
+        "name": "Circadian Rhythm Disruption in Arabidopsis thaliana",
+        "settings": [
+          { "key": "Temperature Profile", "value": "22°C Constant" },
+          { "key": "Humidity Target", "value": "60% Constant" },
+          { "key": "Soil Moisture", "value": "Maintained at 50% VWC" },
+          { "key": "CO2 Concentration", "value": "Ambient (400 ppm)" },
+          { "key": "Lighting", "value": "Aperiodic / Random interval shifting" }
+        ]
+      }
+    ],
     "image": "/uploads/facility-smart-greenhouse.jpg"
   },
   {
@@ -69,6 +101,37 @@
       {
         "label": "SUCCESS RATE",
         "value": "98.5%"
+      }
+    ],
+    "projects": [
+      {
+        "name": "Medicinal Alkaloid Elicitation in Catharanthus roseus",
+        "settings": [
+          { "key": "Photoperiod", "value": "16/8h Light/Dark Cycle" },
+          { "key": "Temperature", "value": "25°C Constant" },
+          { "key": "Subculture Cycle", "value": "21 Days" },
+          { "key": "Media Composition", "value": "MS + 2,4-D (1mg/L) + Kinetin (0.5mg/L)" },
+          { "key": "Aseptic Protocol", "value": "Laminar flow maintained at 0.45m/s" }
+        ]
+      },
+      {
+        "name": "CRISPR-Cas9 Editing of Solanum lycopersicum for Salt Tolerance",
+        "settings": [
+          { "key": "Photoperiod", "value": "12/12h Light/Dark Cycle" },
+          { "key": "Temperature", "value": "22°C (Day) / 18°C (Night)" },
+          { "key": "Light Intensity", "value": "50 µmol/m²/s" },
+          { "key": "Media Composition", "value": "Half-strength MS" },
+          { "key": "Aseptic Protocol", "value": "Explant sterilization under strict ISO 5 limits" }
+        ]
+      },
+      {
+        "name": "Cryopreservation of Endangered Orchid Germplasm",
+        "settings": [
+          { "key": "Pre-culture", "value": "0.3M Sucrose (3 days)" },
+          { "key": "Loading Phase", "value": "PVS2 (20 min at 0°C)" },
+          { "key": "Recovery Phase", "value": "Dark incubation for 7 days at 25°C" },
+          { "key": "Aseptic Protocol", "value": "Complete handling inside H14 HEPA cabinets" }
+        ]
       }
     ],
     "image": "/uploads/facility-laminar-systems.jpg"

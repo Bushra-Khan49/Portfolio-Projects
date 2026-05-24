@@ -28,12 +28,12 @@ interface SessionsData {
 
 const initialSessions: SessionsData = {
     meeting: {
-        title: 'Lab Meeting',
-        number: '1st',
-        purpose: '',
-        date: '2026-04-15',
-        time: '10:00',
-        location: 'Building 4, Wing B',
+        title: 'NEXUS SYSTEMS SYMPOSIUM',
+        number: '3rd',
+        purpose: 'SYMPOSIUM HALL, HORIZON CITY',
+        date: '2026-06-15',
+        time: '09:00',
+        location: 'SYMPOSIUM HALL, HORIZON CITY',
     },
     presenters: [],
 };
@@ -83,7 +83,7 @@ export default function LabProgress() {
         : 'To be announced';
 
     return (
-        <section id="progress" className={`section ${styles.progressSection}`}>
+        <section id="meetings" className={`section ${styles.progressSection}`}>
             <div className="container">
 
                 <div className={styles.header}>
@@ -116,25 +116,28 @@ export default function LabProgress() {
                         ) : (
                             <>
                                 <div className={styles.timerGrid}>
-                                    <div className={styles.timeBox}>
+                                    <div className={styles.daysBox}>
                                         <span className={styles.timeVal}>{String(timeLeft.days).padStart(2, '0')}</span>
                                         <span className={styles.timeLabel}>Days</span>
                                     </div>
+                                    <span className={styles.colon} style={{ visibility: 'hidden' }}>:</span>
                                     <div className={styles.timeBox}>
                                         <span className={styles.timeVal}>{String(timeLeft.hours).padStart(2, '0')}</span>
-                                        <span className={styles.timeLabel}>Hours</span>
+                                        <span className={styles.timeLabel}>Hrs</span>
                                     </div>
+                                    <span className={styles.colon}>:</span>
                                     <div className={styles.timeBox}>
                                         <span className={styles.timeVal}>{String(timeLeft.minutes).padStart(2, '0')}</span>
-                                        <span className={styles.timeLabel}>Mins</span>
+                                        <span className={styles.timeLabel}>Min</span>
                                     </div>
+                                    <span className={styles.colon}>:</span>
                                     <div className={styles.timeBox}>
                                         <span className={styles.timeVal}>{String(timeLeft.seconds).padStart(2, '0')}</span>
-                                        <span className={styles.timeLabel}>Secs</span>
+                                        <span className={styles.timeLabel}>Sec</span>
                                     </div>
                                 </div>
 
-                                <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', marginTop: '1rem' }}>
+                                <p style={{ textAlign: 'center', fontSize: '1rem', color: 'var(--color-date-display, #1b4332)', marginTop: '1.5rem', fontWeight: 800, textDecoration: 'underline' }}>
                                     {meetingDateDisplay}
                                 </p>
                             </>
@@ -144,7 +147,7 @@ export default function LabProgress() {
                     {/* Scrollable Presentations on Right */}
                     <div className={styles.sessionsWrapper}>
                         <h4 className={styles.sessionsTitle}>
-                            Presentations for {meetingDateDisplay}
+                            Presentations for <span style={{ color: '#ffffff' }}>{meetingDateDisplay}</span>
                         </h4>
                         <div className={styles.sessionsList}>
                             {data?.presenters?.map((session: Presenter) => (

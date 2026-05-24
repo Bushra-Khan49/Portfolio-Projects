@@ -53,7 +53,7 @@ export default function Goals() {
                                         </div>
                                         <span className={styles.progressText}>{goal.progress}%</span>
                                     </div>
-                                    <Link href={`/goals?id=${goal.id}`} className={styles.learnMore}>
+                                    <Link href={`/goals/${goal.id}`} className={styles.learnMore}>
                                         Explore Details &rarr;
                                     </Link>
                                 </div>

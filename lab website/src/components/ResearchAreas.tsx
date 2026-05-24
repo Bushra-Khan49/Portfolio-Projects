@@ -9,20 +9,21 @@ import { useState, useEffect } from 'react';
 import type { ResearchArea } from '@/types';
 
 export default function ResearchAreas() {
-    const data = useLiveData('research', researchData);
+    const rawData = useLiveData('research', researchData) as any;
+    const data = Array.isArray(rawData) ? rawData : (rawData?.areas || []);
     const [imgTimestamp, setImgTimestamp] = useState<number | null>(null);
 
     // Force image refresh when data changes
     useEffect(() => {
         setImgTimestamp(Date.now());
-    }, [data]);
+    }, [rawData]);
 
     return (
         <section id="research" className={`section ${styles.researchSection}`}>
             <div className="container">
 
                 <div className={styles.header}>
-                    <h2 className="section-title" style={{ textAlign: 'center', margin: 0, color: 'var(--color-text-inverse)' }}>Research Areas</h2>
+                    <h2 className="section-title" style={{ textAlign: 'center', margin: 0, color: '#ffffff' }}>{Array.isArray(rawData) ? "Research Areas" : (rawData?.pageTitle || "Research Areas")}</h2>
                 </div>
 
                 <div className={styles.grid}>
@@ -47,6 +48,12 @@ export default function ResearchAreas() {
                             </div>
                         </div>
                     ))}
+                </div>
+                
+                <div style={{ marginTop: '3rem', textAlign: 'right' }}>
+                    <Link href="/research" className={styles.learnMore} style={{ fontWeight: 800, fontSize: '1.1rem', color: '#52b788' }}>
+                        See All Research Areas &rarr;
+                    </Link>
                 </div>
 
             </div>

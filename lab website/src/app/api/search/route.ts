@@ -34,7 +34,8 @@ export async function GET(request: NextRequest) {
     const results: SearchResult[] = [];
 
     // Search research areas
-    const research = await readJSON('admin-research.json');
+    const researchData = await readJSON('admin-research.json');
+    const research = Array.isArray(researchData) ? researchData : (researchData?.areas || []);
     if (Array.isArray(research)) {
         for (const item of research) {
             const searchable = `${item.title} ${item.shortDesc} ${item.longDesc || ''}`.toLowerCase();

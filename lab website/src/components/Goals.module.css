@@ -1,6 +1,10 @@
 .goalsSection {
-    background-color: var(--color-bg-white);
+    background-color: var(--color-bg-light);
     padding: 6rem 0;
+}
+
+.goalsSection h2 {
+    color: var(--color-text-main) !important;
 }
 
 .header {
@@ -149,7 +153,7 @@
 
 .learnMore {
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-see-all-btn);
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -162,11 +166,17 @@
 }
 
 .seeAll {
-    font-weight: 600;
-    color: var(--color-primary);
+    font-weight: 800;
+    color: var(--color-see-all-btn);
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+:global([data-theme='dark']) .seeAll {
+    color: var(--color-accent) !important;
 }
 
 @media (max-width: 768px) {

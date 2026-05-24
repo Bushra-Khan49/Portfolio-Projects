@@ -155,3 +155,27 @@ export interface Application {
     submittedAt: string;
     status: string;
 }
+
+export interface AboutData {
+    speech: {
+        title: string;
+        content: string;
+        author: string;
+        designation: string;
+    };
+    mission: {
+        title: string;
+        content: string;
+    };
+    vision: {
+        title: string;
+        content: string;
+    };
+    history: { year: string; event: string }[];
+    social: {
+        whatsapp: string;
+        email: string;
+        linkedin: string;
+        twitter: string;
+    };
+}

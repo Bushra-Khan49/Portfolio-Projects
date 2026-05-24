@@ -1,10 +1,18 @@
 .researchSection {
-    background-color: var(--color-bg-light);
+    background-color: var(--color-bg-deep);
     padding: 6rem 0;
 }
 
 .header {
     margin-bottom: 3rem;
+}
+
+.titleText {
+    color: var(--color-text-main);
+}
+
+:global([data-theme='dark']) .titleText {
+    color: #ffffff !important;
 }
 
 .grid {
@@ -70,7 +78,7 @@
 .learnMore {
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--color-primary);
+    color: var(--color-see-all-btn);
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 0.05em;

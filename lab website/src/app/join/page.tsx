@@ -162,7 +162,7 @@ export default function JoinLabPage() {
 
             <div className="container" style={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '8rem', paddingBottom: '4rem', zIndex: 10 }}>
 
-                <div className="glass-card" style={{ padding: '3.5rem', width: '100%', maxWidth: '800px' }}>
+                <div className="glass-card" style={{ padding: '3.5rem', width: '100%', maxWidth: '800px', backgroundColor: '#e8f5e9', '--color-text-main': '#000000', '--color-text-muted': '#2d6a4f' } as React.CSSProperties}>
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                         <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-main)', fontFamily: 'var(--font-sans)', fontWeight: 800 }}>Join the Lab</h1>
                         <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem' }}>Submit your application to join Nexus Genomics Institute.</p>

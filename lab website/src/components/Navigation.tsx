@@ -10,14 +10,13 @@ import LoginModal from '@/components/ui/LoginModal';
 
 const NAV_LINKS = [
     { name: 'Home', href: '/' },
-    { name: 'Research', href: '/research' },
-    { name: 'Facilities', href: '/facilities' },
-    { name: 'Strategic Goals', href: '/goals' },
-    { name: 'Lab Progress', href: '/#progress' },
-    { name: 'Principal Investigator', href: '/#pi' },
-    { name: 'Members', href: '/#team' },
-    { name: 'Join the Lab', href: '/join' },
-    { name: 'Contact', href: '/#footer' },
+    { name: 'Research', href: '/#research' },
+    { name: 'Facilities', href: '/#facilities' },
+    { name: 'Meetings', href: '/#meetings' },
+    { name: 'Goals', href: '/#goals' },
+    { name: 'About', href: '/#about' },
+    { name: 'Team', href: '/#team' },
+    { name: 'Join the Lab', href: '/#join' },
 ];
 
 export default function Navigation() {

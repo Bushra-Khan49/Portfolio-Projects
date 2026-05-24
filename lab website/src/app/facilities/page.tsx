@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
@@ -115,17 +116,24 @@ function FacilitiesContent() {
                                     <p className={styles.cardDesc}>
                                         {activeFacility.longDesc || activeFacility.description}
                                     </p>
-                                    
-                                     {activeFacility.stats && (
-                                        <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                                            {activeFacility.stats.map((stat: any, idx: number) => (
-                                                <div key={idx} style={{ padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                                                    <p style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--color-primary)', letterSpacing: '0.1em', margin: 0, textTransform: 'uppercase' }}>{stat.label}</p>
-                                                    <p style={{ fontSize: '1.25rem', fontWeight: '900', color: '#0f172a', margin: '0.25rem 0 0 0' }}>{stat.value}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
+
+                                    <div style={{ marginTop: '2.5rem' }}>
+                                        <Link href={`/facilities/${activeFacility.id}`} style={{ 
+                                            display: 'inline-flex', 
+                                            alignItems: 'center', 
+                                            justifyContent: 'center',
+                                            padding: '1rem 2rem', 
+                                            background: 'var(--color-primary)', 
+                                            color: 'white', 
+                                            fontWeight: 800, 
+                                            borderRadius: '50px',
+                                            textDecoration: 'none',
+                                            transition: 'all 0.3s ease',
+                                            boxShadow: '0 10px 20px rgba(16, 185, 129, 0.2)'
+                                        }}>
+                                            View Detailed Specs & Projects &rarr;
+                                        </Link>
+                                    </div>
                                 </div>
 
                                 <div className={styles.imageSide}>

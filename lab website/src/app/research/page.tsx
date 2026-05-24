@@ -9,12 +9,11 @@
  *   open the correct card directly.
  */
 
-import { useState, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
-import { researchData } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './ResearchAreasPage.module.css';
 
@@ -23,12 +22,38 @@ function ResearchContent() {
     const searchParams = useSearchParams();
     const topicParam = searchParams.get('topic');
 
-    const defaultId =
-        topicParam && researchData.find(r => r.id === topicParam)
-            ? topicParam
-            : researchData[0].id;
+    const [researchData, setResearchData] = useState<any[]>([]);
+    const [pageTitle, setPageTitle] = useState('Research Areas');
+    const [pageSubtitle, setPageSubtitle] = useState('Exploring the molecular frontiers of herbal genomics and plant systems biology to unlock nature\'s therapeutic potential.');
+    const [sidebarLabel, setSidebarLabel] = useState('Focus Areas');
+    const [activeId, setActiveId] = useState<string | null>(null);
 
-    const [activeId, setActiveId] = useState(defaultId);
+    useEffect(() => {
+        fetch('/api/admin-data?type=research')
+            .then(r => r.json())
+            .then(data => {
+                const areas = Array.isArray(data) ? data : (data?.areas || []);
+                const title = Array.isArray(data) ? 'Research Areas' : (data?.pageTitle || 'Research Areas');
+                const subtitle = Array.isArray(data) 
+                    ? 'Exploring the molecular frontiers of herbal genomics and plant systems biology to unlock nature\'s therapeutic potential.' 
+                    : (data?.pageSubtitle || '');
+                const label = Array.isArray(data) ? 'Focus Areas' : (data?.sidebarLabel || 'Focus Areas');
+
+                setResearchData(areas);
+                setPageTitle(title);
+                setPageSubtitle(subtitle);
+                setSidebarLabel(label);
+
+                if (areas && areas.length > 0) {
+                    const defaultId = topicParam && areas.find((r: any) => r.id === topicParam)
+                        ? topicParam
+                        : areas[0].id;
+                    setActiveId(defaultId);
+                }
+            });
+    }, [topicParam]);
+
+    if (!activeId || researchData.length === 0) return null;
 
     const activeArea = researchData.find(item => item.id === activeId)!;
     const activeIndex = researchData.findIndex(item => item.id === activeId);
@@ -44,7 +69,7 @@ function ResearchContent() {
                         transition={{ duration: 0.6 }}
                         className={styles.mainTitle}
                     >
-                        Research Areas
+                        {pageTitle}
                     </motion.h1>
 
                     {/* Single blue accent line after title */}
@@ -61,8 +86,7 @@ function ResearchContent() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className={styles.subtitle}
                     >
-                        Exploring the molecular frontiers of herbal genomics and plant systems
-                        biology to unlock nature&apos;s therapeutic potential.
+                        {pageSubtitle}
                     </motion.p>
                 </header>
             </div>
@@ -73,7 +97,7 @@ function ResearchContent() {
 
                     {/* ── Sidebar (vertical tab nav) ──────────── */}
                     <aside className={styles.sidebar}>
-                        <p className={styles.sidebarLabel}>Focus Areas</p>
+                        <p className={styles.sidebarLabel}>{sidebarLabel}</p>
                         <nav className={styles.nav}>
                             {researchData.map((item) => (
                                 <button

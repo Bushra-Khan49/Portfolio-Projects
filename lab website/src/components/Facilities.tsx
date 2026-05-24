@@ -43,12 +43,18 @@ export default function Facilities() {
                                 <p className={styles.cardDesc}>{facility.description}</p>
 
 
-                                <Link href={`/facilities?id=${facility.id}`} className={styles.learnMore}>
+                                <Link href={`/facilities/${facility.id}`} className={styles.learnMore}>
                                     View Details &rarr;
                                 </Link>
                             </div>
                         </div>
                     ))}
+                </div>
+                
+                <div style={{ marginTop: '3rem', textAlign: 'right' }}>
+                    <Link href="/facilities" className={styles.learnMore} style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--color-see-all-btn)' }}>
+                        Explore All Facilities &rarr;
+                    </Link>
                 </div>
 
             </div>

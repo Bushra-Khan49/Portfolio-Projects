@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
@@ -130,39 +131,27 @@ function GoalsContent() {
                                                 />
                                             </div>
                                             
-                                            {activeGoal.breakdown && (
-                                                <div style={{ marginTop: '1.5rem', display: 'grid', gridTemplateColumns: '1fr', gap: '0.75rem' }}>
-                                                    {activeGoal.breakdown.map((item: any, idx: number) => (
-                                                        <div key={idx} style={{ padding: '1rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-                                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                                                                <div style={{ fontSize: '0.85rem', color: '#0f172a', fontWeight: '800' }}>{item.label}</div>
-                                                                <div style={{ fontSize: '0.7rem', padding: '0.15rem 0.5rem', background: 'rgba(232, 93, 4, 0.1)', color: 'var(--color-primary)', borderRadius: '4px', fontWeight: '800', textTransform: 'uppercase' }}>Stamp {idx + 1}</div>
-                                                            </div>
-                                                            
-                                                            <p style={{ fontSize: '0.75rem', color: '#64748b', margin: '0 0 0.75rem 0', lineHeight: '1.4' }}>{item.desc}</p>
+                                             <div style={{ marginTop: '2rem' }}>
+                                                 <Link href={`/goals/${activeGoal.id}`} style={{ 
+                                                     display: 'inline-flex', 
+                                                     alignItems: 'center', 
+                                                     justifyContent: 'center',
+                                                     padding: '1rem 2rem', 
+                                                     background: 'var(--color-primary)', 
+                                                     color: 'white', 
+                                                     fontWeight: 800, 
+                                                     borderRadius: '50px',
+                                                     textDecoration: 'none',
+                                                     transition: 'all 0.3s ease',
+                                                     boxShadow: '0 10px 20px rgba(16, 185, 129, 0.2)'
+                                                 }}>
+                                                     Explore Full Execution Timeline &rarr;
+                                                 </Link>
+                                             </div>
 
-                                                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', padding: '0.75rem', background: '#ffffff', borderRadius: '6px', border: '1px solid #f1f5f9' }}>
-                                                                <div>
-                                                                    <span style={{ display: 'block', fontSize: '0.6rem', color: '#94a3b8', textTransform: 'uppercase', marginBottom: '0.2rem' }}>Planned Target</span>
-                                                                    <span style={{ display: 'block', fontSize: '0.75rem', color: '#334155', fontWeight: '600' }}>{item.plan}</span>
-                                                                </div>
-                                                                <div>
-                                                                    <span style={{ display: 'block', fontSize: '0.6rem', color: '#94a3b8', textTransform: 'uppercase', marginBottom: '0.2rem' }}>Progress Made</span>
-                                                                    <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: '800' }}>{item.achieved}</span>
-                                                                </div>
-                                                                <div>
-                                                                    <span style={{ display: 'block', fontSize: '0.6rem', color: '#94a3b8', textTransform: 'uppercase', marginBottom: '0.2rem' }}>Remaining</span>
-                                                                    <span style={{ display: 'block', fontSize: '0.75rem', color: '#64748b', fontWeight: '600' }}>{item.remaining}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            )}
-
-                                            <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', color: '#94a3b8', fontStyle: 'italic' }}>
-                                                Target Completion: <span style={{ color: '#0f172a', fontWeight: '600' }}>{activeGoal.target}</span>
-                                            </p>
+                                             <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', color: '#94a3b8', fontStyle: 'italic' }}>
+                                                 Target Completion: <span style={{ color: '#0f172a', fontWeight: '600' }}>{activeGoal.target}</span>
+                                             </p>
                                         </div>
                                 </div>
 

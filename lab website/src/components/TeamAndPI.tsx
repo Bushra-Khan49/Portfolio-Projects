@@ -61,7 +61,7 @@ export default function TeamAndPI() {
     return (
         <>
             {/* Full PI Details Section — uses pi-detail key */}
-            <section id="pi" className={`section ${styles.piDetailsSection}`}>
+            <section id="about" className={`section ${styles.piDetailsSection}`}>
                 <div className="container">
                     <div className={styles.piContainer}>
                         <div className={styles.piImageWrapper}>

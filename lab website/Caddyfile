@@ -1,0 +1,41 @@
+# Nexus Genomics Institute - Production Server Config
+# --------------------------------------------------
+# This Caddyfile handles HTTPS, security headers, and reverse proxy.
+
+{
+    email your@email.com
+}
+
+lab.nexusgenomics.edu {
+    # Reverse proxy to the Next.js app container
+    reverse_proxy localhost:3000
+
+    # Strict Security Headers
+    header {
+        # HSTS
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        
+        # CSP (already in next.config.ts, but safe to redundant here)
+        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
+        
+        # Prevent Clickjacking
+        X-Frame-Options DENY
+        
+        # Prevent MIME Sniffing
+        X-Content-Type-Options nosniff
+        
+        # Control Referrer
+        Referrer-Policy strict-origin-when-cross-origin
+        
+        # Permissions Policy
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    }
+
+    # Compression
+    encode gzip zstd
+
+    # Logging
+    log {
+        output file /var/log/caddy/access.log
+    }
+}

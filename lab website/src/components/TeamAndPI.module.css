@@ -1,12 +1,11 @@
 .teamSection {
-    background-color: var(--color-bg-white);
-    /* Maps to #ffffff in Light, #0f172a in Dark */
+    background-color: var(--color-bg-light);
     padding: 6rem 0;
 }
 
 .piDetailsSection {
-    background-color: #f1f8f5;
-    /* Light green background */
+    background-color: var(--color-bg-white);
+    /* Pure White for the PI section as a distinct break */
     padding: 6rem 0;
 }
 

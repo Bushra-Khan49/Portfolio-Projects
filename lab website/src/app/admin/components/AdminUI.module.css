@@ -1,0 +1,126 @@
+/* 🌑 PREMIUM BOTANICAL ADMIN UI (NEXUS STYLE) */
+.card {
+    background: var(--admin-card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--admin-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2.5rem;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    border-bottom: 3px solid var(--admin-title-color) !important;
+    padding-bottom: 1.5rem;
+}
+
+.cardTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--admin-title-color) !important;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.cardSubtitle {
+    color: var(--admin-text-muted) !important;
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+}
+
+.input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--admin-input-border);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--admin-input-bg);
+    color: var(--admin-text-main);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(82, 183, 136, 0.15);
+    background: var(--admin-input-bg);
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+.th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary, #2d6a4f) !important;
+}
+
+.td {
+    padding: 1.25rem 1.5rem;
+    background: var(--admin-table-row);
+    color: var(--admin-text-main);
+    font-size: 0.95rem;
+}
+
+.td:first-child { border-radius: 12px 0 0 12px; }
+.td:last-child { border-radius: 0 12px 12px 0; }
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s var(--transition-smooth);
+    border: 1px solid transparent;
+}
+
+.primary {
+    background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+    color: white;
+    box-shadow: 0 10px 20px rgba(45, 106, 79, 0.2);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(45, 106, 79, 0.3);
+    background: linear-gradient(135deg, #40916c 0%, #2d6a4f 100%);
+}
+
+.secondary {
+    background: var(--admin-bg);
+    color: var(--color-primary, #2d6a4f) !important;
+    border-color: var(--color-primary, #2d6a4f) !important;
+}
+
+.secondary:hover {
+    background: var(--admin-table-row);
+}
+
+.danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.danger:hover {
+    background: rgba(239, 68, 68, 0.2);
+}

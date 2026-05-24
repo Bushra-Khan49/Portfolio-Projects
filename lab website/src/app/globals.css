@@ -1,20 +1,22 @@
 :root {
-  /* Original Professional Corporate Palette */
-  --color-primary: #1e3a8a;
-  /* Deep Navy Blue */
-  --color-secondary: #0f172a;
-  /* Slate Dark */
-  --color-accent: #2d6a4f;
-  /* Moss Green */
+  /* Green & White Identity Palette */
+  --color-primary: #2d6a4f;
+  /* Emerald Green */
+  --color-primary-dark: #061d12;
+  /* Matching Hero Background */
+  --color-secondary: #000000;
+  /* Pure Black for Nav/Footer */
+  --color-accent: #52b788;
+  /* Light Green */
 
   --color-bg-white: #ffffff;
-  --color-bg-light: #1b4332;
-  /* Dark Green as requested */
-  --color-bg-gray: #d8e2dc;
-  /* Darker Sage */
+  --color-bg-light: #f1f8f5;
+  /* Light Green Tint */
+  --color-bg-deep: #1b4332;
+  /* Dark Green for alternating sections */
 
-  --color-nav-bg: #030a08;
-  /* Dark color for nav bar */
+  --color-nav-bg: #000000;
+  --color-footer-bg: #000000;
 
   --color-text-main: #0f172a;
   --color-text-muted: #475569;
@@ -27,9 +29,9 @@
   --color-card-text-muted: #475569;
 
   --color-facility-card-bg: #f1f8f5;
-  --color-meeting-card-bg: #f0f9ff;
+  --color-meeting-card-bg: #e8f5e9;
 
-  --color-team-card-bg: #0f172a;
+  --color-team-card-bg: #112d21;
   --color-team-card-text: #ffffff;
   --color-team-card-text-muted: rgba(255, 255, 255, 0.7);
 
@@ -48,31 +50,70 @@
   --border-radius-lg: 32px;
 
   --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  --color-date-display: #1b4332;
+  --color-see-all-btn: var(--color-primary);
+  
+  /* Admin Panel variables (Botanical Green & Mint Palette) */
+  --color-admin-sidebar: #1b4332;
+  --admin-bg: #ffffff;
+  --admin-card-bg: #f1f8f5;
+  --admin-text-main: #000000;
+  --admin-title-color: #2d6a4f;
+  --admin-text-muted: #334155;
+  --admin-border: #d8f3dc;
+  --admin-input-bg: #ffffff;
+  --admin-input-border: #b7e4c7;
+  --admin-table-row: #ffffff;
+  --admin-placeholder-bg: #ffffff;
+  --admin-warning-bg: #fff7ed;
+  --admin-warning-border: #fed7aa;
+  --admin-warning-text: #ea580c;
+  --admin-warning-title: #9a3412;
 }
 
 [data-theme='dark'] {
-  --color-bg-white: #0f172a;
-  --color-bg-light: #1e293b;
-  --color-bg-gray: #334155;
+  --color-admin-sidebar: #050f0b;
+  --admin-bg: #0b1c15;
+  --admin-card-bg: #1b4332;
+  --admin-text-main: #f1f8f5;
+  --admin-title-color: #f1f8f5;
+  --admin-text-muted: #74c69d;
+  --admin-border: #2d6a4f;
+  --admin-input-bg: #0b1c15;
+  --admin-input-border: #2d6a4f;
+  --admin-table-row: rgba(45, 106, 79, 0.15);
+  --admin-placeholder-bg: #112d21;
+  --admin-warning-bg: rgba(234, 88, 12, 0.15);
+  --admin-warning-border: rgba(234, 88, 12, 0.3);
+  --admin-warning-text: #ff9752;
+  --admin-warning-title: #ffedd5;
 
-  --color-nav-bg: rgba(15, 23, 42, 0.95);
+  --color-see-all-btn: var(--color-accent);
+  --color-date-display: #52b788;
+  --color-bg-white: #ffffff; /* Keep hero/white sections white as requested */
+  --hero-bg: #1a3929; /* Match dark mode image exact background */
+  --color-bg-light: #112d21; /* Lighter Botanical Green for alternating sections */
+  --color-bg-deep: #0b1c15; /* Main Deep Botanical Green */
+  --color-bg-gray: #112d21;
 
-  --color-text-main: #f8fafc;
-  --color-text-muted: #94a3b8;
+  --color-nav-bg: rgba(5, 15, 11, 0.95);
 
-  /* In Dark Mode, cards become Light, with Dark Text */
-  --color-card-bg: #f8fafc;
-  --color-card-text: #0f172a;
-  --color-card-text-muted: rgba(15, 23, 42, 0.7);
+  --color-text-main: #f1f8f5; /* Light green-white text for dark backgrounds */
+  --color-text-muted: #74c69d;
 
-  --color-facility-card-bg: #f8fafc;
-  --color-meeting-card-bg: #f8fafc;
+  /* In Dark Mode, cards become forest green to distinguish from background */
+  --color-card-bg: #1b4332;
+  --color-card-text: #f1f8f5;
+  --color-card-text-muted: rgba(241, 248, 245, 0.7);
 
-  --color-team-card-bg: #f8fafc;
-  --color-team-card-text: #0f172a;
-  --color-team-card-text-muted: rgba(15, 23, 42, 0.7);
+  --color-facility-card-bg: #1b4332;
+  --color-meeting-card-bg: #1b4332;
 
-  --color-border: #334155;
+  --color-team-card-bg: #1b4332;
+  --color-team-card-text: #f1f8f5;
+  --color-team-card-text-muted: rgba(241, 248, 245, 0.7);
+
+  --color-border: #2d6a4f;
 }
 
 * {
@@ -90,6 +131,8 @@ body {
   font-family: var(--font-sans);
   line-height: 1.6;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -154,7 +197,7 @@ h6 {
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background-color: var(--color-primary);
+  background-color: #1e3a8a; /* Corporate Navy Blue Underline */
   border-radius: 2px;
 }
 
@@ -517,3 +560,64 @@ kbd {
 .login-close:hover {
   color: var(--color-text-main);
 }
+/* 📱 MOBILE RESPONSIVENESS OVERRIDES */
+@media (max-width: 768px) {
+  :root {
+    --border-radius-sm: 12px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  /* Adjust buttons for better touch targets */
+  .btn {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  /* Scale down large headings */
+  h1 { font-size: 2.5rem !important; }
+  h2 { font-size: 2rem !important; }
+  h3 { font-size: 1.5rem !important; }
+}
+
+/* 🚀 PERFORMANCE: Reduced Motion & Low Data */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 🏢 ADMIN SCOPING VARIABLES */
+.admin-dashboard-root {
+  --color-text-main: var(--admin-text-main) !important;
+  --color-text-muted: var(--admin-text-muted) !important;
+  --color-border: var(--admin-border) !important;
+}
+
+/* Safeguard for step badges in dark mode across modules */
+[data-theme='dark'] [class*="stepBadge"] {
+  background-color: #1b4332 !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 2px rgba(255, 255, 255, 0.1) !important;
+}
+
+

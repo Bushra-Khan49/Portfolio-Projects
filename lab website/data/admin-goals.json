@@ -8,11 +8,11 @@
     "target": "April 2026",
     "image": "/herbal-genomics-new.jpg",
     "breakdown": [
-      { "label": "Phase 1: Genome Assembly", "plan": "De novo assembly of 10 priority systems", "achieved": "100%", "remaining": "0%", "desc": "Complete chromosomal-level assembly for all target species." },
-      { "label": "Phase 2: Expression Mapping", "plan": "Exhaustive transcriptome profiling", "achieved": "85%", "remaining": "15%", "desc": "Mapping spatio-temporal expression patterns." },
-      { "label": "Phase 3: Network Annotation", "plan": "Regulatory hub identification", "achieved": "60%", "remaining": "40%", "desc": "Annotating core transcription factor networks." },
-      { "label": "Phase 4: Functional Validation", "plan": "In-silico knockouts and verification", "achieved": "40%", "remaining": "60%", "desc": "Validating predicted hubs via computational modeling." },
-      { "label": "Phase 5: Atlas Integration", "plan": "Final multi-omics data merge", "achieved": "20%", "remaining": "80%", "desc": "Merging all datasets into a centralized knowledge base." }
+      { "label": "Phase 1: Genome Assembly", "plan": "De novo assembly of 10 priority systems", "achieved": "100%", "remaining": "0%", "desc": "Complete chromosomal-level assembly for all target species.", "lastUpdated": "Nov 2025", "details": "10/10 Priority Genomes Sequenced and Assembled" },
+      { "label": "Phase 2: Expression Mapping", "plan": "Exhaustive transcriptome profiling", "achieved": "85%", "remaining": "15%", "desc": "Mapping spatio-temporal expression patterns.", "lastUpdated": "Jan 2026", "details": "Developmental Stage Profiles Generated" },
+      { "label": "Phase 3: Network Annotation", "plan": "Regulatory hub identification", "achieved": "60%", "remaining": "40%", "desc": "Annotating core transcription factor networks.", "lastUpdated": "March 2026", "details": "Initial TF Regulatory Networks Drafted" },
+      { "label": "Phase 4: Functional Validation", "plan": "In-silico knockouts and verification", "achieved": "40%", "remaining": "60%", "desc": "Validating predicted hubs via computational modeling.", "lastUpdated": "April 2026", "details": "In-silico knockouts running on cluster" },
+      { "label": "Phase 5: Atlas Integration", "plan": "Final multi-omics data merge", "achieved": "20%", "remaining": "80%", "desc": "Merging all datasets into a centralized knowledge base.", "lastUpdated": "May 2026", "details": "Database schema finalized for integration" }
     ]
   },
   {
@@ -24,11 +24,11 @@
     "target": "July 2026",
     "image": "/hero-crystal.png",
     "breakdown": [
-      { "label": "Phase 1: Core Engine", "plan": "Neural network architecture design", "achieved": "100%", "remaining": "0%", "desc": "Building the fundamental AI processing layer." },
-      { "label": "Phase 2: Data Integration", "plan": "Multi-omics data ingestion pipeline", "achieved": "80%", "remaining": "20%", "desc": "Connecting diverse biological data streams." },
-      { "label": "Phase 3: Model Training", "plan": "Large-scale parameter optimization", "achieved": "60%", "remaining": "40%", "desc": "Training the platform on existing datasets." },
-      { "label": "Phase 4: Predictive Testing", "plan": "Blind-validation against known results", "achieved": "30%", "remaining": "70%", "desc": "Testing accuracy on historical biological data." },
-      { "label": "Phase 5: Global Deployment", "plan": "Production-ready UI/UX rollout", "achieved": "10%", "remaining": "90%", "desc": "Final scaling for international research use." }
+      { "label": "Phase 1: Core Engine", "plan": "Neural network architecture design", "achieved": "100%", "remaining": "0%", "desc": "Building the fundamental AI processing layer.", "lastUpdated": "Dec 2025", "details": "Transformer-based Architecture Deployed" },
+      { "label": "Phase 2: Data Integration", "plan": "Multi-omics data ingestion pipeline", "achieved": "80%", "remaining": "20%", "desc": "Connecting diverse biological data streams.", "lastUpdated": "Feb 2026", "details": "API hooks created for primary databases" },
+      { "label": "Phase 3: Model Training", "plan": "Large-scale parameter optimization", "achieved": "60%", "remaining": "40%", "desc": "Training the platform on existing datasets.", "lastUpdated": "April 2026", "details": "Model converged on historical training sets" },
+      { "label": "Phase 4: Predictive Testing", "plan": "Blind-validation against known results", "achieved": "30%", "remaining": "70%", "desc": "Testing accuracy on historical biological data.", "lastUpdated": "May 2026", "details": "First blind test achieved 85% accuracy" },
+      { "label": "Phase 5: Global Deployment", "plan": "Production-ready UI/UX rollout", "achieved": "10%", "remaining": "90%", "desc": "Final scaling for international research use.", "lastUpdated": "May 2026", "details": "Beta UI wireframes approved" }
     ]
   },
   {
@@ -40,11 +40,11 @@
     "target": "September 2026",
     "image": "/omics-integration-new.jpg",
     "breakdown": [
-      { "label": "Phase 1: Protocol Standardization", "plan": "Unified data format definitions", "achieved": "95%", "remaining": "5%", "desc": "Defining the common language for our pipelines." },
-      { "label": "Phase 2: Tool Refactoring", "plan": "Open-sourcing internal discovery code", "achieved": "60%", "remaining": "40%", "desc": "Cleaning and documenting code for public use." },
-      { "label": "Phase 3: API Development", "plan": "Standardized access endpoints", "achieved": "40%", "remaining": "60%", "desc": "Building the gateway for remote data access." },
-      { "label": "Phase 4: Security Layer", "plan": "Privacy and data protection audit", "achieved": "20%", "remaining": "80%", "desc": "Ensuring safe sharing of sensitive genomic data." },
-      { "label": "Phase 5: Community Launch", "plan": "Public repository and docs release", "achieved": "5%", "remaining": "95%", "desc": "Final rollout to the global research community." }
+      { "label": "Phase 1: Protocol Standardization", "plan": "Unified data format definitions", "achieved": "95%", "remaining": "5%", "desc": "Defining the common language for our pipelines.", "lastUpdated": "Feb 2026", "details": "Core data specification drafted and reviewed" },
+      { "label": "Phase 2: Tool Refactoring", "plan": "Open-sourcing internal discovery code", "achieved": "60%", "remaining": "40%", "desc": "Cleaning and documenting code for public use.", "lastUpdated": "March 2026", "details": "Main pipelines refactored for readability" },
+      { "label": "Phase 3: API Development", "plan": "Standardized access endpoints", "achieved": "40%", "remaining": "60%", "desc": "Building the gateway for remote data access.", "lastUpdated": "April 2026", "details": "REST API v1 currently in staging" },
+      { "label": "Phase 4: Security Layer", "plan": "Privacy and data protection audit", "achieved": "20%", "remaining": "80%", "desc": "Ensuring safe sharing of sensitive genomic data.", "lastUpdated": "May 2026", "details": "Initial vulnerability scan complete" },
+      { "label": "Phase 5: Community Launch", "plan": "Public repository and docs release", "achieved": "5%", "remaining": "95%", "desc": "Final rollout to the global research community.", "lastUpdated": "May 2026", "details": "GitHub organization repository initialized" }
     ]
   },
   {
@@ -56,11 +56,11 @@
     "target": "December 2026",
     "image": "/goal-mentha-genome.jpg",
     "breakdown": [
-      { "label": "Phase 1: Regional Audit", "plan": "Global infrastructure capability check", "achieved": "100%", "remaining": "0%", "desc": "Mapping out international partner resources." },
-      { "label": "Phase 2: Node Setup", "plan": "Deployment of satellite processing nodes", "achieved": "50%", "remaining": "50%", "desc": "Setting up the first wave of regional hubs." },
-      { "label": "Phase 3: Data Sync Engine", "plan": "Global real-time sync protocols", "achieved": "30%", "remaining": "70%", "desc": "Connecting regional hubs to the central brain." },
-      { "label": "Phase 4: Capacity Scaling", "plan": "Horizontal compute resource expansion", "achieved": "15%", "remaining": "85%", "desc": "Boosting total throughput for global projects." },
-      { "label": "Phase 5: Operation Rollout", "plan": "Full translational project launch", "achieved": "5%", "remaining": "95%", "desc": "Going live with the first global-scale study." }
+      { "label": "Phase 1: Regional Audit", "plan": "Global infrastructure capability check", "achieved": "100%", "remaining": "0%", "desc": "Mapping out international partner resources.", "lastUpdated": "Jan 2026", "details": "10/10 Global Partner Sites Audited & ISO-Verified" },
+      { "label": "Phase 2: Node Setup", "plan": "Deployment of satellite processing nodes", "achieved": "50%", "remaining": "50%", "desc": "Setting up the first wave of regional hubs.", "lastUpdated": "March 2026", "details": "3/6 Regional Nodes Operational (APAC, EMEA, NA)" },
+      { "label": "Phase 3: Data Sync Engine", "plan": "Global real-time sync protocols", "achieved": "30%", "remaining": "70%", "desc": "Connecting regional hubs to the central brain.", "lastUpdated": "April 2026", "details": "Edge-to-Central Sync Protocols Latency-Tested" },
+      { "label": "Phase 4: Capacity Scaling", "plan": "Horizontal compute resource expansion", "achieved": "15%", "remaining": "85%", "desc": "Boosting total throughput for global projects.", "lastUpdated": "May 2026", "details": "HPC Resource Allocation for Q3 Finalized" },
+      { "label": "Phase 5: Operation Rollout", "plan": "Full translational project launch", "achieved": "5%", "remaining": "95%", "desc": "Going live with the first global-scale study.", "lastUpdated": "May 2026", "details": "Target Disease Model Selection Finalized" }
     ]
   }
 ]

@@ -8,7 +8,7 @@ import styles from './Hero.module.css';
 
 export default function Hero() {
     const scrollToNext = () => {
-        document.getElementById('research')?.scrollIntoView({ behavior: 'smooth' });
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     };
 
     const containerRef = useRef<HTMLDivElement>(null);
@@ -22,14 +22,26 @@ export default function Hero() {
 
     return (
         <section ref={containerRef} className={styles.heroSection}>
-            <motion.div className={styles.imageWrapper} style={{ y }}>
-                {/* Fixed floating rock image uploaded by user — No stretching */}
+            <motion.div 
+                className={styles.imageWrapper} 
+                style={{ y }}
+            >
+                {/* Light Mode Image */}
                 <Image
                     src="/hero-nexus.jpg"
                     alt="Floating rock with medicinal plants"
                     width={1800}
                     height={1600}
-                    className={styles.brandImage}
+                    className={`${styles.brandImage} ${styles.lightImage}`}
+                    priority
+                />
+                {/* Dark Mode Image */}
+                <Image
+                    src="/hero-nexus-dark.jpg"
+                    alt="Floating rock with medicinal plants (Dark Mode)"
+                    width={1800}
+                    height={1600}
+                    className={`${styles.brandImage} ${styles.darkImage}`}
                     priority
                 />
             </motion.div>

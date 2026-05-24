@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: var(--hero-bg, #ffffff);
     margin-top: 100px;
     height: calc(100vh - 100px);
 }
@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform;
 }
 
 .brandImage {
@@ -24,6 +25,22 @@
     object-fit: contain;
     display: block;
     margin: auto;
+}
+
+.lightImage {
+    transform: scale(1.1); /* increase size slightly */
+}
+
+.darkImage {
+    display: none;
+}
+
+:global([data-theme='dark']) .lightImage {
+    display: none;
+}
+
+:global([data-theme='dark']) .darkImage {
+    display: block;
 }
 
 .content {
@@ -48,13 +65,28 @@
 
 .title {
     font-family: var(--font-sans);
-    font-weight: 800;
-    font-size: clamp(3rem, 6vw, 5rem);
-    letter-spacing: 0.05em;
-    color: var(--color-text-main);
+    font-weight: 900;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    letter-spacing: -0.02em;
+    color: #0f172a;
     text-transform: uppercase;
     margin: 0;
-    line-height: 1;
+    line-height: 0.9;
+}
+
+.titleLine {
+    width: 80px;
+    height: 6px;
+    background-color: var(--color-primary);
+    margin: 2rem auto;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #475569;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 .scrollIndicator {
@@ -65,7 +97,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-text-main);
+    color: #64748b; /* Slate Grey */
     margin-bottom: 2rem;
     font-size: 0.85rem;
     font-weight: 600;
