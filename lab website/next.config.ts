@@ -53,6 +53,34 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/admin-data',
+        destination: '/api/v1/admin-data',
+      },
+      {
+        source: '/api/applications',
+        destination: '/api/v1/applications',
+      },
+      {
+        source: '/api/auth',
+        destination: '/api/v1/auth',
+      },
+      {
+        source: '/api/health',
+        destination: '/api/v1/health',
+      },
+      {
+        source: '/api/search',
+        destination: '/api/v1/search',
+      },
+      {
+        source: '/api/team-images',
+        destination: '/api/v1/team-images',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

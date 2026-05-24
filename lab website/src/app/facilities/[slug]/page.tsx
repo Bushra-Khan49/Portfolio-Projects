@@ -15,7 +15,7 @@ export default function FacilityDetailPage({ params }: { params: Promise<{ slug:
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=facilities')
+        fetch('/api/v1/admin-data?type=facilities')
             .then(r => r.json())
             .then(facilities => {
                 const item = facilities.find((r: any) => r.id === slug);

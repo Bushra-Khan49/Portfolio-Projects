@@ -57,7 +57,7 @@ export default function AdminDashboard() {
     useEffect(() => {
         async function verifyAuth() {
             try {
-                const res = await fetch('/api/auth');
+                const res = await fetch('/api/v1/auth');
                 const data = await res.json();
                 if (res.ok && data.authenticated) {
                     setIsAuthorized(true);
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
 
     const handleSignOut = async () => {
         try {
-            await fetch('/api/auth', { method: 'DELETE' });
+            await fetch('/api/v1/auth', { method: 'DELETE' });
         } catch (err) {
             console.error("Logout failed:", err);
         }

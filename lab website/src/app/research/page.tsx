@@ -29,7 +29,7 @@ function ResearchContent() {
     const [activeId, setActiveId] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=research')
+        fetch('/api/v1/admin-data?type=research')
             .then(r => r.json())
             .then(data => {
                 const areas = Array.isArray(data) ? data : (data?.areas || []);

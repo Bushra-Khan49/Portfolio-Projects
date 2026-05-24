@@ -13,7 +13,7 @@ export const ApplicationsTab = ({ showToast }: { showToast: (msg: string, type: 
     const [previewFile, setPreviewFile] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/api/applications')
+        fetch('/api/v1/applications')
             .then(r => r.json())
             .then(d => {
                 if (Array.isArray(d)) setApps(d);
@@ -25,7 +25,7 @@ export const ApplicationsTab = ({ showToast }: { showToast: (msg: string, type: 
 
     const updateStatus = async (id: string, status: string) => {
         try {
-            await fetch('/api/applications', { 
+            await fetch('/api/v1/applications', { 
                 method: 'PUT', 
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify({ id, status }) 
@@ -40,7 +40,7 @@ export const ApplicationsTab = ({ showToast }: { showToast: (msg: string, type: 
     const deleteApp = async (id: string) => {
         if (!window.confirm('Are you sure you want to delete this application? This action cannot be undone.')) return;
         try {
-            await fetch('/api/applications', { 
+            await fetch('/api/v1/applications', { 
                 method: 'DELETE', 
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify({ id }) 

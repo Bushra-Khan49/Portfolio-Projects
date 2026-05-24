@@ -28,7 +28,7 @@ export default function LoginModal({ isOpen, onClose }: { isOpen: boolean, onClo
         setError(null);
 
         try {
-            const res = await fetch('/api/auth', {
+            const res = await fetch('/api/v1/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ adminId, password }),

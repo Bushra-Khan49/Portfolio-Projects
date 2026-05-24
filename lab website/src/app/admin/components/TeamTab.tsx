@@ -28,13 +28,13 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
     const [cropTarget, setCropTarget] = useState<{ file: File; memberKey: string } | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=team')
+        fetch('/api/v1/admin-data?type=team')
             .then(r => r.json())
             .then(d => {
                 if (d && !d.error) setData(d);
                 else showToast('Failed to load team data', 'error');
             });
-        fetch('/api/team-images')
+        fetch('/api/v1/team-images')
             .then(r => r.json())
             .then(d => {
                 if (d && !d.error) setTeamImages(d);
@@ -44,7 +44,7 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
     const save = async (updated: TeamData) => {
         setSaving(true);
         try {
-            await fetch('/api/admin-data', { 
+            await fetch('/api/v1/admin-data', { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify({ type: 'team', data: updated }) 
@@ -68,7 +68,7 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
             const fd = new FormData();
             fd.append('memberKey', memberKey);
             fd.append('file', new File([blob], `${memberKey}${ext}`, { type: blob.type }));
-            const res = await fetch('/api/team-images', { method: 'POST', body: fd });
+            const res = await fetch('/api/v1/team-images', { method: 'POST', body: fd });
             if (!res.ok) throw new Error('Upload failed');
             const r = await res.json();
             setTeamImages(prev => ({ ...prev, [memberKey]: `${r.path}?t=${Date.now()}` }));
@@ -81,7 +81,7 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
     const handleImageDelete = async (memberKey: string) => {
         if (!window.confirm('Delete this photo?')) return;
         try {
-            await fetch('/api/team-images', { 
+            await fetch('/api/v1/team-images', { 
                 method: 'DELETE', 
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify({ memberKey }) 

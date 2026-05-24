@@ -13,7 +13,7 @@ export const SettingsTab = ({ showToast }: { showToast: (msg: string, type: 'suc
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=settings')
+        fetch('/api/v1/admin-data?type=settings')
             .then(r => r.json())
             .then(data => {
                 // Password is never sent to client for existing settings
@@ -29,7 +29,7 @@ export const SettingsTab = ({ showToast }: { showToast: (msg: string, type: 'suc
         }
         setSaving(true);
         try {
-            await fetch('/api/admin-data', {
+            await fetch('/api/v1/admin-data', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ type: 'settings', data: settings })

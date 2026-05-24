@@ -15,7 +15,7 @@ export default function ResearchDetailPage({ params }: { params: Promise<{ slug:
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=research')
+        fetch('/api/v1/admin-data?type=research')
             .then(r => r.json())
             .then(res => {
                 const areas = Array.isArray(res) ? res : (res?.areas || []);

@@ -43,7 +43,7 @@ export default function TeamAndPI() {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const res = await fetch('/api/team-images');
+                const res = await fetch('/api/v1/team-images');
                 if (res.ok) {
                     const data = await res.json();
                     setTeamImages(data);

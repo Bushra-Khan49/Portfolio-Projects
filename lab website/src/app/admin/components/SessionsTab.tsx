@@ -27,7 +27,7 @@ export const SessionsTab = ({ showToast }: { showToast: (msg: string, type: 'suc
     const [editingPresenter, setEditingPresenter] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=sessions')
+        fetch('/api/v1/admin-data?type=sessions')
             .then(r => r.json())
             .then(d => {
                 if (d && !d.error) setData(d);
@@ -39,7 +39,7 @@ export const SessionsTab = ({ showToast }: { showToast: (msg: string, type: 'suc
     async function save(updated: SessionsData) {
         setSaving(true);
         try {
-            await fetch('/api/admin-data', { 
+            await fetch('/api/v1/admin-data', { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify({ type: 'sessions', data: updated }) 

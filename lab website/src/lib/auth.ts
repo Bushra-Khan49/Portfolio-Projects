@@ -143,6 +143,47 @@ setInterval(() => {
     }
 }, 30 * 60 * 1000);
 
+// ─── Generic Rate Limiting ──────────────────────────────────
+const genericRateLimitMap = new Map<string, RateLimitEntry>();
+
+export function checkGenericRateLimit(
+    key: string,
+    maxAttempts: number,
+    windowMs: number
+): { allowed: boolean; remaining: number; retryAfterMs: number } {
+    const now = Date.now();
+    const entry = genericRateLimitMap.get(key);
+
+    if (!entry) {
+        genericRateLimitMap.set(key, { count: 1, firstAttempt: now });
+        return { allowed: true, remaining: maxAttempts - 1, retryAfterMs: 0 };
+    }
+
+    if (now - entry.firstAttempt > windowMs) {
+        genericRateLimitMap.set(key, { count: 1, firstAttempt: now });
+        return { allowed: true, remaining: maxAttempts - 1, retryAfterMs: 0 };
+    }
+
+    if (entry.count >= maxAttempts) {
+        const retryAfterMs = windowMs - (now - entry.firstAttempt);
+        return { allowed: false, remaining: 0, retryAfterMs };
+    }
+
+    entry.count++;
+    return { allowed: true, remaining: maxAttempts - entry.count, retryAfterMs: 0 };
+}
+
+// Clean up stale generic entries every 15 minutes
+setInterval(() => {
+    const now = Date.now();
+    for (const [key, entry] of genericRateLimitMap.entries()) {
+        // Clear entries older than 1 hour as standard cleanup
+        if (now - entry.firstAttempt > 60 * 60 * 1000) {
+            genericRateLimitMap.delete(key);
+        }
+    }
+}, 15 * 60 * 1000);
+
 // ─── CSRF Validation ────────────────────────────────────────
 
 /**

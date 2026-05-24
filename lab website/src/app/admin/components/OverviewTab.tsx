@@ -24,10 +24,10 @@ export const OverviewTab = ({ onNavigate }: OverviewTabProps) => {
         async function load() {
             try {
                 const [teamRes, sessRes, appsRes, resRes] = await Promise.all([
-                    fetch('/api/admin-data?type=team'),
-                    fetch('/api/admin-data?type=sessions'),
-                    fetch('/api/applications'),
-                    fetch('/api/admin-data?type=research')
+                    fetch('/api/v1/admin-data?type=team'),
+                    fetch('/api/v1/admin-data?type=sessions'),
+                    fetch('/api/v1/applications'),
+                    fetch('/api/v1/admin-data?type=research')
                 ]);
                 
                 const [team, sess, apps, research] = await Promise.all([

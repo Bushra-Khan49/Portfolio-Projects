@@ -74,7 +74,7 @@ export default function JoinLabPage() {
                 fd.append('resume', selectedFile);
             }
 
-            const res = await fetch('/api/applications', {
+            const res = await fetch('/api/v1/applications', {
                 method: 'POST',
                 body: fd,
             });

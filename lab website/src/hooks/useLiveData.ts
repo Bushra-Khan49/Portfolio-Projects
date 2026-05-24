@@ -20,7 +20,7 @@ export function useLiveData<T>(type: string, initialData: T, intervalMs: number 
         if (document.hidden) return;
 
         try {
-            const res = await fetch(`/api/admin-data?type=${type}`);
+            const res = await fetch(`/api/v1/admin-data?type=${type}`);
             if (res.ok) {
                 const json = await res.json();
                 setData(json);

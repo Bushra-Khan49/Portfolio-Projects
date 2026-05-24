@@ -13,7 +13,7 @@ export const AboutTab = ({ showToast }: { showToast: (msg: string, type: 'succes
     const [saving, setSaving] = useState(false);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=about')
+        fetch('/api/v1/admin-data?type=about')
             .then(r => r.json())
             .then(d => {
                 if (d && !d.error) setData(d);
@@ -26,7 +26,7 @@ export const AboutTab = ({ showToast }: { showToast: (msg: string, type: 'succes
         if (!data) return;
         setSaving(true);
         try {
-            await fetch('/api/admin-data', { 
+            await fetch('/api/v1/admin-data', { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify({ type: 'about', data }) 

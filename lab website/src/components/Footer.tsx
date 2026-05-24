@@ -9,7 +9,7 @@ export default function Footer() {
     const [social, setSocial] = useState({ email: 'vance.nexus@nexusgenomics.edu', whatsapp: '', linkedin: '', twitter: '' });
 
     useEffect(() => {
-        fetch('/api/admin-data?type=about')
+        fetch('/api/v1/admin-data?type=about')
             .then(r => r.json())
             .then(data => {
                 if (data && data.social) setSocial(data.social);

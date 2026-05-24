@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile, writeFile, mkdir } from 'fs/promises';
+import { readFile, writeFile, mkdir, rename } from 'fs/promises';
 import { join } from 'path';
 import { existsSync } from 'fs';
 import { revalidatePath } from 'next/cache';
@@ -33,7 +33,10 @@ async function readJSON(filename: string): Promise<any> {
 
 async function writeJSON(filename: string, data: any) {
     if (!existsSync(DATA_DIR)) await mkdir(DATA_DIR, { recursive: true });
-    await writeFile(join(DATA_DIR, filename), JSON.stringify(data, null, 2));
+    const targetPath = join(DATA_DIR, filename);
+    const tempPath = `${targetPath}.tmp`;
+    await writeFile(tempPath, JSON.stringify(data, null, 2));
+    await rename(tempPath, targetPath);
 }
 
 // Default data structures
@@ -232,6 +235,11 @@ export async function GET(request: NextRequest) {
     const type = request.nextUrl.searchParams.get('type');
     if (!type || !FILE_MAP[type]) {
         return NextResponse.json({ error: 'Invalid type. Use: sessions, team, pi, research, facilities, goals' }, { status: 400 });
+    }
+
+    if (type === 'settings') {
+        const authError = await requireAdmin(request);
+        if (authError) return authError;
     }
 
     const data = await readJSON(FILE_MAP[type]);

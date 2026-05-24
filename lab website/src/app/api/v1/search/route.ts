@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
+import { checkGenericRateLimit } from '@/lib/auth';
 
 const DATA_DIR = join(process.cwd(), 'data');
 
@@ -25,6 +26,20 @@ interface SearchResult {
  * Query parameter: ?q=search+term
  */
 export async function GET(request: NextRequest) {
+    // Rate limiting: 30 queries per minute per IP
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+        || request.headers.get('x-real-ip')
+        || 'unknown';
+    const rateCheck = checkGenericRateLimit(`search-${ip}`, 30, 60 * 1000);
+
+    if (!rateCheck.allowed) {
+        const retrySeconds = Math.ceil(rateCheck.retryAfterMs / 1000);
+        return NextResponse.json(
+            { error: `Too many search queries. Try again in ${retrySeconds} seconds.` },
+            { status: 429, headers: { 'Retry-After': String(retrySeconds) } }
+        );
+    }
+
     const query = request.nextUrl.searchParams.get('q')?.toLowerCase().trim();
 
     if (!query || query.length < 2) {

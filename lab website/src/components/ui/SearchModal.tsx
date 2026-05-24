@@ -48,7 +48,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean, onCl
 
         const handler = setTimeout(async () => {
             try {
-                const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+                const res = await fetch(`/api/v1/search?q=${encodeURIComponent(query)}`);
                 const data = await res.json();
                 setResults(data.results || []);
             } catch {

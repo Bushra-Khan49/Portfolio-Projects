@@ -33,7 +33,7 @@ export const BaseManagementTab = ({
     const [cropTarget, setCropTarget] = useState<{ file: File; id: string } | null>(null);
 
     useEffect(() => {
-        fetch(`/api/admin-data?type=${type}`)
+        fetch(`/api/v1/admin-data?type=${type}`)
             .then(r => r.json())
             .then(d => {
                 if (Array.isArray(d)) {
@@ -73,7 +73,7 @@ export const BaseManagementTab = ({
             const payload = (rawResponse && !Array.isArray(rawResponse))
                 ? { ...rawResponse, areas: data }
                 : data;
-            await fetch('/api/admin-data', {
+            await fetch('/api/v1/admin-data', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ type, data: payload })
@@ -95,7 +95,7 @@ export const BaseManagementTab = ({
             const fd = new FormData();
             fd.append('id', `${type}-${id}`);
             fd.append('file', new File([blob], `${type}-${id}.jpg`, { type: 'image/jpeg' }));
-            const res = await fetch('/api/team-images', { method: 'POST', body: fd });
+            const res = await fetch('/api/v1/team-images', { method: 'POST', body: fd });
             if (!res.ok) throw new Error('Upload failed');
             const r = await res.json();
             updateItem(id, 'image', `${r.path}?t=${Date.now()}`);

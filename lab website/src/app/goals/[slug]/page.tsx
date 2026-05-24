@@ -15,7 +15,7 @@ export default function GoalDetailPage({ params }: { params: Promise<{ slug: str
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/admin-data?type=goals')
+        fetch('/api/v1/admin-data?type=goals')
             .then(r => r.json())
             .then(res => {
                 const item = res.find((r: any) => r.id === slug);
