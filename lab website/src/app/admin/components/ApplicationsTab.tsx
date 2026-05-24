@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loader2, FileText, Mail, Calendar, Trash2, CheckCircle, Clock, XCircle, Eye, Download, ChevronDown } from 'lucide-react';
 import { Application } from '@/types';
-import { AdminCard } from './SharedUI';
 
 /**
  * 📄 APPLICATIONS TAB
@@ -22,7 +21,7 @@ export const ApplicationsTab = ({ showToast }: { showToast: (msg: string, type: 
             })
             .catch(() => showToast('Network error loading applications', 'error'))
             .finally(() => setLoading(false));
-    }, []);
+    }, [showToast]);
 
     const updateStatus = async (id: string, status: string) => {
         try {

@@ -5,8 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Loader2, ArrowLeft, Microscope, Target, FileText } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Loader2, ArrowLeft, Target, FileText } from 'lucide-react';
 
 import { use } from 'react';
 

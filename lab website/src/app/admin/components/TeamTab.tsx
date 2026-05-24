@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     Save, 
     Loader2, 
@@ -8,13 +8,11 @@ import {
     Check, 
     Upload, 
     ImageIcon, 
-    Users,
-    ChevronDown,
-    ChevronUp
+    Users
 } from 'lucide-react';
 import Image from 'next/image';
 import { TeamData, TeamMember } from '@/types';
-import { AdminCard, AdminInput, AdminButton, AdminTable, AdminTd } from './SharedUI';
+import { AdminCard, AdminButton, AdminTable, AdminTd } from './SharedUI';
 import ImageCropModal from '@/components/ui/ImageCropModal';
 
 /**
@@ -27,7 +25,6 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
     const [teamImages, setTeamImages] = useState<Record<string, string>>({});
     const [saving, setSaving] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
-    const [uploading, setUploading] = useState<string | null>(null);
     const [cropTarget, setCropTarget] = useState<{ file: File; memberKey: string } | null>(null);
 
     useEffect(() => {
@@ -42,7 +39,7 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
             .then(d => {
                 if (d && !d.error) setTeamImages(d);
             });
-    }, []);
+    }, [showToast]);
 
     const save = async (updated: TeamData) => {
         setSaving(true);
@@ -66,7 +63,6 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
     };
 
     const handleImageUpload = async (blob: Blob, memberKey: string) => {
-        setUploading(memberKey);
         try {
             const ext = blob.type === 'image/png' ? '.png' : '.jpg';
             const fd = new FormData();
@@ -79,8 +75,6 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
             showToast('Photo uploaded!', 'success');
         } catch { 
             showToast('Upload failed', 'error'); 
-        } finally {
-            setUploading(null);
         }
     };
 
@@ -174,7 +168,7 @@ export const TeamTab = ({ showToast }: { showToast: (msg: string, type: 'success
                 >
                     <AdminTable headers={['Photo', 'Name', 'Role', 'Actions']}>
                         {data[cat.key].length === 0 ? (
-                            <tr><AdminTd align="center" children="No members in this category." /></tr>
+                            <tr><AdminTd align="center">No members in this category.</AdminTd></tr>
                         ) : (
                             data[cat.key].map(m => {
                                 const mKey = getMemberKey(cat.key, m.name);

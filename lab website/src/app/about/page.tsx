@@ -7,11 +7,8 @@ import { AboutData } from '@/types';
 import fs from 'fs/promises';
 import path from 'path';
 import { 
-    MessageSquare, 
     Target, 
     Compass, 
-    History, 
-    ChevronRight,
     Quote
 } from 'lucide-react';
 

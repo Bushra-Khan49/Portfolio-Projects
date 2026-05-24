@@ -2,18 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
     Save, 
     Loader2, 
-    Link2, 
     Plus, 
     Trash2, 
-    Eye, 
     Upload, 
-    ImageIcon,
-    Mail,
-    MapPin,
-    Quote
+    ImageIcon
 } from 'lucide-react';
 import Image from 'next/image';
-import { PIData, Publication } from '@/types';
+import { PIData } from '@/types';
 import { AdminCard, AdminInput, AdminButton } from './SharedUI';
 import ImageCropModal from '@/components/ui/ImageCropModal';
 
@@ -41,7 +36,7 @@ export const PITab = ({ showToast }: { showToast: (msg: string, type: 'success' 
             .then(d => {
                 if (d && !d.error) setTeamImages(d);
             });
-    }, []);
+    }, [showToast]);
 
     const save = async () => {
         if (!data) return;

@@ -1,12 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     Save, 
     Loader2, 
     LayoutDashboard, 
-    Hash, 
-    MapPin, 
-    CalendarDays, 
-    Clock, 
     Plus, 
     Edit2, 
     Check, 
@@ -14,8 +10,8 @@ import {
     History, 
     Eye, 
     Download, 
-    AlertCircle,
-    Calendar
+    Calendar,
+    MapPin
 } from 'lucide-react';
 import { SessionsData, Presenter, HistoryEntry } from '@/types';
 import { AdminCard, AdminInput, AdminButton, AdminTable, AdminTd } from './SharedUI';
@@ -29,7 +25,6 @@ export const SessionsTab = ({ showToast }: { showToast: (msg: string, type: 'suc
     const [data, setData] = useState<SessionsData | null>(null);
     const [saving, setSaving] = useState(false);
     const [editingPresenter, setEditingPresenter] = useState<string | null>(null);
-    const [expandedHistoryId, setExpandedHistoryId] = useState<string | null>(null);
 
     useEffect(() => {
         fetch('/api/admin-data?type=sessions')
@@ -39,7 +34,7 @@ export const SessionsTab = ({ showToast }: { showToast: (msg: string, type: 'suc
                 else showToast('Failed to load sessions', 'error');
             })
             .catch(() => showToast('Network error loading sessions', 'error'));
-    }, []);
+    }, [showToast]);
 
     async function save(updated: SessionsData) {
         setSaving(true);

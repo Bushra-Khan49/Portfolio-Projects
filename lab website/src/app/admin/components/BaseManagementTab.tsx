@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Save, Loader2, Plus, Trash2, Upload, ImageIcon, Image as ImageIcon2 } from 'lucide-react';
+import { Save, Loader2, Plus, Trash2, Upload, Image as ImageIcon2 } from 'lucide-react';
 import Image from 'next/image';
-import { AdminCard, AdminInput, AdminButton } from './SharedUI';
+import { AdminCard, AdminButton } from './SharedUI';
 import ImageCropModal from '@/components/ui/ImageCropModal';
 
 interface BaseManagementTabProps {

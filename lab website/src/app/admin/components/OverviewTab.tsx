@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Users, CalendarDays, FileText, BookOpen, ArrowRight } from 'lucide-react';
-import { TeamData, SessionsData, Application, ResearchArea } from '@/types';
 import { AdminCard } from './SharedUI';
 
 interface OverviewTabProps {

@@ -27,7 +27,7 @@ const eslintConfig = defineConfig([
       "react/no-children-prop": "off",
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/no-require-imports": "off",
-      "@next/next/no-img-element": "warn",
+      "@next/next/no-img-element": "off",
       "react-hooks/exhaustive-deps": "warn"
     }
   }

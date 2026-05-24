@@ -5,26 +5,23 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Loader2, ArrowLeft, Settings, Info, Activity, Target, Zap, Clock, CheckCircle2 } from 'lucide-react';
+import { Loader2, ArrowLeft, Info, Activity } from 'lucide-react';
 
 import { use } from 'react';
 
 export default function FacilityDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
     const [data, setData] = useState<any>(null);
-    const [strategyData, setStrategyData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        Promise.all([
-            fetch('/api/admin-data?type=facilities').then(r => r.json()),
-            fetch('/api/admin-data?type=goals').then(r => r.json())
-        ]).then(([facilities, goals]) => {
-            const item = facilities.find((r: any) => r.id === slug);
-            const strategy = goals.find((g: any) => g.id === 'translational-scaling');
-            setData(item);
-            setStrategyData(strategy);
-        }).finally(() => setLoading(false));
+        fetch('/api/admin-data?type=facilities')
+            .then(r => r.json())
+            .then(facilities => {
+                const item = facilities.find((r: any) => r.id === slug);
+                setData(item);
+            })
+            .finally(() => setLoading(false));
     }, [slug]);
 
     if (loading) return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'white' }}><Loader2 className="spinner" color="var(--color-primary)" size={40} /></div>;

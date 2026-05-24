@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Menu, X, Search as SearchIcon, Lock, Moon, Sun } from 'lucide-react';
 import styles from './Navigation.module.css';
 import SearchModal from '@/components/ui/SearchModal';

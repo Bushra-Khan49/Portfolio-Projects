@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Save, Loader2, MessageSquare, Target, Compass, Share2, Phone, Mail, Linkedin, Twitter, Plus, Trash2 } from 'lucide-react';
+import { Save, Loader2, MessageSquare, Target, Compass, Share2, Plus, Trash2 } from 'lucide-react';
 import { AboutData } from '@/types';
 import { AdminCard, AdminInput, AdminButton } from './SharedUI';
 
@@ -20,7 +20,7 @@ export const AboutTab = ({ showToast }: { showToast: (msg: string, type: 'succes
                 else showToast('Failed to load about data', 'error');
             })
             .catch(() => showToast('Network error loading about data', 'error'));
-    }, []);
+    }, [showToast]);
 
     const save = async () => {
         if (!data) return;
