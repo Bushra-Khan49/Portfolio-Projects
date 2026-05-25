@@ -111,12 +111,7 @@ function ResearchContent() {
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -16 }}
                                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    width: '100%',
-                                    minHeight: '480px',
-                                }}
+                                className={styles.cardInner}
                             >
                                 {/* LEFT: Text Content */}
                                 <div className={styles.textSide}>

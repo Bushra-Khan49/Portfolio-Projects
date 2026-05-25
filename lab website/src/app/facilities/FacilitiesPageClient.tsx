@@ -98,12 +98,7 @@ function FacilitiesContent() {
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -16 }}
                                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    width: '100%',
-                                    minHeight: '480px',
-                                }}
+                                className={styles.cardInner}
                             >
                                 <div className={styles.textSide}>
                                     <span className={styles.topicPill}>

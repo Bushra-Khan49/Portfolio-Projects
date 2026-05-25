@@ -254,7 +254,16 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .timerSection {
+        padding: 2.5rem 1.5rem !important;
+    }
+    .timerTitle {
+        font-size: 1.6rem !important;
+    }
+}
+
+@media (max-width: 600px) {
     .timerGrid {
         padding: 1rem !important;
         gap: 0.5rem !important;
@@ -276,5 +285,13 @@
     }
     .colon {
         font-size: 1.4rem !important;
+    }
+    .sessionCard {
+        padding: 1.5rem !important;
+    }
+    .sessionDetails {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
     }
 }

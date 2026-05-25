@@ -328,6 +328,13 @@
         0 0 0 2px rgba(255, 255, 255, 0.1) !important;
 }
 
+.cardInner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 480px;
+}
+
 /* ─── Mobile ──────────────────────────────────────── */
 @media (max-width: 960px) {
     .mainSection { padding: 0 1.5rem; }
@@ -340,6 +347,7 @@
         padding-right: 1.25rem;
     }
     .card { flex-direction: column; }
+    .cardInner { flex-direction: column !important; min-height: auto !important; }
     .textSide { flex: none; padding: 2.5rem 2rem; }
     .imageSide { flex: none; height: 260px; }
 }
