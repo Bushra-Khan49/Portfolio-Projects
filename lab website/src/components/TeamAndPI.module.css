@@ -336,5 +336,37 @@
     .piTreeCard {
         width: 100%;
         max-width: 320px;
+        flex: 0 1 320px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .piContainer {
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem !important;
+        text-align: center !important;
+    }
+    .piImageWrapper {
+        max-width: 260px !important;
+        margin: 0 auto !important;
+    }
+    .piInfo {
+        align-items: center !important;
+    }
+    .piQuote {
+        border-left: none !important;
+        border-top: 4px solid var(--color-primary) !important;
+        padding-left: 0 !important;
+        padding-top: 1rem !important;
+        margin: 1.5rem auto !important;
+        max-width: 90% !important;
+    }
+    .piContact {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .piPublication {
+        width: 100% !important;
+        text-align: left !important;
     }
 }

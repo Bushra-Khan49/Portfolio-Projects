@@ -42,9 +42,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ResearchOrganization",
+    "name": "Nexus Genomics Institute",
+    "url": "https://nexus-genomics-institute.vercel.app",
+    "logo": "https://nexus-genomics-institute.vercel.app/favicon.ico",
+    "description": "Advanced predictive modeling and multi-omics integration at Nexus Genomics Institute.",
+    "knowsAbout": [
+      "Genomics",
+      "Systems Biology",
+      "Bioinformatics",
+      "Phytochemistry",
+      "Plant Omics"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Dr. Evelyn Vance",
+      "jobTitle": "Lead Research Scientist & Founding Director",
+      "email": "evelyn.vance@nexusgenomics.edu",
+      "affiliation": "Nexus Genomics Institute"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Horizon City",
+      "addressCountry": "US"
+    }
+  };
+
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>

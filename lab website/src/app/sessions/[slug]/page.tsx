@@ -3,6 +3,11 @@ import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { sessionsData } from '@/data/mockData';
+import type { Metadata } from 'next';
+
+interface PageProps {
+    params: Promise<{ slug: string }>;
+}
 
 export function generateStaticParams() {
     return sessionsData.map((item) => ({
@@ -10,8 +15,27 @@ export function generateStaticParams() {
     }));
 }
 
-export default function SessionDetailPage({ params }: { params: { slug: string } }) {
-    const item = sessionsData.find((i) => i.id === params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const item = sessionsData.find((i) => i.id === slug);
+    if (!item) {
+        return {
+            title: 'Session Not Found | Nexus Genomics Institute',
+        };
+    }
+    return {
+        title: `${item.title} | Presentations | Nexus Genomics Institute`,
+        description: `Session abstract and details for "${item.title}" presented by ${item.presenter} at Nexus Genomics Institute.`,
+        openGraph: {
+            title: `${item.title} | Presentations | Nexus Genomics Institute`,
+            description: `Session abstract and details for "${item.title}" presented by ${item.presenter} at Nexus Genomics Institute.`,
+        }
+    };
+}
+
+export default async function SessionDetailPage({ params }: PageProps) {
+    const { slug } = await params;
+    const item = sessionsData.find((i) => i.id === slug);
 
     if (!item) notFound();
 
