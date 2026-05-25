@@ -17,6 +17,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Nexus Genomics Institute",
   description: "Advanced predictive modeling and multi-omics integration at Nexus Genomics Institute.",
+  verification: {
+    google: "-Ja4_hQHDVfjJ98qXSEMrmWXOhRhBYQpY9r3t8lfIVc",
+  },
   openGraph: {
     title: "Nexus Genomics Institute",
     description: "Pioneering advanced predictive modeling and multi-omics integration for systems biology.",
