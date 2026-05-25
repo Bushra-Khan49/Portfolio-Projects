@@ -1,57 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile, writeFile, mkdir, rename } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
 import { revalidatePath } from 'next/cache';
 import { requireAdmin, hashPassword, isHashed } from '@/lib/auth';
-
-/**
- * 🛰️ ADMIN DATA API (THE BRAIN)
- * ----------------------------
- * This is a RESTful API route for persistent storage management.
- * 
- * WHY JSON?
- * - No external Database-as-a-Service is required.
- * - Files are saved directly to the /data repository.
- * - Fast, cheap, and easily portable (local-first architecture).
- * 
- * OPERATIONS:
- * - GET: Reads from data/*.json based on the 'type' query param.
- * - POST: Overwrites or Updates a JSON file with safe write handling.
- */
-
-const DATA_DIR = join(process.cwd(), 'data');
-
-async function readJSON(filename: string): Promise<any> {
-    try {
-        const data = await readFile(join(DATA_DIR, filename), 'utf-8');
-        return JSON.parse(data);
-    } catch {
-        return null;
-    }
-}
-
+import { readDataJSON, writeDataJSON } from '@/lib/db';
 import { z } from 'zod';
-
-const fileLocks = new Map<string, Promise<void>>();
-
-async function writeJSON(filename: string, data: any) {
-    if (!existsSync(DATA_DIR)) await mkdir(DATA_DIR, { recursive: true });
-    const targetPath = join(DATA_DIR, filename);
-    const tempPath = `${targetPath}.tmp`;
-
-    // Queue up writes to the same file to prevent concurrency collisions
-    const existingPromise = fileLocks.get(filename) || Promise.resolve();
-    const nextPromise = existingPromise.then(async () => {
-        await writeFile(tempPath, JSON.stringify(data, null, 2));
-        await rename(tempPath, targetPath);
-    }).catch(err => {
-        console.error(`Concurrency write error for ${filename}:`, err);
-    });
-
-    fileLocks.set(filename, nextPromise);
-    await nextPromise;
-}
 
 const schemas: Record<string, z.ZodType<any>> = {
     sessions: z.object({
@@ -342,18 +293,9 @@ export async function GET(request: NextRequest) {
         if (authError) return authError;
     }
 
-    const data = await readJSON(FILE_MAP[type]);
-    if (data === null) {
-        // Return defaults if file doesn't exist
-        const defaults = getDefaults(type);
-        await writeJSON(FILE_MAP[type], defaults);
-        // Never send password to client
-        if (type === 'settings') {
-            const settingsDefaults = defaults as { adminId: string; password: string };
-            return NextResponse.json({ adminId: settingsDefaults.adminId });
-        }
-        return NextResponse.json(defaults);
-    }
+    const defaults = getDefaults(type);
+    const data = await readDataJSON(type, defaults);
+
     // Never send password to client
     if (type === 'settings') {
         return NextResponse.json({ adminId: data.adminId || '' }, {
@@ -404,7 +346,7 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        await writeJSON(FILE_MAP[type], data);
+        await writeDataJSON(type, data);
 
         // Broadcast real-time updates via WebSockets
         try {

@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile, writeFile } from 'fs/promises';
-import { join } from 'path';
 import {
     hashPassword,
     verifyPassword,
@@ -11,36 +9,34 @@ import {
     getAuthFromRequest,
     checkRateLimit,
 } from '@/lib/auth';
-
-const SETTINGS_PATH = join(process.cwd(), 'data', 'admin-settings.json');
+import { readDataJSON, writeDataJSON } from '@/lib/db';
 
 /**
- * Read admin credentials from the settings file.
+ * Read admin credentials from the settings store.
  * On first access, migrates plaintext passwords to bcrypt hashes.
  */
 async function getCredentials(): Promise<{ adminId: string; passwordHash: string }> {
-    try {
-        const data = await readFile(SETTINGS_PATH, 'utf-8');
-        const parsed = JSON.parse(data);
+    const defaultId = 'Admin ID';
+    const defaultHash = await hashPassword('Password');
+    const defaultSettings = { adminId: defaultId, password: defaultHash };
 
-        if (parsed.adminId && parsed.password) {
+    try {
+        const parsed = await readDataJSON('settings', defaultSettings);
+
+        if (parsed && parsed.adminId && parsed.password) {
             // Migrate plaintext password to hash if needed
             if (!isHashed(parsed.password)) {
                 const hashed = await hashPassword(parsed.password);
-                const migrated = { adminId: parsed.adminId, password: hashed };
-                await writeFile(SETTINGS_PATH, JSON.stringify(migrated, null, 2));
+                parsed.password = hashed;
+                await writeDataJSON('settings', parsed);
                 return { adminId: parsed.adminId, passwordHash: hashed };
             }
             return { adminId: parsed.adminId, passwordHash: parsed.password };
         }
-    } catch {
-        // File doesn't exist — create with hashed default
+    } catch (err) {
+        console.error('[AUTH] Failed to get credentials from DB, returning defaults:', err);
     }
 
-    // First-time setup: create settings file with hashed default password
-    const defaultId = 'Admin ID';
-    const defaultHash = await hashPassword('Password');
-    await writeFile(SETTINGS_PATH, JSON.stringify({ adminId: defaultId, password: defaultHash }, null, 2));
     return { adminId: defaultId, passwordHash: defaultHash };
 }
 

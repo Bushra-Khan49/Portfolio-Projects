@@ -1,27 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile, writeFile, mkdir, unlink, rename } from 'fs/promises';
-import { join, extname } from 'path';
-import { existsSync } from 'fs';
+import { extname } from 'path';
 import { requireAdmin } from '@/lib/auth';
-
-const MANIFEST_PATH = join(process.cwd(), 'data', 'team-images.json');
-const UPLOADS_DIR = join(process.cwd(), 'public', 'uploads');
+import { readDataJSON, writeDataJSON, uploadFileBuffer, deleteFile } from '@/lib/db';
 
 async function readManifest(): Promise<Record<string, string>> {
-    try {
-        const data = await readFile(MANIFEST_PATH, 'utf-8');
-        return JSON.parse(data);
-    } catch {
-        return {};
-    }
+    return await readDataJSON('team-images', {});
 }
 
 async function writeManifest(data: Record<string, string>) {
-    const dataDir = join(process.cwd(), 'data');
-    if (!existsSync(dataDir)) await mkdir(dataDir, { recursive: true });
-    const tempFile = `${MANIFEST_PATH}.tmp`;
-    await writeFile(tempFile, JSON.stringify(data, null, 2));
-    await rename(tempFile, MANIFEST_PATH);
+    await writeDataJSON('team-images', data);
 }
 
 // GET — Return the image manifest { memberKey: '/uploads/filename.ext' }
@@ -63,26 +50,26 @@ export async function POST(request: NextRequest) {
         // Use either the memberKey or genericId as the filename base
         const finalKey = memberKey || genericId;
 
-        // Ensure uploads directory exists
-        if (!existsSync(UPLOADS_DIR)) await mkdir(UPLOADS_DIR, { recursive: true });
-
         // Build a safe filename (strips any path traversal elements)
         const safeKey = finalKey.replace(/[^a-zA-Z0-9-_]/g, '-');
         const filename = `${safeKey}${fileExt}`;
-        const filePath = join(UPLOADS_DIR, filename);
 
         // Write the file
         const buffer = Buffer.from(await file.arrayBuffer());
-        await writeFile(filePath, buffer);
+        const uploadedUrl = await uploadFileBuffer(
+            buffer,
+            `team-images/${filename}`,
+            file.type
+        );
 
         // ONLY update the team-images manifest if a memberKey was provided
         if (memberKey) {
             const manifest = await readManifest();
-            manifest[memberKey] = `/uploads/${filename}`;
+            manifest[memberKey] = uploadedUrl;
             await writeManifest(manifest);
         }
 
-        return NextResponse.json({ path: `/uploads/${filename}` });
+        return NextResponse.json({ path: uploadedUrl });
     } catch (error) {
         console.error('Image upload error:', error);
         return NextResponse.json({ error: 'Server error' }, { status: 500 });
@@ -103,12 +90,9 @@ export async function DELETE(request: NextRequest) {
         const manifest = await readManifest();
         const existingPath = manifest[memberKey];
 
-        // Delete the physical file if it exists in our uploads folder
-        if (existingPath && existingPath.startsWith('/uploads/')) {
-            const filePath = join(process.cwd(), 'public', existingPath);
-            if (existsSync(filePath)) {
-                await unlink(filePath);
-            }
+        // Delete the physical file / object from database storage
+        if (existingPath) {
+            await deleteFile(existingPath);
         }
 
         // Remove from manifest

@@ -1,27 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile, writeFile, mkdir, rename } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
 import { requireAdmin, checkGenericRateLimit } from '@/lib/auth';
-
-const DATA_DIR = join(process.cwd(), 'data');
-const APPS_FILE = join(DATA_DIR, 'applications.json');
-const UPLOAD_DIR = join(process.cwd(), 'public', 'uploads', 'applications');
+import { readDataJSON, writeDataJSON, uploadFileBuffer } from '@/lib/db';
 
 async function readApps(): Promise<any[]> {
-    try {
-        const data = await readFile(APPS_FILE, 'utf-8');
-        return JSON.parse(data);
-    } catch {
-        return [];
-    }
+    return await readDataJSON('applications', []);
 }
 
 async function writeApps(apps: any[]) {
-    if (!existsSync(DATA_DIR)) await mkdir(DATA_DIR, { recursive: true });
-    const tempFile = `${APPS_FILE}.tmp`;
-    await writeFile(tempFile, JSON.stringify(apps, null, 2));
-    await rename(tempFile, APPS_FILE);
+    await writeDataJSON('applications', apps);
 }
 
 function sanitizeInput(val: string): string {
@@ -101,18 +87,18 @@ export async function POST(request: NextRequest) {
                 }, { status: 400 });
             }
 
-            if (!existsSync(UPLOAD_DIR)) {
-                await mkdir(UPLOAD_DIR, { recursive: true });
-            }
-
             // Generate safe filename to prevent path traversal
             const safeName = application.name.replace(/[^a-z0-9]/gi, '-').toLowerCase() || 'resume';
             const filename = `${safeName}-${Date.now()}.${fileExt}`;
-            const filepath = join(UPLOAD_DIR, filename);
 
             const bytes = await file.arrayBuffer();
-            await writeFile(filepath, Buffer.from(bytes));
-            application.resumePath = `/uploads/applications/${filename}`;
+            const uploadedUrl = await uploadFileBuffer(
+                Buffer.from(bytes),
+                `applications/${filename}`,
+                file.type
+            );
+
+            application.resumePath = uploadedUrl;
             application.resumeFilename = sanitizeInput(file.name);
         }
 
