@@ -17,7 +17,7 @@ This document details the core system features that power the **Nexus Genomics I
 
 ## 3. 💾 Structured Relational Schema
 - **Database**: Host-managed PostgreSQL on Supabase.
-- **Tables**: Fully structured relational models (Team, Research Areas, Goals, Meetings, Applications, and System Logs) with foreign-key constraints (documented in `backend_schema.md`).
+- **Tables**: Fully structured relational models (Team, Research Areas, Goals, Meetings, Applications, and System Logs) with foreign-key constraints (documented in `BACKEND_SCHEMA.md`).
 - **Integrity**: Deletions are cascaded securely to prevent orphaned data.
 
 ## 4. 🗂️ Lab Sessions Timeline & Countdown

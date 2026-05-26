@@ -5,7 +5,7 @@
 **Document Version:** 1.0  
 **Date:** May 2026  
 **Status:** Approved for Development  
-**Reference PRD:** `prd.md` v1.0
+**Reference PRD:** `PRD.md` v1.0
 
 ---
 

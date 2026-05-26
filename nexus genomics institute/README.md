@@ -14,12 +14,12 @@ To design, define, and architect this platform, the following toolkit was utiliz
 - **AI Product Development Toolkit**: To ensure our PRD and UX documentation met enterprise standards.
 
 ## 📁 Documentation Included
-- `prd.md`: The complete Product Requirements Document, including user stories, personas, and scope.
-- `ui_ux_design_document.md`: The visual specifications, color tokens, typography scales, and accessibility guidelines.
-- `app_flow.md`: Comprehensive user journey maps, state transitions, and admin authentication flows.
-- `backend_schema.md`: The database architecture, tables, and relationships.
-- `implementation_plan.md`: The step-by-step roadmap for developers.
-- `trd.md`: The Technical Requirements Document.
+- `PRD.md`: The complete Product Requirements Document, including user stories, personas, and scope.
+- `UI_UX_DESIGN_DOCUMENT.md`: The visual specifications, color tokens, typography scales, and accessibility guidelines.
+- `APP_FLOW.md`: Comprehensive user journey maps, state transitions, and admin authentication flows.
+- `BACKEND_SCHEMA.md`: The database architecture, tables, and relationships.
+- `IMPLEMENTATION_PLAN.md`: The step-by-step roadmap for developers.
+- `TRD.md`: The Technical Requirements Document.
 
 ## 📖 The Developer & Planning Journey: Challenges & Solutions
 

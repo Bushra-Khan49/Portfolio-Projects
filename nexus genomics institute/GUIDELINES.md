@@ -55,7 +55,7 @@ This document establishes the definitive coding, architectural, design, and oper
 ## 🤝 4. Version Control & Updates
 - **Maintainers**: Bushra Khan
 - **Commit Messages**: Use clean prefixes (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
-- **Documentation Maintenance**: Any modifications to database schemas must be updated concurrently in `backend_schema.md`.
+- **Documentation Maintenance**: Any modifications to database schemas must be updated concurrently in `BACKEND_SCHEMA.md`.
 
 ---
 **Vision Statement**: To represent the precision and biological ingenuity of Nexus Genomics Institute through a fast, beautiful, and type-safe digital environment.
