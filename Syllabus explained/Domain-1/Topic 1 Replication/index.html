@@ -142,9 +142,9 @@
                         </div>
                         <p style="margin-top: 1rem;">Every protein works together like an automated assembly line.</p>
                         
-                        <figure class="glass-figure" style="margin-top: 2rem; text-align: center;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/E._coli_replisome.png" alt="Replisome machinery" style="width: 100%; border-radius: 8px;">
-                            <figcaption class="diagram-label">Figure 1: The E. coli Replisome working as a molecular factory at the replication fork.</figcaption>
+                        <figure class="glass-figure" style="margin-top: 2rem; text-align: center; background: #fff; padding: 10px; border-radius: 8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/E._coli_replisome.png" alt="Replisome machinery" style="width: 70%; max-width: 500px; display: block; margin: 0 auto; border-radius: 8px;">
+                            <figcaption class="diagram-label" style="border-top: none;">Figure 1: The E. coli Replisome working as a molecular factory at the replication fork.</figcaption>
                         </figure>
                     </div>
                 </section>
@@ -167,6 +167,10 @@
                             Old ======= New<br>
                             New ======= Old
                         </div>
+                        <figure class="glass-figure" style="margin-top: 1.5rem; background: #fff; border-radius: 8px; padding: 10px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Semiconservative_replication.png" alt="Semi-conservative replication" style="width: 100%;">
+                            <figcaption class="diagram-label" style="border-top: none; padding-top: 0;">Figure 2: Each new double helix contains one original parent strand and one newly synthesized strand.</figcaption>
+                        </figure>
                         <p style="margin-top: 1rem;">This is called <strong>semi-conservative replication</strong>. It preserves one copy of the original information in every daughter DNA molecule.</p>
                     </div>
 
@@ -235,8 +239,12 @@
                         <p style="margin-top: 1rem;">This is why another enzyme, <strong>primase</strong>, first creates a short RNA primer. DNA polymerase then extends that primer.</p>
                         
                         <h3 style="margin-top: 2rem;">The Loop-and-Release Mechanism</h3>
-                        <p>The replisome copies both strands simultaneously. To accomplish this, the lagging strand bends into a temporary loop.</p>
-                        <div class="code-box">
+                        <p>The replisome copies both strands simultaneously. To accomplish this, the lagging strand bends into a temporary loop (the "Trombone Model").</p>
+                        <figure class="glass-figure" style="margin-top: 1.5rem; background: #fff; padding: 10px; border-radius: 8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Lagging_strand_synthesis_via_the_trombone_mechanism.svg" alt="Trombone mechanism" style="width: 100%;">
+                            <figcaption class="diagram-label" style="border-top: none; padding-top: 0;">Figure 5: The lagging strand loops around so the polymerase can move in the same physical direction as the leading strand polymerase.</figcaption>
+                        </figure>
+                        <div class="code-box" style="margin-top: 1.5rem;">
                             Leading Strand<br>
                             ──────────────&rarr;<br>
                             Lagging Strand<br>
@@ -328,12 +336,21 @@
                         <div style="margin-top: 2rem;">
                             <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">When analyzing sequencing data, bioinformaticians constantly ask:</p>
                             <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-                                <li>Is this a real mutation?</li>
-                                <li>Or is it a sequencing error?</li>
-                                <li>Could it be a replication error?</li>
+                                <li>Is this a real biological mutation?</li>
+                                <li>Or is it a sequencing machine error?</li>
+                                <li>Could it be an error introduced during PCR replication?</li>
                             </ul>
                             <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">Understanding the molecular replication machinery provides the biological foundation needed to answer these questions accurately.</p>
+
+                            <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 0.5rem;">DNA Polymerase Fidelity &rarr; Variant Calling</h4>
+                            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">DNA polymerases have a known "error rate" (e.g., 1 in 10 million bases). When bioinformatics tools perform <strong>Variant Calling</strong> to detect disease-causing SNPs (Single Nucleotide Polymorphisms), statistical models must distinguish true variants from these rare polymerase mistakes that occurred either naturally in the cell or artificially during library preparation (PCR amplification).</p>
                             
+                            <h4 style="color: var(--primary); margin-top: 1rem; margin-bottom: 0.5rem;">Complementarity &rarr; Read Mapping</h4>
+                            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">Replication proves that one strand perfectly predicts the other. When a sequencer reads billions of short DNA fragments, <strong>Read Mapping</strong> algorithms leverage this complementarity to map those fragments back to a reference genome, testing alignments in both the forward and reverse-complement orientations.</p>
+                            
+                            <h4 style="color: var(--primary); margin-top: 1rem; margin-bottom: 0.5rem;">Bidirectional Replication &rarr; Genome Organization</h4>
+                            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">The physical constraints of bidirectional replication and multiple origins (in eukaryotes) influence gene location and evolution. Genes that are highly expressed are often located on the leading strand to prevent "collisions" between replication machinery and transcription machinery. Bioinformatics researchers analyze these <strong>genome organization</strong> patterns using statistical genomics.</p>
+
                             <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 0.5rem;">If This Machinery Didn’t Exist</h4>
                             <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">Without coordinated DNA replication:</p>
                             <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
