@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Replication: Duplicating the Code</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=5">
+    <style>
+        .back-btn {
+            position: fixed;
+            top: 1.25rem;
+            left: 1.25rem;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            background: rgba(5, 10, 21, 0.75);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 999px;
+            color: #00e5ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.1);
+        }
+        .back-btn:hover {
+            background: rgba(0, 229, 255, 0.12);
+            border-color: rgba(0, 229, 255, 0.7);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+            transform: translateX(-2px);
+        }
+        .back-btn svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .back-btn { top: 0.75rem; left: 0.75rem; font-size: 0.72rem; padding: 0.4rem 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-btn" href="../../..">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Portfolio
+    </a>
+
+    <main class="split-layout">
+        
+        <!-- Left Column: Scrolling Content -->
+        <div class="content-column" id="smooth-wrapper">
+            <div id="smooth-content" class="content-inner">
+                
+                <!-- Hero -->
+                <section class="hero-section fade-up">
+                    <h5 class="eyebrow">Phase 2: Duplicating the Code</h5>
+                    <h1>DNA Replication</h1>
+                    <h2>The High-Fidelity Copy Machine of Life</h2>
+                    <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
+                        <div class="mouse"></div>
+                        <span>Scroll to Explore</span>
+                    </div>
+                </section>
+                
+                <!-- Intro Cards -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Why This Matters</h3>
+                        <p>In bioinformatics, DNA is the master archival database, but a database is only useful if it can be copied accurately every time a cell divides.</p>
+                        <p>Every human cell (except certain specialized cells) contains essentially the same genome. Before a cell divides, it must duplicate its entire DNA—about 3.2 billion base pairs—with extraordinary accuracy. This process is called DNA replication.</p>
+                        <p>If replication fails:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>Mutations accumulate rapidly.</li>
+                            <li>Genes may become damaged or lost.</li>
+                            <li>Cells can malfunction or die.</li>
+                            <li>Cancer and many genetic diseases can arise.</li>
+                            <li>Sequencing data becomes harder to interpret because distinguishing true biological mutations from replication or sequencing errors becomes more challenging.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">For bioinformatics, understanding replication explains why genomes remain remarkably stable over generations while still accumulating the rare mutations that drive evolution.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>What Problem Does DNA Replication Solve?</h3>
+                        <p>Imagine a database server. When the server creates a backup, the backup must be almost identical to the original.</p>
+                        <p>DNA replication performs exactly this task.</p>
+                        <div class="code-box" style="text-align: center; font-size: 1rem;">
+                            Original Genome<br>
+                            │<br>
+                            ▼<br>
+                            DNA Replication<br>
+                            │<br>
+                            ▼<br>
+                            Two Nearly Identical Genomes
+                        </div>
+                        <p style="margin-top: 1rem;">Without replication, cells could never divide and organisms could never grow, repair tissues, or reproduce.</p>
+                        
+                        <h4 style="margin-top: 2rem;">Where Does Replication Fit?</h4>
+                        <div class="code-box" style="text-align: center;">
+                            DNA Structure<br>↓<br>DNA Replication<br>↓<br>Cell Division<br>↓<br>Growth, Repair, Reproduction, Evolution
+                        </div>
+                        <p style="margin-top: 1rem;">DNA structure makes replication possible. Replication preserves the genome. Cell division distributes that genome to daughter cells.</p>
+                    </div>
+                </section>
+                
+                <!-- The Replication Machinery -->
+                <section class="section-block fade-up">
+                    <div class="phase-header" style="margin: 4rem 0 2rem; text-align: left;">
+                        <h2>1. The Replication Machinery</h2>
+                        <p>Copying the Database</p>
+                    </div>
+                    
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <p>DNA replication is performed by a coordinated collection of proteins called the replication machinery or replisome. Think of it as a molecular factory. Different proteins each perform one specialized task.</p>
+                        
+                        <div class="table-container">
+                            <table class="bio-table">
+                                <thead>
+                                    <tr>
+                                        <th>Protein</th>
+                                        <th>Job</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Helicase</strong></td><td>Opens the DNA double helix</td></tr>
+                                    <tr><td><strong>Primase</strong></td><td>Builds RNA primers</td></tr>
+                                    <tr><td><strong>DNA Polymerase</strong></td><td>Synthesizes new DNA</td></tr>
+                                    <tr><td><strong>Ligase</strong></td><td>Joins DNA fragments</td></tr>
+                                    <tr><td><strong>Topoisomerase</strong></td><td>Relieves twisting stress</td></tr>
+                                    <tr><td><strong>Sliding Clamp</strong></td><td>Holds polymerase onto DNA</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="margin-top: 1rem;">Every protein works together like an automated assembly line.</p>
+                        
+                        <figure class="glass-figure" style="margin-top: 2rem; text-align: center;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/E._coli_replisome.png" alt="Replisome machinery" style="width: 100%; border-radius: 8px;">
+                            <figcaption class="diagram-label">Figure 1: The E. coli Replisome working as a molecular factory at the replication fork.</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                
+                <!-- Mechanics of Replication -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Semi-Conservative Replication</h3>
+                        <p>Each daughter DNA molecule contains:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                            <li>One original (parental) strand</li>
+                            <li>One newly synthesized strand</li>
+                        </ul>
+                        <div class="code-box">
+                            Original DNA<br>
+                            Old =======<br>
+                            Old =======<br>
+                            ↓<br>
+                            Replication<br>
+                            Old ======= New<br>
+                            New ======= Old
+                        </div>
+                        <p style="margin-top: 1rem;">This is called <strong>semi-conservative replication</strong>. It preserves one copy of the original information in every daughter DNA molecule.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Bidirectional Replication</h3>
+                        <p>Replication begins at an origin of replication. From this origin, two replication forks move in opposite directions.</p>
+                        <figure class="glass-figure" style="margin: 1.5rem 0; background: #fff; border-radius: 8px; padding: 10px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/DNA_replication_split.svg" alt="Bidirectional replication" style="width: 100%;">
+                            <figcaption class="diagram-label" style="border-top: none; padding-top: 0;">Figure 2: Two replication forks moving outwards from the origin.</figcaption>
+                        </figure>
+                        <p>Instead of copying DNA in only one direction, cells copy both directions simultaneously, greatly increasing speed.</p>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3>Why Two Strands Are a Challenge</h3>
+                        <p>DNA strands run in opposite directions. This opposite orientation is called <strong>antiparallel</strong>.</p>
+                        <div class="code-box" style="text-align: center;">
+                            Top strand<br>
+                            5' ------------------> 3'<br>
+                            <br>
+                            Bottom strand<br>
+                            3' <------------------ 5'
+                        </div>
+                        <p style="margin-top: 1rem;">The problem is that DNA polymerase can only synthesize DNA in the <strong>5’ &rarr; 3’ direction</strong>. It cannot work backwards. This creates one of the biggest engineering challenges in molecular biology.</p>
+                    </div>
+                </section>
+                
+                <!-- Polymerase & Synthesis -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>DNA Polymerase — The Copy Machine</h3>
+                        <p>DNA polymerase is the enzyme that builds new DNA.</p>
+                        <h4>In Prokaryotes</h4>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                            <li><strong>DNA Polymerase III</strong> performs most DNA synthesis.</li>
+                        </ul>
+                        <h4>In Eukaryotes</h4>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                            <li><strong>DNA Polymerase &epsilon; (epsilon)</strong> copies the leading strand.</li>
+                            <li><strong>DNA Polymerase &delta; (delta)</strong> copies the lagging strand.</li>
+                        </ul>
+                        <p>All DNA polymerases:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                            <li>Read the template strand.</li>
+                            <li>Match complementary bases.</li>
+                            <li>Form phosphodiester bonds.</li>
+                            <li>Extend DNA only from a free 3’-OH group.</li>
+                        </ul>
+                        <p>Think of DNA polymerase as a highly accurate molecular printer that can only print in one direction.</p>
+                        <figure class="glass-figure" style="margin-top: 1rem; background: #fff; padding: 10px; border-radius: 8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/DNA_polymerase.svg" alt="DNA Polymerase" style="width: 100%;">
+                        </figure>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Why a Free 3’-OH Group?</h3>
+                        <p>DNA polymerase cannot begin synthesis from nothing. It needs an existing nucleotide with an exposed 3’-OH.</p>
+                        <div class="code-box">
+                            Existing DNA<br>
+                            5' ---------3'OH<br>
+                                            &darr;<br>
+                            New nucleotide attaches here
+                        </div>
+                        <p style="margin-top: 1rem;">This is why another enzyme, <strong>primase</strong>, first creates a short RNA primer. DNA polymerase then extends that primer.</p>
+                        
+                        <h3 style="margin-top: 2rem;">The Loop-and-Release Mechanism</h3>
+                        <p>The replisome copies both strands simultaneously. To accomplish this, the lagging strand bends into a temporary loop.</p>
+                        <div class="code-box">
+                            Leading Strand<br>
+                            ──────────────&rarr;<br>
+                            Lagging Strand<br>
+                                  &circlearrowleft; Loop<br>
+                            &larr; Okazaki Fragment
+                        </div>
+                        <p style="margin-top: 1rem;">As each fragment finishes:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>The loop releases.</li>
+                            <li>A new loop forms.</li>
+                            <li>Polymerase begins the next fragment.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">This elegant coordination allows both polymerases to remain part of the same replication complex despite working on strands with opposite orientations.</p>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3>Leading vs Lagging Strand</h3>
+                        <p>Because polymerase only works in the 5’ &rarr; 3’ direction, the two strands are copied differently.</p>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4 style="color: var(--primary);">Leading Strand</h4>
+                                <p>The template is oriented so polymerase can move continuously toward the replication fork.</p>
+                                <div class="code-box">
+                                    Replication Fork &rarr;<br>
+                                    ====================<br>
+                                    Continuous synthesis
+                                </div>
+                                <p style="margin-top: 1rem;">Only one primer is needed. Replication proceeds smoothly.</p>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--secondary);">Lagging Strand</h4>
+                                <p>The opposite template faces the wrong direction. Polymerase must repeatedly start over.</p>
+                                <div class="code-box">
+                                    Replication Fork &rarr;<br>
+                                    &larr; Fragment 1<br>
+                                    &larr; Fragment 2<br>
+                                    &larr; Fragment 3
+                                </div>
+                                <p style="margin-top: 1rem;">These short DNA pieces are called <strong>Okazaki fragments</strong>.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <p>Each Okazaki fragment requires:</p>
+                            <ol style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+                                <li>A new RNA primer</li>
+                                <li>DNA polymerase extension</li>
+                                <li>Primer removal</li>
+                                <li>DNA ligase joining fragments together</li>
+                            </ol>
+                            <p>Although the lagging strand is synthesized in pieces, the completed DNA is continuous.</p>
+                        </div>
+                        
+                        <figure class="glass-figure" style="margin-top: 2rem; background: #fff; padding: 10px; border-radius: 8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Asymmetry_in_the_synthesis_of_leading_and_lagging_strands.svg" alt="Leading and Lagging strands" style="width: 100%;">
+                            <figcaption class="diagram-label" style="border-top: none;">Figure 3: Asymmetric synthesis showing continuous (leading) and discontinuous (lagging) synthesis.</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                
+                <!-- Bioinformatics Connection -->
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3>Connection to Bioinformatics</h3>
+                        <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-muted);">Replication directly influences many computational analyses. Here is how replication concepts translate to bioinformatics applications:</p>
+                        
+                        <div class="table-container">
+                            <table class="bio-table">
+                                <thead>
+                                    <tr>
+                                        <th>Replication Concept</th>
+                                        <th>Bioinformatics Application</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Complementary strands</td><td>Read mapping</td></tr>
+                                    <tr><td>DNA polymerase fidelity</td><td>Variant calling</td></tr>
+                                    <tr><td>Replication errors</td><td>Mutation models</td></tr>
+                                    <tr><td>Bidirectional replication</td><td>Genome organization studies</td></tr>
+                                    <tr><td>Okazaki fragments</td><td>DNA replication research</td></tr>
+                                    <tr><td>Polymerase proofreading</td><td>Sequencing error interpretation</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">When analyzing sequencing data, bioinformaticians constantly ask:</p>
+                            <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+                                <li>Is this a real mutation?</li>
+                                <li>Or is it a sequencing error?</li>
+                                <li>Could it be a replication error?</li>
+                            </ul>
+                            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">Understanding the molecular replication machinery provides the biological foundation needed to answer these questions accurately.</p>
+                            
+                            <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 0.5rem;">If This Machinery Didn’t Exist</h4>
+                            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">Without coordinated DNA replication:</p>
+                            <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                                <li>Cells could not duplicate their genomes.</li>
+                                <li>Cell division would stop.</li>
+                                <li>Growth and tissue repair would fail.</li>
+                                <li>Inheritance would be impossible.</li>
+                                <li>Genome stability would collapse.</li>
+                                <li>Comparative genomics and evolutionary analyses would lose the stable reference that makes them meaningful.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="bottom-spacer"></div>
+            </div>
+        </div>
+
+        <!-- Right Column: Sticky 3D Canvas -->
+        <div class="canvas-column">
+            <canvas id="webgl-canvas"></canvas>
+            <div class="canvas-overlay">
+                <div class="overlay-text">Interactive Replication (Helix)</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <script src="script.js?v=5"></script>
+</body>
+</html>
