@@ -281,6 +281,11 @@
                                 <p>DNA polymerase has its own molecular backspace key.</p>
                             </div>
                         </div>
+
+                        <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
+                            <img src="linkedin_proofreading.jpg" alt="Proofreading depends on DNA activity" style="width: 100%; max-width: 100%; height: auto; border-radius: 4px;">
+                            <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 5b:</strong> Proofreading depends on the ability of DNA polymerase to pause, reverse, and excise the mismatched nucleotide before resuming replication.</figcaption>
+                        </figure>
                     </div>
                 </section>
 
@@ -334,15 +339,17 @@
                             </div>
                         </div>
 
-                        <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0; text-align: center; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden;">
-                            <img src="mismatch_repair_cropped.png" alt="Mismatch Repair" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 4px; filter: contrast(1.1) brightness(1.05);">
-                            <figcaption class="diagram-label" style="border-top: none; margin-top: auto;"><strong>Figure 6:</strong> Post-replicative Mismatch repair in E. coli. Enzymes detect a distortion in the helix and excise the error.</figcaption>
-                        </figure>
+                        <div style="display: flex; gap: 2rem; align-items: stretch; margin-top: 2rem; flex-wrap: wrap;">
+                            <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; flex: 1; text-align: center; display: flex; flex-direction: column; min-width: 300px; box-sizing: border-box; overflow: hidden;">
+                                <img src="mismatch_repair_cropped.png" alt="Mismatch Repair" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 4px; filter: contrast(1.1) brightness(1.05);">
+                                <figcaption class="diagram-label" style="border-top: none; margin-top: auto;"><strong>Figure 6:</strong> Post-replicative Mismatch repair in E. coli. Enzymes detect a distortion in the helix and excise the error.</figcaption>
+                            </figure>
 
-                        <figure class="glass-figure" style="background: #111; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden;">
-                            <img src="replication.gif" alt="Animated DNA Replication" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 4px;">
-                            <figcaption class="diagram-label" style="border-top: none; margin-top: auto; color: #ccc;"><strong>Figure 7:</strong> Animated DNA replication machinery in action, constantly proofreading and processing billions of bases.</figcaption>
-                        </figure>
+                            <figure class="glass-figure" style="background: #111; padding: 10px; border-radius: 8px; flex: 1; text-align: center; display: flex; flex-direction: column; min-width: 300px; box-sizing: border-box; overflow: hidden;">
+                                <img src="proofreading.gif" alt="Proofreading Polymerase" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 4px;">
+                                <figcaption class="diagram-label" style="border-top: none; margin-top: auto; color: #ccc;"><strong>Figure 7:</strong> Animated DNA replication machinery showing proofreading polymerase in action.</figcaption>
+                            </figure>
+                        </div>
                     </div>
                 </section>
 
@@ -415,14 +422,20 @@
                         </ul>
                         <p style="margin-top: 1.5rem;"><strong style="font-size: 1.2rem; color: var(--accent);">How Do We Actually Use This in Bioinformatics?</strong></p>
                         <p>Bioinformaticians actively use knowledge of fidelity to design pipelines and tools:</p>
-                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 229, 255, 0.05); border-left: 3px solid var(--accent); border-radius: 8px;">
-                            <strong style="color: var(--accent);">Variant Calling (GATK / BQSR):</strong> During sequencing prep, engineered polymerases with built-in 3'&rarr;5' proofreading are used to amplify DNA. Tools like GATK's Base Quality Score Recalibration (BQSR) model the residual polymerase error rates to prevent false-positive variant calls.
+                        <div style="margin-top: 1rem; padding: 1.5rem; background: rgba(0, 229, 255, 0.05); border-left: 3px solid var(--accent); border-radius: 8px;">
+                            <strong style="color: var(--accent); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;">Variant Calling (GATK / BQSR):</strong> 
+                            <p style="margin-bottom: 1rem;">During sequencing prep, engineered polymerases with built-in 3'&rarr;5' proofreading are used to amplify DNA. Tools like GATK's Base Quality Score Recalibration (BQSR) model the residual polymerase error rates to prevent false-positive variant calls.</p>
+                            <img src="variant_calling.jpg" alt="Variant Calling UI" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; display: block; border: 1px solid rgba(0, 229, 255, 0.2); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
                         </div>
-                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 229, 255, 0.05); border-left: 3px solid var(--accent); border-radius: 8px;">
-                            <strong style="color: var(--accent);">Cancer Genomics (Mutect2):</strong> Defects in MMR genes (like MSH2 or MLH1) cause cancers like Lynch syndrome. Bioinformaticians use tools like Mutect2 to identify "Microsatellite Instability" (MSI) in tumor genomes. Massive spikes in transition mutations map directly back to failures in these biological pathways.
+                        <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(255, 85, 85, 0.05); border-left: 3px solid #ff5555; border-radius: 8px;">
+                            <strong style="color: #ff5555; font-size: 1.1rem; display: block; margin-bottom: 0.5rem;">Cancer Genomics (Mutect2):</strong> 
+                            <p style="margin-bottom: 1rem;">Defects in MMR genes (like MSH2 or MLH1) cause cancers like Lynch syndrome. Bioinformaticians use tools like Mutect2 to identify "Microsatellite Instability" (MSI) in tumor genomes. Massive spikes in transition mutations map directly back to failures in these biological pathways.</p>
+                            <img src="cancer_genomics.jpg" alt="Cancer Genomics UI" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; display: block; border: 1px solid rgba(255, 85, 85, 0.2); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
                         </div>
-                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 229, 255, 0.05); border-left: 3px solid var(--accent); border-radius: 8px;">
-                            <strong style="color: var(--accent);">Sequence Alignment (BWA / Bowtie2):</strong> Aligners use mathematical algorithms that allow a strict, limited percentage of mismatches. This strict tolerance is only mathematically solvable because genome fidelity ensures reads will be highly identical to the reference.
+                        <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(170, 85, 255, 0.05); border-left: 3px solid #aa55ff; border-radius: 8px;">
+                            <strong style="color: #aa55ff; font-size: 1.1rem; display: block; margin-bottom: 0.5rem;">Sequence Alignment (BWA / Bowtie2):</strong> 
+                            <p style="margin-bottom: 1rem;">Aligners use mathematical algorithms that allow a strict, limited percentage of mismatches. This strict tolerance is only mathematically solvable because genome fidelity ensures reads will be highly identical to the reference.</p>
+                            <img src="sequence_alignment.jpg" alt="Sequence Alignment UI" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; display: block; border: 1px solid rgba(170, 85, 255, 0.2); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
                         </div>
 
                         <p style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem;">These fidelity safeguards transform DNA replication from a simple copying process into an extraordinarily accurate information-preservation system, allowing life to maintain genetic continuity over billions of years while still permitting the rare mutations that fuel evolution.</p>
