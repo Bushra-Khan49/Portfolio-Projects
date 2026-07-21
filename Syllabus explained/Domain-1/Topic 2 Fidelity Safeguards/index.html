@@ -109,10 +109,16 @@
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
                         <h3>Where Does Fidelity Fit?</h3>
-                        <div class="code-box" style="text-align: center;">
-                            DNA Structure<br>↓<br>DNA Replication<br>↓<br>Error Prevention<br>↓<br>Proofreading<br>↓<br>Mismatch Repair<br>↓<br>Genome Stability<br>↓<br>Healthy Cells
+                        <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; margin: 1.5rem 0;">
+                            <div class="code-box" style="text-align: center; margin: 0; min-width: 200px;">
+                                DNA Structure<br>↓<br>DNA Replication<br>↓<br>Error Prevention<br>↓<br>Proofreading<br>↓<br>Mismatch Repair<br>↓<br>Genome Stability<br>↓<br>Healthy Cells
+                            </div>
+                            <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 0;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Central_dogma_of_molecular_biology.svg" alt="Central Dogma" style="width: 100%; max-width: 350px; border-radius: 4px;">
+                            </figure>
                         </div>
-                        <p style="margin-top: 1rem; text-align: center; font-size: 1.1rem; color: var(--primary);">Replication is not simply copying. It is copying while constantly checking for mistakes.</p>
+                        <p style="margin-top: 1rem;">Fidelity fits right at the top of the <strong>Central Dogma</strong> (the DNA to DNA replication step). It ensures the genetic blueprint itself isn't corrupted. If a mistake happens here, it's permanent and passed to all future RNA and proteins.</p>
+                        <p style="text-align: center; font-size: 1.1rem; color: var(--primary);">Replication is not simply copying. It is copying while constantly checking for mistakes.</p>
                     </div>
                 </section>
 
@@ -127,11 +133,17 @@
                         <p>Hydrogen bonding provides some specificity. But hydrogen bonds alone are imperfect.</p>
                         <p>Occasionally, A might transiently pair with C, and G might transiently pair with T. Rare tautomeric shifts and thermal fluctuations allow incorrect pairings.</p>
                         <p>If DNA relied only on chemistry, its error rate would be roughly <strong>1 error every 100–1000 bases</strong>.</p>
-                        <div class="code-box">
-                            3.2 billion bases<br>
-                            ↓<br>
-                            Millions of mistakes
+                        <div style="display: flex; gap: 2rem; align-items: center; margin: 1.5rem 0;">
+                            <div class="code-box" style="margin: 0; min-width: 200px;">
+                                3.2 billion bases<br>
+                                ↓<br>
+                                Millions of mistakes
+                            </div>
+                            <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 0;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Adenine-Thymine_tautomers.png" alt="Tautomeric shift" style="width: 100%; max-width: 350px; border-radius: 4px;">
+                            </figure>
                         </div>
+                        <p>This is because bases can undergo <strong>tautomeric shifts</strong> (as seen above), where a hydrogen atom temporarily jumps to a different position, altering the base's shape and allowing Adenine to wrongly pair with Cytosine.</p>
                         <p style="margin-top: 1rem;">Clearly unacceptable.</p>
                     </div>
 
@@ -139,18 +151,23 @@
                         <h3>Three Layers of Security</h3>
                         <p>Instead of relying on one safeguard, cells employ three independent quality-control systems.</p>
                         <p>Think of airport security:</p>
-                        <div class="code-box">
-                            Passenger<br>
-                            ↓<br>
-                            Security Check 1<br>
-                            ↓<br>
-                            Security Check 2<br>
-                            ↓<br>
-                            Security Check 3<br>
-                            ↓<br>
-                            Board Plane
+                        <div style="display: flex; gap: 2rem; align-items: center; margin: 1.5rem 0;">
+                            <div class="code-box" style="margin: 0; min-width: 200px;">
+                                Passenger<br>
+                                ↓<br>
+                                Security Check 1<br>
+                                ↓<br>
+                                Security Check 2<br>
+                                ↓<br>
+                                Security Check 3<br>
+                                ↓<br>
+                                Board Plane
+                            </div>
+                            <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 0;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/DNA_Repair_Mechanisms.png" alt="DNA repair systems" style="width: 100%; max-width: 300px; border-radius: 4px;">
+                            </figure>
                         </div>
-                        <p style="margin-top: 1rem;">DNA replication uses exactly the same philosophy.</p>
+                        <p style="margin-top: 1rem;">DNA replication uses exactly the same philosophy: <strong>1. Presynthetic induced fit</strong>, <strong>2. Exonuclease proofreading</strong>, and <strong>3. Mismatch Repair</strong>.</p>
                     </div>
                 </section>
 
@@ -182,14 +199,21 @@
                             <div>
                                 <h4 style="color: var(--accent);">Active-Site Geometry</h4>
                                 <p>Imagine trying to stack identical Lego blocks.</p>
-                                <div class="code-box" style="text-align: center;">
-                                    □ □ □ □ □<br>
-                                    <span style="font-size: 0.8rem; color: var(--text-muted);">Everything aligns.</span>
-                                </div>
-                                <p style="margin-top: 1rem;">Now insert the wrong piece.</p>
-                                <div class="code-box" style="text-align: center; border-color: rgba(255, 85, 85, 0.3);">
-                                    □ □ <span style="color: #ff5555;">△</span> □ □<br>
-                                    <span style="font-size: 0.8rem; color: var(--text-muted);">The structure no longer fits.</span>
+                                <div style="display: flex; gap: 2rem; align-items: center; margin: 1rem 0;">
+                                    <div style="flex: 1;">
+                                        <div class="code-box" style="text-align: center;">
+                                            □ □ □ □ □<br>
+                                            <span style="font-size: 0.8rem; color: var(--text-muted);">Everything aligns.</span>
+                                        </div>
+                                        <p style="margin-top: 1rem;">Now insert the wrong piece.</p>
+                                        <div class="code-box" style="text-align: center; border-color: rgba(255, 85, 85, 0.3);">
+                                            □ □ <span style="color: #ff5555;">△</span> □ □<br>
+                                            <span style="font-size: 0.8rem; color: var(--text-muted);">The structure no longer fits.</span>
+                                        </div>
+                                    </div>
+                                    <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 0; flex: 1;">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/AT_DNA_base_pair_pt.svg" alt="Base pairing geometry" style="width: 100%; border-radius: 4px;">
+                                    </figure>
                                 </div>
                             </div>
                         </div>
@@ -232,11 +256,18 @@
                                 <h4>Why 3’→5’?</h4>
                                 <p>Remember: DNA synthesis proceeds <strong>5' → 3'</strong>. New nucleotides are always added to the <strong>3'-OH</strong> end.</p>
                                 <p>To remove the last incorrect nucleotide, the enzyme must move backward.</p>
-                                <div class="code-box" style="font-family: monospace;">
-                                    5' -------- <span style="color: #ff5555;">X</span><br>
-                                               ↑<br>
-                                    Remove this base<br>
-                                    3'
+                                <div style="display: flex; gap: 1rem; align-items: center;">
+                                    <div style="flex: 1;">
+                                        <div class="code-box" style="font-family: monospace;">
+                                            5' -------- <span style="color: #ff5555;">X</span><br>
+                                                       ↑<br>
+                                            Remove this base<br>
+                                            3'
+                                        </div>
+                                    </div>
+                                    <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 0; flex: 1;">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Correzione_di_bozze_%28proofreading%29_della_DNA_polimerasi.png" alt="Proofreading mechanism" style="width: 100%; border-radius: 4px;">
+                                    </figure>
                                 </div>
                                 <p style="margin-top: 1rem;">This backward removal is called <strong>3' → 5' exonuclease activity</strong>.</p>
                                 <p>Think of typing on a keyboard:</p>
@@ -302,7 +333,7 @@
                         </div>
 
                         <figure class="glass-figure" style="margin-top: 2rem; background: #fff; padding: 10px; border-radius: 8px; text-align: center;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/DNA_mismatch_repair_Ecoli.png" alt="Mismatch Repair" style="width: 70%; max-width: 500px; display: block; margin: 0 auto; border-radius: 4px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/DNA_mismatch_repair_Ecoli.png" alt="Mismatch Repair" style="width: 35%; max-width: 250px; display: block; margin: 0 auto; border-radius: 4px; filter: contrast(1.2) brightness(1.1);">
                             <figcaption class="diagram-label" style="border-top: none;">Figure 1: Mismatch repair enzymes in E. coli detecting a distortion, excising the error, and re-synthesizing the segment.</figcaption>
                         </figure>
                     </div>
@@ -329,6 +360,7 @@
                             </table>
                         </div>
                         <p style="margin-top: 1rem; text-align: center;">Three independent safeguards improve accuracy by many orders of magnitude.</p>
+                        <p style="margin-top: 1.5rem;"><strong>In Detail:</strong> Think of this as multiplying probabilities. Chemistry alone fails 1/1,000 times. Adding the physical lock of the active site catches 99% of those (bringing it to 1/100,000). Adding the molecular backspace catches 99% of the remaining errors (1/10,000,000). And finally, the post-replicative repair proteins sweep the DNA to catch 99.9% of whatever managed to survive (1/10,000,000,000). Because these systems are independent, their error-catching rates compound.</p>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
@@ -362,6 +394,7 @@
                         <div class="code-box" style="text-align: center;">
                             DNA Structure<br>↓<br>Replication<br>↓<br>Base Selection<br>↓<br>Proofreading<br>↓<br>Mismatch Repair<br>↓<br>High-Fidelity Genome<br>↓<br>Cell Division<br>↓<br>Healthy Organism<br>↓<br>Reliable Genomic Data<br>↓<br>Bioinformatics
                         </div>
+                        <p style="margin-top: 1rem;">This flowchart illustrates the chain of dependencies. Bioinformatics sits at the very end of this chain. If the structural checks (Base Selection &rarr; MMR) break down, the Genome becomes unstable. Unstable genomes mean that the data bioinformaticians pull from sequences is fundamentally chaotic, representing random chemical decay rather than true evolutionary signals.</p>
 
                         <h4 style="margin-top: 2rem; color: #ff5555;">If Fidelity Safeguards Did Not Exist</h4>
                         <p>Without these quality-control systems:</p>
@@ -373,7 +406,19 @@
                             <li>Evolutionary relationships would be obscured by excessive random mutations.</li>
                             <li>Genome sequencing, variant calling, comparative genomics, and many other bioinformatics analyses would become much less reliable because the underlying DNA would contain far more replication errors than true biological variation.</li>
                         </ul>
-                        <p style="margin-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1rem;">These fidelity safeguards transform DNA replication from a simple copying process into an extraordinarily accurate information-preservation system, allowing life to maintain genetic continuity over billions of years while still permitting the rare mutations that fuel evolution.</p>
+                        <p style="margin-top: 1.5rem;"><strong>How Do We Actually Use This in Bioinformatics?</strong></p>
+                        <p>Bioinformaticians actively use knowledge of fidelity to design pipelines and tools:</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 229, 255, 0.05); border-left: 3px solid var(--primary); border-radius: 8px;">
+                            <strong style="color: var(--primary);">Variant Calling (GATK / BQSR):</strong> During sequencing prep, engineered polymerases with built-in 3'&rarr;5' proofreading are used to amplify DNA. Tools like GATK's Base Quality Score Recalibration (BQSR) model the residual polymerase error rates to prevent false-positive variant calls.
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 229, 255, 0.05); border-left: 3px solid var(--secondary); border-radius: 8px;">
+                            <strong style="color: var(--secondary);">Cancer Genomics (Mutect2):</strong> Defects in MMR genes (like MSH2 or MLH1) cause cancers like Lynch syndrome. Bioinformaticians use tools like Mutect2 to identify "Microsatellite Instability" (MSI) in tumor genomes. Massive spikes in transition mutations map directly back to failures in these biological pathways.
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 229, 255, 0.05); border-left: 3px solid var(--accent); border-radius: 8px;">
+                            <strong style="color: var(--accent);">Sequence Alignment (BWA / Bowtie2):</strong> Aligners use mathematical algorithms that allow a strict, limited percentage of mismatches. This strict tolerance is only mathematically solvable because genome fidelity ensures reads will be highly identical to the reference.
+                        </div>
+
+                        <p style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem;">These fidelity safeguards transform DNA replication from a simple copying process into an extraordinarily accurate information-preservation system, allowing life to maintain genetic continuity over billions of years while still permitting the rare mutations that fuel evolution.</p>
                     </div>
                 </section>
 
