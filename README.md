@@ -14,6 +14,7 @@
 |-------|-------|-----------|
 | Domain 1 · Topic 0 | The DNA | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%200%20The%20DNA/index.html) |
 | Domain 1 · Topic 1 | Replication | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%201%20Replication/index.html) |
+| Domain 1 · Topic 2 | Fidelity Safeguards | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%202%20Fidelity%20Safeguards/index.html) |
 
 ---
 
@@ -43,6 +44,20 @@ An interactive visualizer explaining the molecular machinery and mechanics of DN
 - 🧩 **Strand Asymmetry**: Leading vs Lagging strand (Okazaki fragments)
 - 🔄 **Loop-and-Release**: How the replisome copies both strands simultaneously
 - 💻 **Bioinformatics**: Connecting replication mechanics to read mapping, variant calling, and mutation models
+
+**Built with:** Three.js · GSAP · Vanilla JS
+
+---
+
+## 🧬 Domain 1 — Topic 2: Fidelity Safeguards
+
+An interactive visualizer exploring DNA error prevention, proofreading, and mismatch repair:
+
+- ❌ **Chemistry Limitations**: Why hydrogen bonding alone only gives 1 error per 100-1000 bases.
+- 📐 **Layer 1 (Presynthetic)**: Active-site geometry, induced fit, and preventing incorrect bonding.
+- 🔙 **Layer 2 (Proofreading)**: 3' &rarr; 5' exonuclease activity (the molecular backspace).
+- 🔍 **Layer 3 (Mismatch Repair)**: Detecting distortions and identifying the new strand (methylation/nicks).
+- 💻 **Bioinformatics**: How fidelity underpins variant calling accuracy, read mapping, and evolutionary models.
 
 **Built with:** Three.js · GSAP · Vanilla JS
 
