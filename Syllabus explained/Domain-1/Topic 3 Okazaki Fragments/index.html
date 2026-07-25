@@ -9,113 +9,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css?v=1">
     <style>
-        .sci-diagram {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: 300px;
-            background: rgba(10, 10, 15, 0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 0 auto;
-            font-family: 'Inter', sans-serif;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-        }
-        .strand {
-            position: absolute;
-            height: 12px;
-            background: linear-gradient(90deg, #1f6f8b, #30a5c0);
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(48,165,192,0.5);
-        }
-        .strand.template {
-            top: 220px;
-            left: 50px;
-            width: 500px;
-        }
-        .strand.new-dna {
-            top: 180px;
-            height: 16px;
-            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
-            box-shadow: 0 0 15px rgba(0,210,255,0.6);
-        }
-        .strand.rna {
-            top: 180px;
-            height: 16px;
-            background: linear-gradient(90deg, #ff4b2b, #ff416c);
-            box-shadow: 0 0 15px rgba(255,75,43,0.6);
-        }
-        .enzyme {
-            position: absolute;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.3);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-        }
-        .primase {
-            width: 100px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #e65c00, #F9D423);
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-        }
-        .pol3 {
-            width: 120px;
-            height: 100px;
-            background: radial-gradient(circle at 30% 30%, #00b4db, #0083b0);
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        }
-        .pol1 {
-            width: 90px;
-            height: 90px;
-            background: radial-gradient(circle at 30% 30%, #8E2DE2, #4A00E0);
-            border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%;
-        }
-        .ligase {
-            width: 70px;
-            height: 70px;
-            background: radial-gradient(circle at 30% 30%, #11998e, #38ef7d);
-            border-radius: 50%;
-        }
-        .sci-label {
-            position: absolute;
-            color: rgba(255,255,255,0.9);
-            font-size: 0.8rem;
-            background: rgba(0,0,0,0.7);
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.2);
-            pointer-events: none;
-        }
-        .line {
-            position: absolute;
-            background: rgba(255,255,255,0.4);
-            transform-origin: 0 0;
-            height: 1px;
-        }
-        .nucleotides {
-            position: absolute;
-            display: flex;
-            gap: 4px;
-            top: 200px;
-        }
-        .nt {
-            width: 8px;
-            height: 16px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 2px;
-        }
-        .nt.pair {
-            background: rgba(255,255,255,0.8);
-        }
-    </style>
-    <style>
         .back-btn {
             position: fixed;
             top: 1.25rem;
@@ -259,21 +152,7 @@
                             </div>
                         </div>
                         <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
-                            <div class="sci-diagram">
-                                <div class="strand template"></div>
-                                <div class="sci-label" style="top: 235px; left: 10px;">3' Template</div>
-                                <div class="sci-label" style="top: 235px; left: 510px;">5'</div>
-                                
-                                <div class="strand rna" style="left: 300px; width: 100px;"></div>
-                                <div class="sci-label" style="top: 155px; left: 405px; color: #ff4b2b; border-color: #ff4b2b;">3'-OH end</div>
-                                <div class="sci-label" style="top: 155px; left: 275px;">5'</div>
-                                <div class="sci-label" style="top: 120px; left: 320px; color: #ff416c;">RNA Primer</div>
-                                
-                                <div class="enzyme primase" style="top: 140px; left: 340px;">Primase</div>
-                                
-                                <!-- Decorative base pairs -->
-                                <div class="nucleotides" style="left: 305px;"><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div></div>
-                            </div>
+                            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Initiation_of_DNA_replication.svg" alt="Initiation of DNA Replication by Primase" style="width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: invert(1) hue-rotate(180deg) brightness(1.5);">
                             <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 1:</strong> The DNA Replication Fork. RNA Primase lays down RNA primers on the lagging strand, providing the critical 3'-OH starting block.</figcaption>
                         </figure>
                     </div>
@@ -311,23 +190,7 @@
                             </div>
                         </div>
                         <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
-                            <div class="sci-diagram">
-                                <div class="strand template"></div>
-                                <div class="sci-label" style="top: 235px; left: 10px;">3' Template</div>
-                                <div class="sci-label" style="top: 235px; left: 510px;">5'</div>
-                                
-                                <div class="strand rna" style="left: 400px; width: 80px;"></div>
-                                <div class="strand new-dna" style="left: 200px; width: 200px;"></div>
-                                <div class="sci-label" style="top: 155px; left: 450px;">5'</div>
-                                <div class="sci-label" style="top: 120px; left: 410px; color: #ff416c;">RNA Primer</div>
-                                <div class="sci-label" style="top: 155px; left: 150px; color: #00d2ff; border-color: #00d2ff;">3'-OH extending</div>
-                                <div class="sci-label" style="top: 120px; left: 250px; color: #00d2ff;">New DNA (Okazaki Fragment)</div>
-                                
-                                <div class="enzyme pol3" style="top: 130px; left: 140px;">DNA Pol III</div>
-                                
-                                <div class="nucleotides" style="left: 205px;"><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div></div>
-                                <div class="nucleotides" style="left: 405px;"><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div></div>
-                            </div>
+                            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/DNA_Polymerase_extension_activity.svg" alt="DNA Polymerase extending the Okazaki Fragment" style="width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: invert(1) hue-rotate(180deg) brightness(1.5);">
                             <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 2:</strong> DNA Polymerase adding complementary DNA nucleotides to the 3' end of the growing Okazaki fragment.</figcaption>
                         </figure>
                     </div>
@@ -369,23 +232,7 @@
                             </div>
                         </div>
                         <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
-                            <div class="sci-diagram">
-                                <div class="strand template"></div>
-                                <div class="sci-label" style="top: 235px; left: 10px;">3' Template</div>
-                                <div class="sci-label" style="top: 235px; left: 510px;">5'</div>
-                                
-                                <div class="strand new-dna" style="left: 360px; width: 140px;"></div>
-                                <div class="strand rna" style="left: 300px; width: 60px; opacity: 0.5;"></div>
-                                <div class="strand new-dna" style="left: 100px; width: 200px;"></div>
-                                
-                                <div class="sci-label" style="top: 120px; left: 390px; color: #00d2ff;">Okazaki Fragment 1</div>
-                                <div class="sci-label" style="top: 120px; left: 130px; color: #00d2ff;">Okazaki Fragment 2</div>
-                                <div class="sci-label" style="top: 100px; left: 280px; color: #8E2DE2; border-color: #8E2DE2;">RNA being removed & replaced</div>
-                                
-                                <div class="enzyme pol1" style="top: 135px; left: 270px;">DNA Pol I</div>
-                                
-                                <div class="nucleotides" style="left: 305px;"><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div></div>
-                            </div>
+                            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Nick_translation.svg" alt="Nick Translation and Primer Removal" style="width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: invert(1) hue-rotate(180deg) brightness(1.5);">
                             <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 3:</strong> Processing of the lagging strand. The RNA primers are removed and replaced by DNA nucleotides.</figcaption>
                         </figure>
                     </div>
@@ -424,20 +271,7 @@
                         <p style="margin-top: 1.5rem;"><strong>Why Does Ligase Matter?</strong> Without ligase, the chromosome would remain full of tiny breaks. During future replication, the DNA could snap apart. Cells therefore require ligase to finish every Okazaki fragment. Think of ligase as the final welder on an assembly line. Everyone else builds. Ligase permanently joins.</p>
 
                         <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
-                            <div class="sci-diagram">
-                                <div class="strand template"></div>
-                                <div class="sci-label" style="top: 235px; left: 10px;">3' Template</div>
-                                <div class="sci-label" style="top: 235px; left: 510px;">5'</div>
-                                
-                                <div class="strand new-dna" style="left: 300px; width: 200px; border-radius: 0 6px 6px 0;"></div>
-                                <div class="strand new-dna" style="left: 100px; width: 195px; border-radius: 6px 0 0 6px;"></div>
-                                
-                                <div class="sci-label" style="top: 120px; left: 280px; color: #38ef7d; border-color: #38ef7d;">Nick (Missing Phosphodiester Bond)</div>
-                                
-                                <div class="enzyme ligase" style="top: 145px; left: 265px;">Ligase</div>
-                                
-                                <div class="nucleotides" style="left: 285px;"><div class="nt pair"></div><div class="nt pair"></div><div class="nt pair"></div></div>
-                            </div>
+                            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ligase.svg" alt="DNA Ligase sealing the nick" style="width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: invert(1) hue-rotate(180deg) brightness(1.5);">
                             <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 4:</strong> DNA Ligase forming a phosphodiester bond to seal the nick, creating a continuous sugar-phosphate backbone.</figcaption>
                         </figure>
                     </div>
