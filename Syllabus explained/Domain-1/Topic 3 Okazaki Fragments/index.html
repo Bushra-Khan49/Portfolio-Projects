@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okazaki Fragment Processing: Synthesizing the Lagging Strand</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=1">
+    <style>
+        .back-btn {
+            position: fixed;
+            top: 1.25rem;
+            left: 1.25rem;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            background: rgba(5, 10, 21, 0.75);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 999px;
+            color: #00e5ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.1);
+        }
+        .back-btn:hover {
+            background: rgba(0, 229, 255, 0.12);
+            border-color: rgba(0, 229, 255, 0.7);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+            transform: translateX(-2px);
+        }
+        .back-btn svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .back-btn { top: 0.75rem; left: 0.75rem; font-size: 0.72rem; padding: 0.4rem 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-btn" href="../../..">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Portfolio
+    </a>
+
+    <main class="split-layout">
+        
+        <!-- Left Column: Scrolling Content -->
+        <div class="content-column" id="smooth-wrapper">
+            <div id="smooth-content" class="content-inner">
+                
+                <!-- Hero -->
+                <section class="hero-section fade-up">
+                    <h5 class="eyebrow">Topic 3</h5>
+                    <h1>Okazaki Fragments</h1>
+                    <h2>Synthesizing the Lagging Strand</h2>
+                    <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
+                        <div class="mouse"></div>
+                        <span>Scroll to Explore</span>
+                    </div>
+                </section>
+                
+                <!-- Intro Cards -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Why This Matters</h3>
+                        <p>Remember one fundamental rule: <strong>DNA polymerase can only synthesize DNA in the 5’ → 3’ direction.</strong></p>
+                        <p>This creates a problem.</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>The <strong>leading strand</strong> can be copied continuously.</li>
+                            <li>The <strong>lagging strand</strong> cannot.</li>
+                        </ul>
+                        <p>Instead, the lagging strand is copied as many small DNA pieces called <strong>Okazaki fragments</strong>.</p>
+                        <p>However, the final chromosome cannot contain thousands of disconnected DNA pieces or RNA primers. Cells therefore perform a cleanup process after each fragment is synthesized.</p>
+                        <p style="margin-top: 1rem;">Without this processing:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>RNA would remain inside DNA.</li>
+                            <li>DNA would contain breaks (nicks).</li>
+                            <li>The chromosome would not be chemically continuous.</li>
+                            <li>DNA would become unstable.</li>
+                            <li>Replication would be incomplete.</li>
+                            <li>Future rounds of replication and transcription would fail.</li>
+                        </ul>
+                        <p style="margin-top: 1rem; color: var(--accent);">For bioinformatics, understanding this explains why the finished genome is one continuous DNA molecule, even though it was synthesized in pieces.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>The Big Picture</h3>
+                        <p>Imagine repairing a long road. Instead of paving the whole road continuously, workers lay down many short road segments.</p>
+                        <div class="code-box" style="text-align: center; font-size: 0.85rem;">
+                            □□□□□□□□ &nbsp;&nbsp; □□□□□□□□ &nbsp;&nbsp; □□□□□□□□
+                        </div>
+                        <p>Afterward they must:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>Remove temporary supports</li>
+                            <li>Fill the gaps</li>
+                            <li>Seal every joint</li>
+                        </ul>
+                        <p>Only then does the road become continuous. Okazaki fragment processing is exactly the same idea.</p>
+                        
+                        <h4 style="margin-top: 2rem;">Where Does This Fit?</h4>
+                        <div class="code-box" style="text-align: center;">
+                            DNA Structure<br>↓<br>Replication Fork Opens<br>↓<br>Leading Strand & Lagging Strand<br>↓<br><strong>Okazaki Fragment Processing</strong><br>↓<br>Continuous DNA Strand<br>↓<br>Cell Division
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #00e5ff;">Step 1 — Primer Deposition</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>Placing the starting block</em></p>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>The Problem</h4>
+                                <p>DNA polymerase cannot start DNA synthesis from nothing. It requires an existing free 3’-OH group.</p>
+                                <div class="code-box" style="margin-bottom: 1rem; border-color: rgba(255, 85, 85, 0.3);">
+                                    No primer means:<br>
+                                    DNA Polymerase ❌ Cannot begin
+                                </div>
+                                <h4 style="margin-top: 2rem;">Why RNA?</h4>
+                                <p>RNA can be synthesized without a pre-existing primer. DNA polymerase cannot. Primase solves this problem. Think of primase as placing the starting block before a runner begins the race.</p>
+                            </div>
+                            <div>
+                                <h4>The Solution</h4>
+                                <p>Another enzyme arrives first: <strong>RNA Primase</strong>.</p>
+                                <p>Primase synthesizes a short RNA primer (about 10 nucleotides in prokaryotes, 10–12 in eukaryotes). This primer provides the required 3'-OH for DNA polymerase.</p>
+                                
+                                <div class="code-box" style="margin: 2rem 0;">
+                                    Template DNA<br>
+                                    =======================<br>
+                                    RNA Primer<br>
+                                    <span style="color: #ff5555;">RRRRRRRRRR</span><br>
+                                    <br>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">DNA synthesis can now begin.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/DNA_replication_en.svg" alt="DNA Replication Fork" style="width: 100%; max-width: 600px; height: auto; border-radius: 4px;">
+                            <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 1:</strong> The DNA Replication Fork. Primase lays down RNA primers on the lagging strand, allowing DNA Polymerase to synthesize Okazaki fragments in the 5'→3' direction.</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #ffaa00;">Step 2 — Elongation</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>Building the fragment</em></p>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>Copying the DNA</h4>
+                                <p>Now the main copying enzyme arrives (<strong>DNA Polymerase III</strong> in bacteria, <strong>DNA Polymerase δ</strong> in eukaryotes).</p>
+                                <p>This enzyme adds DNA nucleotides. The polymerase keeps extending the fragment until it reaches the previous Okazaki fragment. Eventually it stops because another fragment already occupies that space.</p>
+                                <div class="code-box" style="margin: 2rem 0;">
+                                    Primer<br>
+                                    <span style="color: #ff5555;">RRRRR</span><br>
+                                    ↓<br>
+                                    DNA<br>
+                                    <span style="color: #00e5ff;">DDDDDDDDDDDDDDDD</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>The Result</h4>
+                                <div class="code-box" style="margin: 1rem 0;">
+                                    <span style="color: #ff5555;">RNA</span>-----<span style="color: #00e5ff;">DNA</span><br>
+                                    <span style="color: #ff5555;">RNA</span>-----<span style="color: #00e5ff;">DNA</span><br>
+                                    <span style="color: #ff5555;">RNA</span>-----<span style="color: #00e5ff;">DNA</span>
+                                </div>
+                                <p>Each fragment still begins with RNA. This is a problem.</p>
+                                
+                                <h4 style="margin-top: 2rem;">Why Can't RNA Stay?</h4>
+                                <p>DNA is supposed to be <strong>Deoxyribonucleic Acid</strong>, not an RNA-DNA Hybrid. RNA differs chemically (ribose sugar, extra oxygen atom, uracil). RNA is less stable. Cells therefore remove every RNA primer after replication.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #ff5555;">Step 3 — Primer Removal</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>Nick Translation</em></p>
+                        
+                        <p>Now a different enzyme takes over: <strong>DNA Polymerase I</strong>.</p>
+                        <p>Unlike Polymerase III, Polymerase I has an additional ability: <strong>5' → 3' Exonuclease Activity</strong>. This means it can remove nucleotides ahead of itself.</p>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>Like a Construction Worker</h4>
+                                <p>Imagine a worker simultaneously tearing up the old floor and laying new tiles immediately behind them.</p>
+                                <div class="code-box" style="margin: 1.5rem 0;">
+                                    Old floor (RNA)<br>
+                                    <span style="color: #ff5555;">RRRRRRRR</span><br>
+                                    ↓<br>
+                                    Remove old tiles<br>
+                                    ↓<br>
+                                    Lay new tiles (DNA) immediately
+                                </div>
+                                <p>DNA Polymerase I does exactly this.</p>
+                            </div>
+                            <div>
+                                <h4>Nick Translation</h4>
+                                <p>It simultaneously removes RNA (<span style="color: #ff5555;">RRRRR</span>) while replacing it with DNA (<span style="color: #00e5ff;">DDDDD</span>).</p>
+                                <p>As it moves, RNA disappears, and DNA appears. No gap is left. This process is called <strong>Nick Translation</strong> because the small break (nick) effectively moves forward as the enzyme replaces RNA with DNA.</p>
+                                
+                                <div class="code-box" style="margin: 1.5rem 0;">
+                                    Front: Remove RNA (Exonuclease)<br>
+                                    ↓<br>
+                                    Back: Add DNA (Polymerase)
+                                </div>
+                                <p style="color: var(--accent);">Very efficient.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #aa55ff;">Step 4 — Nick Sealing</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>The final weld</em></p>
+                        
+                        <p>Now every nucleotide is DNA. But there is still one tiny problem: The sugar-phosphate backbone is not completely connected.</p>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>The Missing Link</h4>
+                                <p>Imagine a chain:</p>
+                                <div class="code-box" style="margin: 1rem 0; font-size: 1.2rem; letter-spacing: 2px;">
+                                    OOOOOOOO &nbsp;&nbsp; OOOOOOO
+                                </div>
+                                <p>There is one missing link. This tiny break is called a <strong>Nick</strong>. There are no missing bases. Only one missing chemical bond.</p>
+                            </div>
+                            <div>
+                                <h4>DNA Ligase</h4>
+                                <p>DNA Ligase is the enzyme that permanently seals this nick. It forms a <strong>Phosphodiester Bond</strong> between the 3'-OH and 5'-Phosphate. Now the backbone becomes continuous.</p>
+                                
+                                <div class="code-box" style="margin: 1.5rem 0;">
+                                    Before:<br>
+                                    DNA ---- DNA<br>
+                                    After:<br>
+                                    DNA========DNA
+                                </div>
+                                <p style="color: var(--primary);">The chromosome is now chemically complete.</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 1.5rem;"><strong>Why Does Ligase Matter?</strong> Without ligase, the chromosome would remain full of tiny breaks. During future replication, the DNA could snap apart. Cells therefore require ligase to finish every Okazaki fragment. Think of ligase as the final welder on an assembly line. Everyone else builds. Ligase permanently joins.</p>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target" style="grid-column: 1 / -1;">
+                        <h3>The Enzyme Team</h3>
+                        <div class="table-container" style="margin-top: 1rem;">
+                            <table class="bio-table">
+                                <thead>
+                                    <tr>
+                                        <th>Enzyme</th>
+                                        <th>Function</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Helicase</strong></td>
+                                        <td>Opens the DNA double helix</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Primase</strong></td>
+                                        <td>Synthesizes the RNA primer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DNA Polymerase III / δ</strong></td>
+                                        <td>Extends the new DNA strand (Okazaki fragment)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DNA Polymerase I</strong></td>
+                                        <td>Removes RNA primer and replaces it with DNA</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DNA Ligase</strong></td>
+                                        <td>Seals the remaining nick with a phosphodiester bond</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h2>Why Does This Matter to Bioinformatics?</h2>
+                        
+                        <p style="font-size: 1.1rem; margin-top: 1rem;">At first glance, Okazaki fragments seem like a purely molecular biology concept. You might think: <em>"I analyze FASTQ files and genomes. Why do I need to know about RNA primers and DNA ligase?"</em></p>
+                        <p>The answer is that every sequencing read you analyze comes from DNA that has already undergone this entire processing pipeline.</p>
+                        
+                        <div class="code-box" style="text-align: center; margin: 2rem 0;">
+                            DNA Replication (Short Fragments)<br>↓<br>Primer Removal & Nick Sealing<br>↓<br>Finished Chromosome<br>↓<br>DNA Extraction & Sequencing<br>↓<br><strong>Bioinformatics Analysis (FASTQ)</strong>
+                        </div>
+                        
+                        <p>Bioinformatics assumes that the DNA sequence stored in the genome is <strong>continuous, chemically complete, free of RNA primers, and faithfully copied</strong>. Those assumptions are only true because Okazaki fragment processing exists. Without it, many computational analyses would fail.</p>
+                        
+                        <div style="margin-top: 3rem;">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">Connection 1 — Continuous Genome Assembly</h3>
+                            <p>One of the first things bioinformaticians do is assemble genomes. Genome assembly assumes chromosomes are continuous DNA molecules. Assembler algorithms work like a jigsaw puzzle.</p>
+                            <p>Imagine if RNA primers were still present. Instead of continuous DNA, you would have an RNA-DNA hybrid mix. The sequence would no longer represent one chemically consistent molecule, and assembly algorithms would encounter discontinuities that do not exist in normal genomes.</p>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">Connection 2 — Reference Genomes</h3>
+                            <p>Every reference genome (Human, Mouse, E. coli) is stored as one continuous DNA sequence. There are no RNA primers and no Okazaki fragment boundaries because DNA Polymerase I removed every primer and DNA ligase sealed every nick. Only after these processes does the chromosome become the stable molecule that sequencing captures.</p>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">Connection 3 — Sequencing Accuracy</h3>
+                            <p>Suppose ligase never sealed the DNA. The chromosome would contain thousands of tiny breaks. During DNA extraction or library preparation, these weak points would break easily. This would produce fragmented reads, uneven coverage, and poor sequencing quality. Modern sequencing depends on intact chromosomes.</p>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">Connection 4 — Replication Timing Studies (OK-Seq)</h3>
+                            <p>Not every sequencing experiment studies finished DNA. Techniques like <strong>OK-seq (Okazaki Fragment Sequencing)</strong> deliberately sequence these fragments. From these fragments, computational biologists reconstruct replication fork direction, replication origins, and termination zones.</p>
+                        </div>
+
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">Connection 5 & 6 — Genome Stability & DNA Repair</h3>
+                            <p>Cancer genomes contain many structural abnormalities. Some arise because Okazaki fragment processing fails (e.g. if ligase is defective). DNA breaks accumulate leading to large deletions, duplications, or translocations. Bioinformaticians detect these using structural variant callers. Understanding the biology explains where these computational signals originate.</p>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">Connection 7 — Comparative Genomics</h3>
+                            <p>One reason genomes remain stable over millions of years is because Okazaki fragment processing is extremely reliable. This stability allows us to computationally align and compare homologous genes between humans, chimpanzees, mice, and fish. If chromosomes accumulated thousands of replication mistakes every generation, multiple sequence alignment would become nearly impossible.</p>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">Connection 8 & 9 — Variant Calling & Replication Stress</h3>
+                            <p>Is a mutation real? Understanding replication biology helps build statistical models for variant callers. The probability that DNA replication introduced an error is extremely low because of proofreading, mismatch repair, primer replacement, and ligase repair. Therefore, observed variants in a VCF file are much more likely to represent genuine biological changes than routine replication errors.</p>
+                        </div>
+
+                    </div>
+                </section>
+                
+                <!-- Summary Table -->
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3>Summary: Molecular Biology → Bioinformatics</h3>
+                        <div class="table-container" style="margin-top: 1rem;">
+                            <table class="bio-table">
+                                <thead>
+                                    <tr>
+                                        <th>Molecular Event</th>
+                                        <th>Biological Role</th>
+                                        <th>Bioinformatics Connection</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>RNA primer synthesis</strong></td>
+                                        <td>Starts lagging-strand DNA synthesis</td>
+                                        <td>Explains replication intermediates studied in replication research</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DNA polymerase extension</strong></td>
+                                        <td>Builds Okazaki fragments</td>
+                                        <td>Produces the DNA that becomes the sequenced genome</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Primer removal</strong></td>
+                                        <td>Eliminates temporary RNA from DNA</td>
+                                        <td>Ensures the final reference genome contains only DNA</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DNA replacement</strong></td>
+                                        <td>Creates a chemically uniform DNA molecule</td>
+                                        <td>Provides consistent substrate for sequencing and genome assembly</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DNA ligase sealing</strong></td>
+                                        <td>Joins fragments into one continuous strand</td>
+                                        <td>Maintains chromosome integrity, improving sequencing quality and enabling accurate genome assembly</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>High-fidelity processing</strong></td>
+                                        <td>Preserves genome stability</td>
+                                        <td>Supports reliable variant calling, comparative genomics, evolutionary analysis, and cancer genomics</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <p style="margin-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem; color: var(--primary); font-size: 1.1rem; text-align: center;"><strong>The key takeaway:</strong> As a bioinformatician, you rarely analyze Okazaki fragments directly. Instead, you analyze the finished genome that exists because Okazaki fragment processing was completed correctly. Understanding these molecular steps helps explain why the reference genome is continuous, why sequencing data are interpretable, and why deviations from this process are important signals in fields such as cancer genomics, replication dynamics, and DNA repair research.</p>
+                    </div>
+                </section>
+
+                <div class="bottom-spacer"></div>
+            </div>
+        </div>
+
+        <!-- Right Column: Sticky 3D Canvas -->
+        <div class="canvas-column">
+            <canvas id="webgl-canvas"></canvas>
+            <div class="canvas-overlay">
+                <div class="overlay-text">Interactive Replication (Helix)</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <script src="script.js?v=1"></script>
+</body>
+</html>
