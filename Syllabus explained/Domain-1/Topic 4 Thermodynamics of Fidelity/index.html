@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Physics and Chemistry of Accurate DNA Replication</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=1">
+    <style>
+        .back-btn {
+            position: fixed;
+            top: 1.25rem;
+            left: 1.25rem;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            background: rgba(5, 10, 21, 0.75);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 999px;
+            color: #00e5ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.1);
+        }
+        .back-btn:hover {
+            background: rgba(0, 229, 255, 0.12);
+            border-color: rgba(0, 229, 255, 0.7);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+            transform: translateX(-2px);
+        }
+        .back-btn svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .back-btn { top: 0.75rem; left: 0.75rem; font-size: 0.72rem; padding: 0.4rem 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-btn" href="../../..">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Portfolio
+    </a>
+
+    <main class="split-layout">
+        
+        <!-- Left Column: Scrolling Content -->
+        <div class="content-column" id="smooth-wrapper">
+            <div id="smooth-content" class="content-inner">
+                
+                <!-- Hero -->
+                <section class="hero-section fade-up">
+                    <h5 class="eyebrow">Topic 4</h5>
+                    <h1>Fidelity Begins Before Biology</h1>
+                    <h2>The Physics and Chemistry of Accurate DNA Replication</h2>
+                    <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
+                        <div class="mouse"></div>
+                        <span>Scroll to Explore</span>
+                    </div>
+                </section>
+                
+                <!-- Intro Cards -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Why This Matters</h3>
+                        <p>When most people think about DNA replication fidelity, they think about:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>DNA Polymerase</li>
+                            <li>Proofreading</li>
+                            <li>Mismatch Repair</li>
+                        </ul>
+                        <p>But fidelity actually begins before any enzyme acts. It begins with the laws of chemistry and physics.</p>
+                        <p>DNA polymerase is not "smart." It does not recognize letters like A, T, G, or C. Instead, it exploits the fact that correct base pairs are naturally more stable than incorrect ones because of their physical and chemical properties.</p>
+                        <p>This means replication fidelity is built in layers:</p>
+                        <div class="code-box" style="text-align: center;">
+                            Physics<br>↓<br>Chemistry<br>↓<br>Thermodynamics<br>↓<br>DNA Polymerase<br>↓<br>Proofreading<br>↓<br>Mismatch Repair<br>↓<br>Near-perfect genome replication
+                        </div>
+                        <p style="margin-top: 1rem;">Every later fidelity mechanism builds upon these fundamental physical principles.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Why Should a Bioinformatician Care?</h3>
+                        <p>As bioinformaticians, we rarely watch DNA replicate. Instead, we analyze:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>FASTQ files</li>
+                            <li>BAM files</li>
+                            <li>VCF files</li>
+                            <li>Genome assemblies</li>
+                            <li>Protein structures</li>
+                            <li>Drug molecules</li>
+                        </ul>
+                        <p>Yet every computational analysis assumes that DNA obeys these chemical rules. If these physical principles failed, almost every downstream bioinformatics algorithm would become unreliable.</p>
+                        <p style="color: var(--accent);">Understanding the chemistry explains why genomes remain stable, why sequencing works, and why true mutations are rare.</p>
+                        
+                        <h4 style="margin-top: 2rem;">Where Does This Fit?</h4>
+                        <div class="code-box" style="text-align: center;">
+                            DNA Structure<br>↓<br>Chemical Base Pairing<br>↓<br>Thermodynamic Stability<br>↓<br>DNA Polymerase Selection<br>↓<br>Proofreading<br>↓<br>Mismatch Repair<br>↓<br>High-Fidelity Genome<br>↓<br>Sequencing<br>↓<br>Bioinformatics
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #00e5ff;">Step 1 — DNA Bases Naturally Prefer Certain Partners</h3>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <p>DNA consists of four bases: <strong>A, T, G, C</strong>. They pair specifically: <strong>A ↔ T</strong> and <strong>G ↔ C</strong>.</p>
+                                <p>But why? Not because biology decided so. Because these combinations are:</p>
+                                <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                                    <li>chemically optimal</li>
+                                    <li>physically compatible</li>
+                                    <li>energetically favorable</li>
+                                </ul>
+                                <p>Nature simply follows the lowest-energy arrangement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #00e5ff;">The Three Major Chemical Forces Behind Fidelity</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>Every base pair is stabilized by three major interactions.</em></p>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #fff;">1. Hydrogen Bonding</h4>
+                            <p>Hydrogen bonds provide specificity. Correct pairs line up perfectly.</p>
+                            <div class="code-box" style="margin-bottom: 1rem;">
+                                A       T<br>
+                                ●···●<br>
+                                ●···●<br>
+                                <br>
+                                G      C<br>
+                                ●···●<br>
+                                ●···●<br>
+                                ●···●
+                            </div>
+                            <p>The donor and acceptor atoms are perfectly positioned. Maximum hydrogen bonding occurs.</p>
+                            <p>Now imagine <strong>A ↔ C</strong>. The atoms no longer align. Some hydrogen bonds disappear. Others become weak. Some atoms even repel each other. The interaction becomes unstable.</p>
+                            
+                            <h4 style="margin-top: 2rem; color: #fff;">2. Base Stacking</h4>
+                            <p>Many students think hydrogen bonds are what mainly stabilize DNA. Surprisingly, base stacking contributes even more. DNA bases are flat aromatic rings. Imagine stacking coins.</p>
+                            <div class="code-box" style="margin-bottom: 1rem; text-align: center;">
+                                ○<br>○<br>○<br>○
+                            </div>
+                            <p>Everything stacks neatly. Electron clouds overlap. The molecule becomes stable. Now insert an uneven object (○ △ ○). The stack becomes distorted. Energy increases. The helix becomes slightly unstable.</p>
+
+                            <h4 style="margin-top: 2rem; color: #fff;">3. Hydrophobic Effect</h4>
+                            <p>This is one of the most important—and often misunderstood—concepts in molecular biology. DNA exists inside water. Water molecules constantly form hydrogen bonds with each other. DNA bases are hydrophobic (water-fearing) aromatic molecules.</p>
+                            <p>Water "doesn’t like" exposing these non-polar surfaces because it disrupts its own hydrogen-bonding network. Therefore, correct DNA folds so that:</p>
+                            <div class="code-box" style="margin-bottom: 1rem;">
+                                Hydrophobic bases ↓ Hidden inside<br>
+                                Sugar-phosphate backbone ↓ Faces water
+                            </div>
+                            <p>This arrangement minimizes the system’s free energy. It is energetically favorable.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>What Happens During a Mismatch?</h3>
+                        <p>Suppose <strong>G pairs with T</strong>. The bases no longer fit perfectly. One base tilts. Another rotates. The helix bends slightly.</p>
+                        <p>This distortion exposes hydrophobic surfaces that normally remain buried. Water molecules must now rearrange around these exposed regions. This decreases the disorder (entropy) of the surrounding water because water molecules form ordered “cages” around exposed hydrophobic surfaces.</p>
+                        <p>Creating this ordered shell costs energy. Therefore, the total free energy of the DNA-water system increases. The mismatch becomes thermodynamically unfavorable.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>The Physics Perspective</h3>
+                        <p>DNA polymerase does not recognize A, T, G, C. It measures:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>molecular shape</li>
+                            <li>bond angles</li>
+                            <li>distances</li>
+                            <li>atomic geometry</li>
+                        </ul>
+                        <p>Imagine a precision factory manufacturing gears. Every gear must fit within a tolerance of a fraction of a millimeter. One incorrect tooth ↓ Machine jams.</p>
+                        <p>DNA polymerase functions similarly. Its active site is a nanoscale measuring instrument. Only nucleotides with correct bond angles, spacing, and orientation fit properly. This is Physics. Not intelligence.</p>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #00e5ff;">Thermodynamics & Gibbs Free Energy (ΔG)</h3>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>Everything Tends Toward the Lowest Free-Energy State</h4>
+                                <p>Imagine a marble. It rolls from the top of the hill to the bottom. Chemical systems behave similarly. Correct DNA pairs occupy lower-energy states. Incorrect pairs occupy higher-energy states. Therefore, correct pairing happens naturally more often.</p>
+                                
+                                <h4 style="margin-top: 2rem;">Understanding ΔG</h4>
+                                <p>ΔG (Gibbs Free Energy) tells us whether a molecular interaction is energetically favorable. Think of it as the "cost" of a molecular arrangement.</p>
+                                <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                                    <li><strong>Lower ΔG</strong> → More stable → More likely to occur</li>
+                                    <li><strong>Higher ΔG</strong> → Less stable → Less likely to occur</li>
+                                </ul>
+                                <div class="code-box">
+                                    Correct A-T pair: ΔG = -10 kcal/mol (Very stable)<br>
+                                    Incorrect A-C pair: ΔG = -8 kcal/mol (Less stable)
+                                </div>
+                            </div>
+                            <div>
+                                <h4>What is ΔΔG (Double Delta G)?</h4>
+                                <p>ΔG describes the stability of one interaction. ΔΔG compares two interactions:</p>
+                                <div class="code-box" style="text-align: center;">
+                                    ΔΔG = ΔG(incorrect) - ΔG(correct)
+                                </div>
+                                <p>If Correct ΔG = -10 kcal/mol and Incorrect ΔG = -8 kcal/mol, then ΔΔG = (-8) - (-10) = <strong>+2 kcal/mol</strong>.</p>
+                                <p>The positive value means the incorrect pair requires 2 kcal/mol more energy than the correct one. That sounds tiny, but at the molecular scale, it is enormous. Because billions upon billions of molecular collisions occur every second, even a 1–3 kcal/mol difference shifts the probability dramatically toward the correct base.</p>
+                                <p>Nature doesn’t need perfect discrimination. A small energy advantage, repeated billions of times, produces highly accurate replication.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Error Rate & Biology's Layered Defense</h3>
+                        <p>Imagine two doors. Door A requires almost no effort to open. Door B requires a little extra push. Almost everyone naturally chooses Door A. Molecules behave the same way.</p>
+                        <p>Only rarely does enough thermal energy exist to stabilize G-T, A-C, or C-T. Therefore, chemistry alone already achieves <strong>1 error per 100–1000 bases</strong> before polymerase proofreading even begins.</p>
+                        <p><strong>Why Isn’t Chemistry Alone Enough?</strong> A human genome contains 3.2 billion bases. If chemistry alone were responsible, we would obtain millions of replication errors every cell division.</p>
+                        <div class="code-box" style="text-align: center;">
+                            Chemistry<br>↓<br>DNA Polymerase<br>↓<br>Proofreading<br>↓<br>Mismatch Repair<br>↓<br><strong>1 error per 10 billion bases</strong>
+                        </div>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Biotechnology Connection</h3>
+                        <p>These exact chemical principles are used every day in biotechnology:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li><strong>PCR:</strong> PCR primers bind DNA only if ΔG is sufficiently favorable. Primer-design software calculates Tm, GC content, and ΔG before experiments begin.</li>
+                            <li><strong>DNA Hybridization:</strong> Southern blot, Northern blot, Microarrays, and FISH all depend upon complementary strands having lower free energy than mismatches.</li>
+                            <li><strong>CRISPR:</strong> Guide RNA searches for DNA. Correct complementarity → Low ΔG → Stable binding → DNA cleavage.</li>
+                            <li><strong>DNA Sequencing:</strong> Illumina, PacBio, Nanopore all rely upon predictable nucleotide recognition. Correct Watson-Crick chemistry makes base calling possible.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: #00e5ff;">Drug Discovery Connection (Structural Bioinformatics)</h3>
+                        <p>This same chemistry becomes even more important in structural biology and drug discovery. When we perform molecular docking, virtual screening, molecular dynamics, or protein-ligand interaction analysis, we ask exactly the same question: <strong>How stable is the interaction between two molecules?</strong></p>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>Hydrogen Bonds</h4>
+                                <p>Docking software evaluates: <code>Drug ↓ Hydrogen bond ↓ Protein residue</code></p>
+                                <p>Strong hydrogen bonds result in lower binding free energy and better binding affinity. Programs such as AutoDock Vina, Glide, GOLD, and Rosetta all score hydrogen bonds as part of their binding-energy calculations.</p>
+                                
+                                <h4 style="margin-top: 2rem;">Hydrophobic Interactions</h4>
+                                <p>A drug with matching hydrophobic groups fits into a protein's hydrophobic pocket. Water molecules are released back into the surrounding solution, increasing entropy (disorder) of the water, which is energetically favorable and strengthens binding. This is the same hydrophobic effect that stabilizes DNA.</p>
+                            </div>
+                            <div>
+                                <h4>Molecular Docking</h4>
+                                <p>Docking programs search for the lowest-energy pose. The best docking pose is usually the one with optimal hydrogen bonding, favorable hydrophobic interactions, minimal steric clashes, and optimal electrostatic interactions—exactly the same physical principles that determine DNA base pairing.</p>
+                                
+                                <h4 style="margin-top: 2rem;">Molecular Dynamics</h4>
+                                <p>In molecular dynamics simulations, we observe whether the protein-drug complex remains stable over time. If interactions weaken, ΔG increases and the drug dissociates. If interactions remain favorable, the complex remains bound. This is governed entirely by physics and chemistry.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up" style="margin-bottom: 5rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.3);">
+                        <h3 style="color: #00e5ff;">Bioinformatics Connection & The Complete Pipeline</h3>
+                        <p>Now imagine these chemical principles stopped working. Suppose 1 error per 10 bases instead of 1 in 1000. Everything downstream changes:</p>
+                        
+                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <h4 style="color: #fff; margin-bottom: 0.5rem;">1. Variant Calling</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Variant callers assume most bases are correct. If chemistry became inaccurate, the software could never distinguish true mutation vs replication mistake vs sequencing artifact. False positives would increase dramatically.</p>
+                            </div>
+                            <div>
+                                <h4 style="color: #fff; margin-bottom: 0.5rem;">2. Genome Assembly</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Assemblers rely on overlapping reads. Random replication errors would create conflicting overlaps, producing fragmented and ambiguous assemblies.</p>
+                            </div>
+                            <div>
+                                <h4 style="color: #fff; margin-bottom: 0.5rem;">3. Read Mapping</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Alignment algorithms (BWA, Bowtie2, Minimap2) assume only a few differences between a read and the reference. Higher replication error rates would reduce mapping quality and increase ambiguous alignments.</p>
+                            </div>
+                            <div>
+                                <h4 style="color: #fff; margin-bottom: 0.5rem;">4. Comparative Genomics & Evolution</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">If chemistry produced many random errors, homologous genes would appear far more different than they really are, making ortholog detection and phylogenetic inference much less reliable.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 3rem; text-align: center;">
+                            <h4 style="color: #fff;">The Complete Computational Pipeline</h4>
+                            <div class="code-box" style="display: inline-block; text-align: left; margin-top: 1rem; border-color: rgba(0, 229, 255, 0.5);">
+                                Physics & Chemistry<br>
+                                ↓<br>
+                                Hydrogen Bonding / Base Stacking / Hydrophobic Effect<br>
+                                ↓<br>
+                                ΔG & ΔΔG → Correct Base Pairing<br>
+                                ↓<br>
+                                DNA Polymerase, Proofreading, Mismatch Repair<br>
+                                ↓<br>
+                                Stable Genome<br>
+                                ↓<br>
+                                Sequencing → FASTQ Reads<br>
+                                ↓<br>
+                                Read Mapping → Genome Assembly → Variant Calling<br>
+                                ↓<br>
+                                Comparative Genomics & Evolutionary Analysis<br>
+                                ↓<br>
+                                Structural Bioinformatics & Drug Discovery<br>
+                                ↓<br>
+                                <strong style="color: #00e5ff;">Biological Discovery</strong>
+                            </div>
+                        </div>
+                        <p style="margin-top: 2rem; text-align: center; color: var(--text-muted);">
+                            The key idea is that bioinformatics begins long before a sequencing machine generates reads. Every FASTQ file, every VCF, every protein structure, and every docking simulation depends on fundamental physical laws.
+                        </p>
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+
+        <!-- Right Column: Interactive Canvas -->
+        <div class="canvas-column">
+            <!-- Optional interactive canvas can go here -->
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(0, 229, 255, 0.05) 0%, transparent 70%);">
+                <!-- Abstract visual placeholder for Thermodynamics -->
+                <div style="text-align: center; color: rgba(0, 229, 255, 0.3);">
+                    <svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1" stroke-dasharray="2 4"/>
+                        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="1" stroke-dasharray="4 2"/>
+                        <circle cx="35" cy="50" r="5" fill="currentColor"/>
+                        <circle cx="65" cy="50" r="5" fill="currentColor"/>
+                        <path d="M 35 50 Q 50 20 65 50" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <path d="M 35 50 Q 50 80 65 50" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    <p style="margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; letter-spacing: 2px;">ΔG & ΔΔG</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // Basic Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const fadeElements = document.querySelectorAll('.fade-up');
+        fadeElements.forEach((el, index) => {
+            gsap.fromTo(el, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1, 
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // Interactive Tilt Effect
+        const tiltCards = document.querySelectorAll('.tilt-effect');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+            });
+        });
+    </script>
+</body>
+</html>
