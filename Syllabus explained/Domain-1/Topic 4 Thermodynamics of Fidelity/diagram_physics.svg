@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="100%" height="100%" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; font-family: 'Inter', sans-serif;">
+    <defs>
+        <style>
+            .title { fill: #00e5ff; font-size: 16px; font-weight: bold; font-family: 'JetBrains Mono', monospace; }
+            .text { fill: #ffffff; font-size: 14px; }
+            .muted { fill: rgba(255, 255, 255, 0.6); font-size: 12px; }
+            .line { stroke: #ffffff; stroke-width: 2; }
+            .hbond { stroke: #00e5ff; stroke-width: 2; stroke-dasharray: 4 4; }
+            .box { fill: rgba(0, 229, 255, 0.1); stroke: #00e5ff; stroke-width: 1; rx: 6px; }
+        </style>
+    </defs>
+    
+    <text x="20" y="30" class="title">DNA Polymerase: A Nanoscale Measuring Instrument</text>
+    <path d="M 50 200 L 50 100 A 50 50 0 0 1 150 100 L 150 200" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="20" stroke-linecap="round" />
+    <text x="40" y="230" class="text">Correct Pair (Fits)</text>
+    <rect x="75" y="100" width="50" height="80" class="box" />
+    <text x="85" y="145" class="text">A=T</text>
+
+    <path d="M 250 200 L 250 100 A 50 50 0 0 1 350 100 L 350 200" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="20" stroke-linecap="round" />
+    <text x="250" y="230" class="text">Mismatch (Clash)</text>
+    <polygon points="270,180 340,160 330,80 260,100" class="box" fill="rgba(255, 77, 79, 0.2)" stroke="#ff4d4f" />
+    <text x="285" y="140" class="text" fill="#ff4d4f">G-T</text>
+    <line x1="330" y1="80" x2="350" y2="70" stroke="#ff4d4f" stroke-width="3" />
+    <line x1="325" y1="85" x2="345" y2="75" stroke="#ff4d4f" stroke-width="3" />
+
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; font-family: 'Inter', sans-serif;">
+    <defs>
+        <style>
+            .title { fill: #00e5ff; font-size: 16px; font-weight: bold; font-family: 'JetBrains Mono', monospace; }
+            .text { fill: #ffffff; font-size: 14px; }
+            .muted { fill: rgba(255, 255, 255, 0.6); font-size: 12px; }
+            .line { stroke: #ffffff; stroke-width: 2; }
+            .hbond { stroke: #00e5ff; stroke-width: 2; stroke-dasharray: 4 4; }
+            .box { fill: rgba(0, 229, 255, 0.1); stroke: #00e5ff; stroke-width: 1; rx: 6px; }
+        </style>
+    </defs>
+    
+    <text x="20" y="30" class="title">G - T Mismatch Distortion</text>
+    <path d="M 50 150 Q 150 50 250 150" fill="none" stroke="#ffffff" stroke-width="4" />
+    <path d="M 50 200 Q 150 100 250 200" fill="none" stroke="#ffffff" stroke-width="4" />
+    <rect x="130" y="110" width="40" height="30" class="box" transform="rotate(-15 150 125)" />
+    <text x="145" y="130" class="text" transform="rotate(-15 150 125)">G</text>
+    <rect x="130" y="150" width="40" height="30" class="box" transform="rotate(15 150 165)" />
+    <text x="145" y="170" class="text" transform="rotate(15 150 165)">T</text>
+    
+    <text x="200" y="130" fill="#ff4d4f" font-weight="bold">X Steric Clash</text>
+    <text x="200" y="150" fill="#4dabf7">Water enters</text>
+    <circle cx="180" cy="140" r="4" fill="#4dabf7" />
+    <circle cx="170" cy="150" r="4" fill="#4dabf7" />
+
+</svg>

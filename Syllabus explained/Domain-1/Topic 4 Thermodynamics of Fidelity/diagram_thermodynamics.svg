@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; font-family: 'Inter', sans-serif;">
+    <defs>
+        <style>
+            .title { fill: #00e5ff; font-size: 16px; font-weight: bold; font-family: 'JetBrains Mono', monospace; }
+            .text { fill: #ffffff; font-size: 14px; }
+            .muted { fill: rgba(255, 255, 255, 0.6); font-size: 12px; }
+            .line { stroke: #ffffff; stroke-width: 2; }
+            .hbond { stroke: #00e5ff; stroke-width: 2; stroke-dasharray: 4 4; }
+            .box { fill: rgba(0, 229, 255, 0.1); stroke: #00e5ff; stroke-width: 1; rx: 6px; }
+        </style>
+    </defs>
+    
+    <text x="20" y="30" class="title">Free Energy Landscape</text>
+    <line x1="50" y1="200" x2="350" y2="200" stroke="#ffffff" stroke-width="2" />
+    <line x1="50" y1="200" x2="50" y2="50" stroke="#ffffff" stroke-width="2" />
+    <text x="15" y="125" class="text" transform="rotate(-90 25 125)">Free Energy (G)</text>
+    <text x="150" y="220" class="text">Reaction Coordinate</text>
+
+    <!-- Correct Pair Curve -->
+    <path d="M 50 100 Q 150 100 150 180 Q 150 250 200 180 Q 250 100 350 100" fill="none" stroke="#00e5ff" stroke-width="3" />
+    <text x="130" y="195" class="text" fill="#00e5ff">Correct (-10)</text>
+
+    <!-- Incorrect Pair Curve -->
+    <path d="M 50 100 Q 150 100 250 140 Q 300 100 350 100" fill="none" stroke="#ff4d4f" stroke-width="3" stroke-dasharray="5 5" />
+    <text x="230" y="130" class="text" fill="#ff4d4f">Incorrect (-8)</text>
+
+    <line x1="150" y1="180" x2="250" y2="180" stroke="rgba(255, 255, 255, 0.6)" stroke-dasharray="2 2" />
+    <line x1="250" y1="140" x2="250" y2="180" stroke="#fff" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)" />
+    <text x="260" y="165" class="text" font-weight="bold">ΔΔG = +2</text>
+
+</svg>
