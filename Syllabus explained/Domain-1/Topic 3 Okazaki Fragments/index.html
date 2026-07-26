@@ -152,7 +152,7 @@
                             </div>
                         </div>
                         <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
-                            <img src="fig1_new.svg" alt="Initiation of DNA Replication by Primase" style="display: block; margin: 0 auto; width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: contrast(1.1) brightness(1.05); background: white;">
+                            <img src="fig1_new.svg?v=2" alt="Initiation of DNA Replication by Primase" style="display: block; margin: 0 auto; width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: contrast(1.1) brightness(1.05); background: white;">
                             <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 1:</strong> The DNA Replication Fork. RNA Primase lays down RNA primers on the lagging strand, providing the critical 3'-OH starting block.</figcaption>
                         </figure>
                     </div>
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                         <figure class="glass-figure" style="background: #fff; padding: 10px; border-radius: 8px; margin: 2rem 0 0 0; text-align: center; box-sizing: border-box; overflow: hidden;">
-                            <img src="fig2_split.svg" alt="DNA Polymerase extending the Okazaki Fragment" style="display: block; margin: 0 auto; width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: contrast(1.1) brightness(1.05); background: white;">
+                            <img src="fig2_split.svg?v=2" alt="DNA Polymerase extending the Okazaki Fragment" style="display: block; margin: 0 auto; width: 100%; max-width: 600px; height: auto; border-radius: 4px; filter: contrast(1.1) brightness(1.05); background: white;">
                             <figcaption class="diagram-label" style="border-top: none;"><strong>Figure 2:</strong> DNA Polymerase adding complementary DNA nucleotides to the 3' end of the growing Okazaki fragment.</figcaption>
                         </figure>
                     </div>
@@ -328,41 +328,7 @@
                         
                         <p>Bioinformatics assumes that the DNA sequence stored in the genome is <strong>continuous, chemically complete, free of RNA primers, and faithfully copied</strong>. Those assumptions are only true because Okazaki fragment processing exists. Without it, many computational analyses would fail.</p>
                         
-                        <div style="margin-top: 3rem;">
-                            <h3 style="color: var(--accent); margin-bottom: 1rem;">1. Continuous Genome Assembly</h3>
-                            <p>One of the first things bioinformaticians do is assemble genomes. Genome assembly assumes chromosomes are continuous DNA molecules. Assembler algorithms work like a jigsaw puzzle.</p>
-                            <p>Imagine if RNA primers were still present. Instead of continuous DNA, you would have an RNA-DNA hybrid mix. The sequence would no longer represent one chemically consistent molecule, and assembly algorithms would encounter discontinuities that do not exist in normal genomes.</p>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <h3 style="color: var(--accent); margin-bottom: 1rem;">2. Reference Genomes</h3>
-                            <p>Every reference genome (Human, Mouse, E. coli) is stored as one continuous DNA sequence. There are no RNA primers and no Okazaki fragment boundaries because DNA Polymerase I removed every primer and DNA ligase sealed every nick. Only after these processes does the chromosome become the stable molecule that sequencing captures.</p>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <h3 style="color: var(--accent); margin-bottom: 1rem;">3. Sequencing Accuracy</h3>
-                            <p>Suppose ligase never sealed the DNA. The chromosome would contain thousands of tiny breaks. During DNA extraction or library preparation, these weak points would break easily. This would produce fragmented reads, uneven coverage, and poor sequencing quality. Modern sequencing depends on intact chromosomes.</p>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <h3 style="color: var(--accent); margin-bottom: 1rem;">4. Replication Timing Studies (OK-Seq)</h3>
-                            <p>Not every sequencing experiment studies finished DNA. Techniques like <strong>OK-seq (Okazaki Fragment Sequencing)</strong> deliberately sequence these fragments. From these fragments, computational biologists reconstruct replication fork direction, replication origins, and termination zones.</p>
-                        </div>
-
-                        <div style="margin-top: 2rem;">
-                            <h3 style="color: var(--accent); margin-bottom: 1rem;">5. Genome Stability & DNA Repair</h3>
-                            <p>Cancer genomes contain many structural abnormalities. Some arise because Okazaki fragment processing fails (e.g. if ligase is defective). DNA breaks accumulate leading to large deletions, duplications, or translocations. Bioinformaticians detect these using structural variant callers. Understanding the biology explains where these computational signals originate.</p>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <h3 style="color: var(--accent); margin-bottom: 1rem;">6. Comparative Genomics</h3>
-                            <p>One reason genomes remain stable over millions of years is because Okazaki fragment processing is extremely reliable. This stability allows us to computationally align and compare homologous genes between humans, chimpanzees, mice, and fish. If chromosomes accumulated thousands of replication mistakes every generation, multiple sequence alignment would become nearly impossible.</p>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <h3 style="color: var(--accent); margin-bottom: 1rem;">7. Variant Calling & Replication Stress</h3>
-                            <p>Is a mutation real? Understanding replication biology helps build statistical models for variant callers. The probability that DNA replication introduced an error is extremely low because of proofreading, mismatch repair, primer replacement, and ligase repair. Therefore, observed variants in a VCF file are much more likely to represent genuine biological changes than routine replication errors.</p>
-                        </div>
+                        <!-- The bioinformatics points were moved to the dedicated Bioinformatics Applications section below -->
 
                     </div>
                 </section>
@@ -503,7 +469,7 @@
         <div class="canvas-column">
             <canvas id="webgl-canvas"></canvas>
             <div class="canvas-overlay">
-                <div class="overlay-text">Interactive Replication (Helix)</div>
+                <!-- removed overlay text -->
             </div>
         </div>
 
