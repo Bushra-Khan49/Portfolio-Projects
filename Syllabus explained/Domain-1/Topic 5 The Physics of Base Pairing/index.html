@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topic 5: Hydrogen Bonding Enthalpy & Solvation Penalty</title>
+    <title>Hydrogen Bonding Enthalpy & Solvation Penalty</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
     <!-- MathJax for rendering math formulas beautifully -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -106,18 +106,21 @@
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
                         <h3>Why This Matters</h3>
-                        <p>In Topic 4, we discussed the general thermodynamic stability of the DNA helix. Now, we zoom in specifically on the active site of <strong>DNA Polymerase</strong>.</p>
-                        <p>When an incoming nucleotide attempts to pair with the template strand, a profound thermodynamic transaction occurs. The ultimate cost of a mismatch comes down to two specific physical parameters:</p>
+                        <p>When most people think about a DNA mismatch, they think about it purely as a structural error. But structurally, it is a thermodynamic transaction.</p>
+                        <p>The ultimate cost of a mismatch comes down to hydrogen bonding enthalpy and desolvation penalties:</p>
                         <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
-                            <li><strong>Hydrogen Bonding Enthalpy (\(\Delta H\)):</strong> The energy released when correct bonds form.</li>
-                            <li><strong>Desolvation Penalty:</strong> The energy required to strip water molecules away from the incoming base.</li>
+                            <li><strong>Hydrogen Bond Disruption:</strong> A canonical G–C pair forms 3 optimal hydrogen bonds, while an A–T pair forms 2. A mismatch either lacks hydrogen bonds entirely or forms weak, geometrically strained non-canonical bonds.</li>
+                            <li><strong>Desolvation Costs:</strong> Unpaired hydrogen bond donor/acceptor sites on a mismatched base must shed their bound water molecules to enter the hydrophobic active site of DNA polymerase. This creates a massive energetic penalty.</li>
                         </ul>
-                        <p>If these two energies do not perfectly balance out, the nucleotide is rejected before the enzyme even moves.</p>
+                        <p>If these thermodynamic costs are not perfectly balanced out, the nucleotide is rejected before the polymerase enzyme even moves.</p>
+                        <div class="code-box" style="text-align: center;">
+                            Water Shell (Solvation)<br>↓<br>Stripping Water (Desolvation Penalty)<br>↓<br>Bonding (Enthalpy)<br>↓<br>Thermodynamic Balance<br>↓<br>Accurate Base Calling
+                        </div>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
                         <h3>Why Should a Bioinformatician Care?</h3>
-                        <p>As computational biologists, we routinely look at <strong>Transition vs. Transversion</strong> mutation rates in variant calling algorithms.</p>
+                        <p>As bioinformaticians, we routinely look at <strong>Transition vs. Transversion</strong> mutation rates in variant calling algorithms.</p>
                         <p>Why do Transitions (A ↔ G, C ↔ T) occur much more frequently in evolution than Transversions (A ↔ C, G ↔ T)?</p>
                         <p>Because the <strong>Enthalpy</strong> and <strong>Solvation Penalty</strong> of a transition mismatch is slightly less severe than a transversion mismatch. The physical equations dictate the evolutionary mutation rates we program into our substitution matrices (like PAM and BLOSUM) and our Hidden Markov Models.</p>
                         <h4 style="margin-top: 2rem;">Where Does This Fit?</h4>
@@ -129,30 +132,30 @@
                 
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
-                        <h3 style="color: var(--accent); margin-bottom: 1rem;">1. Hydrogen Bond Disruption (Enthalpy)</h3>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;">Step 1 — The Electrostatic Reality of Enthalpy</h3>
                         
                         <div class="split-text" style="margin-top: 1.5rem;">
                             <div>
-                                <p><strong>Enthalpy (\(\Delta H\))</strong> is a measure of total heat energy in a thermodynamic system. When chemical bonds form, energy is released (exothermic, \(\Delta H\) is negative). When bonds break, energy is required (endothermic, \(\Delta H\) is positive).</p>
+                                <p><strong>Enthalpy (\(\Delta H\))</strong> is a measure of total heat energy in a thermodynamic system. When chemical bonds form, energy is released. When bonds break, energy is required.</p>
                                 
-                                <p>A canonical <strong>G–C pair</strong> forms 3 optimal, perfectly aligned hydrogen bonds. A canonical <strong>A–T pair</strong> forms 2.</p>
+                                <p>Hydrogen bonds form when a highly electronegative atom (like Oxygen or Nitrogen) pulls electron density away from a Hydrogen atom, creating a partial positive charge (\(\delta+\)). This \(\delta+\) is electrostatically attracted to the lone pairs (\(\delta-\)) of another electronegative atom.</p>
                                 
                                 <div class="math-block">
-                                    <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The energy of these bonds is driven by electrostatic attraction (Coulomb's Law):</p>
-                                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">\(E \propto \frac{q_1 q_2}{r}\)</p>
+                                    <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The strength of this attraction is dictated by <strong>Coulomb's Law</strong>:</p>
+                                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">\(F = k \frac{q_1 q_2}{r^2}\)</p>
+                                    <p style="font-size: 0.9rem; color: #aab2c0;"><strong>Let's break down these symbols and what they mean:</strong></p>
                                     <ul style="margin-left: 1.5rem; font-size: 0.9rem; color: #aab2c0; margin-bottom: 0.5rem;">
-                                        <li><strong>\(E\) (Energy):</strong> The bond strength.</li>
-                                        <li><strong>\(q_1\) and \(q_2\) (Charges):</strong> The partial positive (\(\delta+\)) and negative (\(\delta-\)) charges on the Nitrogen/Oxygen and Hydrogen atoms.</li>
-                                        <li><strong>\(r\) (Distance):</strong> The distance between the atoms.</li>
+                                        <li><strong>\(F\) (Force):</strong> The attractive pull between the two atoms.</li>
+                                        <li><strong>\(k\) (Coulomb's constant):</strong> A fixed number representing the physical properties of space.</li>
+                                        <li><strong>\(q_1\) and \(q_2\) (Charges):</strong> The partial charges (\(\delta+\) and \(\delta-\)). The stronger the charge, the stronger the pull.</li>
+                                        <li><strong>\(r\) (Radius/Distance):</strong> The distance between the two atoms. Note that it is squared (\(r^2\)) and on the bottom of the fraction!</li>
                                     </ul>
+                                    <p style="font-size: 0.9rem; color: #aab2c0;"><strong>Why are we studying this?</strong> Because of the \(r^2\) on the bottom, if the atoms move even a tiny bit further apart, the force (\(F\)) drops exponentially. This means hydrogen bonds are highly directional. A perfectly straight line (\(180^\circ\)) maximizes the attractive force. Even a slight angular distortion in a mismatched base pair significantly weakens the bond, yielding zero Enthalpy.</p>
                                 </div>
-
-                                <p>If an incorrect base enters (e.g., A attempting to pair with C), it creates a <strong>mismatch</strong>. A mismatch either entirely lacks hydrogen bonds because the donor/acceptors don't align, or it forms weak, geometrically strained non-canonical bonds where the distance (\(r\)) is too large.</p>
-                                <p>Because \(r\) is in the denominator, a larger distance drastically reduces the bond energy. The Enthalpy (\(\Delta H\)) provided by the mismatch is practically zero.</p>
                                 
                                 <div class="image-container">
-                                    <img src="fig1.jpg" alt="A-T and G-C Hydrogen Bonding">
-                                    <figcaption>A-T and G-C Canonical Hydrogen Bonding (Maximal Enthalpy)</figcaption>
+                                    <img src="fig1.jpg" alt="DNA Hydrogen Bonding">
+                                    <figcaption>DNA Hydrogen Bonding and Coulomb's Law</figcaption>
                                 </div>
                             </div>
                         </div>
@@ -161,67 +164,171 @@
 
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
-                        <h3 style="color: var(--accent); margin-bottom: 1rem;">2. The Desolvation Penalty (Stripping the Water)</h3>
-                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>Nothing in biology happens in a vacuum. Everything happens in water.</em></p>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;">The Two Major Thermodynamic Costs</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>Every base pair must balance these two thermodynamic forces.</em></p>
                         
                         <div style="margin-top: 1.5rem;">
-                            <p>Free floating nucleotides inside the nucleus have unpaired hydrogen bond donor and acceptor sites on their chemical rings. Because water (\(H_2O\)) is highly polar, it eagerly forms a tight, structured cage of hydrogen bonds around these exposed sites.</p>
-                            <p>This cage of water is called the <strong>Hydration Shell</strong>.</p>
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">1. The Desolvation Penalty (Stripping the Water)</h4>
+                            <p>Free floating nucleotides inside the nucleus have unpaired hydrogen bond donor and acceptor sites. Because water (\(H_2O\)) is highly polar, it eagerly forms a tight, structured cage of hydrogen bonds around these exposed sites. This is called the <strong>Hydration Shell</strong>.</p>
+                            <p>In order for a nucleotide to enter the hydrophobic active site of DNA polymerase, it <strong>must shed its bound water molecules</strong>. Breaking these pre-existing water-nucleotide hydrogen bonds requires a massive input of energy. This energetic cost is the <strong>Desolvation Penalty</strong>.</p>
                             
-                            <h4 style="margin-top: 2rem; color: #fff;">The Thermodynamic Toll Booth</h4>
-                            <p>In order for a nucleotide to enter the hydrophobic, enclosed active site of DNA polymerase, it <strong>must shed its bound water molecules</strong>. Breaking these pre-existing water-nucleotide hydrogen bonds requires a massive input of energy. This energetic cost is called the <strong>Desolvation Penalty</strong>.</p>
-                            
-                            <div class="math-block">
-                                <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The overall stability equation inside the polymerase is:</p>
-                                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">\(\Delta G_{binding} = \Delta H_{DNA\_bonds} - \Delta H_{desolvation} - T\Delta S\)</p>
-                                <ul style="margin-left: 1.5rem; font-size: 0.9rem; color: #aab2c0; margin-bottom: 0.5rem;">
-                                    <li><strong>\(\Delta G\) (Gibbs Free Energy):</strong> Total thermodynamic stability. Negative means it happens spontaneously.</li>
-                                    <li><strong>\(\Delta H_{DNA\_bonds}\):</strong> Energy gained (enthalpy) from forming the new base pair.</li>
-                                    <li><strong>\(\Delta H_{desolvation}\):</strong> The penalty (energy lost) from stripping the water shell.</li>
-                                </ul>
-                            </div>
+                            <h4 style="margin-top: 2rem; color: #fff;">2. Hydrogen Bonding Enthalpy</h4>
+                            <p>Once the water is stripped, the nucleotide must immediately form new hydrogen bonds with the template DNA strand. If it forms a canonical G–C (3 bonds) or A–T (2 bonds) pair, the energy released (Enthalpy) is so massive that it pays back the Desolvation Penalty.</p>
                             
                             <div class="image-container">
                                 <img src="fig2.jpg" alt="The Hydration Shell around a Nucleotide">
                                 <figcaption>The Hydration Shell and the Desolvation Penalty</figcaption>
                             </div>
-
                         </div>
                     </div>
                 </section>
 
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
-                        <h3>The Perfect Balance (Correct Pairing)</h3>
-                        <p>When a correct canonical nucleotide (like an A matching a T) enters the polymerase, it pays the Desolvation Penalty to strip its water.</p>
-                        <p>However, because its geometry perfectly matches the template, it instantly forms optimal, short-distance hydrogen bonds. The <strong>Enthalpy (\(\Delta H\))</strong> released by forming these new bonds is so large that it completely pays back the Desolvation Penalty. The thermodynamic books balance, \(\Delta G\) goes negative, and the polymerase incorporates the base.</p>
+                        <h3>What Happens During a Mismatch?</h3>
+                        <p>When an incorrect base (like an A attempting to match with C) enters the polymerase, it still has to pay the massive Desolvation Penalty to strip its water.</p>
+                        <p>But because its geometry is wrong (as defined by Coulomb's law), it fails to form proper hydrogen bonds with the template. It does not regain full hydrogen-bonding energy. The nucleotide has paid the "water toll", but has no Enthalpy to balance the books.</p>
+                        <p>This creates a high, positive \(\Delta G\). The base is thermodynamically rejected and ejected back into solution.</p>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
-                        <h3>Thermodynamic Bankruptcy (Mismatch)</h3>
-                        <p>When an incorrect base (like an A attempting to match with C) enters, it <em>still</em> has to pay the massive Desolvation Penalty to strip its water to enter the enzyme.</p>
-                        <p>But because the geometry is wrong, it fails to form proper hydrogen bonds with the template. It does not regain full hydrogen-bonding energy. The nucleotide has paid the toll, but has no Enthalpy to balance the books. The result is a high, positive \(\Delta G\). The base is thermodynamically rejected and ejected back into solution.</p>
+                        <h3>The Physics Perspective</h3>
+                        <p>DNA polymerase does not actively "reject" the mismatch using intelligence. It is entirely passive physics.</p>
+                        <p>The enzyme's active site simply acts as a rigid, hydrophobic chamber that forces nucleotides to strip their water. If the nucleotide cannot pay back the energy cost through Enthalpy, thermal energy simply bounces the nucleotide right back out of the pocket.</p>
+                        <p>This is a purely thermodynamic decision filter.</p>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;">Thermodynamics & Gibbs Free Energy (ΔG)</h3>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>Everything Tends Toward the Lowest Free-Energy State</h4>
+                                <p>Imagine a marble. It rolls from the top of the hill to the bottom. Chemical systems behave similarly. Correct DNA pairs occupy lower-energy states. Incorrect pairs occupy higher-energy states. Therefore, correct pairing happens naturally more often.</p>
+                                
+                                <h4 style="margin-top: 2rem;">The Boltzmann Distribution</h4>
+                                <div class="math-block">
+                                    <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The probability of a state existing is determined by the <strong>Boltzmann Distribution</strong>:</p>
+                                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">\(P \propto e^{-\frac{\Delta G}{RT}}\)</p>
+                                    <p style="font-size: 0.9rem; color: #aab2c0;"><strong>Let's break down these symbols:</strong></p>
+                                    <ul style="margin-left: 1.5rem; font-size: 0.9rem; color: #aab2c0; margin-bottom: 0.5rem;">
+                                        <li><strong>\(P\) (Probability):</strong> The likelihood that a specific base pair will form and stay together.</li>
+                                        <li><strong>\(\propto\) (Proportional to):</strong> Means "is directly related to".</li>
+                                        <li><strong>\(e\) (Euler's number):</strong> A mathematical constant (approx 2.718) used for exponential growth and decay. Pronounced "ee".</li>
+                                        <li><strong>\(\Delta G\) (Delta G / Gibbs Free Energy):</strong> The total energy "cost" (Enthalpy minus Desolvation). A negative number means it is stable.</li>
+                                        <li><strong>\(R\) (Gas constant) & \(T\) (Temperature):</strong> Represents the thermal energy (heat) constantly bumping into the molecules.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>What is ΔΔG (Double Delta G)?</h4>
+                                <p>The difference in free energy between a correct pair and an incorrect mismatch is called \(\Delta\Delta G\).</p>
+                                <p>Because the energy term (\(\Delta G\)) is in the exponent (the power of \(e\)), a tiny \(2 \text{ kcal/mol}\) difference in \(\Delta\Delta G\) translates into a massive, exponential difference in binding probability.</p>
+                                <p>Think of it like a valley. A correct DNA pair sits in a deep, stable valley (Low \(\Delta G\)). An incorrect mismatched pair sits in a shallow, unstable valley (High \(\Delta G\)). Due to the exponential math above, the enzyme doesn't actively "decide"—it simply lets thermal physics do the filtering.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Error Rate & Biology's Layered Defense</h3>
+                        <p>Because of this exact thermodynamic balance of Enthalpy and Desolvation, chemistry alone achieves incredible accuracy before polymerase proofreading even begins.</p>
+                        <p>However, water dynamics are inherently chaotic. Sometimes, random thermal fluctuations provide just enough energy to overcome the \(\Delta G\) difference of a mismatch, leading to a permanent error.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3>Biotechnology Connection</h3>
+                        <p>These exact thermodynamic principles are used every day in biotechnology:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li><strong>PCR:</strong> Primer-design software calculates Tm, GC content, and \(\Delta G\) to ensure the enthalpy of binding overcomes the desolvation penalty.</li>
+                            <li><strong>CRISPR:</strong> Guide RNA searches for DNA. Correct complementarity → High Enthalpy → Stable binding → DNA cleavage.</li>
+                            <li><strong>DNA Sequencing:</strong> Illumina and PacBio rely upon these thermodynamic equations to accurately call bases.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;">Drug Discovery Connection (Structural Bioinformatics)</h3>
+                        <p>This interplay between Desolvation and Enthalpy is exactly how we computationally model <strong>Drug Discovery</strong>.</p>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <h4>Hydrogen Bonds</h4>
+                                <p>Docking software evaluates: <code>Drug ↓ Hydrogen bond ↓ Protein residue</code></p>
+                                <p>Strong hydrogen bonds result in lower binding free energy and better binding affinity. Programs such as AutoDock Vina, Glide, GOLD, and Rosetta all score hydrogen bonds using the exact same Coulomb's Law math we described above.</p>
+                                
+                                <h4 style="margin-top: 2rem;">Desolvation Penalties in Drugs</h4>
+                                <p>When we design a drug to inhibit a cancer protein, the drug is floating in water. For the drug to bind to the protein, it must strip its hydration shell. If our drug design forms weak bonds with the protein, it will suffer "thermodynamic bankruptcy" just like a DNA mismatch and fail in clinical trials.</p>
+                            </div>
+                            <div>
+                                <h4>Molecular Docking Algorithms</h4>
+                                <p>Software like AutoDock Vina has a built-in scoring function that explicitly calculates the Desolvation Penalty. It penalizes the score for every polar atom on the drug that loses its water interaction but fails to find a new hydrogen bond partner inside the protein pocket.</p>
+                                
+                                <h4 style="margin-top: 2rem;">Molecular Dynamics</h4>
+                                <p>In molecular dynamics simulations, we observe whether the protein-drug complex remains stable over time by simulating the exact water molecules surrounding the drug. If interactions weaken, \(\Delta G\) increases and the drug dissociates.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <section class="section-block fade-up" style="margin-bottom: 5rem;">
                     <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.3);">
-                        <h3 style="color: var(--accent); margin-bottom: 1rem;">Bioinformatics Connection & Drug Discovery</h3>
-                        <p>This interplay between Desolvation and Enthalpy is exactly how we computationally model <strong>Drug Discovery</strong>.</p>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;">Bioinformatics Connection & The Complete Pipeline</h3>
+                        <p>The transition vs transversion rates programmed into every bioinformatics algorithm exist purely because of Enthalpy and Desolvation Penalties.</p>
                         
                         <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
                             <div>
-                                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Structure-Based Drug Design</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">When we design a drug to inhibit a cancer protein, the drug is floating in water. For the drug to bind to the protein, it must strip its hydration shell. If our drug design forms weak bonds with the protein, it will suffer "thermodynamic bankruptcy" just like a DNA mismatch and fail in clinical trials.</p>
+                                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">1. Variant Calling</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Variant callers use probabilistic models built on natural mutation rates. A Transition mismatch has a smaller desolvation penalty than a Transversion mismatch, hence it is more frequent.</p>
                             </div>
                             <div>
-                                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Molecular Docking Algorithms</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">Software like AutoDock Vina has a built-in scoring function that explicitly calculates the Desolvation Penalty. It penalizes the score for every polar atom on the drug that loses its water interaction but fails to find a new hydrogen bond partner inside the protein pocket.</p>
+                                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">2. Comparative Genomics</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">When building phylogenetic trees, evolutionary distances are calculated using matrices (like BLOSUM) that inherently weight mutation probabilities based on these physical laws.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 3rem; text-align: center;">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">The Complete Computational Pipeline</h4>
+                            <div class="code-box" style="display: inline-block; text-align: left; margin-top: 1rem; border-color: rgba(0, 229, 255, 0.5);">
+                                Physics & Chemistry<br>
+                                ↓<br>
+                                Desolvation Penalty / Hydrogen Bonding Enthalpy<br>
+                                ↓<br>
+                                Thermodynamic Balance (\(\Delta G\))<br>
+                                ↓<br>
+                                Stable Genome Replication<br>
+                                ↓<br>
+                                Sequencing → FASTQ Reads<br>
+                                ↓<br>
+                                Read Mapping → Genome Assembly → Variant Calling<br>
+                                ↓<br>
+                                Evolutionary Models (Transition/Transversion rates)<br>
+                                ↓<br>
+                                Structural Bioinformatics & Drug Discovery (AutoDock)<br>
+                                ↓<br>
+                                <strong style="color: var(--accent); margin-bottom: 1rem;">Biological Discovery</strong>
                             </div>
                         </div>
                         <p style="margin-top: 2rem; text-align: center; color: var(--text-muted);">
-                            By understanding the exact thermodynamics of a DNA mismatch, you intrinsically understand how to computationally simulate molecular binding for drug discovery. It is all the exact same physics.
+                            By understanding the exact thermodynamics of a DNA mismatch, you intrinsically understand how to computationally simulate molecular binding for drug discovery, and why bioinformatics algorithms are tuned the way they are.
                         </p>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up" style="margin-bottom: 5rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 style="color: var(--accent); margin-bottom: 1rem; text-align: center;">Master Systems Overview</h3>
+                        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">A unified visualization connecting Hydrogen Bonding Enthalpy to Bioinformatics.</p>
+                        <figure style="text-align: center;">
+                            <!-- Figure 3 placeholder (due to quota) -->
+                            <div style="width: 100%; height: 300px; background: rgba(0,0,0,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">
+                                <span style="color: rgba(255,255,255,0.5);">[Master Systems Visual Pending Generation]</span>
+                            </div>
+                        </figure>
                     </div>
                 </section>
 
