@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 5: The Physics of Base Pairing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #050a15;
+            --primary: #00e5ff;
+            --secondary: #ff007f;
+            --text: #e8eaf6;
+            --muted: #8892b0;
+            --glass: rgba(255,255,255,0.05);
+            --border: rgba(255,255,255,0.08);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: var(--primary);
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro {
+            color: var(--muted);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-block {
+            margin-bottom: 5rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .section-block h2 {
+            font-family: 'Space Mono', monospace;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-block h2::before {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .section-block p {
+            margin-bottom: 1.5rem;
+            color: #c8cbe0;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .image-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        /* Subtle animated background */
+        canvas#bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <div class="container">
+        <header>
+            <div class="badge">Domain 1 · Topic 5</div>
+            <h1>The Physics of Base Pairing</h1>
+            <p class="intro">Nucleotide selection isn't magic. It is a strict mathematical consequence of atomic geometry, electrostatics, and thermodynamics.</p>
+        </header>
+
+        <div class="section-block">
+            <h2>1. The Atomic Reality</h2>
+            <p>At the fundamental level, DNA polymerase doesn't "read" A, T, G, or C. It simply provides an environment where <span class="highlight">electrostatic forces</span> govern molecular interaction.</p>
+            <p>Hydrogen bonds form when a highly electronegative atom (like Oxygen or Nitrogen) pulls electron density away from a Hydrogen atom, creating a partial positive charge ($\delta+$). This $\delta+$ is electrostatically attracted to the lone pairs ($\delta-$) of another electronegative atom. The strength of this attraction is dictated by <strong>Coulomb's Law</strong>.</p>
+            <p>Because the force drops exponentially with distance and angle, hydrogen bonds are highly directional. A linear ($180^\circ$) geometry maximizes orbital overlap and attractive force. Even a slight angular distortion in a mismatched base pair significantly weakens the bond.</p>
+            <div class="image-container">
+                <img src="fig1.jpg" alt="Electrostatics of Hydrogen Bonding">
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h2>2. The Hydration Shell</h2>
+            <p>In the nucleus, DNA and free nucleotides are never dry. They are entirely surrounded by bulk water. Because water is highly polar, it immediately forms structured <span class="highlight">hydrogen-bond networks</span> around every exposed polar atom on the nucleotide.</p>
+            <p>This organized layer is called a <strong>Hydration Shell</strong>. While this restricts the movement of water molecules (lowering entropy, $\Delta S < 0$), the sheer number of favorable hydrogen bonds makes the nucleotide incredibly stable in solution.</p>
+            <div class="image-container">
+                <img src="fig2.jpg" alt="The Hydration Shell of a Free Nucleotide">
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h2>3. The Desolvation Penalty</h2>
+            <p>Before a nucleotide can enter the hydrophobic active site of DNA polymerase, it must shed its "winter coat" of water. Breaking these pre-existing water bonds costs energy. This thermodynamic cost of admission is called the <span class="highlight">Desolvation Penalty</span>.</p>
+            <p>If the nucleotide forms a correct Watson-Crick pair, it creates perfect new hydrogen bonds, releasing enough enthalpy ($\Delta H$) to pay back the penalty. However, if an incorrect mismatched base enters, it pays the penalty to strip the water, but its distorted geometry prevents it from forming strong new bonds. It goes energetically bankrupt.</p>
+            <div class="image-container">
+                <img src="fig3.jpg" alt="The Desolvation Penalty during DNA Replication">
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h2>4. The Mathematical Decision</h2>
+            <p>How does a slight energy difference result in DNA polymerase rejecting a mismatch? The answer lies in the <span class="highlight">Boltzmann Distribution</span>.</p>
+            <p>The difference in free energy between a correct pair and an incorrect mismatch is $\Delta\Delta G$. The probability of a state existing is proportional to $e^{-\Delta G / RT}$. Because the energy term is in the exponent, even a tiny $2 \text{ kcal/mol}$ difference in $\Delta\Delta G$ translates into a massive, exponential difference in binding probability. The enzyme doesn't actively "decide"—it simply lets thermal physics do the filtering.</p>
+            <div class="image-container">
+                <img src="fig4.jpg" alt="The Boltzmann Distribution in Nucleotide Selection">
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h2>5. The Universal Principle</h2>
+            <p>The physics of base pairing is not just a biological curiosity—it is the foundational axiom of <span class="highlight">computational biology and drug discovery</span>.</p>
+            <p>When a bioinformatician looks at a false-positive variant call in a VCF file, they are looking at the downstream mathematical consequence of an unfavorable $\Delta\Delta G$ during sequencing or replication. When a structural biologist uses AutoDock Vina to score a cancer drug, the software is literally just estimating the exact same hydrogen-bond enthalpies and desolvation penalties we see in DNA polymerase.</p>
+            <p>Everything in molecular biology eventually reduces to energy.</p>
+            <div class="image-container">
+                <img src="fig5.jpg" alt="Bioinformatics and Drug Discovery Flowchart">
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="../../index.html">← Back to Syllabus</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('bg');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+
+        function createParticles() {
+            particles = Array.from({length: 60}, () => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: Math.random() * 1.5 + 0.5,
+                dx: (Math.random() - 0.5) * 0.3,
+                dy: (Math.random() - 0.5) * 0.3,
+                alpha: Math.random() * 0.5 + 0.1
+            }));
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 229, 255, ${p.alpha})`;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > W) p.dx *= -1;
+                if (p.y < 0 || p.y > H) p.dy *= -1;
+            });
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', () => { resize(); createParticles(); });
+        resize();
+        createParticles();
+        draw();
+    </script>
+</body>
+</html>
