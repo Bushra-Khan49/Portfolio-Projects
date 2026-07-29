@@ -79,7 +79,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"/>
         </svg>
-        Syllabus
+        Portfolio
     </a>
 
     <main class="split-layout">
@@ -107,11 +107,17 @@
                         <p>Hydrogen bonds form when a highly electronegative atom (like Oxygen or Nitrogen) pulls electron density away from a Hydrogen atom, creating a partial positive charge (\(\delta+\)). This \(\delta+\) is electrostatically attracted to the lone pairs (\(\delta-\)) of another electronegative atom.</p>
                         
                         <div class="math-block">
-                            <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The strength of this attraction is dictated by Coulomb's Law:</p>
-                            <p style="text-align: center; font-size: 1.2rem;">\(F = k \frac{q_1 q_2}{r^2}\)</p>
+                            <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The strength of this attraction is dictated by <strong>Coulomb's Law</strong>:</p>
+                            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">\(F = k \frac{q_1 q_2}{r^2}\)</p>
+                            <p style="font-size: 0.9rem; color: #aab2c0;"><strong>Let's break down these symbols and what they mean:</strong></p>
+                            <ul style="margin-left: 1.5rem; font-size: 0.9rem; color: #aab2c0; margin-bottom: 0.5rem;">
+                                <li><strong>\(F\) (Force):</strong> The attractive pull between the two atoms.</li>
+                                <li><strong>\(k\) (Coulomb's constant):</strong> A fixed number representing the physical properties of space.</li>
+                                <li><strong>\(q_1\) and \(q_2\) (Charges):</strong> The partial charges (\(\delta+\) and \(\delta-\)). The stronger the charge, the stronger the pull.</li>
+                                <li><strong>\(r\) (Radius/Distance):</strong> The distance between the two atoms. Note that it is squared (\(r^2\)) and on the bottom of the fraction!</li>
+                            </ul>
+                            <p style="font-size: 0.9rem; color: #aab2c0;"><strong>Why are we studying this?</strong> Because of the \(r^2\) on the bottom, if the atoms move even a tiny bit further apart, the force (\(F\)) drops exponentially. This means hydrogen bonds are highly directional. A perfectly straight line (\(180^\circ\)) maximizes the attractive force. Even a slight angular distortion in a mismatched base pair significantly weakens the bond.</p>
                         </div>
-                        
-                        <p>Because the force drops exponentially with distance (\(r^2\)) and angle, hydrogen bonds are highly directional. A linear (\(180^\circ\)) geometry maximizes the attractive force. Even a slight angular distortion in a mismatched base pair significantly weakens the bond.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig1.jpg" alt="Electrostatics of Hydrogen Bonding">
                             <figcaption>Figure 5.1: Electrostatics of Hydrogen Bonding</figcaption>
@@ -147,12 +153,20 @@
                         <p>How does a slight energy difference result in DNA polymerase rejecting a mismatch? The answer lies in the <strong>Boltzmann Distribution</strong>.</p>
                         
                         <div class="math-block">
-                            <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The probability of a state existing is exponentially related to its Free Energy (\(\Delta G\)):</p>
-                            <p style="text-align: center; font-size: 1.2rem;">\(P \propto e^{-\frac{\Delta G}{RT}}\)</p>
+                            <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The probability of a state existing is determined by the <strong>Boltzmann Distribution</strong>:</p>
+                            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">\(P \propto e^{-\frac{\Delta G}{RT}}\)</p>
+                            <p style="font-size: 0.9rem; color: #aab2c0;"><strong>Let's break down these symbols:</strong></p>
+                            <ul style="margin-left: 1.5rem; font-size: 0.9rem; color: #aab2c0; margin-bottom: 0.5rem;">
+                                <li><strong>\(P\) (Probability):</strong> The likelihood that a specific base pair will form and stay together.</li>
+                                <li><strong>\(\propto\) (Proportional to):</strong> Means "is directly related to".</li>
+                                <li><strong>\(e\) (Euler's number):</strong> A mathematical constant (approx 2.718) used for exponential growth and decay. Pronounced "ee".</li>
+                                <li><strong>\(\Delta G\) (Delta G / Gibbs Free Energy):</strong> The total energy "cost" or "stability" of the molecule. A negative number means it is stable.</li>
+                                <li><strong>\(R\) (Gas constant) & \(T\) (Temperature):</strong> Represents the thermal energy (heat) constantly bumping into the molecules.</li>
+                            </ul>
+                            <p style="font-size: 0.9rem; color: #aab2c0;"><strong>How the formula works:</strong> The difference in free energy between a correct pair and an incorrect mismatch is called \(\Delta\Delta G\) ("Double Delta G"). Because the energy term (\(\Delta G\)) is in the exponent (the power of \(e\)), a tiny \(2 \text{ kcal/mol}\) difference translates into a massive, exponential difference in binding probability.</p>
                         </div>
 
-                        <p>The difference in free energy between a correct pair and an incorrect mismatch is \(\Delta\Delta G\). Because the energy term is in the exponent, even a tiny \(2 \text{ kcal/mol}\) difference in \(\Delta\Delta G\) translates into a massive, exponential difference in binding probability.</p>
-                        <p>Think of it like a valley. A correct DNA pair sits in a deep, stable valley. An incorrect mismatched pair sits in a shallow, unstable valley. The enzyme doesn't actively "decide"—it simply lets thermal physics do the filtering.</p>
+                        <p>Think of it like a valley. A correct DNA pair sits in a deep, stable valley (Low \(\Delta G\)). An incorrect mismatched pair sits in a shallow, unstable valley (High \(\Delta G\)). Due to the exponential math above, the enzyme doesn't actively "decide"—it simply lets thermal physics do the filtering.</p>
                         
                         <div class="image-container" style="margin-top: 2rem;">
                             <img src="fig4.jpg" alt="The Energy Landscape">
