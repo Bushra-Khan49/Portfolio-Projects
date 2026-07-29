@@ -7,7 +7,10 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
+    <!-- MathJax for rendering math formulas beautifully -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         .back-btn {
             position: fixed;
@@ -46,11 +49,10 @@
             .back-btn { top: 0.75rem; left: 0.75rem; font-size: 0.72rem; padding: 0.4rem 0.9rem; }
         }
         
-        /* Topic 5 specific light background adjustments for images */
         .image-container img {
             width: 100%;
             border-radius: 12px;
-            background-color: #f8f9fa; /* Light background behind image just in case */
+            background-color: #f8f9fa;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
@@ -61,9 +63,18 @@
             font-style: italic;
             text-align: center;
         }
+        .math-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
     </style>
 </head>
 <body>
+    <!-- Fixed the Back Button Path to point to the main Syllabus -->
     <a class="back-btn" href="../../../index.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"/>
@@ -91,10 +102,16 @@
                 <!-- Intro Cards -->
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
-                        <h3>1. The Atomic Reality</h3>
-                        <p>At the fundamental level, DNA polymerase doesn't "read" A, T, G, or C. It simply provides an environment where <strong>electrostatic forces</strong> (attractions between positive and negative charges) govern molecular interaction.</p>
-                        <p>Hydrogen bonds form when a slightly positive atom is attracted to a slightly negative atom. This attraction is what holds the DNA base pairs together.</p>
-                        <p>Because these forces depend heavily on distance and angle, hydrogen bonds are highly directional. A straight line makes the strongest bond. Even a slight angular distortion in a mismatched base pair significantly weakens the bond.</p>
+                        <h3>1. The Atomic Reality (Electrostatics)</h3>
+                        <p>At the fundamental level, DNA polymerase doesn't "read" letters like A, T, G, or C. It simply provides an environment where <strong>electrostatic forces</strong> govern molecular interaction.</p>
+                        <p>Hydrogen bonds form when a highly electronegative atom (like Oxygen or Nitrogen) pulls electron density away from a Hydrogen atom, creating a partial positive charge (\(\delta+\)). This \(\delta+\) is electrostatically attracted to the lone pairs (\(\delta-\)) of another electronegative atom.</p>
+                        
+                        <div class="math-block">
+                            <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The strength of this attraction is dictated by Coulomb's Law:</p>
+                            <p style="text-align: center; font-size: 1.2rem;">\(F = k \frac{q_1 q_2}{r^2}\)</p>
+                        </div>
+                        
+                        <p>Because the force drops exponentially with distance (\(r^2\)) and angle, hydrogen bonds are highly directional. A linear (\(180^\circ\)) geometry maximizes the attractive force. Even a slight angular distortion in a mismatched base pair significantly weakens the bond.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig1.jpg" alt="Electrostatics of Hydrogen Bonding">
                             <figcaption>Figure 5.1: Electrostatics of Hydrogen Bonding</figcaption>
@@ -104,9 +121,9 @@
                 
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
-                        <h3>2. The Hydration Shell</h3>
-                        <p>In our cells, DNA and nucleotides are never dry. They are entirely surrounded by water. Because water molecules are polar, they immediately form a structured network around every nucleotide.</p>
-                        <p>This organized layer of water is called a <strong>Hydration Shell</strong>. The large number of favorable hydrogen bonds makes the nucleotide incredibly stable in water.</p>
+                        <h3>2. The Hydration Shell (Entropy)</h3>
+                        <p>In our cells, DNA and free nucleotides are never dry. They are entirely surrounded by bulk water. Because water is highly polar, it immediately forms structured hydrogen-bond networks around every exposed polar atom on the nucleotide.</p>
+                        <p>This organized layer is called a <strong>Hydration Shell</strong>. While this restricts the movement of water molecules (which means it lowers entropy, \(\Delta S < 0\)), the sheer number of favorable hydrogen bonds makes the nucleotide incredibly stable in solution.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig2.jpg" alt="The Hydration Shell of a Free Nucleotide">
                             <figcaption>Figure 5.2: The Hydration Shell</figcaption>
@@ -114,9 +131,9 @@
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
-                        <h3>3. The Desolvation Penalty</h3>
+                        <h3>3. The Desolvation Penalty (Enthalpy)</h3>
                         <p>Before a nucleotide can enter the active site of DNA polymerase, it must shed its "winter coat" of water. Breaking these pre-existing water bonds costs energy. This thermodynamic cost of admission is called the <strong>Desolvation Penalty</strong>.</p>
-                        <p>If the nucleotide forms a correct pair, it creates perfect new hydrogen bonds, releasing enough energy to pay back the penalty. However, an incorrect mismatched base pays the penalty to strip the water, but its distorted shape prevents it from forming strong new bonds. It loses energy overall.</p>
+                        <p>If the nucleotide forms a correct Watson-Crick pair, it creates perfect new hydrogen bonds, releasing enough energy (Enthalpy, \(\Delta H\)) to pay back the penalty. However, if an incorrect mismatched base enters, it pays the penalty to strip the water, but its distorted geometry prevents it from forming strong new bonds. It goes energetically bankrupt.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig3.jpg" alt="The Desolvation Penalty during DNA Replication">
                             <figcaption>Figure 5.3: The Desolvation Penalty</figcaption>
@@ -127,9 +144,15 @@
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
                         <h3 style="color: var(--accent); margin-bottom: 1rem;">4. The Mathematical Decision</h3>
-                        <p>How does a slight energy difference result in DNA polymerase rejecting a mismatch? The answer lies in thermodynamics.</p>
-                        <p>Think of it like a valley. A correct DNA pair sits in a deep, stable valley. It's very hard to push it out. An incorrect mismatched pair sits in a shallow, unstable valley. It easily rolls out and breaks apart.</p>
-                        <p>Because of this difference in stability (Energy Difference), a correct pair is exponentially more likely to form and stay together than a mismatched one. The enzyme doesn't actively "decide"—it simply lets physics do the filtering.</p>
+                        <p>How does a slight energy difference result in DNA polymerase rejecting a mismatch? The answer lies in the <strong>Boltzmann Distribution</strong>.</p>
+                        
+                        <div class="math-block">
+                            <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The probability of a state existing is exponentially related to its Free Energy (\(\Delta G\)):</p>
+                            <p style="text-align: center; font-size: 1.2rem;">\(P \propto e^{-\frac{\Delta G}{RT}}\)</p>
+                        </div>
+
+                        <p>The difference in free energy between a correct pair and an incorrect mismatch is \(\Delta\Delta G\). Because the energy term is in the exponent, even a tiny \(2 \text{ kcal/mol}\) difference in \(\Delta\Delta G\) translates into a massive, exponential difference in binding probability.</p>
+                        <p>Think of it like a valley. A correct DNA pair sits in a deep, stable valley. An incorrect mismatched pair sits in a shallow, unstable valley. The enzyme doesn't actively "decide"—it simply lets thermal physics do the filtering.</p>
                         
                         <div class="image-container" style="margin-top: 2rem;">
                             <img src="fig4.jpg" alt="The Energy Landscape">
@@ -141,9 +164,9 @@
                 <section class="section-block fade-up" style="margin-bottom: 5rem;">
                     <div class="glass-card tilt-effect hover-target full-width">
                         <h3 style="color: var(--accent); margin-bottom: 1rem;">5. The Universal Principle</h3>
-                        <p>The physics of base pairing is not just a biological curiosity—it is the foundational principle of <strong>computational biology and drug discovery</strong>.</p>
-                        <p>When a bioinformatician looks at a false-positive variant call in a VCF file, they are looking at the downstream consequence of an unstable base pair during sequencing or replication. When a structural biologist uses software to score a cancer drug, the software is estimating the exact same hydrogen-bond energies and desolvation penalties we see in DNA polymerase.</p>
-                        <p>Everything in molecular biology eventually reduces to chemistry and energy!</p>
+                        <p>The physics of base pairing is not just a biological curiosity—it is the foundational axiom of <strong>computational biology and drug discovery</strong>.</p>
+                        <p>When a bioinformatician looks at a false-positive variant call in a VCF file, they are looking at the downstream mathematical consequence of an unfavorable \(\Delta\Delta G\) during sequencing or replication. When a structural biologist uses AutoDock Vina to score a cancer drug, the software is literally just estimating the exact same hydrogen-bond enthalpies and desolvation penalties we see in DNA polymerase.</p>
+                        <p>Everything in molecular biology eventually reduces to energy.</p>
                         
                         <div class="image-container" style="margin-top: 2rem;">
                             <img src="fig5.jpg" alt="Bioinformatics and Drug Discovery Flowchart">
