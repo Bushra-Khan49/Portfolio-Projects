@@ -259,40 +259,21 @@
 
                 <section class="section-block fade-up" style="margin-bottom: 5rem;">
                     <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(130, 177, 255, 0.05); border-color: rgba(130, 177, 255, 0.3);">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">Bioinformatics Connection & The Complete Pipeline</h3>
-                        <p>The transition vs transversion rates programmed into every bioinformatics algorithm exist purely because of Enthalpy and Desolvation Penalties.</p>
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Bioinformatics Connection</h3>
+                        <p>What happens if this physical chemistry breaks down and DNA polymerase fails to enforce the desolvation penalty? <strong class="text-application">Every downstream bioinformatics algorithm becomes unreliable.</strong></p>
                         
-                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
                             <div>
-                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">1. Variant Calling</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">Variant callers use probabilistic models built on natural mutation rates. A Transition mismatch has a smaller desolvation penalty than a Transversion mismatch, hence it is more frequent.</p>
+                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">1. Variant Calling & Disease Diagnosis</h4>
+                                <p style="font-size: 1.25rem; color: var(--text-muted);">Variant callers explicitly assume that DNA replication is highly accurate due to chemical thermodynamics. If the Enthalpy/Desolvation balance failed, the baseline mutation rate would skyrocket. Software like GATK or DeepVariant would be flooded with false-positive SNVs (Single Nucleotide Variants). We would be unable to distinguish a true cancer-causing mutation from a random replication error, rendering clinical genomics useless.</p>
                             </div>
                             <div>
-                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">2. Comparative Genomics</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">When building phylogenetic trees, evolutionary distances are calculated using matrices (like BLOSUM) that inherently weight mutation probabilities based on these physical laws.</p>
+                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">2. Genome Assembly</h4>
+                                <p style="font-size: 1.25rem; color: var(--text-muted);">Assemblers (like SPAdes or Flye) rely on overlapping reads to stitch genomes together. If chemistry produced many random errors, these overlaps would conflict. The software would attempt to resolve these conflicts by creating entirely false, fragmented, and ambiguous genome assemblies, breaking our ability to study new species.</p>
                             </div>
-                        </div>
-                        
-                        <div style="margin-top: 3rem; text-align: center;">
-                            <h4 class="h-primary" style="margin-bottom: 1rem;">The Complete Computational Pipeline</h4>
-                            <div class="code-box" style="display: inline-block; text-align: left; margin-top: 1rem; border-color: rgba(130, 177, 255, 0.5);">
-                                Physics & Chemistry<br>
-                                ↓<br>
-                                <span class="h-tertiary">Desolvation Penalty / Hydrogen Bonding Enthalpy</span><br>
-                                ↓<br>
-                                Thermodynamic Balance (\(\Delta G\))<br>
-                                ↓<br>
-                                Stable Genome Replication<br>
-                                ↓<br>
-                                Sequencing → FASTQ Reads<br>
-                                ↓<br>
-                                Read Mapping → Genome Assembly → Variant Calling<br>
-                                ↓<br>
-                                Evolutionary Models (Transition/Transversion rates)<br>
-                                ↓<br>
-                                Structural Bioinformatics & Drug Discovery (AutoDock)<br>
-                                ↓<br>
-                                <strong class="text-application" style="font-size: 1.1rem; margin-top: 0.5rem; display: block;">Biological Discovery</strong>
+                            <div>
+                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">3. Read Mapping & Alignment</h4>
+                                <p style="font-size: 1.25rem; color: var(--text-muted);">Alignment algorithms (like BWA or Bowtie2) are computationally optimized by assuming there are only a few differences between a sequenced read and the reference genome. A high replication error rate would destroy this assumption, causing massive mapping quality drops and increasing ambiguous, unmapped reads.</p>
                             </div>
                         </div>
                     </div>
