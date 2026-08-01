@@ -8,6 +8,34 @@
 
 ---
 
+## 🎯 Purpose & Motivation
+
+I’ve been quietly working on something that’s been on my mind for a long time. Over the years of learning Biology, Biotechnology, and Bioinformatics, I kept running into the same problem. There wasn’t a single place that connected these subjects in a way that was visual, concise, interactive, and logically structured.
+
+Most resources either:
+- Explain one field in isolation.
+- Skip the *why* behind concepts.
+- Overcomplicate simple ideas.
+- Assume you already know the prerequisites.
+
+Instead of just taking notes, I asked myself: **“How do I actually learn and connect concepts?”**
+
+I documented my learning process, turned it into a framework, and started building an interactive learning platform around it. Instead of organizing content chapter by chapter, I’m organizing it the way understanding actually develops—by connecting concepts across Biology, Biotechnology, and Bioinformatics.
+
+### What to Expect in Every Topic
+Every topic answers four questions:
+- What is it?
+- Why does it matter?
+- How does it work?
+- Where does it connect?
+
+### Who is this for?
+- Beginners in Biology, Biotechnology, and Bioinformatics.
+- Students from Computer Science, AI, Software Engineering, and Data Science who want to understand the biology behind the computational methods they use.
+- Anyone looking for a structured and visual way to revise core concepts.
+
+---
+
 ## 📚 Syllabus Explained
 
 | Topic | Title | Live Link |
