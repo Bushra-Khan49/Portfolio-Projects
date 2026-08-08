@@ -88,7 +88,11 @@
                         <div class="code-box" style="text-align: center;">
                             Physics<br>↓<br>Chemistry<br>↓<br>Thermodynamics<br>↓<br>DNA Polymerase<br>↓<br>Proofreading<br>↓<br>Mismatch Repair<br>↓<br>Near-perfect genome replication
                         </div>
-                        <p style="margin-top: 1rem;">Every later fidelity mechanism builds upon these fundamental physical principles.</p>
+                        <p style="margin-top: 1rem;">Every later fidelity mechanism builds upon these fundamental physical principles. Inside a living cell, DNA is constantly bombarded by water molecules moving at high speeds—a chaotic environment governed by thermal noise. Physics acts as the very first filter in this chaos, ensuring only the most energetically stable pairs survive long enough to be linked.</p>
+                        <figure style="margin-top: 2rem; text-align: center;">
+                            <img src="fig_thermal_noise.jpg" alt="Thermal Noise and Molecular Collisions" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <figcaption style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem; font-style: italic;">Thermal noise and constant molecular collisions provide the energetic baseline for selection.</figcaption>
+                        </figure>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
@@ -161,7 +165,11 @@
                             <div class="code-box" style="margin-bottom: 1rem; text-align: center;">
                                 ○<br>○<br>○<br>○
                             </div>
-                            <p>Everything stacks neatly. Electron clouds overlap. The molecule becomes stable. Now insert an uneven object (○ △ ○). The stack becomes distorted. Energy increases. The helix becomes slightly unstable.</p>
+                            <p>Everything stacks neatly. Electron clouds overlap. The molecule becomes stable. This overlap creates strong London dispersion forces and pi-pi interactions between the aromatic rings. Now insert an uneven object (○ △ ○). The stack becomes distorted. The overlapping pi-electron clouds break apart, energy increases, and the helix becomes slightly unstable.</p>
+                            <figure style="margin-top: 1.5rem; margin-bottom: 2rem; text-align: center;">
+                                <img src="fig_pi_stacking.jpg" alt="DNA Pi-Pi Base Stacking" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <figcaption style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem; font-style: italic;">Detailed view of base stacking and overlapping pi-electron clouds.</figcaption>
+                            </figure>
 
                             <h4 style="margin-top: 2rem; color: #fff;">3. Hydrophobic Effect</h4>
                             <p>This is one of the most important—and often misunderstood—concepts in molecular biology. DNA exists inside water. Water molecules constantly form hydrogen bonds with each other. DNA bases are hydrophobic (water-fearing) aromatic molecules.</p>
@@ -237,12 +245,13 @@
                                 </div>
                                 <p>If Correct ΔG = -10 kcal/mol and Incorrect ΔG = -8 kcal/mol, then ΔΔG = (-8) - (-10) = <strong>+2 kcal/mol</strong>.</p>
                                 <p>The positive value means the incorrect pair requires 2 kcal/mol more energy than the correct one. That sounds tiny, but at the molecular scale, it is enormous. Because billions upon billions of molecular collisions occur every second, even a 1–3 kcal/mol difference shifts the probability dramatically toward the correct base.</p>
-                                <p>Nature doesn’t need perfect discrimination. A small energy advantage, repeated billions of times, produces highly accurate replication.</p>
+                                <p>Nature doesn’t need perfect discrimination. A small energy advantage, repeated billions of times, produces highly accurate replication. This relationship is mathematically defined by the <strong>Boltzmann Distribution</strong>, which states that the probability of a molecular state decreases exponentially as its energy cost increases. A mere 2 kcal/mol difference translates into a massive exponential drop in the probability of a mismatch occurring!</p>
                             </div>
                         </div>
                         <figure style="margin-top: 2rem; text-align: center;">
+                            <img src="fig_boltzmann.jpg" alt="Boltzmann Distribution" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;">
                             <img src="fig5.jpg" alt="Thermodynamics Free Energy Landscape" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <figcaption style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem; font-style: italic;">Figure 4.5: Thermodynamic Free Energy Landscape</figcaption>
+                            <figcaption style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem; font-style: italic;">Figure 4.5: Thermodynamic Free Energy Landscape & The Boltzmann Distribution</figcaption>
                         </figure>
                     </div>
                 </section>
@@ -266,11 +275,15 @@
                         <h3>Biotechnology Connection</h3>
                         <p>These exact chemical principles are used every day in biotechnology:</p>
                         <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
-                            <li><strong>PCR:</strong> PCR primers bind DNA only if ΔG is sufficiently favorable. Primer-design software calculates Tm, GC content, and ΔG before experiments begin.</li>
+                            <li><strong>PCR:</strong> PCR primers bind DNA only if ΔG is sufficiently favorable. Primer-design software uses Nearest-Neighbor Thermodynamics to calculate melting temperatures (Tm) and ΔG before any physical experiment begins.</li>
                             <li><strong>DNA Hybridization:</strong> Southern blot, Northern blot, Microarrays, and FISH all depend upon complementary strands having lower free energy than mismatches.</li>
                             <li><strong>CRISPR:</strong> Guide RNA searches for DNA. Correct complementarity → Low ΔG → Stable binding → DNA cleavage.</li>
                             <li><strong>DNA Sequencing:</strong> Illumina, PacBio, Nanopore all rely upon predictable nucleotide recognition. Correct Watson-Crick chemistry makes base calling possible.</li>
                         </ul>
+                        <figure style="margin-top: 2rem; text-align: center;">
+                            <img src="fig_pcr_thermo.jpg" alt="PCR Thermodynamics UI" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <figcaption style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem; font-style: italic;">Bioinformatics software modeling PCR primer thermodynamics using ΔG calculations.</figcaption>
+                        </figure>
                     </div>
                 </section>
 
