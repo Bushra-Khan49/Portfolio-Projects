@@ -107,124 +107,116 @@
                     </div>
                 </section>
                 
-                <!-- 1. Why it matters? -->
-                <section class="section-block fade-up">
+                <!-- 1. Row 1: Full width -->
+                <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">1. Why It Matters?</h3>
-                        <p>We previously saw how the thermodynamic balance of hydrogen bonds and desolvation penalizes mismatches. However, free energy (\(\Delta G\)) differences alone account for an error rate of about <strong style="color: #b388ff;">1 in 1,000 to 1 in 10,000 bases</strong>.</p>
-                        <p>Yet, the actual error rate of DNA polymerase is around <strong style="color: #00e5ff;">1 in 10,000,000 bases</strong>. Where does this massive leap in accuracy come from?</p>
-                        <p>The answer is the enzyme's <strong class="text-application">Active-Site Geometry</strong> and its exploitation of <strong class="text-application">Conformational Entropy</strong> to create an insurmountable Kinetic Barrier.</p>
+                        <h3 class="h-primary">1. Why It Matters & What Problem It Solves</h3>
+                        <p>We previously established how the thermodynamic balance of hydrogen bonding and desolvation energetically penalizes mismatched base pairs. However, relying on free energy (\(\Delta G\)) differences alone is mathematically insufficient. Thermodynamics alone accounts for an error rate of about <strong style="color: #b388ff;">1 in 1,000 to 1 in 10,000 bases</strong>.</p>
+                        <p>Yet, the actual baseline error rate of DNA polymerase in vivo is an astonishing <strong style="color: #00e5ff;">1 in 10,000,000 bases</strong>. Where does this massive, multi-log magnitude leap in accuracy come from?</p>
+                        <p><strong>The Gatekeeper:</strong> The cellular environment is hot, chaotic, and driven by thermal noise. Chemistry alone isn't strict enough to prevent lethal mutation loads. To bridge the gap, the enzyme utilizes its <strong class="text-application">Active-Site Geometry</strong> and exploits <strong class="text-application">Conformational Entropy</strong> to create an insurmountable Kinetic Barrier. It serves as the ultimate gatekeeper—acting immediately <em>after</em> thermodynamic attraction, but <em>before</em> mismatch repair mechanisms are required.</p>
                     </div>
                 </section>
 
-                <!-- 2. What problem does it solve? Where does it fit? -->
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">2. What Problem Does It Solve? Where Does It Fit?</h3>
-                        <p><strong>The Problem:</strong> The cellular environment is hot and chaotic (thermal noise). Chemistry alone isn't strict enough to prevent mutations that would quickly lead to cancer and death.</p>
-                        <p><strong>Where It Fits:</strong> It acts as the ultimate gatekeeper. It is the immediate step <em>after</em> thermodynamics (which attracts the bases) and <em>before</em> mismatch repair (which fixes mistakes after the fact). It is the moment of truth where the enzyme decides whether to catalyze the chemical bond.</p>
+                <!-- 2. Row 2: Split width (2 cards) -->
+                <section class="card-grid section-block fade-up" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <!-- Card A: Steric Fit -->
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">2. Active-Site Geometry & Steric Fit</h3>
+                        <p>The active site of DNA Polymerase is not merely a chemical binding pocket; it acts as a rigid, precise physical mold. Remarkably, all canonical Watson-Crick base pairs (A=T, T=A, G≡C, C≡G) possess virtually identical overall geometries, measuring approximately 10.8 Ångströms wide.</p>
+                        <p>The polymerase pocket is tailored exactly to this dimension, strictly enforcing geometric equivalence before any chemical bond is formed.</p>
+                        <div class="image-container" style="margin-top: 1.5rem;">
+                            <img src="fig_steric_fit.jpg?v=1" alt="Steric Fit in Active Site" loading="lazy" decoding="async">
+                            <figcaption>The polymerase active site enforcing a strict 10.8 Ångström geometric requirement.</figcaption>
+                        </div>
                     </div>
-                </section>
-
-                <!-- 3. Key concept and step-by-step explained & 6. More concepts explained -->
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
-                        <h3 class="h-primary">3. Key Concepts Step-by-Step</h3>
-                        
-                        <h4 class="h-secondary" style="margin-top: 1.5rem;">Step 1: Active-Site Geometry & Steric Fit</h4>
-                        <p>The active site of DNA Polymerase acts as a rigid, precise physical mold. Remarkably, all canonical Watson-Crick base pairs (A=T, T=A, G≡C, C≡G) have virtually identical overall geometries (~10.8 Ångströms wide). The polymerase pocket is tailored exactly to this dimension.</p>
-                        
-                        <h4 class="h-secondary" style="margin-top: 1.5rem;">Step 2: The Induced Fit Mechanism</h4>
-                        <p>When the correct nucleotide binds, the perfect steric fit allows the polymerase to undergo a massive conformational change. The "Fingers" domain of the enzyme closes tightly over the active site. This excludes bulk water and aligns the catalytic Mg2+ ions to attack the incoming phosphate.</p>
-                        <div class="image-container">
+                    <!-- Card B: Induced Fit -->
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">3. The Induced Fit Mechanism</h3>
+                        <p>When a geometrically correct nucleotide binds, this perfect steric fit triggers a massive conformational change within the enzyme. The "Fingers" domain of the polymerase rapidly rotates and closes tightly over the active site.</p>
+                        <p>This closed state is critical for catalysis: it physically excludes bulk water from the active site and precisely aligns the catalytic Mg2+ ions to attack the incoming phosphate group.</p>
+                        <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig_induced_fit.jpg" alt="Induced Fit Mechanism" loading="lazy" decoding="async">
                             <figcaption>The "Fingers" domain closing tightly around a perfectly matched base pair.</figcaption>
                         </div>
+                    </div>
+                </section>
 
-                        <h4 class="h-secondary" style="margin-top: 2rem;">Step 3: Mismatch Disruption</h4>
-                        <p>If an incorrect base pairs (e.g., a bulky Purine-Purine mismatch), the combined width is too large. This causes a <strong style="color: #ff3366;">Steric Clash</strong>. The enzyme's fingers domain is physically blocked and stuck open. Because it cannot fully close, water rushes in, and the catalytic ions are misaligned.</p>
-                        <div class="image-container">
+                <!-- 3. Row 3: Full width -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary">4. Mismatch Disruption & Conformational Entropy</h3>
+                        <p>If an incorrect, non-canonical base pairs (e.g., a bulky Purine-Purine mismatch), the combined width significantly exceeds the 10.8 Å limit. This oversized geometry causes a severe <strong style="color: #ff3366;">Steric Clash</strong>.</p>
+                        <div class="image-container" style="margin-bottom: 2rem;">
                             <img src="fig_mismatch_disruption.jpg" alt="Mismatch Disruption" loading="lazy" decoding="async">
                             <figcaption>Steric clash preventing the polymerase from closing, leaving the active site disrupted by water.</figcaption>
                         </div>
-                    </div>
-                </section>
-
-                <!-- 4. Why behind everything explained? -->
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">4. The "Why" Behind It All: Conformational Entropy</h3>
-                        <p>Why does the enzyme have to close in the first place? Why can't it just catalyze the bond while open?</p>
-                        <p>This is governed by <strong>Conformational Entropy</strong>.</p>
-                        <div class="math-block">
+                        <h4 class="h-secondary">The "Why": Conformational Entropy</h4>
+                        <p>Why must the enzyme close so tightly to catalyze the bond? This requirement is governed by <strong>Conformational Entropy</strong>.</p>
+                        <div class="math-block" style="margin: 1.5rem 0;">
                             <p style="text-align: center; font-size: 2.2rem; margin-bottom: 1rem; color: #b388ff;">\(S = k_B \ln W\)</p>
                             <ul style="margin-left: 1.5rem; font-size: 1.1rem; color: #aab2c0; margin-bottom: 0.5rem;">
-                                <li><strong>\(S\) (Entropy):</strong> The degree of disorder or flexibility.</li>
-                                <li><strong>\(k_B\) (Boltzmann Constant):</strong> Links temperature to energy.</li>
-                                <li><strong>\(W\) (Microstates):</strong> The number of possible shapes or positions.</li>
+                                <li><strong>\(S\) (Entropy):</strong> The degree of disorder or flexibility in a system.</li>
+                                <li><strong>\(k_B\) (Boltzmann Constant):</strong> Links thermodynamic temperature to energy.</li>
+                                <li><strong>\(W\) (Microstates):</strong> The number of possible physical shapes or structural positions.</li>
                             </ul>
                         </div>
-                        <p>A free-floating enzyme is highly flexible (High \(W\), High Entropy). But catalysis requires absolute, rigid precision. The enzyme must "freeze" into a single, low-entropy state (Low \(W\)) to align the atoms precisely for the reaction. If a mismatch prevents this "freezing" (induced fit), the enzyme remains trapped in a high-entropy, chaotic state where catalysis is impossible.</p>
+                        <p>A free-floating enzyme is highly flexible, occupying a state of high entropy (High \(W\)). However, the highly specialized chemistry of phosphodiester bond formation requires absolute, rigid precision. The enzyme must "freeze" into a single, low-entropy state (Low \(W\)) to align the reacting atoms perfectly. When a mismatch occurs, the steric clash physically jams the Fingers domain open. The enzyme remains trapped in a high-entropy, chaotic state where water rushes in, catalytic ions are misaligned, and successful catalysis is physically impossible.</p>
                     </div>
                 </section>
 
-                <!-- 5. Formulas thoroughly explained -->
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">5. Transition State Theory Formula Breakdown</h3>
-                        <p>The failure to close directly impacts the speed of the chemical reaction, dictated by the Eyring-Polanyi equation:</p>
-                        <div class="math-block">
-                            <p style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #b388ff;">\(k = \frac{k_B T}{h} e^{-\frac{\Delta G^\ddagger}{RT}}\)</p>
-                            <h4 style="color: #00e5ff; margin-bottom: 0.5rem;">Every Variable Explained:</h4>
-                            <ul style="margin-left: 1.5rem; font-size: 1.1rem; color: #aab2c0; margin-bottom: 0.5rem; line-height: 1.6;">
-                                <li><strong>\(k\) (Rate Constant):</strong> How fast the polymerase adds the nucleotide (reactions per second).</li>
-                                <li><strong>\(\frac{k_B T}{h}\):</strong> The theoretical maximum speed limit of the reaction based on thermal energy (\(k_B T\)) and Planck's constant (\(h\)).</li>
-                                <li><strong>\(e\) (Euler's Number):</strong> Indicates an exponential relationship.</li>
-                                <li><strong>\(\Delta G^\ddagger\) (Activation Free Energy):</strong> The massive energy hill the reaction must climb. This is the most critical variable!</li>
-                                <li><strong>\(R\) (Gas Constant) & \(T\) (Temperature):</strong> The available thermal energy in the cell.</li>
+                <!-- 4. Row 4: Split width (2 cards) -->
+                <section class="card-grid section-block fade-up" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <!-- Card A: Transition State Theory -->
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">5. Transition State Theory</h3>
+                        <p>The failure to achieve the closed conformation directly dictates the speed of the chemical reaction, modeled by the Eyring-Polanyi equation:</p>
+                        <div class="math-block" style="margin: 1.5rem 0; padding: 1rem;">
+                            <p style="text-align: center; font-size: 2rem; margin-bottom: 1rem; color: #b388ff;">\(k = \frac{k_B T}{h} e^{-\frac{\Delta G^\ddagger}{RT}}\)</p>
+                            <ul style="margin-left: 1rem; font-size: 0.95rem; color: #aab2c0; margin-bottom: 0.5rem; line-height: 1.4;">
+                                <li><strong>\(k\):</strong> Rate Constant (reactions per second).</li>
+                                <li><strong>\(\frac{k_B T}{h}\):</strong> Theoretical maximum speed limit.</li>
+                                <li><strong>\(\Delta G^\ddagger\):</strong> Activation Free Energy (the critical energy hill).</li>
                             </ul>
                         </div>
-                        <h4 class="h-secondary">How it works and affects the overall system:</h4>
-                        <p>Because \(\Delta G^\ddagger\) is in a negative exponent, a tiny geometric misalignment (from a mismatch) causes a massive spike in \(\Delta G^\ddagger\). This spike causes the rate constant \(k\) to plummet exponentially (by a factor of 10,000 to 100,000). The reaction stalls.</p>
-                        <h4 class="h-secondary" style="color: #ff3366;">What is the cost if it fails?</h4>
-                        <p>If this mathematical kinetic barrier did not exist, the enzyme would accidentally link mismatched bases at a rate of 1 in 1,000. In a genome of 3 billion bases, that means 3 million mutations every single time a cell divides. This would result in immediate catastrophic cancer and cellular death.</p>
+                        <p>Because \(\Delta G^\ddagger\) is positioned in a negative exponential, a slight geometric misalignment from a mismatch causes a massive spike in \(\Delta G^\ddagger\). This exponential relationship causes the reaction rate \(k\) to plummet drastically (by a factor of \(10^4\) to \(10^5\)).</p>
+                        <div class="image-container" style="margin-top: 1.5rem;">
+                            <img src="fig_activation_energy.jpg?v=1" alt="Activation Free Energy Landscape" loading="lazy" decoding="async">
+                            <figcaption>Activation Free Energy Barrier separating correct and incorrect additions.</figcaption>
+                        </div>
                     </div>
-                </section>
-
-                <!-- 7. Every layer explained & 11. Proofreading Trigger -->
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">7. Every Layer Explained: The Proofreading Trigger</h3>
-                        <p>We can now see the entire chain reaction—layer by layer—that leads to proofreading.</p>
-                        <ol style="margin-left: 1.5rem; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">
-                            <li><strong>Thermodynamics fails:</strong> A rare wobble base pair manages to bind.</li>
-                            <li><strong>Steric Clash:</strong> The bulky mismatch physically jams the active site.</li>
-                            <li><strong>Induced Fit Fails:</strong> The Fingers domain cannot close.</li>
-                            <li><strong>Activation Energy Spikes:</strong> \(\Delta G^\ddagger\) becomes too high.</li>
-                            <li><strong>Kinetic Stall:</strong> The enzyme's catalytic rate \(k\) plummets to near zero.</li>
-                            <li><strong>The Proofreading Trigger:</strong> Because the enzyme is stalled in the open position, thermal fluctuations cause the mismatched strand to fray. The strand physically flips out of the polymerase site and into the separate <strong style="color: #00e5ff;">3' → 5' Exonuclease</strong> active site, where it is chopped off!</li>
+                    <!-- Card B: Proofreading Trigger -->
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">6. The Proofreading Trigger</h3>
+                        <p>We can trace the entire error-prevention cascade:</p>
+                        <ol style="margin-left: 1.5rem; margin-top: 1rem; margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">
+                            <li>Thermodynamics fails (a wobble base binds).</li>
+                            <li>Bulky mismatch creates a Steric Clash.</li>
+                            <li>Induced Fit fails; Fingers cannot close.</li>
+                            <li>Activation Energy (\(\Delta G^\ddagger\)) spikes exponentially.</li>
+                            <li>Catalytic rate (\(k\)) stalls to near zero.</li>
                         </ol>
-                        <div class="image-container">
+                        <p><strong>The Final Trigger:</strong> Stalled in the open position, the thermal fluctuations of the cell cause the mismatched strand to fray. The strand physically flips downward, moving out of the stalled polymerase site and directly into the separate <strong style="color: #00e5ff;">3' → 5' Exonuclease</strong> active site, where the error is chemically excised.</p>
+                        <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig_proofreading_trigger.jpg" alt="Proofreading Trigger Mechanism" loading="lazy" decoding="async">
-                            <figcaption>A stalled DNA strand physically flipping downwards into the separate exonuclease active site for removal.</figcaption>
+                            <figcaption>The stalled DNA strand flipping downwards into the exonuclease active site.</figcaption>
                         </div>
                     </div>
                 </section>
 
-                <!-- 8, 9, 10. Bioinformatics Integration -->
-                <section class="section-block fade-up" style="margin-bottom: 5rem;">
+                <!-- 5. Row 5: Full width (Bioinformatics) -->
+                <section class="card-grid section-block fade-up" style="margin-bottom: 5rem;">
                     <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(130, 177, 255, 0.05); border-color: rgba(130, 177, 255, 0.3);">
-                        <h3 class="h-primary">8. Connection to Bioinformatics</h3>
-                        <p>This kinetic stalling and proofreading mechanism is the exact reason why sequencing reads have high confidence scores (Phred Q-scores). The physical chemistry of the active site determines the baseline error profile of the reads we analyze.</p>
+                        <h3 class="h-primary">7. Connection to Bioinformatics (Bioinfo Mattix)</h3>
+                        <p>This intricate kinetic stalling and proofreading mechanism is the exact physical origin of the high confidence scores (Phred Q-scores) assigned to next-generation sequencing reads. The molecular physics of the active site determines the baseline error profile that every computational model must account for.</p>
                         
-                        <h3 class="h-primary" style="margin-top: 2rem;">9. Why is it important for Bioinformatics?</h3>
-                        <p>When detecting ultra-rare somatic mutations in cancer (e.g., analyzing circulating tumor DNA in blood plasma), we often look for variants present at 0.1% allele frequency. If the inherent baseline error rate of DNA replication (and the sequencing polymerase) wasn't suppressed by this kinetic filter, the background noise would completely drown out the true biological mutations. We could never trust a variant caller.</p>
+                        <h3 class="h-primary" style="margin-top: 2rem;">Why is it crucial for Bioinformatics?</h3>
+                        <p>When developing pipelines to detect ultra-rare somatic mutations in cancer (e.g., analyzing circulating tumor DNA in blood plasma), bioinformaticians often search for variants present at extremely low allele frequencies (~0.1%). If the inherent baseline error rate of DNA replication (and the sequencing polymerase itself) were not heavily suppressed by this kinetic filter, the background noise would completely drown out the true biological mutations. Statistical variant calling algorithms would be fundamentally useless without it.</p>
                         
-                        <h3 class="h-primary" style="margin-top: 2rem;">10. How to apply and use it in Bioinformatics</h3>
-                        <p>Bioinformaticians apply this knowledge when:</p>
-                        <ul style="margin-left: 1.5rem; color: #82b1ff; font-size: 1.05rem; line-height: 1.6;">
-                            <li><strong>Calibrating Base Quality Scores (BQSR):</strong> Tools like GATK rely on accurate models of polymerase error rates to recalibrate the confidence of every single sequenced base.</li>
-                            <li><strong>Designing Custom Enzymes:</strong> Protein engineers use molecular dynamics to modify the active-site geometry of polymerases (like Phusion or Q5) to increase the \(\Delta G^\ddagger\) penalty for mismatches, creating ultra-high-fidelity enzymes for specialized sequencing and PCR applications.</li>
+                        <h3 class="h-primary" style="margin-top: 2rem;">How to apply and use it in Bioinformatics</h3>
+                        <p>Bioinformaticians directly apply this knowledge in several critical areas:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem; color: #82b1ff; font-size: 1.05rem; line-height: 1.6;">
+                            <li style="margin-bottom: 1rem;"><strong>Calibrating Base Quality Scores (BQSR):</strong> Advanced variant calling tools like GATK rely on accurate models of polymerase error rates. BQSR uses these models to systematically recalibrate the confidence of every single sequenced base, distinguishing true sequencing errors from genuine biological variations.</li>
+                            <li><strong>Designing Custom Enzymes:</strong> Protein engineers leverage molecular dynamics simulations to precisely modify the active-site geometry of polymerases (such as Phusion or Q5). By artificially increasing the \(\Delta G^\ddagger\) penalty for mismatches, they create engineered, ultra-high-fidelity enzymes specifically tailored for highly sensitive sequencing and PCR applications.</li>
                         </ul>
                     </div>
                 </section>
