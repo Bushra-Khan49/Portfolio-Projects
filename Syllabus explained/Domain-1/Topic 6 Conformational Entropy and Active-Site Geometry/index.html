@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conformational Entropy & Active-Site Geometry</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=1">
+    <!-- MathJax for rendering math formulas beautifully -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .back-btn {
+            position: fixed;
+            top: 1.25rem;
+            left: 1.25rem;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            background: rgba(5, 10, 21, 0.75);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 999px;
+            color: #00e5ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.1);
+        }
+        .back-btn:hover {
+            background: rgba(0, 229, 255, 0.12);
+            border-color: rgba(0, 229, 255, 0.7);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+            transform: translateX(-2px);
+        }
+        .back-btn svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .back-btn { top: 0.75rem; left: 0.75rem; font-size: 0.72rem; padding: 0.4rem 0.9rem; }
+        }
+        
+        .image-container {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .image-container img {
+            width: 100%;
+            border-radius: 12px;
+            background-color: #f8f9fa;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        figcaption {
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: center;
+        }
+        .math-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #b388ff; /* Purple for math blocks */
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Hierarchy Colors */
+        .h-primary { color: #ffffff !important; } /* White for main headings */
+        .h-secondary { color: #00e5ff !important; } /* Cyan for subheadings */
+        .h-tertiary { color: #b388ff !important; } /* Purple for math/physics concepts */
+        .text-application { color: #82b1ff; font-weight: 600; } /* Blue for applications/bioinformatics */
+    </style>
+</head>
+<body>
+    <a class="back-btn" href="../../../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Portfolio
+    </a>
+
+    <main class="split-layout">
+        
+        <!-- Left Column: Scrolling Content -->
+        <div class="content-column" id="smooth-wrapper">
+            <div id="smooth-content" class="content-inner">
+                
+                <!-- Hero -->
+                <section class="hero-section fade-up">
+                    <h5 class="eyebrow" style="color: #00e5ff;">Topic 6</h5>
+                    <h1 class="h-primary">Conformational Entropy & Active-Site Geometry</h1>
+                    <h2 style="color: #aab2c0;">The Kinetic and Thermodynamic Filters of DNA Polymerase</h2>
+                    <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
+                        <div class="mouse"></div>
+                        <span>Scroll to Explore</span>
+                    </div>
+                </section>
+                
+                <!-- Intro Cards -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">Why Thermodynamics is Not Enough</h3>
+                        <p>We previously saw how the thermodynamic balance of hydrogen bonds and desolvation penalizes mismatches.</p>
+                        <p>However, free energy (\(\Delta G\)) differences alone account for an error rate of about <strong style="color: #b388ff;">1 in 1,000 to 1 in 10,000 bases</strong>.</p>
+                        <p>Yet, the actual error rate of DNA polymerase is around <strong style="color: #00e5ff;">1 in 10,000,000 bases</strong>. Where does this massive leap in accuracy come from?</p>
+                        <p>The answer is the enzyme's <strong class="text-application">Active-Site Geometry</strong> and its exploitation of <strong class="text-application">Conformational Entropy</strong> to create an insurmountable Kinetic Barrier.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">Conformational Entropy</h3>
+                        <p>In physics, entropy is the number of possible microstates a system can occupy.</p>
+                        <div class="math-block">
+                            <p style="text-align: center; font-size: 2.2rem; margin-bottom: 1rem; color: #b388ff;">\(S = k_B \ln W\)</p>
+                            <p style="font-size: 1.1rem; color: #aab2c0;"><strong>Let's break down these symbols:</strong></p>
+                            <ul style="margin-left: 1.5rem; font-size: 1.1rem; color: #aab2c0; margin-bottom: 0.5rem;">
+                                <li><strong>\(S\) (Entropy):</strong> The degree of disorder or flexibility.</li>
+                                <li><strong>\(k_B\) (Boltzmann Constant):</strong> Links temperature to energy.</li>
+                                <li><strong>\(W\) (Microstates):</strong> The number of possible shapes or positions.</li>
+                            </ul>
+                        </div>
+                        <p>A free-floating DNA polymerase is highly dynamic, rapidly shifting between many open, flexible states (High \(W\), High Entropy). To catalyze a reaction, the enzyme must "freeze" into a single, highly structured, closed conformation (Low \(W\), Low Entropy).</p>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Active-Site Geometry & Steric Fit</h3>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <p>The active site of DNA Polymerase acts as a rigid, precise physical mold.</p>
+                                
+                                <h4 class="h-tertiary">The Perfect Fit</h4>
+                                <p>Remarkably, all canonical Watson-Crick base pairs (A=T, T=A, G≡C, C≡G) have virtually identical overall geometries. The distance between the sugar attachment points is always exactly ~10.8 Ångströms. The polymerase active site pocket is precisely tailored to enclose this specific dimension.</p>
+                                
+                                <h4 class="h-tertiary" style="margin-top: 2rem;">The Steric Clash</h4>
+                                <p>If an incorrect base pairing is attempted (e.g., a Purine-Purine A-G mismatch), the combined width of the two large rings is physically too wide. This results in a <strong style="color: #ff3366;">Steric Clash</strong> with the walls of the active site pocket.</p>
+                                <p>To accommodate this bulk, the enzyme would have to stretch, breaking its own internal bonds. This is extremely unfavorable.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="fig_steric_fit.jpg?v=1" alt="Steric Fit in DNA Polymerase" loading="lazy" decoding="async">
+                            <figcaption>Figure 6.1: Active-Site Geometry and Steric Clashes</figcaption>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary">The Induced Fit Mechanism</h3>
+                        <p>When the correct nucleotide binds, the perfect steric fit allows the polymerase to undergo a massive conformational change.</p>
+                        <p>The "Fingers" domain of the enzyme closes over the active site. This closure does two critical things:</p>
+                        <ol style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li>It completely excludes bulk water from the active site, ensuring a dry environment for the chemical reaction.</li>
+                            <li>It perfectly aligns the catalytic metal ions (Mg2+) and the 3'-OH group to attack the incoming nucleotide's phosphate.</li>
+                        </ol>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary">Mismatch Disruption</h3>
+                        <p>If a mismatch is present, the steric clash physically prevents the "Fingers" domain from closing completely.</p>
+                        <p>Because the enzyme cannot fully close, it cannot align the catalytic residues. The 3'-OH group is left pointing in slightly the wrong direction, and water is not fully excluded.</p>
+                        <p>This failure to close traps the enzyme in a high-entropy, flexible state.</p>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Activation Free Energy (\(\Delta G^\ddagger\)) & Kinetics</h3>
+                        
+                        <div class="split-text" style="margin-top: 1.5rem;">
+                            <div>
+                                <p>The failure of the induced fit directly impacts the <strong style="color: #b388ff;">Activation Free Energy (\(\Delta G^\ddagger\))</strong> required to form the phosphodiester bond.</p>
+                                
+                                <div class="math-block">
+                                    <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The speed of the chemical reaction is dictated by Transition-State Theory:</p>
+                                    <p style="text-align: center; font-size: 2.2rem; margin-bottom: 1rem; color: #b388ff;">\(k = \frac{k_B T}{h} e^{-\frac{\Delta G^\ddagger}{RT}}\)</p>
+                                    <p style="font-size: 1.1rem; color: #aab2c0;"><strong>Let's break down the kinetics:</strong></p>
+                                    <ul style="margin-left: 1.5rem; font-size: 1.1rem; color: #aab2c0; margin-bottom: 0.5rem;">
+                                        <li style="margin-bottom: 1rem;"><strong>\(k\) (Rate Constant):</strong> How fast the enzyme adds the nucleotide.</li>
+                                        <li style="margin-bottom: 1rem;"><strong>\(\Delta G^\ddagger\) (Activation Energy):</strong> The massive energy hill the reaction must climb to reach the transition state.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="h-tertiary">The Exponential Speed Drop</h4>
+                                <p>For a correct base, the induced fit perfectly aligns the atoms. This dramatically lowers the Activation Energy (\(\Delta G^\ddagger\)). The rate constant (\(k_{cat}\)) is extremely high, and the bond forms in milliseconds.</p>
+                                <p>For a mismatch, the poor alignment means a massive increase in \(\Delta G^\ddagger\). Because \(\Delta G^\ddagger\) is in the exponent, even a small geometric misalignment causes the reaction rate to plummet by a factor of 10,000 to 100,000.</p>
+                                <p>The enzyme is effectively stalled, desperately trying to climb an impossible energy hill.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="fig_activation_energy.jpg?v=1" alt="Activation Free Energy Landscape" loading="lazy" decoding="async">
+                            <figcaption>Figure 6.2: Activation Free Energy Barrier</figcaption>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(130, 177, 255, 0.05); border-color: rgba(130, 177, 255, 0.3);">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Proofreading: The 3' → 5' Exonuclease Trigger</h3>
+                        <p>This kinetic stall is the master trigger for proofreading. Because the enzyme is stuck in the open conformation, unable to catalyze the bond, thermal fluctuations eventually cause the mismatched nucleotide to fray and melt away from the template.</p>
+                        <p>This fraying physically shifts the DNA strand out of the polymerase active site and directly into the separate <strong class="text-application">3' → 5' Exonuclease active site</strong>.</p>
+                        <p>The exonuclease domain chemically chops off the mistaken base, allowing the polymerase to try again. The entire proofreading mechanism is a direct physical consequence of the kinetic stall caused by high activation energy.</p>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up" style="margin-bottom: 5rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Bioinformatics Summary</h3>
+                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                            <div>
+                                <p style="font-size: 1.1rem; color: var(--text-muted);">The combination of <strong>Thermodynamic Filtering</strong> (Hydrogen bonds & Desolvation) and <strong>Kinetic Filtering</strong> (Steric fit, Induced fit, & Activation Energy) is what drops the mutation rate from 1 in 100 to 1 in 10,000,000.</p>
+                                <p style="font-size: 1.1rem; color: var(--text-muted); margin-top: 1rem;">When analyzing deep sequencing data, identifying real, rare somatic mutations (like circulating tumor DNA) relies on our statistical models understanding this baseline fidelity. The physical chemistry of the active site is the origin of the Phred Quality Scores (Q-scores) assigned to sequencing reads by modern basecallers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
+                    <a href="../Topic 5 The Physics of Base Pairing/index.html" style="text-decoration: none;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,0.2);">
+                            <span style="color: var(--accent); font-size: 1.5rem;">←</span>
+                            <div>
+                                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: left;">Previous Topic</div>
+                                <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 5: Physics of Base Pairing</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="bottom-spacer"></div>
+            </div>
+        </div>
+
+        <!-- Right Column: Interactive Canvas -->
+        <div class="canvas-column">
+            <canvas id="webgl-canvas"></canvas>
+            <div class="canvas-overlay"></div>
+        </div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <script src="script.js?v=1"></script>
+</body>
+</html>

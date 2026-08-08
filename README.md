@@ -46,6 +46,7 @@ Every topic answers four questions:
 | Domain 1 · Topic 3 | Okazaki Fragments | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%203%20Okazaki%20Fragments/index.html) |
 | Domain 1 · Topic 4 | Thermodynamics of Fidelity | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%204%20Thermodynamics%20of%20Fidelity/index.html) |
 | Domain 1 · Topic 5 | The Physics of Base Pairing | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%205%20The%20Physics%20of%20Base%20Pairing/index.html) |
+| Domain 1 · Topic 6 | Conformational Entropy & Active-Site Geometry | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%206%20Conformational%20Entropy%20and%20Active-Site%20Geometry/index.html) |
 
 ---
 
@@ -119,6 +120,20 @@ A deep dive into the chemical thermodynamics and energetic landscapes of DNA bas
 - **Boltzmann Distribution**: How a tiny \(\Delta\Delta G\) difference creates a massive exponential difference in binding probability (\(P \propto e^{-\Delta G/RT}\)).
 - **Drug Discovery**: Connections to computational molecular docking (AutoDock Vina) and rational drug design.
 - **Bioinformatics Failures**: Why thermodynamics is the bedrock for variant calling and genome assembly, and what happens if it fails.
+
+---
+
+## Domain 1 — Topic 6: Conformational Entropy and Active-Site Geometry
+
+An interactive visualization exploring the kinetic and thermodynamic filters of DNA Polymerase:
+
+- **Conformational Entropy**: How protein dynamics and microstates ($S = k_B \ln W$) act as a barrier to catalysis.
+- **Active-Site Geometry**: The rigid mold that ensures canonical Watson-Crick base pairs fit perfectly.
+- **Steric Fit**: How mismatched pairs cause steric clashes due to incorrect ring widths.
+- **Induced Fit Mechanism**: The "Fingers" domain closure that excludes water and aligns catalytic residues (Mg2+, 3'-OH).
+- **Activation Free Energy**: How geometric misalignment exponentially drops reaction speed via Transition-State Theory ($k = \frac{k_B T}{h} e^{-\Delta G^\ddagger / RT}$).
+- **Proofreading Trigger**: How kinetic stalling naturally transfers the strand to the 3' → 5' exonuclease.
+- **Bioinformatics**: The origin of Phred Quality Scores (Q-scores) and baseline fidelity in variant calling algorithms.
 
 ---
 
