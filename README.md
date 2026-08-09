@@ -47,6 +47,7 @@ Every topic answers four questions:
 | Domain 1 · Topic 4 | Thermodynamics of Fidelity | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%204%20Thermodynamics%20of%20Fidelity/index.html) |
 | Domain 1 · Topic 5 | The Physics of Base Pairing | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%205%20The%20Physics%20of%20Base%20Pairing/index.html) |
 | Domain 1 · Topic 6 | Conformational Entropy & Active-Site Geometry | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%206%20Conformational%20Entropy%20and%20Active-Site%20Geometry/index.html) |
+| Domain 1 · Topic 7 | Domain Summary: The Master Synthesis | [Open →](https://bushra-khan49.github.io/Portfolio-Projects/Syllabus%20explained/Domain-1/Topic%207%20Domain%20Summary/index.html) |
 
 ---
 
@@ -134,6 +135,20 @@ An interactive visualization exploring the kinetic and thermodynamic filters of 
 - **Activation Free Energy**: How geometric misalignment exponentially drops reaction speed via Transition-State Theory ($k = \frac{k_B T}{h} e^{-\Delta G^\ddagger / RT}$).
 - **Proofreading Trigger**: How kinetic stalling naturally transfers the strand to the 3' → 5' exonuclease.
 - **Bioinformatics**: The origin of Phred Quality Scores (Q-scores) and baseline fidelity in variant calling algorithms.
+
+---
+
+## Domain 1 — Topic 7: Domain Summary (The Master Synthesis)
+
+A consolidated review of DNA structure, replication physics, and bioinformatics pipelines:
+
+- **1. Replication (The Copy Machine)**: Helicase, Primase, and directional synthesis via the Replisome.
+- **2. Fidelity Safeguards**: The multi-layered defense (geometry, exonuclease proofreading, mismatch repair).
+- **3. Okazaki Fragments**: Overcoming the physical constraints of 5' &rarr; 3' directionality via discontinuous synthesis.
+- **4. Thermodynamics of Fidelity**: The mathematical ceiling of passive physical chemistry.
+- **5. Physics of Base Pairing**: Electrostatics, desolvation penalties, and Pi-stacking stability.
+- **6. Conformational Entropy**: Active-site geometry, steric interference, and kinetic trapping of errors.
+- **7. The Bioinformatics Payoff**: Base Quality Score Recalibration, Artifact Filtering, and Mutational Signatures.
 
 ---
 
