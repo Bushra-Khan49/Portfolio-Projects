@@ -40,71 +40,74 @@
 
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">1. The Structural Foundation</h3>
-                        <p>DNA is the ultimate archival database of life (Topic 0). Its extreme stability stems directly from physical chemistry (Topic 5):</p>
+                        <h3 class="h-primary">1. Replication (The Copy Machine)</h3>
+                        <p>The replisome functions as a high-fidelity biological machine dedicated to duplicating the genome:</p>
                         <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
-                            <li><strong style="color: white;">Hydrogen Bonding:</strong> Provides base-pairing specificity.</li>
-                            <li><strong style="color: white;">Pi-Stacking & Desolvation:</strong> Provide massive thermodynamic stability.</li>
+                            <li><strong style="color: white;">Helicase & Primase:</strong> Unwind DNA and lay down RNA primers to begin synthesis.</li>
+                            <li><strong style="color: white;">Polymerase:</strong> Synthesizes the new strand strictly in the 5' → 3' direction.</li>
                         </ul>
-                        <p style="margin-top: 1rem;">These chemical forces are mathematically quantifiable (\( \Delta G \)), creating the baseline requirements for accessing and copying genetic data.</p>
+                        <p style="margin-top: 1rem;">This mechanical process sets the baseline constraints for how genetic information is copied.</p>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">2. The Copy Machine & Discontinuous Replication</h3>
-                        <p>The replisome functions as a high-fidelity biological machine (Topic 1). Because DNA is antiparallel and Polymerase synthesizes strictly 5' → 3', the <strong>Lagging Strand</strong> must be synthesized discontinuously (Topic 3).</p>
+                        <h3 class="h-primary">2. Fidelity Safeguards</h3>
+                        <p>Copying billions of bases without errors requires sequential layers of defense to prevent disease:</p>
                         <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
-                            <li>RNA primer deposition initiates synthesis.</li>
-                            <li>Elongation forms <strong>Okazaki fragments</strong>.</li>
-                            <li>Primer removal and nick sealing by DNA ligase complete the strand.</li>
+                            <li><strong style="color: white;">Base Selection:</strong> The initial sorting of nucleotides.</li>
+                            <li><strong style="color: white;">Proofreading:</strong> Exonuclease activity acts as a backspace key.</li>
+                            <li><strong style="color: white;">Mismatch Repair:</strong> Post-replication machinery that fixes remaining errors.</li>
                         </ul>
-                        <p style="margin-top: 1rem;">This mechanical constraint is precisely why genome assembly algorithms must handle staggered, fragmented reads.</p>
+                        <p style="margin-top: 1rem;">Together, these systems reduce the error rate from 1 in 10⁴ to 1 in 10⁹.</p>
                     </div>
                 </section>
 
-                <section class="section-block fade-up" style="margin-top: 4rem;">
-                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
-                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">3. The Three-Tiered Fidelity System</h3>
-                        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #aab2c0;">Copying billions of bases without errors requires three sequential layers of defense (Topic 2, 4, 6):</p>
-                        
-                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
-                            <!-- Tier 1: Thermo -->
-                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #82b1ff; text-align: center;">
-                                <h4 style="color: #82b1ff; font-family: var(--font-primary);">1. Thermodynamic Attraction</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Baseline specificity based on hydrogen bonding. Yields a 1 in 10⁴ error rate.</p>
-                            </div>
-                            <!-- Tier 2: Kinetic -->
-                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #00e5ff; text-align: center; box-shadow: 0 0 15px rgba(0,229,255,0.1);">
-                                <h4 style="color: #00e5ff; font-family: var(--font-primary);">2. Kinetic Gatekeeper</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Enforces rigid 10.8 Å active-site geometry. Stalls mismatched bases via \( \Delta G^\ddagger \) spikes, yielding 1 in 10⁷ accuracy.</p>
-                            </div>
-                            <!-- Tier 3: Mismatch -->
-                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #b388ff; text-align: center;">
-                                <h4 style="color: #b388ff; font-family: var(--font-primary);">3. Mismatch Repair</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Post-replication proofreading machinery. Brings final accuracy to 1 in 10⁹.</p>
-                            </div>
-                        </div>
-                        <p style="text-align: center; margin-top: 2rem;">The polymerase acts as the ultimate gatekeeper, bridging the gap between passive thermodynamics and active mismatch repair.</p>
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">3. Okazaki Fragments</h3>
+                        <p>Because DNA is antiparallel and polymerase is directional, the <strong>Lagging Strand</strong> cannot be synthesized continuously:</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
+                            <li><strong style="color: white;">Fragmented Synthesis:</strong> Created in short bursts called Okazaki fragments.</li>
+                            <li><strong style="color: white;">Ligation:</strong> DNA ligase must seal the nicks between fragments to create a continuous strand.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">This mechanical constraint is precisely why genome assembly algorithms must handle staggered, fragmented sequencing reads.</p>
+                    </div>
+
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">4. Thermodynamics of Fidelity</h3>
+                        <p>Chemical attraction alone is inherently limited when selecting the correct nucleotide:</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
+                            <li><strong style="color: white;">Thermodynamic Limit:</strong> Hydrogen bonding only provides a 1 in 10⁴ accuracy rate.</li>
+                            <li><strong style="color: white;">The Free Energy Delta (\( \Delta G \)):</strong> The difference between a correct and incorrect match is not large enough to prevent all mutations.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">This proves that chemistry requires a biological gatekeeper to achieve high fidelity.</p>
                     </div>
                 </section>
 
-                <section class="card-grid section-block fade-up" style="margin-top: 4rem;">
+                <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">Topic 4: Thermodynamics of Fidelity</h3>
-                        <p>Explores how simple chemical attraction (\( \Delta G \)) is inherently limited. Hydrogen bonding alone cannot distinguish right from wrong with enough accuracy for a stable genome, requiring a biological solution to a chemical problem.</p>
+                        <h3 class="h-primary">5. Physics of Base Pairing</h3>
+                        <p>The extreme stability and specificity of DNA stems directly from physical chemistry:</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
+                            <li><strong style="color: white;">Hydrogen Bonding:</strong> Provides the structural specificity (A-T, C-G).</li>
+                            <li><strong style="color: white;">Pi-Stacking & Desolvation:</strong> Provide the massive thermodynamic stability needed to keep the helix intact.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">These mathematically quantifiable forces create the baseline requirements for accessing genetic data.</p>
                     </div>
+
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">Topic 5: Physics of Base Pairing</h3>
-                        <p>Breaks down the atomic-level forces—electrostatics, desolvation penalties, and Pi-stacking—that dictate why A pairs with T and C pairs with G, providing the physical foundation for information storage.</p>
-                    </div>
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">Topic 6: Conformational Entropy</h3>
-                        <p>Reveals the kinetic filter: DNA polymerase physically wraps around the active site to check the geometry of the base pair. Mismatches clash sterically, causing an insurmountable spike in activation energy (\( \Delta G^\ddagger \)).</p>
+                        <h3 class="h-primary">6. Conformational Entropy</h3>
+                        <p>The ultimate kinetic filter utilized by DNA polymerase to block mismatched bases:</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
+                            <li><strong style="color: white;">Active-Site Geometry:</strong> Enforces a rigid 10.8 Å width.</li>
+                            <li><strong style="color: white;">The Kinetic Barrier:</strong> Mismatches clash sterically, causing an insurmountable spike in activation energy (\( \Delta G^\ddagger \)).</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">This conformational check stalls failing polymerases, bridging passive thermodynamics with active repair.</p>
                     </div>
                 </section>
 
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">4. The Bioinformatics Payoff</h3>
+                        <h3 class="h-primary">7. The Bioinformatics Payoff</h3>
                         <p>Bioinformatics is the application of these physical limits into computational algorithms. Because we understand the exact mechanics of replication and error, we build statistical models to filter sequencing data:</p>
                         
                         <div class="card-grid" style="margin-top: 2rem;">
