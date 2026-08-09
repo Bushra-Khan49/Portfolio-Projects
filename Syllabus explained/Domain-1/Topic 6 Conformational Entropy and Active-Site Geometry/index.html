@@ -163,7 +163,7 @@
                             <p style="text-align: center; font-size: 2.2rem; margin-bottom: 1rem; color: #b388ff;">\(S = k_B \ln W\)</p>
                             <ul style="margin-left: 1.5rem; font-size: 1.1rem; color: #aab2c0; margin-bottom: 0.5rem;">
                                 <li><strong>\(S\) (Entropy):</strong> The degree of disorder or flexibility in a system.</li>
-                                <li><strong>\(k_B\) (Boltzmann Constant):</strong> Links thermodynamic temperature to energy.</li>
+                                <li><strong>\(k_B\) (Boltzmann Constant):</strong> Acts as a universal conversion factor that tells us exactly how much thermal energy (jiggling heat energy) corresponds to a given temperature.</li>
                                 <li><strong>\(W\) (Microstates):</strong> The number of possible physical shapes or structural positions.</li>
                             </ul>
                         </div>
@@ -176,16 +176,21 @@
                     <!-- Card A: Transition State Theory -->
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary">Transition State Theory</h3>
-                        <p>The failure to achieve the closed conformation directly dictates the speed of the chemical reaction, modeled by the Eyring-Polanyi equation:</p>
+                        <p>When the enzyme fails to close around a mismatch, it completely ruins the speed of the chemical reaction. We can understand this through the <strong>Eyring-Polanyi equation</strong>, which tells us exactly how fast a chemical reaction can happen based on the energy required to reach the "transition state" (the awkward, high-energy midpoint of a reaction):</p>
                         <div class="math-block" style="margin: 1.5rem 0; padding: 1rem;">
                             <p style="text-align: center; font-size: 2rem; margin-bottom: 1rem; color: #b388ff;">\(k = \frac{k_B T}{h} e^{-\frac{\Delta G^\ddagger}{RT}}\)</p>
                             <ul style="margin-left: 1rem; font-size: 0.95rem; color: #aab2c0; margin-bottom: 0.5rem; line-height: 1.4;">
-                                <li><strong>\(k\):</strong> Rate Constant (reactions per second).</li>
-                                <li><strong>\(\frac{k_B T}{h}\):</strong> Theoretical maximum speed limit.</li>
-                                <li><strong>\(\Delta G^\ddagger\):</strong> Activation Free Energy (the critical energy hill).</li>
+                                <li><strong>\(k\) (Rate Constant):</strong> How fast the reaction happens (e.g., how many DNA bases are added per second).</li>
+                                <li><strong>\(k_B\) (Boltzmann Constant):</strong> The bridge between temperature and thermal energy.</li>
+                                <li><strong>\(T\) (Temperature):</strong> The absolute temperature of the cell (in Kelvin). Higher temperature means more molecular jiggling.</li>
+                                <li><strong>\(h\) (Planck's Constant):</strong> A fundamental quantum number representing the size of energy packets.</li>
+                                <li><strong>\(\frac{k_B T}{h}\):</strong> This fraction represents the theoretical maximum "speed limit" of any reaction. It's essentially the frequency at which molecules vibrate and collide.</li>
+                                <li><strong>\(\Delta G^\ddagger\) (Activation Free Energy):</strong> The massive energy hill the molecules must climb to react.</li>
+                                <li><strong>\(R\) (Universal Gas Constant):</strong> A constant that links energy to the number of molecules (moles) and temperature.</li>
+                                <li><strong>\(e^{-\frac{\Delta G^\ddagger}{RT}}\):</strong> This negative exponential is the kicker. It calculates the fraction of molecules that actually have enough random thermal energy to overcome the \(\Delta G^\ddagger\) hill.</li>
                             </ul>
                         </div>
-                        <p>Because \(\Delta G^\ddagger\) is positioned in a negative exponential, a slight geometric misalignment from a mismatch causes a massive spike in \(\Delta G^\ddagger\). This exponential relationship causes the reaction rate \(k\) to plummet drastically (by a factor of \(10^4\) to \(10^5\)).</p>
+                        <p>Here's the magic connection: because the activation energy (\(\Delta G^\ddagger\)) sits inside a negative exponent, even a tiny increase in the energy hill causes a massive, exponential drop in the reaction rate (\(k\)). A bulky mismatch creates a steric clash, preventing the enzyme from closing. This misalignment drastically increases \(\Delta G^\ddagger\). Because of the math, this geometric mistake causes the reaction speed to crash by a factor of 10,000 to 100,000 times! The polymerase literally stalls on the error.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig_activation_energy.jpg?v=1" alt="Activation Free Energy Landscape" loading="lazy" decoding="async">
                             <figcaption>Activation Free Energy Barrier separating correct and incorrect additions.</figcaption>
@@ -194,15 +199,15 @@
                     <!-- Card B: Proofreading Trigger -->
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary">The Proofreading Trigger</h3>
-                        <p>We can trace the entire error-prevention cascade:</p>
+                        <p>So, how does everything we've talked about come together to save your genome? It plays out in a beautiful, domino-effect cascade of error prevention:</p>
                         <ol style="margin-left: 1.5rem; margin-top: 1rem; margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">
-                            <li>Thermodynamics fails (a wobble base binds).</li>
-                            <li>Bulky mismatch creates a Steric Clash.</li>
-                            <li>Induced Fit fails; Fingers cannot close.</li>
-                            <li>Activation Energy (\(\Delta G^\ddagger\)) spikes exponentially.</li>
-                            <li>Catalytic rate (\(k\)) stalls to near zero.</li>
+                            <li><strong>Thermodynamics fails:</strong> A sneaky, mismatched "wobble" base manages to hydrogen-bond.</li>
+                            <li><strong>Geometry says no:</strong> The bulky mismatch is the wrong shape, creating a physical "Steric Clash."</li>
+                            <li><strong>The enzyme gets stuck:</strong> Because of the clash, the "Induced Fit" mechanism fails, and the polymerase's "fingers" cannot close.</li>
+                            <li><strong>The energy hill grows:</strong> With the active site misaligned, the Activation Energy (\(\Delta G^\ddagger\)) spikes.</li>
+                            <li><strong>The engine stalls:</strong> Thanks to the exponential math of Transition State Theory, the catalytic rate (\(k\)) crashes to near zero.</li>
                         </ol>
-                        <p><strong>The Final Trigger:</strong> Stalled in the open position, the thermal fluctuations of the cell cause the mismatched strand to fray. The strand physically flips downward, moving out of the stalled polymerase site and directly into the separate <strong style="color: #00e5ff;">3' → 5' Exonuclease</strong> active site, where the error is chemically excised.</p>
+                        <p><strong>The Final Trigger:</strong> Now the polymerase is just sitting there, stalled in the open position with a mismatched base. Because it's stalled, the natural thermal jiggling (heat) of the cell causes the weak, mismatched DNA strand to literally fray apart. The loose strand physically flops out of the stalled polymerase site and swings down into a completely separate pocket on the enzyme: the <strong style="color: #00e5ff;">3' → 5' Exonuclease</strong> active site. This site acts as molecular scissors, snipping off the mistake so the polymerase can try again.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
                             <img src="fig_proofreading_trigger.jpg" alt="Proofreading Trigger Mechanism" loading="lazy" decoding="async">
                             <figcaption>The stalled DNA strand flipping downwards into the exonuclease active site.</figcaption>
@@ -221,11 +226,11 @@
                         
                         <h3 class="h-primary" style="margin-top: 2rem;">How to apply and use it in Bioinformatics</h3>
                         <p>Bioinformaticians directly apply this knowledge in several critical areas:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 1rem; color: #82b1ff; font-size: 1.05rem; line-height: 1.6;">
-                            <li style="margin-bottom: 1rem;"><strong>Calibrating Base Quality Scores (BQSR):</strong> Advanced variant calling tools like GATK rely on accurate models of polymerase error rates. BQSR uses these models to systematically recalibrate the confidence of every single sequenced base, distinguishing true sequencing errors from genuine biological variations.</li>
-                            <li style="margin-bottom: 1rem;"><strong>Designing Custom Enzymes:</strong> Protein engineers leverage molecular dynamics simulations to precisely modify the active-site geometry of polymerases (such as Phusion or Q5). By artificially increasing the \(\Delta G^\ddagger\) penalty for mismatches, they create engineered, ultra-high-fidelity enzymes specifically tailored for highly sensitive sequencing and PCR applications.</li>
-                            <li style="margin-bottom: 1rem;"><strong>Interpreting Mutational Signatures:</strong> In cancer genomics, specific mutational signatures (like APOBEC or mismatch-repair deficiency) are often directly linked to how polymerases interact with damaged DNA or how their proofreading fails. Bioinformaticians use these signatures to trace the molecular history of a tumor.</li>
-                            <li><strong>Filtering Sequencing Artifacts:</strong> Knowing the physical limitations of polymerase, pipelines can be written to filter out systematic errors, such as those occurring in homopolymer runs where the enzyme's grip on the DNA substrate is loose, leading to artificial insertions or deletions.</li>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-color); font-size: 1.05rem; line-height: 1.6;">
+                            <li style="margin-bottom: 1rem;"><strong style="color: #82b1ff;">Calibrating Base Quality Scores (BQSR):</strong> During variant calling (e.g., using GATK), we don't blindly trust the sequencer. We know that certain sequence contexts naturally cause the sequencing polymerase's geometry to stutter. BQSR uses machine learning to map out these specific geometric weak points and computationally recalibrates the confidence score of every single base. This is the critical stage that separates random sequencer noise from true biological mutations.</li>
+                            <li style="margin-bottom: 1rem;"><strong style="color: #82b1ff;">Designing Custom Enzymes:</strong> When protein engineers design the enzymes we use in the lab (like Phusion or Q5 for PCR, or sequencing polymerases), they use molecular dynamics simulations to tweak the active-site geometry. By computationally predicting and tightening the \(\Delta G^\ddagger\) penalty for mismatches, they can engineer artificial, ultra-high-fidelity enzymes tailored exactly for sensitive bioinformatics assays like single-cell sequencing.</li>
+                            <li style="margin-bottom: 1rem;"><strong style="color: #82b1ff;">Interpreting Mutational Signatures:</strong> In the late stages of cancer genomics analysis, bioinformaticians look for specific patterns of mutations (signatures). For example, mismatch-repair deficiency signatures occur precisely when the proofreading triggers we just learned about fail entirely. By recognizing these molecular "fingerprints" left behind by failing polymerases, we can trace the evolutionary history of a tumor and even predict which therapies will work best.</li>
+                            <li><strong style="color: #82b1ff;">Filtering Sequencing Artifacts:</strong> Polymerases famously struggle with "homopolymer runs" (long strings of the same letter, like AAAAAAA) because the enzyme's geometric grip slips, causing artificial insertions or deletions. When building quality control pipelines, bioinformaticians specifically write algorithms to detect these repetitive regions and dynamically lower their confidence scores, preventing the pipeline from reporting a fake frameshift mutation.</li>
                         </ul>
                     </div>
                 </section>
