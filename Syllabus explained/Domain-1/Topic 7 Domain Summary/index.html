@@ -277,23 +277,23 @@
                     </div>
                 </section>
 
-                <section class="card-grid section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">7. The Bioinformatics Payoff</h3>
-                        <p>Bioinformatics is the application of these physical limits into computational algorithms. Because we understand the exact mechanics of replication and error, we build statistical models to filter sequencing data:</p>
+                <section class="section-block fade-up" style="margin-top: 2rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 1rem;">7. The Bioinformatics Payoff</h3>
+                        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: #aab2c0;">Bioinformatics is the application of these physical limits into computational algorithms. Because we understand the exact mechanics of replication and error, we build statistical models to filter sequencing data.</p>
                         
-                        <div class="card-grid" style="margin-top: 2rem;">
-                            <div class="glass-card">
-                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Base Quality Score Recalibration</h4>
-                                <p style="font-size: 1.05rem; color: var(--text-muted);">Uses empirical error models (like Naive Bayes in BQSR) to mathematically recalculate Phred quality scores based on specific geometric weak points like dinucleotide context.</p>
+                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 0;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #00e5ff; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #00e5ff; font-family: var(--font-primary); margin-bottom: 0.5rem;">Base Quality Score Recalibration</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Uses empirical error models (like Naive Bayes in BQSR) to mathematically recalculate Phred quality scores based on specific geometric weak points like dinucleotide context.</p>
                             </div>
-                            <div class="glass-card">
-                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Artifact Filtering</h4>
-                                <p style="font-size: 1.05rem; color: var(--text-muted);">Because polymerase physically slips in homopolymer runs, PairHMM algorithms dynamically slash gap open and extend penalties to penalize known mechanical stutter artifacts.</p>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #b388ff; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #b388ff; font-family: var(--font-primary); margin-bottom: 0.5rem;">Artifact Filtering</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Because polymerase physically slips in homopolymer runs, PairHMM algorithms dynamically slash gap open and extend penalties to penalize known mechanical stutter artifacts.</p>
                             </div>
-                            <div class="glass-card full-width">
-                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Mutational Signatures</h4>
-                                <p style="font-size: 1.05rem; color: var(--text-muted);">Because polymerases have specific geometric biases (e.g., preferentially swapping C for T), broken mismatch repair pathways leave distinct mathematical patterns in tumor genomes. Recognizing these molecular "fingerprints" allows us to trace evolutionary history and predict immunotherapy response.</p>
+                            <div style="grid-column: 1 / -1; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #ff4757; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #ff4757; font-family: var(--font-primary); margin-bottom: 0.5rem;">Mutational Signatures</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Because polymerases have specific geometric biases (e.g., preferentially swapping C for T), broken mismatch repair pathways leave distinct mathematical patterns in tumor genomes. Recognizing these molecular "fingerprints" allows us to trace evolutionary history and predict immunotherapy response.</p>
                             </div>
                         </div>
                     </div>
