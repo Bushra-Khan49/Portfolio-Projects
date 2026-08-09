@@ -39,16 +39,25 @@
                 </header>
 
                 <section class="card-grid section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
+                    <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary">1. The Structural Foundation</h3>
-                        <p>DNA is the ultimate archival database of life (Topic 0). Its extreme stability stems directly from physical chemistry (Topic 5): specific <strong>Hydrogen Bonding</strong> between bases provides specificity, while <strong>Pi-Stacking</strong> and <strong>Desolvation</strong> provide massive thermodynamic stability. These chemical forces are mathematically quantifiable (\( \Delta G \)), creating the baseline requirements for accessing and copying genetic data.</p>
+                        <p>DNA is the ultimate archival database of life (Topic 0). Its extreme stability stems directly from physical chemistry (Topic 5):</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
+                            <li><strong style="color: white;">Hydrogen Bonding:</strong> Provides base-pairing specificity.</li>
+                            <li><strong style="color: white;">Pi-Stacking & Desolvation:</strong> Provide massive thermodynamic stability.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">These chemical forces are mathematically quantifiable (\( \Delta G \)), creating the baseline requirements for accessing and copying genetic data.</p>
                     </div>
-                </section>
 
-                <section class="card-grid section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
+                    <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary">2. The Copy Machine & Discontinuous Replication</h3>
-                        <p>The replisome functions as a high-fidelity biological machine (Topic 1). DNA Polymerase can only synthesize in the 5' → 3' direction. Because DNA is antiparallel, the <strong>Lagging Strand</strong> must be synthesized discontinuously (Topic 3) via a complex pipeline: RNA primer deposition, elongation into <strong>Okazaki fragments</strong>, primer removal, and nick sealing by DNA ligase. This mechanical constraint is precisely why genome assembly algorithms must handle staggered, fragmented reads.</p>
+                        <p>The replisome functions as a high-fidelity biological machine (Topic 1). Because DNA is antiparallel and Polymerase synthesizes strictly 5' → 3', the <strong>Lagging Strand</strong> must be synthesized discontinuously (Topic 3).</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: #aab2c0;">
+                            <li>RNA primer deposition initiates synthesis.</li>
+                            <li>Elongation forms <strong>Okazaki fragments</strong>.</li>
+                            <li>Primer removal and nick sealing by DNA ligase complete the strand.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">This mechanical constraint is precisely why genome assembly algorithms must handle staggered, fragmented reads.</p>
                     </div>
                 </section>
 
@@ -56,16 +65,22 @@
                     <div class="glass-card tilt-effect hover-target full-width">
                         <h3 class="h-primary">3. The Three-Tiered Fidelity System</h3>
                         <p>Copying billions of bases without errors requires three sequential layers of defense (Topic 2, 4, 6):</p>
-                        <div style="text-align: center; margin: 1.5rem 0; font-size: 1.1rem; color: #aab2c0; font-family: monospace; line-height: 1.8;">
-                            Thermodynamic Attraction (1 in 10⁴ error rate)<br>
-                            <span style="color: var(--accent); font-size: 1.2rem;">↓</span><br>
-                            <strong style="color: #00e5ff;">Kinetic Gatekeeper (Active-Site Geometry)</strong><br>
-                            <span style="color: var(--accent); font-size: 1.2rem;">↓</span><br>
-                            Exonuclease Proofreading (1 in 10⁷ error rate)<br>
-                            <span style="color: var(--accent); font-size: 1.2rem;">↓</span><br>
-                            Mismatch Repair (1 in 10⁹ error rate)
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #82b1ff; text-align: center;">
+                                <h4 style="color: #82b1ff; font-family: var(--font-primary);">1. Thermodynamic Attraction</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Baseline specificity based on hydrogen bonding. Yields a 1 in 10⁴ error rate.</p>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #00e5ff; text-align: center; box-shadow: 0 0 15px rgba(0,229,255,0.1);">
+                                <h4 style="color: #00e5ff; font-family: var(--font-primary);">2. Kinetic Gatekeeper</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Enforces rigid 10.8 Å active-site geometry. Stalls mismatched bases via \( \Delta G^\ddagger \) spikes, yielding 1 in 10⁷ accuracy.</p>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #b388ff; text-align: center;">
+                                <h4 style="color: #b388ff; font-family: var(--font-primary);">3. Mismatch Repair</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Post-replication proofreading machinery. Brings final accuracy to 1 in 10⁹.</p>
+                            </div>
                         </div>
-                        <p>The polymerase acts as the ultimate gatekeeper. By rigorously enforcing a rigid 10.8 Å active-site geometry, mismatches cause a massive spike in Activation Energy (\( \Delta G^\ddagger \)), completely stalling the enzyme and triggering exonuclease proofreading.</p>
+                        <p>The polymerase acts as the ultimate gatekeeper, bridging the gap between passive thermodynamics and active mismatch repair.</p>
                     </div>
                 </section>
 
@@ -74,18 +89,18 @@
                         <h3 class="h-primary">4. The Bioinformatics Payoff</h3>
                         <p>Bioinformatics is the application of these physical limits into computational algorithms. Because we understand the exact mechanics of replication and error, we build statistical models to filter sequencing data:</p>
                         
-                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
-                            <div>
-                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Base Quality Score Recalibration (BQSR)</h4>
-                                <p style="font-size: 1.05rem; color: var(--text-muted);">Uses empirical error models to mathematically recalculate quality scores based on specific geometric weak points like dinucleotide context.</p>
+                        <div class="card-grid" style="margin-top: 2rem;">
+                            <div class="glass-card">
+                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Base Quality Score Recalibration</h4>
+                                <p style="font-size: 1.05rem; color: var(--text-muted);">Uses empirical error models (like Naive Bayes in BQSR) to mathematically recalculate Phred quality scores based on specific geometric weak points like dinucleotide context.</p>
                             </div>
-                            <div>
-                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Artifact Filtering (PairHMM)</h4>
-                                <p style="font-size: 1.05rem; color: var(--text-muted);">Because polymerase physically slips in homopolymer runs, algorithms dynamically slash gap open and extend penalties to penalize these known mechanical stutter artifacts.</p>
+                            <div class="glass-card">
+                                <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Artifact Filtering</h4>
+                                <p style="font-size: 1.05rem; color: var(--text-muted);">Because polymerase physically slips in homopolymer runs, PairHMM algorithms dynamically slash gap open and extend penalties to penalize known mechanical stutter artifacts.</p>
                             </div>
-                            <div>
+                            <div class="glass-card full-width">
                                 <h4 class="h-secondary" style="margin-bottom: 0.5rem;">Mutational Signatures</h4>
-                                <p style="font-size: 1.05rem; color: var(--text-muted);">Because polymerases have specific geometric biases (e.g., swapping C for T), broken mismatch repair pathways leave distinct mathematical patterns in tumor genomes that predict immunotherapy response.</p>
+                                <p style="font-size: 1.05rem; color: var(--text-muted);">Because polymerases have specific geometric biases (e.g., preferentially swapping C for T), broken mismatch repair pathways leave distinct mathematical patterns in tumor genomes. Recognizing these molecular "fingerprints" allows us to trace evolutionary history and predict immunotherapy response.</p>
                             </div>
                         </div>
                     </div>
