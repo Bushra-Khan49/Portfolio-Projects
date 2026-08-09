@@ -38,49 +38,128 @@
                     <p class="subtitle" style="font-family: var(--font-secondary); margin-top: 1rem; color: #aab2c0;">A consolidated review of DNA structure, replication physics, and bioinformatics pipelines.</p>
                 </header>
 
+                <!-- Topic 1 -->
                 <section class="section-block fade-up" style="margin-top: 2rem;">
                     <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
-                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">The Master Synthesis</h3>
-                        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #aab2c0;">A sequential summary of how nature achieves high-fidelity DNA replication, bridging passive chemistry with active biology.</p>
-                        
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">1. Replication (The Copy Machine)</h3>
                         <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
-                            
-                            <!-- Topic 1 -->
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #ff5252; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                                <h4 style="color: #ff5252; font-family: var(--font-primary);">1. The Copy Machine</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Helicase unwinds, primase initiates, and polymerase synthesizes strictly 5' → 3'. The mechanical baseline of replication.</p>
+                                <h4 style="color: #ff5252; font-family: var(--font-primary);">Helicase & Primase</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">The helix is mechanically unwound and RNA primers are deposited to initiate synthesis.</p>
                             </div>
-
-                            <!-- Topic 2 -->
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #ff793f; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #ff793f; font-family: var(--font-primary);">Directional Synthesis</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">DNA Polymerase can only add nucleotides to the 3' end, synthesizing strictly 5' → 3'.</p>
+                            </div>
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #ffb142; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                                <h4 style="color: #ffb142; font-family: var(--font-primary);">2. Fidelity Safeguards</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Sequential defense: Base selection, proofreading, and mismatch repair working together to prevent catastrophic mutation.</p>
+                                <h4 style="color: #ffb142; font-family: var(--font-primary);">The Replisome</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">A highly coordinated biological machine that physically copies the entire genome.</p>
                             </div>
+                        </div>
+                    </div>
+                </section>
 
-                            <!-- Topic 3 -->
+                <!-- Topic 2 -->
+                <section class="section-block fade-up" style="margin-top: 2rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">2. Fidelity Safeguards</h3>
+                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #218c74; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #218c74; font-family: var(--font-primary);">Base Selection</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">The initial sorting of incoming nucleotides by the polymerase active site.</p>
+                            </div>
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #33d9b2; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                                <h4 style="color: #33d9b2; font-family: var(--font-primary);">3. Okazaki Fragments</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">The lagging strand must be synthesized discontinuously in fragments. This explains why sequencing reads are staggered.</p>
+                                <h4 style="color: #33d9b2; font-family: var(--font-primary);">Proofreading</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">The 3' → 5' exonuclease activity acts as a backspace key, removing mismatched bases.</p>
                             </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #b8e994; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #b8e994; font-family: var(--font-primary);">Mismatch Repair</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Post-replication machinery identifies and fixes remaining errors on the newly synthesized strand.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                            <!-- Topic 4 -->
+                <!-- Topic 3 -->
+                <section class="section-block fade-up" style="margin-top: 2rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">3. Okazaki Fragments</h3>
+                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #227093; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #227093; font-family: var(--font-primary);">Antiparallel DNA</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Because the two strands run in opposite directions, one must be copied "backwards".</p>
+                            </div>
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #34ace0; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                                <h4 style="color: #34ace0; font-family: var(--font-primary);">4. Thermodynamics</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Chemical attraction (Hydrogen bonding) is inherently limited to 1 in 10⁴ accuracy. Chemistry requires a biological gatekeeper.</p>
+                                <h4 style="color: #34ace0; font-family: var(--font-primary);">Discontinuous Synthesis</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">The lagging strand is built in short, fragmented bursts called Okazaki fragments.</p>
                             </div>
-
-                            <!-- Topic 5 -->
-                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #00e5ff; text-align: center; box-shadow: 0 0 15px rgba(0,229,255,0.05); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                                <h4 style="color: #00e5ff; font-family: var(--font-primary);">5. Physics of Base Pairing</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Electrostatics, Pi-stacking, and desolvation provide the structural specificity (A-T, C-G) and massive thermodynamic stability.</p>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #70a1ff; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #70a1ff; font-family: var(--font-primary);">Ligase Sealing</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">DNA ligase acts as glue, continuously sealing the nicks to create an intact double helix.</p>
                             </div>
+                        </div>
+                    </div>
+                </section>
 
-                            <!-- Topic 6 -->
+                <!-- Topic 4 -->
+                <section class="section-block fade-up" style="margin-top: 2rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">4. Thermodynamics of Fidelity</h3>
+                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #706fd3; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #706fd3; font-family: var(--font-primary);">Hydrogen Bonding Limit</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Chemical attraction between bases alone can only provide an accuracy of 1 in 10⁴.</p>
+                            </div>
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #b388ff; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                                <h4 style="color: #b388ff; font-family: var(--font-primary);">6. Conformational Entropy</h4>
-                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">The kinetic filter: Polymerase enforces a rigid 10.8 Å geometry. Mismatches clash, causing an insurmountable spike in \( \Delta G^\ddagger \).</p>
+                                <h4 style="color: #b388ff; font-family: var(--font-primary);">Free Energy Delta (\( \Delta G \))</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">The difference in free energy between a correct and incorrect match is not large enough.</p>
                             </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #ff9ff3; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #ff9ff3; font-family: var(--font-primary);">The Biological Necessity</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Because chemistry fails at 10⁴, biology requires an active gatekeeper to reach 10⁹.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
+                <!-- Topic 5 -->
+                <section class="section-block fade-up" style="margin-top: 2rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">5. Physics of Base Pairing</h3>
+                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #00cec9; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #00cec9; font-family: var(--font-primary);">Electrostatics</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Provides the structural specificity for A-T and C-G pairing through hydrogen bonding.</p>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #00e5ff; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #00e5ff; font-family: var(--font-primary);">Desolvation Penalty</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Energy must be spent to strip water away from the bases before they can pair.</p>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #7efff5; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #7efff5; font-family: var(--font-primary);">Pi-Stacking</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Hydrophobic interactions between adjacent bases provide massive thermodynamic stability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Topic 6 -->
+                <section class="section-block fade-up" style="margin-top: 2rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">6. Conformational Entropy</h3>
+                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #f1c40f; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #f1c40f; font-family: var(--font-primary);">Active-Site Geometry</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Polymerase physically enforces a rigid 10.8 Å width requirement for all base pairs.</p>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #f39c12; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #f39c12; font-family: var(--font-primary);">Steric Clashes</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Mismatches physically don't fit into the active site, destroying the required geometry.</p>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #e67e22; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <h4 style="color: #e67e22; font-family: var(--font-primary);">Kinetic Barrier</h4>
+                                <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">A mismatch causes an insurmountable spike in activation energy (\( \Delta G^\ddagger \)), stalling the enzyme.</p>
+                            </div>
                         </div>
                     </div>
                 </section>
