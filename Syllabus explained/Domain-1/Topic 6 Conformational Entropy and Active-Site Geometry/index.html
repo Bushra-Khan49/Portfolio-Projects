@@ -107,21 +107,24 @@
                     </div>
                 </section>
                 
-                <!-- 1. Row 1: Full width -->
+                <!-- Row 1: Split width (2 cards) -->
                 <section class="card-grid section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">1. Why It Matters & What Problem It Solves</h3>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">Why It Matters & What Problem It Solves</h3>
                         <p>We previously established how the thermodynamic balance of hydrogen bonding and desolvation energetically penalizes mismatched base pairs. However, relying on free energy (\(\Delta G\)) differences alone is mathematically insufficient. Thermodynamics alone accounts for an error rate of about <strong style="color: #b388ff;">1 in 1,000 to 1 in 10,000 bases</strong>.</p>
                         <p>Yet, the actual baseline error rate of DNA polymerase in vivo is an astonishing <strong style="color: #00e5ff;">1 in 10,000,000 bases</strong>. Where does this massive, multi-log magnitude leap in accuracy come from?</p>
-                        <p><strong>The Gatekeeper:</strong> The cellular environment is hot, chaotic, and driven by thermal noise. Chemistry alone isn't strict enough to prevent lethal mutation loads. To bridge the gap, the enzyme utilizes its <strong class="text-application">Active-Site Geometry</strong> and exploits <strong class="text-application">Conformational Entropy</strong> to create an insurmountable Kinetic Barrier. It serves as the ultimate gatekeeper—acting immediately <em>after</em> thermodynamic attraction, but <em>before</em> mismatch repair mechanisms are required.</p>
+                    </div>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">The Gatekeeper</h3>
+                        <p>The cellular environment is hot, chaotic, and driven by thermal noise. Chemistry alone isn't strict enough to prevent lethal mutation loads. To bridge the gap, the enzyme utilizes its <strong class="text-application">Active-Site Geometry</strong> and exploits <strong class="text-application">Conformational Entropy</strong> to create an insurmountable Kinetic Barrier. It serves as the ultimate gatekeeper—acting immediately <em>after</em> thermodynamic attraction, but <em>before</em> mismatch repair mechanisms are required.</p>
                     </div>
                 </section>
 
-                <!-- 2. Row 2: Split width (2 cards) -->
+                <!-- Row 2: Full width -->
                 <section class="card-grid section-block fade-up">
-                    <!-- Card A: Steric Fit -->
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">2. Active-Site Geometry & Steric Fit</h3>
+                    <!-- Card: Steric Fit -->
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary">Active-Site Geometry & Steric Fit</h3>
                         <p>The active site of DNA Polymerase is not merely a chemical binding pocket; it acts as a rigid, precise physical mold. Remarkably, all canonical Watson-Crick base pairs (A=T, T=A, G≡C, C≡G) possess virtually identical overall geometries, measuring approximately 10.8 Ångströms wide.</p>
                         <p>The polymerase pocket is tailored exactly to this dimension, strictly enforcing geometric equivalence before any chemical bond is formed.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
@@ -129,9 +132,13 @@
                             <figcaption>The polymerase active site enforcing a strict 10.8 Ångström geometric requirement.</figcaption>
                         </div>
                     </div>
-                    <!-- Card B: Induced Fit -->
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">3. The Induced Fit Mechanism</h3>
+                </section>
+
+                <!-- Row 3: Full width -->
+                <section class="card-grid section-block fade-up">
+                    <!-- Card: Induced Fit -->
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary">The Induced Fit Mechanism</h3>
                         <p>When a geometrically correct nucleotide binds, this perfect steric fit triggers a massive conformational change within the enzyme. The "Fingers" domain of the polymerase rapidly rotates and closes tightly over the active site.</p>
                         <p>This closed state is critical for catalysis: it physically excludes bulk water from the active site and precisely aligns the catalytic Mg2+ ions to attack the incoming phosphate group.</p>
                         <div class="image-container" style="margin-top: 1.5rem;">
@@ -141,10 +148,10 @@
                     </div>
                 </section>
 
-                <!-- 3. Row 3: Full width -->
+                <!-- Row 4: Full width -->
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">4. Mismatch Disruption & Conformational Entropy</h3>
+                        <h3 class="h-primary">Mismatch Disruption & Conformational Entropy</h3>
                         <p>If an incorrect, non-canonical base pairs (e.g., a bulky Purine-Purine mismatch), the combined width significantly exceeds the 10.8 Å limit. This oversized geometry causes a severe <strong style="color: #ff3366;">Steric Clash</strong>.</p>
                         <div class="image-container" style="margin-bottom: 2rem;">
                             <img src="fig_mismatch_disruption.jpg" alt="Mismatch Disruption" loading="lazy" decoding="async">
@@ -164,11 +171,11 @@
                     </div>
                 </section>
 
-                <!-- 4. Row 4: Split width (2 cards) -->
+                <!-- Row 5: Split width (2 cards) -->
                 <section class="card-grid section-block fade-up">
                     <!-- Card A: Transition State Theory -->
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">5. Transition State Theory</h3>
+                        <h3 class="h-primary">Transition State Theory</h3>
                         <p>The failure to achieve the closed conformation directly dictates the speed of the chemical reaction, modeled by the Eyring-Polanyi equation:</p>
                         <div class="math-block" style="margin: 1.5rem 0; padding: 1rem;">
                             <p style="text-align: center; font-size: 2rem; margin-bottom: 1rem; color: #b388ff;">\(k = \frac{k_B T}{h} e^{-\frac{\Delta G^\ddagger}{RT}}\)</p>
@@ -186,7 +193,7 @@
                     </div>
                     <!-- Card B: Proofreading Trigger -->
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary">6. The Proofreading Trigger</h3>
+                        <h3 class="h-primary">The Proofreading Trigger</h3>
                         <p>We can trace the entire error-prevention cascade:</p>
                         <ol style="margin-left: 1.5rem; margin-top: 1rem; margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">
                             <li>Thermodynamics fails (a wobble base binds).</li>
@@ -203,20 +210,22 @@
                     </div>
                 </section>
 
-                <!-- 5. Row 5: Full width (Bioinformatics) -->
+                <!-- Row 6: Full width (Bioinformatics) -->
                 <section class="card-grid section-block fade-up" style="margin-bottom: 5rem;">
                     <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(130, 177, 255, 0.05); border-color: rgba(130, 177, 255, 0.3);">
-                        <h3 class="h-primary">7. Connection to Bioinformatics (Bioinfo Mattix)</h3>
+                        <h3 class="h-primary">Connection to Bioinformatics</h3>
                         <p>This intricate kinetic stalling and proofreading mechanism is the exact physical origin of the high confidence scores (Phred Q-scores) assigned to next-generation sequencing reads. The molecular physics of the active site determines the baseline error profile that every computational model must account for.</p>
                         
                         <h3 class="h-primary" style="margin-top: 2rem;">Why is it crucial for Bioinformatics?</h3>
-                        <p>When developing pipelines to detect ultra-rare somatic mutations in cancer (e.g., analyzing circulating tumor DNA in blood plasma), bioinformaticians often search for variants present at extremely low allele frequencies (~0.1%). If the inherent baseline error rate of DNA replication (and the sequencing polymerase itself) were not heavily suppressed by this kinetic filter, the background noise would completely drown out the true biological mutations. Statistical variant calling algorithms would be fundamentally useless without it.</p>
+                        <p>When developing pipelines to detect ultra-rare somatic mutations in cancer (e.g., analyzing circulating tumor DNA in blood plasma), bioinformaticians often search for variants present at extremely low allele frequencies (~0.1%). If the inherent baseline error rate of DNA replication (and the sequencing polymerase itself) were not heavily suppressed by this kinetic filter, the background noise would completely drown out the true biological mutations. Statistical variant calling algorithms would be fundamentally useless without it. Furthermore, understanding these specific molecular stalling points helps bioinformaticians distinguish true biological mutations from polymerase slippage or sequencing artifacts that occur preferentially at certain motifs.</p>
                         
                         <h3 class="h-primary" style="margin-top: 2rem;">How to apply and use it in Bioinformatics</h3>
                         <p>Bioinformaticians directly apply this knowledge in several critical areas:</p>
                         <ul style="margin-left: 1.5rem; margin-top: 1rem; color: #82b1ff; font-size: 1.05rem; line-height: 1.6;">
                             <li style="margin-bottom: 1rem;"><strong>Calibrating Base Quality Scores (BQSR):</strong> Advanced variant calling tools like GATK rely on accurate models of polymerase error rates. BQSR uses these models to systematically recalibrate the confidence of every single sequenced base, distinguishing true sequencing errors from genuine biological variations.</li>
-                            <li><strong>Designing Custom Enzymes:</strong> Protein engineers leverage molecular dynamics simulations to precisely modify the active-site geometry of polymerases (such as Phusion or Q5). By artificially increasing the \(\Delta G^\ddagger\) penalty for mismatches, they create engineered, ultra-high-fidelity enzymes specifically tailored for highly sensitive sequencing and PCR applications.</li>
+                            <li style="margin-bottom: 1rem;"><strong>Designing Custom Enzymes:</strong> Protein engineers leverage molecular dynamics simulations to precisely modify the active-site geometry of polymerases (such as Phusion or Q5). By artificially increasing the \(\Delta G^\ddagger\) penalty for mismatches, they create engineered, ultra-high-fidelity enzymes specifically tailored for highly sensitive sequencing and PCR applications.</li>
+                            <li style="margin-bottom: 1rem;"><strong>Interpreting Mutational Signatures:</strong> In cancer genomics, specific mutational signatures (like APOBEC or mismatch-repair deficiency) are often directly linked to how polymerases interact with damaged DNA or how their proofreading fails. Bioinformaticians use these signatures to trace the molecular history of a tumor.</li>
+                            <li><strong>Filtering Sequencing Artifacts:</strong> Knowing the physical limitations of polymerase, pipelines can be written to filter out systematic errors, such as those occurring in homopolymer runs where the enzyme's grip on the DNA substrate is loose, leading to artificial insertions or deletions.</li>
                         </ul>
                     </div>
                 </section>
