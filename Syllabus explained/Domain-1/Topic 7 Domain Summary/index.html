@@ -32,7 +32,7 @@
         <div class="content-column">
             <div class="content-wrapper">
                 
-                <header class="topic-header fade-up">
+                <header class="topic-header fade-up" style="margin-bottom: 4rem;">
                     <div class="topic-badge">Domain 1 Summary</div>
                     <h1 class="h-title">The Master Synthesis</h1>
                     <p class="subtitle" style="font-family: var(--font-secondary); margin-top: 1rem; color: #aab2c0;">A consolidated review of DNA structure, replication physics, and bioinformatics pipelines.</p>
@@ -61,26 +61,44 @@
                     </div>
                 </section>
 
-                <section class="card-grid section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary">3. The Three-Tiered Fidelity System</h3>
-                        <p>Copying billions of bases without errors requires three sequential layers of defense (Topic 2, 4, 6):</p>
+                <section class="section-block fade-up" style="margin-top: 4rem;">
+                    <div class="glass-card tilt-effect hover-target full-width" style="padding: 3rem;">
+                        <h3 class="h-primary" style="text-align: center; margin-bottom: 2rem;">3. The Three-Tiered Fidelity System</h3>
+                        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #aab2c0;">Copying billions of bases without errors requires three sequential layers of defense (Topic 2, 4, 6):</p>
                         
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+                        <div class="card-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <!-- Tier 1: Thermo -->
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #82b1ff; text-align: center;">
                                 <h4 style="color: #82b1ff; font-family: var(--font-primary);">1. Thermodynamic Attraction</h4>
                                 <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Baseline specificity based on hydrogen bonding. Yields a 1 in 10⁴ error rate.</p>
                             </div>
+                            <!-- Tier 2: Kinetic -->
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #00e5ff; text-align: center; box-shadow: 0 0 15px rgba(0,229,255,0.1);">
                                 <h4 style="color: #00e5ff; font-family: var(--font-primary);">2. Kinetic Gatekeeper</h4>
                                 <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Enforces rigid 10.8 Å active-site geometry. Stalls mismatched bases via \( \Delta G^\ddagger \) spikes, yielding 1 in 10⁷ accuracy.</p>
                             </div>
+                            <!-- Tier 3: Mismatch -->
                             <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border-top: 3px solid #b388ff; text-align: center;">
                                 <h4 style="color: #b388ff; font-family: var(--font-primary);">3. Mismatch Repair</h4>
                                 <p style="font-size: 0.95rem; color: #aab2c0; margin-top: 0.5rem;">Post-replication proofreading machinery. Brings final accuracy to 1 in 10⁹.</p>
                             </div>
                         </div>
-                        <p>The polymerase acts as the ultimate gatekeeper, bridging the gap between passive thermodynamics and active mismatch repair.</p>
+                        <p style="text-align: center; margin-top: 2rem;">The polymerase acts as the ultimate gatekeeper, bridging the gap between passive thermodynamics and active mismatch repair.</p>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up" style="margin-top: 4rem;">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">Topic 4: Thermodynamics of Fidelity</h3>
+                        <p>Explores how simple chemical attraction (\( \Delta G \)) is inherently limited. Hydrogen bonding alone cannot distinguish right from wrong with enough accuracy for a stable genome, requiring a biological solution to a chemical problem.</p>
+                    </div>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">Topic 5: Physics of Base Pairing</h3>
+                        <p>Breaks down the atomic-level forces—electrostatics, desolvation penalties, and Pi-stacking—that dictate why A pairs with T and C pairs with G, providing the physical foundation for information storage.</p>
+                    </div>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary">Topic 6: Conformational Entropy</h3>
+                        <p>Reveals the kinetic filter: DNA polymerase physically wraps around the active site to check the geometry of the base pair. Mismatches clash sterically, causing an insurmountable spike in activation energy (\( \Delta G^\ddagger \)).</p>
                     </div>
                 </section>
 
