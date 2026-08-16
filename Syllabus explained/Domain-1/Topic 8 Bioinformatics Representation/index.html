@@ -357,6 +357,46 @@ Base       A T G C                   A U G C
                     </div>
                 </section>
 
+                <!-- PHASE 3: SUMMARY & REFERENCE TABLES -->
+                <section class="section-block fade-up">
+                    <div class="glass-card full-width tilt-effect hover-target">
+                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Reference: The Depth of Representation</h3>
+                        <p>You don't need to know every chemical detail of DNA and RNA before doing bioinformatics. Rather, you need to know which molecular properties are relevant to the computational problem you are solving.</p>
+                        <div class="table-container">
+                            <table class="bio-table">
+                                <tr>
+                                    <th>Bioinformatics Task</th>
+                                    <th>Molecular Knowledge That Matters</th>
+                                </tr>
+                                <tr>
+                                    <td>FASTQ Parsing</td>
+                                    <td>Sequence representation, orientation, alphabet</td>
+                                </tr>
+                                <tr>
+                                    <td>Genomic Coordinate Extraction</td>
+                                    <td>Genome representation, strand, coordinate conventions</td>
+                                </tr>
+                                <tr>
+                                    <td>RNA-Seq Alignment</td>
+                                    <td>Sequence complementarity, splicing, strandness</td>
+                                </tr>
+                                <tr>
+                                    <td>Transcript Quantification</td>
+                                    <td>Transcript structure, isoforms, annotation</td>
+                                </tr>
+                                <tr>
+                                    <td>RNA Structure Prediction</td>
+                                    <td>Base pairing, stacking, thermodynamics</td>
+                                </tr>
+                                <tr>
+                                    <td>Protein Structure Prediction</td>
+                                    <td>Amino-acid chemistry, folding, energetics</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- REAL WORLD PIPELINE EXAMPLES -->
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
@@ -375,6 +415,22 @@ Base       A T G C                   A U G C
                         <div style="border-left: 3px solid var(--accent-mod2-light); padding-left: 1.5rem; margin-top: 2rem;">
                             <h4 style="color: var(--accent-mod2-light); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Coordinate Systems & Splicing</h4>
                             <p>There are two major coordinate conventions: <strong>1-based inclusive</strong> and <strong>0-based half-open</strong>. That one-character difference creates an off-by-one error, potentially shifting the reading frame of every downstream codon. Furthermore, genomic coordinate space \(\neq\) transcript coordinate space due to splicing. RNA-seq alignment isn't finding a string; it is finding where RNA originated across discontinuous genomic regions.</p>
+                        </div>
+
+                        <!-- Restored Application Examples -->
+                        <div style="border-left: 3px solid #ff4da6; padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: #ff4da6; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Sequence Representation in RNA-Seq</h4>
+                            <p><strong>DESeq2</strong> identifies differentially expressed genes by analyzing count matrices. This works because the algorithm assumes the count matrix represents accurate genomic annotations extracted upstream. If your pipeline accidentally extracted sequences from the wrong strand or used a 0-based coordinate system incorrectly, the sequence representation is flawed. <strong>DESeq2</strong> does not know this; it will happily process the flawed counts and output a statistically significant, biologically false result.</p>
+                        </div>
+
+                        <div style="border-left: 3px solid #ff007f; padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: #ff007f; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Thermodynamics in Structure Prediction</h4>
+                            <p>Algorithms like <strong>ViennaRNA</strong> predict secondary structures by minimizing free energy. This works because it calculates \(\Delta G\) using rigorous thermodynamic parameters derived for RNA chemistry. If your input is inadvertently DNA—or if you fail to account for ionic conditions—the algorithm will still execute perfectly and draw a beautiful hairpin structure. However, because the underlying molecular representation is wrong, the structure belongs to a molecule that doesn't physically exist.</p>
+                        </div>
+
+                        <div style="border-left: 3px solid #b30059; padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: #b30059; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Coordinate Parsing & Sequence Extraction</h4>
+                            <p>Tools like <strong>BedTools</strong> rely entirely on strict coordinate conventions. A genome annotation (e.g., <code>chr7:55,086,724-55,275,031</code>) seems purely computational. But those coordinates map to physical DNA. If you parse an inclusive boundary as exclusive, you shift the reading frame. The downstream FASTA file is generated flawlessly, yet the biological object it represents has been completely corrupted.</p>
                         </div>
                     </div>
                 </section>
@@ -411,6 +467,26 @@ incorrect biological conclusion
                                 <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757;">Excellent computation + Wrong model = Precisely wrong answer</p>
                             </div>
                         </div>
+
+                        <!-- Restored Consequence Summary -->
+                        <div class="highlight-box" style="margin-top: 3rem; background: rgba(0,0,0,0.4);">
+                            <h4 style="color: var(--accent-mod2); font-family: var(--font-display); margin-bottom: 1rem; font-size: 1.3rem;">If Flawless Understanding Did Not Exist</h4>
+                            <p>The cost of a silent error is profound. If we fail to properly represent the molecular biology:</p>
+                            <ul style="padding-left: 1.5rem; margin-top: 1rem; line-height: 1.8; color: #e8eaf6;">
+                                <li><strong>Computational Cost:</strong> We waste days running alignments and enrichment analyses on corrupted inputs.</li>
+                                <li><strong>Storage Cost:</strong> Massive BAM files are generated and stored unnecessarily.</li>
+                                <li><strong>Interpretation Cost:</strong> We spend precious time investigating a biological signal that isn't real.</li>
+                                <li><strong>Scientific Cost:</strong> A wrong computational assumption becomes a published, incorrect biological claim.</li>
+                            </ul>
+                            
+                            <div class="math-block" style="border-left-color: #ff4757; text-align: center; margin-top: 2rem; background: rgba(255, 71, 87, 0.05);">
+                                <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757;">Wrong + Program Crashed = Easy to fix.</p>
+                                <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757; margin-top: 0.5rem;">Wrong + Plausible-Looking = Dangerous science.</p>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-top: 2rem; font-size: 1.1rem; text-align: center; font-style: italic; color: var(--accent-mod2-light);">"A sophisticated algorithm cannot compensate for an incorrect biological input representation unless it explicitly models that uncertainty."</p>
+
                     </div>
                 </section>
                 
