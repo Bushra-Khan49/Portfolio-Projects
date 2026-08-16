@@ -132,7 +132,7 @@ const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
 
 const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
-const color2 = new THREE.Color('#00e5ff'); // Cyan
+const color2 = new THREE.Color('#ff4da6'); // Lighter Pink/Reddish
 
 for(let i = 0; i < particleCount; i++) {
     // Distribute points in a wide, deep cylinder/grid flow

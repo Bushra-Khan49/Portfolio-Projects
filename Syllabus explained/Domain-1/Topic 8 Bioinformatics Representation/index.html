@@ -7,11 +7,18 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=9">
+    <link rel="stylesheet" href="style.css?v=10">
     <!-- MathJax for rendering math formulas beautifully -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
+        :root {
+            --accent-mod2: #ff007f; /* Reddish-pink for Module 2 */
+            --accent-mod2-light: #ff4da6;
+            --accent-mod2-dark: #b30059;
+            --text-muted: #aab2c0;
+        }
+
         .back-btn {
             position: fixed;
             top: 1.25rem;
@@ -22,9 +29,9 @@
             gap: 0.5rem;
             padding: 0.5rem 1.1rem;
             background: rgba(5, 10, 21, 0.75);
-            border: 1px solid rgba(0, 229, 255, 0.35);
+            border: 1px solid rgba(255, 0, 127, 0.35);
             border-radius: 999px;
-            color: #00e5ff;
+            color: var(--accent-mod2);
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
             text-decoration: none;
@@ -32,12 +39,12 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             transition: all 0.25s ease;
-            box-shadow: 0 0 12px rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
         }
         .back-btn:hover {
-            background: rgba(0, 229, 255, 0.12);
-            border-color: rgba(0, 229, 255, 0.7);
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+            background: rgba(255, 0, 127, 0.12);
+            border-color: rgba(255, 0, 127, 0.7);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.35);
             transform: translateX(-2px);
         }
         .back-btn svg {
@@ -49,11 +56,10 @@
             .back-btn { top: 0.75rem; left: 0.75rem; font-size: 0.72rem; padding: 0.4rem 0.9rem; }
         }
         
-        /* Math & Code Blocks */
         .math-block {
             background: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid #b388ff; /* Purple for math blocks */
-            padding: 1rem;
+            border-left: 3px solid var(--accent-mod2);
+            padding: 1.5rem;
             margin: 1.5rem 0;
             border-radius: 0 8px 8px 0;
             font-family: 'Inter', sans-serif;
@@ -61,8 +67,8 @@
         }
         .code-box {
             background: #0f1423;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-left: 3px solid #00e5ff;
+            border: 1px solid rgba(255, 0, 127, 0.15);
+            border-left: 3px solid var(--accent-mod2);
             padding: 1.5rem;
             border-radius: 8px;
             font-family: var(--font-mono);
@@ -72,17 +78,14 @@
             margin: 1.5rem 0;
             white-space: pre;
             line-height: 1.6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        /* Hierarchy Colors */
         .h-primary { color: #ffffff !important; font-family: var(--font-display) !important; text-transform: uppercase; }
-        .h-secondary { color: #00e5ff !important; font-family: var(--font-display) !important;}
-        .h-tertiary { color: #ff007f !important; }
-        .text-application { color: #82b1ff; font-weight: 600; }
+        .h-secondary { color: var(--accent-mod2) !important; font-family: var(--font-display) !important;}
+        .h-tertiary { color: #ff80bf !important; }
         
-        .accent-cyan { color: #00e5ff; }
-        .accent-pink { color: #ff007f; }
-        .accent-purple { color: #b388ff; }
+        .text-application { color: #ff4da6; font-weight: 600; }
 
         .table-container {
             width: 100%;
@@ -90,7 +93,7 @@
             margin: 2rem 0;
             background: rgba(0,0,0,0.2);
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 0, 127, 0.15);
         }
         .bio-table {
             width: 100%;
@@ -101,7 +104,7 @@
             text-align: left;
             padding: 1.2rem;
             background: rgba(255, 0, 127, 0.1);
-            color: #ff007f;
+            color: var(--accent-mod2);
             font-family: var(--font-display);
             border-bottom: 1px solid rgba(255, 0, 127, 0.3);
         }
@@ -118,6 +121,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
+            align-items: center;
         }
         @media (max-width: 768px) {
             .split-text { grid-template-columns: 1fr; }
@@ -130,9 +134,41 @@
             border-radius: 8px;
             margin: 1.5rem 0;
         }
-        .highlight-box.error {
-            border-color: #ff4757;
-            background: rgba(255, 71, 87, 0.05);
+        
+        /* Figure containers */
+        .glass-figure {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .glass-figure img {
+            width: 100%;
+            border-radius: 6px;
+        }
+        .glass-figure figcaption {
+            color: #333;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Nav specific overrides for Module 2 color */
+        .glass-card.hover-target {
+            border-color: rgba(255, 0, 127, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glass-card.hover-target:hover {
+            border-color: rgba(255, 0, 127, 0.6);
+            box-shadow: 0 8px 24px rgba(255, 0, 127, 0.15);
+        }
+        
+        p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #d1d5db;
         }
     </style>
 </head>
@@ -150,28 +186,28 @@
                 
                 <!-- PHASE 1: THE HOOK -->
                 <section class="hero-section fade-up">
-                    <h5 class="eyebrow" style="color: #ff007f;">TOPIC 8</h5>
-                    <h1 class="h-primary" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem;">Bioinformatics Representation & Inference</h1>
-                    <h2 style="color: #aab2c0; font-family: var(--font-secondary); font-size: 1.5rem; font-weight: normal; margin-bottom: 2rem;">Algorithms don't operate on molecules. They operate on models.</h2>
+                    <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 8</h5>
+                    <h1 class="h-primary" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">Bioinformatics Representation</h1>
+                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">Bioinformatics algorithms do not operate on abstract letters alone. They are models of biological molecules. If your model of the molecule is wrong, the computational result can be internally consistent but biologically meaningless.</h2>
                     <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
-                        <div class="mouse"></div>
-                        <span>Scroll to Explore</span>
+                        <div class="mouse" style="border-color: var(--accent-mod2);"></div>
+                        <span style="color: var(--accent-mod2);">Scroll to Explore</span>
                     </div>
                 </section>
                 
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">Why This Matters</h3>
-                        <p>Think back to what we've established about DNA replication and molecular geometry. The molecules we track have complex physical properties.</p>
-                        <p style="margin-top: 1rem;">Bioinformatics is not simply the manipulation of biological strings. It is the computational representation and analysis of <strong>physical biological systems</strong>.</p>
-                        <p style="margin-top: 1rem; color: #ff4757;">A computational error does not necessarily cause a program to crash. A script can be syntactically correct while producing biologically incorrect results.</p>
+                        <p>Think back to what we've established about DNA replication and molecular fidelity. The molecules we track—DNA, RNA, and proteins—have complex physical properties, kinetic histories, and thermodynamic constraints.</p>
+                        <p>When you look at a FASTQ file or a sequencing read, it is incredibly tempting to think, "These are just strings of A, T, G, and C." But biologically, they are not just strings. They represent dynamic physical objects.</p>
+                        <p>That distinction becomes dangerously important in computational biology. A computational error does not necessarily cause a program to crash. A script can be syntactically correct, execute flawlessly, and produce a nice volcano plot while harboring a profound biological error.</p>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">The Big Picture</h3>
-                        <p>We solve the <strong>"silent error" problem</strong> by understanding the chain of representations.</p>
+                        <p>Every bioinformatic pipeline is a sequential chain of abstraction. At every step, information is discarded, and assumptions are encoded. If we don't understand what is lost, we cannot trust what is calculated.</p>
                         
-                        <div class="code-box" style="text-align: center; border-color: #ff007f;">
+                        <div class="code-box" style="text-align: center;">
 MOLECULE
    ↓
 BIOLOGICAL PROCESS
@@ -196,119 +232,91 @@ BIOLOGICAL INTERPRETATION
                 <!-- PHASE 2: CORE MECHANICS -->
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Step 1 — The Chemical Difference (DNA vs RNA)</h3>
-                        <p><em>The fundamental representation issue starts with chemistry.</em></p>
-                        <div class="split-text" style="margin-top: 1.5rem;">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Principle 1 — The Chemical Difference</h3>
+                        <p>Let's unpack this from first principles. DNA and RNA are highly similar, but they are not chemically identical, and they absolutely cannot be treated as interchangeable strings.</p>
+                        
+                        <div class="split-text">
                             <div>
-                                <p>It is tempting to think of DNA and RNA simply as strings of A, T/U, G, and C. But biologically, they are not just strings. They represent molecules with different chemical groups, sugar structures, and thermodynamic properties.</p>
-                                <p style="margin-top: 1rem;">The most important structural difference is the sugar at the 2′ carbon.</p>
+                                <p>The most important structural difference is the sugar backbone. DNA contains deoxyribose. RNA contains ribose. The critical differentiator is located at the 2′ carbon.</p>
+                                <p>That single additional oxygen-containing hydroxyl group has enormous physical consequences. It alters hydrogen bonding, steric interactions, hydration shells, conformational preferences, and structural flexibility. It is the reason RNA can fold into complex 3D ribozymes while DNA remains predominantly a rigid double helix.</p>
                             </div>
-                            <div class="code-box" style="margin-top: 0;">
-DNA has:
+                            <div class="code-box" style="text-align: center;">
+DNA 
 2' - H
+(Deoxyribose)
 
-RNA has:
+RNA 
 2' - OH
+(Ribose)
                             </div>
                         </div>
-                        <p style="margin-top: 1.5rem;">That one additional oxygen-containing hydroxyl group changes hydrogen bonding, steric interactions, hydration, backbone geometry, and RNA folding.</p>
                     </div>
                 </section>
 
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem; color: #ff007f !important;">Step 2 — The Computational Consequence</h3>
-                        <p><em>Why does one OH group matter computationally?</em></p>
-                        <p style="margin-top: 1rem;">If your task is simply counting bases, the distinction might not matter. But if you ask: <strong>"What structure will this RNA fold into?"</strong> or <strong>"What is the free energy?"</strong>, chemistry matters directly.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Principle 2 — Thermodynamic Approximation</h3>
+                        <p>Why does one OH group matter computationally? If your task is simply counting bases, the distinction might not matter much. But the moment you ask an algorithm, "What structure will this RNA fold into?", chemistry matters directly.</p>
+                        <p>A secondary-structure prediction algorithm searches through thousands of possible folded configurations. It isn't simply asking if two letters are complementary. It is asking: "Given the chemical and structural properties of these nucleotides, how energetically favorable is this particular molecular configuration?"</p>
                         
                         <div class="math-block">
+                            <p style="color: var(--accent-mod2-light); font-weight: bold; margin-bottom: 0.5rem;">Gibbs Free Energy Equation:</p>
                             \[ \Delta G = \Delta H - T\Delta S \]
                         </div>
-                        <p>The algorithm isn't asking "Are these two letters complementary?" It is asking: "Given the chemical properties, how energetically favorable is this molecular configuration?" They come from thermodynamic models derived from experimental measurements.</p>
+                        
+                        <p>The algorithm calculates the Gibbs free energy (\(\Delta G\)) using parameters derived from real experimental measurements—incorporating base-pairing, nearest-neighbor interactions, loop penalties, and stacking forces. The algorithm is ultimately using a mathematical approximation of molecular chemistry.</p>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card full-width tilt-effect hover-target">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Principle 3 — Transcription Kinetics</h3>
+                        <p>When modeling biological processes, it is crucial to recognize that enzymes are not simple photocopy machines. Consider transcription, where RNA polymerase reads a DNA template.</p>
                         
                         <div class="code-box">
-sequence
-   ↓
-energy parameters (Nearest-neighbor, stacking, loop penalties)
-   ↓
-candidate structures
-   ↓
-optimization
-   ↓
-predicted structure
+DNA template + RNA Polymerase
+      ↓
+NTP + RNA(n) → RNA(n+1) + PPi
                         </div>
-                    </div>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem; color: #b388ff !important;">Step 3 — Transcription Kinetics</h3>
-                        <p><em>Modeling the biological process.</em></p>
-                        <p style="margin-top: 1rem;">RNA polymerase is not simply copying a DNA sequence into an identical string. It is producing a chemically different polymer. A mathematical model of transcription must represent initiation, nucleotide incorporation (using U instead of T), pausing, and termination.</p>
-                    </div>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Step 4 — The 3 Levels of Reality</h3>
-                        <p>Your goal as a bioinformatician is to move up and down this stack.</p>
-                        <div class="table-container">
-                            <table class="bio-table">
-                                <tr>
-                                    <th>Level</th>
-                                    <th>Description</th>
-                                    <th>Examples</th>
-                                </tr>
-                                <tr>
-                                    <td><strong>1. Physical Biology</strong></td>
-                                    <td>The real molecular system.</td>
-                                    <td>DNA/RNA chemistry, folding, binding, transcription</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>2. Representation</strong></td>
-                                    <td>How we encode biology for computers.</td>
-                                    <td>A, T, G, C, coordinates, FASTA, FASTQ, GTF</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>3. Computational Model</strong></td>
-                                    <td>How we mathematically reason about the encoding.</td>
-                                    <td>Alignment score, probability, \(\Delta G\), kinetic model</td>
-                                </tr>
-                            </table>
-                        </div>
+                        
+                        <p>The polymerase does not produce an identical sequence. It produces a chemically different polymer, substituting Uracil (U) for Thymine (T). The kinetics of this process involve promoter recognition, initiation, pausing, elongation, and termination. A robust computational model of transcription must encapsulate these physical realities, not just perform a string replacement operation.</p>
                     </div>
                 </section>
 
                 <!-- PHASE 3: SUMMARY & REFERENCE TABLES -->
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Reference: What Molecular Knowledge Matters?</h3>
-                        <p>You don't need to know every chemical detail. You need to know which molecular properties are relevant to the computational problem.</p>
+                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Reference: The Depth of Representation</h3>
+                        <p>You don't need to know every chemical detail of DNA and RNA before doing bioinformatics. Rather, you need to know which molecular properties are relevant to the computational problem you are solving.</p>
                         <div class="table-container">
                             <table class="bio-table">
                                 <tr>
                                     <th>Bioinformatics Task</th>
-                                    <th>Relevant Molecular Knowledge</th>
+                                    <th>Molecular Knowledge That Matters</th>
                                 </tr>
                                 <tr>
-                                    <td>FASTQ parsing</td>
+                                    <td>FASTQ Parsing</td>
                                     <td>Sequence representation, orientation, alphabet</td>
                                 </tr>
                                 <tr>
-                                    <td>Genomic coordinate extraction</td>
+                                    <td>Genomic Coordinate Extraction</td>
                                     <td>Genome representation, strand, coordinate conventions</td>
                                 </tr>
                                 <tr>
-                                    <td>RNA-seq alignment</td>
+                                    <td>RNA-Seq Alignment</td>
                                     <td>Sequence complementarity, splicing, strandness</td>
                                 </tr>
                                 <tr>
-                                    <td>RNA structure prediction</td>
+                                    <td>Transcript Quantification</td>
+                                    <td>Transcript structure, isoforms, annotation</td>
+                                </tr>
+                                <tr>
+                                    <td>RNA Structure Prediction</td>
                                     <td>Base pairing, stacking, thermodynamics</td>
                                 </tr>
                                 <tr>
-                                    <td>Variant interpretation</td>
-                                    <td>Sequence context, molecular consequence</td>
+                                    <td>Protein Structure Prediction</td>
+                                    <td>Amino-acid chemistry, folding, energetics</td>
                                 </tr>
                             </table>
                         </div>
@@ -319,64 +327,54 @@ predicted structure
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1.5rem;">The Bioinformatics Bridge</h3>
-                        <p>How does representation dictate the outcome of computational tools?</p>
+                        <p>We can separate this entire framework into three distinct levels of reality. Your goal as a bioinformatician is to be able to move up and down this stack fluently.</p>
+                        
+                        <div class="math-block" style="text-align: center; margin-bottom: 3rem;">
+                            <p style="font-size: 1.2rem; font-weight: bold; color: var(--accent-mod2-light);">Molecule ↔ Representation ↔ Mathematical Model</p>
+                        </div>
 
-                        <!-- Answered 7 Questions -->
-                        <div class="highlight-box" style="margin-top: 2rem;">
-                            <h4 style="color: #ff007f; margin-bottom: 1rem; font-family: var(--font-display);">The 7-Question Analytical Framework: RNA-Seq Example</h4>
-                            <p style="margin-bottom: 1rem; color: #aab2c0;">To avoid statistical failure, we answer these 7 questions to map an algorithm (like <strong>DESeq2</strong>) back to biological reality:</p>
-                            
-                            <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8;">
-                                <li><strong>What is the biological object?</strong> The physical RNA transcript molecules in the cell.</li>
-                                <li><strong>What physical process produced the data?</strong> Transcription, RNA extraction, and Illumina sequencing.</li>
-                                <li><strong>How is that object represented computationally?</strong> As digital FASTQ reads, which are then summarized into a Count Matrix.</li>
-                                <li><strong>What mathematical model is being used?</strong> A Negative Binomial distribution modeling the variance of the counts.</li>
-                                <li><strong>What assumptions does the model make?</strong> It assumes the genomic coordinates used to extract sequences correctly represent the transcript boundaries.</li>
-                                <li><strong>What physical information is lost?</strong> 3D folding, transient kinetics, and cellular microenvironment data.</li>
-                                <li><strong>Where does the error propagate?</strong> If 0-based coordinates are parsed as 1-based, the extracted sequence is wrong, alignment skews, and DESeq2 produces a false-positive p-value.</li>
-                            </ul>
+                        <!-- Bioinformatics Applications -->
+                        <div style="border-left: 3px solid #ff4da6; padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: #ff4da6; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Sequence Representation in RNA-Seq</h4>
+                            <p><strong>DESeq2</strong> identifies differentially expressed genes by analyzing count matrices. This works because the algorithm assumes the count matrix represents accurate genomic annotations extracted upstream. If your pipeline accidentally extracted sequences from the wrong strand or used a 0-based coordinate system incorrectly, the sequence representation is flawed. <strong>DESeq2</strong> does not know this; it will happily process the flawed counts and output a statistically significant, biologically false result.</p>
                         </div>
 
                         <div style="border-left: 3px solid #ff007f; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #ff007f; font-size: 1.2rem; margin-bottom: 0.5rem;">Differential Expression & Silent Errors</h4>
-                            <p><strong>DESeq2</strong> quantifies differential expression based on count matrices. This works because the algorithm relies on the assumption that the upstream transcript quantification accurately represents the biological RNA pool. Without correct upstream representations (e.g., proper strandness or genomic coordinates), DESeq2 is blind to the error. Understanding this ensures you don't mistake a parsing error for a biologically significant upregulated gene with a perfect \(p < 0.05\) volcano plot.</p>
+                            <h4 style="color: #ff007f; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Thermodynamics in Structure Prediction</h4>
+                            <p>Algorithms like <strong>ViennaRNA</strong> predict secondary structures by minimizing free energy. This works because it calculates \(\Delta G\) using rigorous thermodynamic parameters derived for RNA chemistry. If your input is inadvertently DNA—or if you fail to account for ionic conditions—the algorithm will still execute perfectly and draw a beautiful hairpin structure. However, because the underlying molecular representation is wrong, the structure belongs to a molecule that doesn't physically exist.</p>
+                        </div>
+
+                        <div style="border-left: 3px solid #b30059; padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: #b30059; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Coordinate Parsing & Sequence Extraction</h4>
+                            <p>Tools like <strong>BedTools</strong> rely entirely on strict coordinate conventions. A genome annotation (e.g., <code>chr7:55,086,724-55,275,031</code>) seems purely computational. But those coordinates map to physical DNA. If you parse an inclusive boundary as exclusive, you shift the reading frame. The downstream FASTA file is generated flawlessly, yet the biological object it represents has been completely corrupted.</p>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top: 3rem; background: rgba(0,0,0,0.4);">
+                            <h4 style="color: var(--accent-mod2); font-family: var(--font-display); margin-bottom: 1rem; font-size: 1.3rem;">If Flawless Understanding Did Not Exist</h4>
+                            <p>The cost of a silent error is profound. If we fail to properly represent the molecular biology:</p>
+                            <ul style="padding-left: 1.5rem; margin-top: 1rem; line-height: 1.8; color: #e8eaf6;">
+                                <li><strong>Computational Cost:</strong> We waste days running alignments and enrichment analyses on corrupted inputs.</li>
+                                <li><strong>Storage Cost:</strong> Massive BAM files are generated and stored unnecessarily.</li>
+                                <li><strong>Interpretation Cost:</strong> We spend precious time investigating a biological signal that isn't real.</li>
+                                <li><strong>Scientific Cost:</strong> A wrong computational assumption becomes a published, incorrect biological claim.</li>
+                            </ul>
+                            
+                            <div class="math-block" style="border-left-color: #ff4757; text-align: center; margin-top: 2rem; background: rgba(255, 71, 87, 0.05);">
+                                <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757;">Wrong + Program Crashed = Easy to fix.</p>
+                                <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757; margin-top: 0.5rem;">Wrong + Plausible-Looking = Dangerous science.</p>
+                            </div>
                         </div>
                         
-                        <div style="border-left: 3px solid #00e5ff; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #00e5ff; font-size: 1.2rem; margin-bottom: 0.5rem;">Genomic Coordinate Parsing</h4>
-                            <p><strong>BedTools</strong> and custom parsers extract sequences using genomic annotations (like `chr7:55086724-55275031`). This works because the genome is linearly indexable. However, if you mistakenly apply a 0-based coordinate system to a 1-based VCF file, you extract the wrong base. Downstream programs will run perfectly on the wrong sequence, creating a mathematically pristine but biologically false result.</p>
-                        </div>
+                        <p style="margin-top: 2rem; font-size: 1.1rem; text-align: center; font-style: italic; color: var(--accent-mod2-light);">"A sophisticated algorithm cannot compensate for an incorrect biological input representation unless it explicitly models that uncertainty."</p>
 
-                        <div style="border-left: 3px solid #b388ff; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #b388ff; font-size: 1.2rem; margin-bottom: 0.5rem;">RNA Structure Prediction</h4>
-                            <p><strong>ViennaRNA</strong> predicts the Minimum Free Energy (MFE) secondary structure of an RNA sequence. This works because it calculates \(\Delta G\) using experimentally derived nearest-neighbor thermodynamic parameters. If your input sequence was inadvertently the reverse-complement DNA instead of the actual RNA, the algorithm will still calculate a beautiful hairpin structure—but it will be predicting the structure of the wrong molecule entirely.</p>
-                        </div>
-
-                        <div class="highlight-box error" style="margin-top: 3rem;">
-                            <h4 style="color: #ff4757; font-family: var(--font-display); margin-bottom: 1rem;">The Hidden Cost of Silent Errors</h4>
-                            <p>If we fail to properly represent molecular biology computationally:</p>
-                            <ul style="padding-left: 1.5rem; margin-top: 1rem; line-height: 1.8; color: #e8eaf6;">
-                                <li><strong>Computational Cost:</strong> We waste hours running alignments and DESeq2 on incorrect inputs.</li>
-                                <li><strong>Storage Cost:</strong> Massive BAM and intermediate files are generated uselessly.</li>
-                                <li><strong>Interpretation Cost:</strong> We spend weeks investigating a "significant" biological signal that is actually an artifact.</li>
-                                <li><strong>Research Cost:</strong> Wet-lab experiments are designed around false computational predictions.</li>
-                            </ul>
-                            <p style="margin-top: 1rem; text-align: center; font-weight: bold; font-family: var(--font-mono);">Wrong + Program Crashed = Easy to Fix</p>
-                            <p style="text-align: center; font-weight: bold; font-family: var(--font-mono); color: #ff4757;">Wrong + Plausible-Looking = Dangerous Science</p>
-                        </div>
                     </div>
                 </section>
                 
-                <div class="math-block" style="border-left-color: #00e5ff; text-align: center; margin-bottom: 4rem;">
-                    <p style="font-size: 1.2rem; margin: 0.5rem 0; color: #00e5ff;">\[ \text{Algorithm}(\widehat{\text{Representation}}) \neq \text{Algorithm}(\text{True Biology}) \]</p>
-                    <p style="font-size: 0.9rem; color: #aab2c0;">A sophisticated algorithm cannot compensate for an incorrect biological input representation.</p>
-                </div>
-
                 <!-- PHASE 5: NAVIGATION -->
                 <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
                     <a href="../Topic 7 Domain Summary/index.html" style="text-decoration: none;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,0.2);">
-                            <span style="color: var(--accent); font-size: 1.5rem;">←</span>
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2);">
+                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">←</span>
                             <div>
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: left;">Previous Topic</div>
                                 <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 7: Domain Summary</div>
@@ -384,12 +382,12 @@ predicted structure
                         </div>
                     </a>
                     <a href="../../index.html" style="text-decoration: none;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,0.2); text-align: right;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); text-align: right;">
                             <div>
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: right;">Return to</div>
                                 <div style="color: white; font-weight: bold; font-size: 1.1rem;">Portfolio</div>
                             </div>
-                            <span style="color: var(--accent); font-size: 1.5rem;">→</span>
+                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">→</span>
                         </div>
                     </a>
                 </div>
@@ -412,6 +410,6 @@ predicted structure
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>
