@@ -111,24 +111,24 @@ gsap.to('.hero-section h1', {
 
 // (3D Tilt effect removed as requested)
 
-// --- 5. Three.js Background (Cohesive Data Wave) ---
+// --- 5. Three.js Background (Statistical Inference Probability Surface) ---
 const canvasColumn = document.querySelector('.canvas-column');
 const canvas = document.getElementById('webgl-canvas');
 const scene = new THREE.Scene();
 
 // Subtle fog for depth
-scene.fog = new THREE.Fog('#030409', 15, 50);
+scene.fog = new THREE.Fog('#030409', 20, 60);
 
 const camera = new THREE.PerspectiveCamera(45, canvasColumn.clientWidth / canvasColumn.clientHeight, 0.1, 100);
-camera.position.z = 25;
-camera.position.y = 5;
+camera.position.z = 30;
+camera.position.y = 8;
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 renderer.setSize(canvasColumn.clientWidth, canvasColumn.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Create a single, cohesive, slow-moving structural wave (Not dispersed, not fast)
-const geometry = new THREE.PlaneGeometry(80, 40, 60, 30);
+// Create a Gaussian Bell Curve (Probability Distribution) to represent "Inference"
+const geometry = new THREE.PlaneGeometry(60, 60, 50, 50);
 const material = new THREE.MeshBasicMaterial({
     color: '#ff007f', // Module 2 color (Pink)
     wireframe: true,
@@ -137,10 +137,9 @@ const material = new THREE.MeshBasicMaterial({
     blending: THREE.AdditiveBlending
 });
 
-const waveMesh = new THREE.Mesh(geometry, material);
-// Lay the plane down so it looks like a landscape/ribbon
-waveMesh.rotation.x = -Math.PI / 2 + 0.3;
-scene.add(waveMesh);
+const probabilityMesh = new THREE.Mesh(geometry, material);
+probabilityMesh.rotation.x = -Math.PI / 2 + 0.2;
+scene.add(probabilityMesh);
 
 // Scroll & Mouse Interaction
 let targetRotationY = 0;
@@ -150,7 +149,7 @@ let mouseY = 0;
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    targetRotationY = scrollY * 0.0002; // Very subtle scroll effect
+    targetRotationY = scrollY * 0.0002; 
     targetPositionY = scrollY * 0.002;
 });
 
@@ -169,22 +168,24 @@ function animate3D() {
     const elapsedTime = clock.getElapsedTime();
     const positionsAttr = geometry.attributes.position;
     
-    // Very slow, gentle wave undulation (cohesive structure, no flying particles)
+    // Very slow "breathing" of the statistical variance (width of the bell curve)
+    const variance = 150 + Math.sin(elapsedTime * 0.5) * 50; 
+    
     for(let i = 0; i < positionsAttr.count; i++) {
         const x = positionsAttr.getX(i);
         const y = positionsAttr.getY(i);
         
-        // Gentle math wave: slow speed (0.3), large wavelength
-        const z = Math.sin(x * 0.1 + elapsedTime * 0.3) * 1.5 + 
-                  Math.cos(y * 0.1 + elapsedTime * 0.2) * 1.5;
+        // 2D Gaussian function: e^(-(x^2 + y^2) / 2*sigma^2)
+        const distSq = x*x + y*y;
+        const z = Math.exp(-distSq / variance) * 12; // Max height of 12
         
         positionsAttr.setZ(i, z);
     }
     positionsAttr.needsUpdate = true;
     
     // Subtle auto rotation + mouse interaction
-    waveMesh.rotation.z = (elapsedTime * 0.02) + targetRotationY + (mouseX * 0.05);
-    waveMesh.position.y = -5 + targetPositionY + (mouseY * 1.0);
+    probabilityMesh.rotation.z = (elapsedTime * 0.05) + targetRotationY + (mouseX * 0.05);
+    probabilityMesh.position.y = -6 + targetPositionY + (mouseY * 1.0);
     
     renderer.render(scene, camera);
 }
