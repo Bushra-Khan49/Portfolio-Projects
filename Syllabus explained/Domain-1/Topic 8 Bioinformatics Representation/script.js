@@ -126,7 +126,8 @@ renderer.setSize(canvasColumn.clientWidth, canvasColumn.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Create Data Point Cloud
-const particleCount = 2000;
+const size = 50;
+const particleCount = size * size;
 const geometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
@@ -134,27 +135,27 @@ const colors = new Float32Array(particleCount * 3);
 const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
 const color2 = new THREE.Color('#ff4da6'); // Lighter Pink/Reddish
 
-for(let i = 0; i < particleCount; i++) {
-    // Structured Double Helix (Less dispersed)
-    const t = i * 0.04;
-    const radius = 5;
-    const strandOffset = (i % 2 === 0) ? 0 : Math.PI; // Two opposing strands
-    
-    // Minimal noise for organic feel without being scattered
-    const noise = 0.6;
-    const x = Math.cos(t + strandOffset) * radius + (Math.random() - 0.5) * noise;
-    const y = (t * 0.6) - 25 + (Math.random() - 0.5) * noise; // Spread along Y-axis
-    const z = Math.sin(t + strandOffset) * radius + (Math.random() - 0.5) * noise;
-    
-    positions[i*3] = x;
-    positions[i*3 + 1] = y;
-    positions[i*3 + 2] = z;
-    
-    // Smooth color gradient along the helix
-    const mixRatio = Math.sin(t * 0.2) * 0.5 + 0.5;
-    colors[i*3] = color1.r * mixRatio + color2.r * (1 - mixRatio);
-    colors[i*3+1] = color1.g * mixRatio + color2.g * (1 - mixRatio);
-    colors[i*3+2] = color1.b * mixRatio + color2.b * (1 - mixRatio);
+let idx = 0;
+for(let i = 0; i < size; i++) {
+    for(let j = 0; j < size; j++) {
+        // Structured mathematical manifold (data wave)
+        const x = (i - size/2) * 1.2;
+        const y = (j - size/2) * 1.2;
+        // Undulating surface
+        const z = Math.sin(x * 0.2) * 3 + Math.cos(y * 0.2) * 3;
+        
+        positions[idx*3] = x;
+        positions[idx*3 + 1] = y;
+        positions[idx*3 + 2] = z - 5; // Push slightly back
+        
+        // Smooth color gradient across the surface
+        const mixRatio = (Math.sin(x * 0.1 + y * 0.1) * 0.5) + 0.5;
+        colors[idx*3] = color1.r * mixRatio + color2.r * (1 - mixRatio);
+        colors[idx*3+1] = color1.g * mixRatio + color2.g * (1 - mixRatio);
+        colors[idx*3+2] = color1.b * mixRatio + color2.b * (1 - mixRatio);
+        
+        idx++;
+    }
 }
 
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
