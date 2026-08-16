@@ -157,7 +157,9 @@ for(let i = 0; i < radialSegments; i++) {
         positions[idx*3 + 2] = z;
         
         initialY[idx] = y;
-        speeds[idx] = 0.05 + Math.random() * 0.05; // Particles move at slightly different speeds
+        // Alternate particle direction
+        const speedBase = 0.04 + Math.random() * 0.04;
+        speeds[idx] = (idx % 2 === 0) ? speedBase : -speedBase; 
         
         // Color gradient around the cylinder
         const mixRatio = (Math.sin(t * 2) * 0.5) + 0.5;
@@ -176,19 +178,31 @@ geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 const lineMaterial = new THREE.LineBasicMaterial({ 
     color: 0xff007f, 
     transparent: true, 
-    opacity: 0.1, // Very subtle grid
+    opacity: 0.15, // Slightly more visible grid net
     blending: THREE.AdditiveBlending
 });
 const lineGeometry = new THREE.BufferGeometry();
-// Connect vertical segments to form the grid lines
+// Connect both vertical segments and horizontal rings to form a full net roll
 const linePositions = [];
 for(let i = 0; i < radialSegments; i++) {
-    for(let j = 0; j < heightSegments - 1; j++) {
-        const index1 = (i * heightSegments) + j;
-        const index2 = (i * heightSegments) + j + 1;
+    for(let j = 0; j < heightSegments; j++) {
+        const currentIndex = (i * heightSegments) + j;
+        
+        // Vertical line to next height segment
+        if (j < heightSegments - 1) {
+            const upIndex = (i * heightSegments) + j + 1;
+            linePositions.push(
+                positions[currentIndex*3], positions[currentIndex*3+1], positions[currentIndex*3+2],
+                positions[upIndex*3], positions[upIndex*3+1], positions[upIndex*3+2]
+            );
+        }
+        
+        // Horizontal line to next radial segment (wrap around at the end)
+        const nextI = (i + 1) % radialSegments;
+        const rightIndex = (nextI * heightSegments) + j;
         linePositions.push(
-            positions[index1*3], positions[index1*3+1], positions[index1*3+2],
-            positions[index2*3], positions[index2*3+1], positions[index2*3+2]
+            positions[currentIndex*3], positions[currentIndex*3+1], positions[currentIndex*3+2],
+            positions[rightIndex*3], positions[rightIndex*3+1], positions[rightIndex*3+2]
         );
     }
 }
@@ -240,14 +254,16 @@ function animate3D() {
     
     const elapsedTime = clock.getElapsedTime();
     
-    // Animate particles flowing through the cylinder
+    // Animate particles flowing through the cylinder in both directions
     const positionsAttr = geometry.attributes.position;
     for(let i = 0; i < particleCount; i++) {
         let currentY = positionsAttr.array[i*3 + 1];
-        currentY += speeds[i]; // move up
+        currentY += speeds[i]; // move up or down based on speed sign
         
         if (currentY > height / 2) {
             currentY = -height / 2; // wrap around to bottom
+        } else if (currentY < -height / 2) {
+            currentY = height / 2; // wrap around to top
         }
         positionsAttr.array[i*3 + 1] = currentY;
     }
