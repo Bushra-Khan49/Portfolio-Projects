@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 8: Bioinformatics Representation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #050a15; --primary: #00e5ff; --secondary: #ff007f; --text: #e8eaf6;
+            --muted: #8892b0; --glass: rgba(255,255,255,0.05); --border: rgba(255,255,255,0.08);
+            --math-color: #00e5ff; --concept-color: #b388ff;
+        }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 4rem 2rem; overflow-x: hidden; }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .hero { text-align: center; margin-bottom: 4rem; }
+        .hero .eyebrow { font-family: 'Space Mono', monospace; color: var(--secondary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h2 { color: var(--muted); font-size: 1.2rem; font-weight: 300; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+        
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; }
+        .glass-card { background: var(--glass); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; backdrop-filter: blur(10px); }
+        .glass-card h3 { color: var(--primary); margin-bottom: 1rem; font-family: 'Space Mono', monospace; font-size: 1.1rem; }
+        .glass-card p { color: var(--muted); line-height: 1.6; font-size: 0.95rem; }
+        .glass-card.full-width { grid-column: 1 / -1; }
+        
+        .glass-figure { text-align: center; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; overflow: hidden; }
+        .glass-figure img { width: 100%; max-width: 800px; border-radius: 8px; filter: contrast(1.05) brightness(1.0); }
+        .glass-figure figcaption { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); font-family: 'Space Mono', monospace; }
+        
+        .code-box { background: rgba(0,0,0,0.5); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; font-family: 'Space Mono', monospace; color: var(--primary); overflow-x: auto; font-size: 0.9rem; line-height: 1.5; margin: 1.5rem 0; }
+        .code-box .highlight { color: var(--secondary); }
+
+        .table-container { margin: 2rem 0; overflow-x: auto; }
+        .bio-table { width: 100%; border-collapse: collapse; text-align: left; background: var(--glass); border-radius: 8px; overflow: hidden; }
+        .bio-table th, .bio-table td { padding: 1rem; border-bottom: 1px solid var(--border); }
+        .bio-table th { background: rgba(255,255,255,0.05); color: var(--primary); font-family: 'Space Mono', monospace; font-size: 0.9rem; }
+        .bio-table td { color: var(--text); font-size: 0.95rem; line-height: 1.5; }
+        
+        .math-eq { font-family: 'Space Mono', monospace; font-size: 1.1rem; text-align: center; padding: 1.5rem; background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 8px; margin: 1.5rem 0; color: var(--math-color); letter-spacing: 1px; }
+
+        .topic-navigation { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .nav-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 8px; background: var(--glass); }
+        .nav-btn:hover { background: rgba(0, 229, 255, 0.1); border-color: rgba(0, 229, 255, 0.3); transform: translateY(-2px); }
+
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(30px); }
+        .slide-left { opacity: 0; transform: translateX(-50px); }
+        .slide-right { opacity: 0; transform: translateX(50px); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Phase 1: The Hook -->
+        <header class="hero fade-up">
+            <h5 class="eyebrow">Module 2 • Topic 8</h5>
+            <h1>Bioinformatics Representation</h1>
+            <h2>Bioinformatics algorithms do not operate on abstract letters alone. They are models of biological molecules. If your model of the molecule is wrong, the computational result can be internally consistent but biologically wrong.</h2>
+        </header>
+
+        <div class="card-grid">
+            <div class="glass-card slide-left">
+                <h3>Why This Matters</h3>
+                <p>A computational error does not necessarily cause a program to crash. A script can be syntactically correct and computationally successful while producing biologically incorrect results. Understanding representation is crucial to avoiding plausible but wrong conclusions.</p>
+            </div>
+            <div class="glass-card slide-right">
+                <h3>What Problem Does This Solve?</h3>
+                <p>It solves the "silent error" problem in bioinformatics pipelines. By understanding the chain of representations from physical molecule to statistical result, we can accurately diagnose where errors propagate and validate the biological meaning of a computational output.</p>
+            </div>
+        </div>
+
+        <!-- Phase 2: Core Mechanics -->
+        <h3 class="fade-up" style="font-family: 'Space Mono', monospace; color: var(--muted); margin-bottom: 1.5rem;">THE CORE MECHANICS: A CHAIN OF REPRESENTATION</h3>
+        
+        <figure class="glass-figure fade-up">
+            <!-- Ensure image is copied to the correct folder! -->
+            <img src="bioinformatics_representation.jpg" alt="The Chain of Biological Representation">
+            <figcaption>Figure 1: The continuous translation from physical molecule to computational model and biological insight.</figcaption>
+        </figure>
+
+        <div class="glass-card full-width slide-left">
+            <h3>1. The Real Biological System vs. Computational Representation</h3>
+            <p>We start with a physical biological object <strong>X</strong> (e.g., an actual RNA molecule). Because we cannot put a physical molecule into a computer, we create a representation <strong>X̂</strong> (e.g., a FASTA sequence). Importantly, <strong>X̂ ≠ X</strong>. The sequence lacks atoms, solvent interactions, and conformational dynamics, but ideally <strong>X̂ ≈ X</strong> for the specific question we are asking.</p>
+            <div class="math-eq">
+                X̂ ≈ X<br><br>
+                f(X̂) → Ŷ
+            </div>
+            <p>Our computational model <strong>f(X̂)</strong> produces a prediction <strong>Ŷ</strong>. If our representation is wrong, the error propagates mathematically: <strong>error = Ŷ - Y = f(X̂) - f(X)</strong>. A sophisticated algorithm cannot compensate for an incorrect biological input representation.</p>
+        </div>
+
+        <div class="glass-card full-width slide-right">
+            <h3>2. Thermodynamics vs. Kinetics in Computation</h3>
+            <p>Algorithms rely on mathematical models of physics and chemistry. Thermodynamics asks which state is energetically favored, described by the Gibbs free energy equation:</p>
+            <div class="math-eq">ΔG = ΔH - TΔS</div>
+            <p>Kinetics asks how quickly the system moves between states, often described by rates of reaction. Minimum free-energy algorithms (like RNA folding) use these principles to optimize structures, but must account for the fact that real molecules occupy ensembles of states, defined by Boltzmann probabilities:</p>
+            <div class="math-eq">P_i ∝ e^{-G_i/(RT)}</div>
+        </div>
+
+        <!-- Phase 3: Summary Tables -->
+        <h3 class="fade-up" style="font-family: 'Space Mono', monospace; color: var(--muted); margin: 3rem 0 1.5rem;">SUMMARY OF COMPUTATIONAL MODELS</h3>
+        
+        <div class="table-container fade-up">
+            <table class="bio-table">
+                <thead>
+                    <tr>
+                        <th>Model Family</th>
+                        <th>Equation / Concept</th>
+                        <th>Question Answered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Thermodynamics</td>
+                        <td>ΔG = ΔH - TΔS</td>
+                        <td>Which state is thermodynamically favored?</td>
+                    </tr>
+                    <tr>
+                        <td>Statistical Mechanics</td>
+                        <td>S = k_B ln(Ω)</td>
+                        <td>How does the number of accessible microscopic states relate to entropy?</td>
+                    </tr>
+                    <tr>
+                        <td>Kinetics</td>
+                        <td>v = d[RNA]/dt</td>
+                        <td>How quickly is RNA being produced?</td>
+                    </tr>
+                    <tr>
+                        <td>Alignment Scoring</td>
+                        <td>Score = ∑s(x_i, y_i) + gap penalties</td>
+                        <td>How similar are two sequences according to our chosen scoring model?</td>
+                    </tr>
+                    <tr>
+                        <td>Representation</td>
+                        <td>error = f(X̂) - f(X)</td>
+                        <td>What happens when the computational representation differs from the true biological input?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Phase 4: The Bioinformatics Bridge -->
+        <h3 class="fade-up" style="font-family: 'Space Mono', monospace; color: var(--muted); margin: 3rem 0 1.5rem;">THE BIOINFORMATICS BRIDGE</h3>
+        
+        <div class="glass-card full-width slide-left">
+            <h3>RNA-Seq Differential Expression (e.g., DESeq2)</h3>
+            <p><strong>DESeq2</strong> quantifies differential gene expression from count matrices. This requires precise representation because transcript coordinates must map perfectly to genomic references, factoring in splicing and strand orientation. If an annotation mismatch occurs upstream, DESeq2 will calculate pristine statistics on completely incorrect count data, yielding a plausible but biologically false conclusion. By ensuring rigorous representation upstream, bioinformaticians ensure that the statistical power of DESeq2 is actually applied to reality.</p>
+        </div>
+
+        <div class="glass-card full-width slide-right">
+            <h3>RNA Structure Prediction</h3>
+            <p><strong>RNA secondary structure predictors (e.g., RNAfold)</strong> compute the minimum free energy (MFE) conformation of an RNA sequence. They use nearest-neighbor thermodynamic parameters (ΔH, ΔS) because base pairing alone does not dictate stability in an aqueous solvent. If a sequence is fed without correct strand orientation or chemical context (like treating DNA identical to RNA), the optimization algorithm will confidently output a structure that is thermodynamically impossible in vivo. Understanding these thermodynamic models allows researchers to critically evaluate if the predicted structure is biologically plausible.</p>
+        </div>
+
+        <div class="code-box fade-up">
+<span class="highlight"># THE ERROR PROPAGATION PIPELINE</span>
+REAL BIOLOGY
+     ↓
+incorrect representation X̂  <span class="highlight">(e.g., wrong strand, wrong coordinate)</span>
+     ↓
+correct algorithm          <span class="highlight">(e.g., DESeq2, RNAfold)</span>
+     ↓
+correct computation
+     ↓
+incorrect biological conclusion <span class="highlight">(plausible but wrong)</span>
+        </div>
+
+        <!-- Phase 5: Navigation -->
+        <nav class="topic-navigation fade-up">
+            <a href="../Topic 7 Domain Summary/index.html" class="nav-btn">← Previous Topic</a>
+            <!-- No Next Topic yet -->
+            <a href="../../index.html" class="nav-btn">Back to Portfolio</a>
+        </nav>
+
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.fade-up').forEach(element => {
+            gsap.to(element, { scrollTrigger: { trigger: element, start: 'top 85%' }, opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
+        });
+
+        gsap.utils.toArray('.slide-left').forEach(element => {
+            gsap.to(element, { scrollTrigger: { trigger: element, start: 'top 85%' }, opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' });
+        });
+
+        gsap.utils.toArray('.slide-right').forEach(element => {
+            gsap.to(element, { scrollTrigger: { trigger: element, start: 'top 85%' }, opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' });
+        });
+    </script>
+</body>
+</html>
