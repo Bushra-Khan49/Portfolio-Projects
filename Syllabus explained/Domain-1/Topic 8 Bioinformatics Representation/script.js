@@ -111,124 +111,74 @@ gsap.to('.hero-section h1', {
 
 // (3D Tilt effect removed as requested)
 
-// --- 5. Three.js Background (Grid Cylinder with Flow) ---
+// --- 5. Three.js Background (Minimalist Constellation / Gene Network) ---
 const canvasColumn = document.querySelector('.canvas-column');
 const canvas = document.getElementById('webgl-canvas');
 const scene = new THREE.Scene();
-// Fog to blend into dark background
-scene.fog = new THREE.Fog('#030409', 5, 25);
+
+// Subtle fog for depth
+scene.fog = new THREE.Fog('#030409', 10, 40);
 
 const camera = new THREE.PerspectiveCamera(45, canvasColumn.clientWidth / canvasColumn.clientHeight, 0.1, 100);
-camera.position.z = 12;
+camera.position.z = 20;
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 renderer.setSize(canvasColumn.clientWidth, canvasColumn.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Create Grid Cylinder
-const radialSegments = 36;
-const heightSegments = 60;
-const particleCount = radialSegments * heightSegments; // 2160
+// Create a sparse, elegant constellation of nodes
+const particleCount = 120;
 const geometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
-const colors = new Float32Array(particleCount * 3);
-const initialY = new Float32Array(particleCount); // To store initial positions for animation
-const speeds = new Float32Array(particleCount);
+const velocities = [];
 
 const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
-const color2 = new THREE.Color('#ff4da6'); // Lighter Pink/Reddish
+const color2 = new THREE.Color('#ff4da6'); // Lighter Pink
 
-const radius = 3.5; // Condensed radius
-const height = 30;  // Condensed height
-
-let idx = 0;
-for(let i = 0; i < radialSegments; i++) {
-    for(let j = 0; j < heightSegments; j++) {
-        // Structured Grid Cylinder
-        const t = (i / radialSegments) * Math.PI * 2;
-        const h = (j / heightSegments - 0.5) * height;
-        
-        const x = Math.cos(t) * radius;
-        const y = h;
-        const z = Math.sin(t) * radius;
-        
-        positions[idx*3] = x;
-        positions[idx*3 + 1] = y;
-        positions[idx*3 + 2] = z;
-        
-        initialY[idx] = y;
-        // Alternate particle direction
-        const speedBase = 0.04 + Math.random() * 0.04;
-        speeds[idx] = (idx % 2 === 0) ? speedBase : -speedBase; 
-        
-        // Color gradient around the cylinder
-        const mixRatio = (Math.sin(t * 2) * 0.5) + 0.5;
-        colors[idx*3] = color1.r * mixRatio + color2.r * (1 - mixRatio);
-        colors[idx*3+1] = color1.g * mixRatio + color2.g * (1 - mixRatio);
-        colors[idx*3+2] = color1.b * mixRatio + color2.b * (1 - mixRatio);
-        
-        idx++;
-    }
+// Initialize particles randomly in a large volume
+for(let i = 0; i < particleCount; i++) {
+    positions[i*3] = (Math.random() - 0.5) * 40;
+    positions[i*3+1] = (Math.random() - 0.5) * 40;
+    positions[i*3+2] = (Math.random() - 0.5) * 20;
+    
+    // Very slow random drift velocities
+    velocities.push({
+        x: (Math.random() - 0.5) * 0.02,
+        y: (Math.random() - 0.5) * 0.02,
+        z: (Math.random() - 0.5) * 0.02
+    });
 }
 
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-// Connect points with lines to form the grid mesh
-const lineMaterial = new THREE.LineBasicMaterial({ 
-    color: 0xff007f, 
-    transparent: true, 
-    opacity: 0.15, // Slightly more visible grid net
-    blending: THREE.AdditiveBlending
-});
-const lineGeometry = new THREE.BufferGeometry();
-// Connect both vertical segments and horizontal rings to form a full net roll
-const linePositions = [];
-for(let i = 0; i < radialSegments; i++) {
-    for(let j = 0; j < heightSegments; j++) {
-        const currentIndex = (i * heightSegments) + j;
-        
-        // Vertical line to next height segment
-        if (j < heightSegments - 1) {
-            const upIndex = (i * heightSegments) + j + 1;
-            linePositions.push(
-                positions[currentIndex*3], positions[currentIndex*3+1], positions[currentIndex*3+2],
-                positions[upIndex*3], positions[upIndex*3+1], positions[upIndex*3+2]
-            );
-        }
-        
-        // Horizontal line to next radial segment (wrap around at the end)
-        const nextI = (i + 1) % radialSegments;
-        const rightIndex = (nextI * heightSegments) + j;
-        linePositions.push(
-            positions[currentIndex*3], positions[currentIndex*3+1], positions[currentIndex*3+2],
-            positions[rightIndex*3], positions[rightIndex*3+1], positions[rightIndex*3+2]
-        );
-    }
-}
-lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-const networkLines = new THREE.LineSegments(lineGeometry, lineMaterial);
-scene.add(networkLines);
-
+// Subtle points
 const material = new THREE.PointsMaterial({
-    size: 0.15,
-    vertexColors: true,
+    size: 0.12,
+    color: color1,
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.4,
     blending: THREE.AdditiveBlending
 });
 
 const particles = new THREE.Points(geometry, material);
+
+// Lines for the dynamic network
+const lineMaterial = new THREE.LineBasicMaterial({
+    color: color2,
+    transparent: true,
+    opacity: 0.15,
+    blending: THREE.AdditiveBlending
+});
+// We will update line geometry every frame
+const lineGeometry = new THREE.BufferGeometry();
+const networkLines = new THREE.LineSegments(lineGeometry, lineMaterial);
 
 const dataGroup = new THREE.Group();
 dataGroup.add(particles);
 dataGroup.add(networkLines);
 scene.add(dataGroup);
 
-// Initial slight tilt
-dataGroup.rotation.x = 0.2;
-
-// Scroll & Mouse Interaction for Data Flow
+// Scroll & Mouse Interaction
 let targetRotationY = 0;
 let targetPositionY = 0;
 let mouseX = 0;
@@ -236,8 +186,8 @@ let mouseY = 0;
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    targetRotationY = scrollY * 0.001;
-    targetPositionY = scrollY * 0.005;
+    targetRotationY = scrollY * 0.0005; // Very slow scroll rotation
+    targetPositionY = scrollY * 0.002;
 });
 
 // only track mouse inside canvas column
@@ -253,25 +203,45 @@ function animate3D() {
     requestAnimationFrame(animate3D);
     
     const elapsedTime = clock.getElapsedTime();
-    
-    // Animate particles flowing through the cylinder in both directions
     const positionsAttr = geometry.attributes.position;
+    
+    // Update particle positions
     for(let i = 0; i < particleCount; i++) {
-        let currentY = positionsAttr.array[i*3 + 1];
-        currentY += speeds[i]; // move up or down based on speed sign
+        positionsAttr.array[i*3] += velocities[i].x;
+        positionsAttr.array[i*3+1] += velocities[i].y;
+        positionsAttr.array[i*3+2] += velocities[i].z;
         
-        if (currentY > height / 2) {
-            currentY = -height / 2; // wrap around to bottom
-        } else if (currentY < -height / 2) {
-            currentY = height / 2; // wrap around to top
-        }
-        positionsAttr.array[i*3 + 1] = currentY;
+        // Bounce off bounds softly
+        if(Math.abs(positionsAttr.array[i*3]) > 20) velocities[i].x *= -1;
+        if(Math.abs(positionsAttr.array[i*3+1]) > 20) velocities[i].y *= -1;
+        if(Math.abs(positionsAttr.array[i*3+2]) > 10) velocities[i].z *= -1;
     }
     positionsAttr.needsUpdate = true;
     
-    // Auto rotation + scroll rotation + mouse interaction
-    dataGroup.rotation.y = elapsedTime * 0.1 + targetRotationY + (mouseX * 0.2);
-    dataGroup.rotation.x = 0.2 + (mouseY * 0.1); // Keep the base tilt
+    // Dynamically connect nodes that are close to each other
+    const linePositions = [];
+    const connectDistance = 6.0;
+    
+    for(let i = 0; i < particleCount; i++) {
+        for(let j = i + 1; j < particleCount; j++) {
+            const dx = positionsAttr.array[i*3] - positionsAttr.array[j*3];
+            const dy = positionsAttr.array[i*3+1] - positionsAttr.array[j*3+1];
+            const dz = positionsAttr.array[i*3+2] - positionsAttr.array[j*3+2];
+            const distSq = dx*dx + dy*dy + dz*dz;
+            
+            if(distSq < connectDistance * connectDistance) {
+                linePositions.push(
+                    positionsAttr.array[i*3], positionsAttr.array[i*3+1], positionsAttr.array[i*3+2],
+                    positionsAttr.array[j*3], positionsAttr.array[j*3+1], positionsAttr.array[j*3+2]
+                );
+            }
+        }
+    }
+    lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+    
+    // Very subtle auto rotation + scroll + mouse
+    dataGroup.rotation.y = elapsedTime * 0.05 + targetRotationY + (mouseX * 0.1);
+    dataGroup.rotation.x = (mouseY * 0.05); 
     dataGroup.position.y = targetPositionY;
     
     renderer.render(scene, camera);
