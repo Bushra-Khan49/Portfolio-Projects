@@ -111,7 +111,7 @@ gsap.to('.hero-section h1', {
 
 // (3D Tilt effect removed as requested)
 
-// --- 5. Three.js Background (Data Grid Flow) ---
+// --- 5. Three.js Background (Grid Cylinder with Flow) ---
 const canvasColumn = document.querySelector('.canvas-column');
 const canvas = document.getElementById('webgl-canvas');
 const scene = new THREE.Scene();
@@ -125,31 +125,42 @@ const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialia
 renderer.setSize(canvasColumn.clientWidth, canvasColumn.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Create Data Point Cloud
-const size = 50;
-const particleCount = size * size;
+// Create Grid Cylinder
+const radialSegments = 36;
+const heightSegments = 60;
+const particleCount = radialSegments * heightSegments; // 2160
 const geometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
+const initialY = new Float32Array(particleCount); // To store initial positions for animation
+const speeds = new Float32Array(particleCount);
 
 const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
 const color2 = new THREE.Color('#ff4da6'); // Lighter Pink/Reddish
 
+const radius = 7;
+const height = 50;
+
 let idx = 0;
-for(let i = 0; i < size; i++) {
-    for(let j = 0; j < size; j++) {
-        // Structured mathematical manifold (data wave)
-        const x = (i - size/2) * 1.2;
-        const y = (j - size/2) * 1.2;
-        // Undulating surface
-        const z = Math.sin(x * 0.2) * 3 + Math.cos(y * 0.2) * 3;
+for(let i = 0; i < radialSegments; i++) {
+    for(let j = 0; j < heightSegments; j++) {
+        // Structured Grid Cylinder
+        const t = (i / radialSegments) * Math.PI * 2;
+        const h = (j / heightSegments - 0.5) * height;
+        
+        const x = Math.cos(t) * radius;
+        const y = h;
+        const z = Math.sin(t) * radius;
         
         positions[idx*3] = x;
         positions[idx*3 + 1] = y;
-        positions[idx*3 + 2] = z - 5; // Push slightly back
+        positions[idx*3 + 2] = z;
         
-        // Smooth color gradient across the surface
-        const mixRatio = (Math.sin(x * 0.1 + y * 0.1) * 0.5) + 0.5;
+        initialY[idx] = y;
+        speeds[idx] = 0.05 + Math.random() * 0.05; // Particles move at slightly different speeds
+        
+        // Color gradient around the cylinder
+        const mixRatio = (Math.sin(t * 2) * 0.5) + 0.5;
         colors[idx*3] = color1.r * mixRatio + color2.r * (1 - mixRatio);
         colors[idx*3+1] = color1.g * mixRatio + color2.g * (1 - mixRatio);
         colors[idx*3+2] = color1.b * mixRatio + color2.b * (1 - mixRatio);
@@ -161,21 +172,27 @@ for(let i = 0; i < size; i++) {
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-// Connect some points with lines to make it look like a network/mesh
+// Connect points with lines to form the grid mesh
 const lineMaterial = new THREE.LineBasicMaterial({ 
-    color: 0x888888, 
+    color: 0xff007f, 
     transparent: true, 
-    opacity: 0.15,
+    opacity: 0.1, // Very subtle grid
     blending: THREE.AdditiveBlending
 });
 const lineGeometry = new THREE.BufferGeometry();
-const linePositions = new Float32Array((particleCount / 2) * 3);
-for(let i = 0; i < particleCount / 2; i++) {
-    linePositions[i*3] = positions[i*3];
-    linePositions[i*3+1] = positions[i*3+1];
-    linePositions[i*3+2] = positions[i*3+2];
+// Connect vertical segments to form the grid lines
+const linePositions = [];
+for(let i = 0; i < radialSegments; i++) {
+    for(let j = 0; j < heightSegments - 1; j++) {
+        const index1 = (i * heightSegments) + j;
+        const index2 = (i * heightSegments) + j + 1;
+        linePositions.push(
+            positions[index1*3], positions[index1*3+1], positions[index1*3+2],
+            positions[index2*3], positions[index2*3+1], positions[index2*3+2]
+        );
+    }
 }
-lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
 const networkLines = new THREE.LineSegments(lineGeometry, lineMaterial);
 scene.add(networkLines);
 
@@ -183,7 +200,7 @@ const material = new THREE.PointsMaterial({
     size: 0.15,
     vertexColors: true,
     transparent: true,
-    opacity: 0.6,
+    opacity: 0.8,
     blending: THREE.AdditiveBlending
 });
 
@@ -195,7 +212,7 @@ dataGroup.add(networkLines);
 scene.add(dataGroup);
 
 // Initial slight tilt
-dataGroup.rotation.x = 0.5;
+dataGroup.rotation.x = 0.2;
 
 // Scroll & Mouse Interaction for Data Flow
 let targetRotationY = 0;
@@ -223,9 +240,22 @@ function animate3D() {
     
     const elapsedTime = clock.getElapsedTime();
     
+    // Animate particles flowing through the cylinder
+    const positionsAttr = geometry.attributes.position;
+    for(let i = 0; i < particleCount; i++) {
+        let currentY = positionsAttr.array[i*3 + 1];
+        currentY += speeds[i]; // move up
+        
+        if (currentY > height / 2) {
+            currentY = -height / 2; // wrap around to bottom
+        }
+        positionsAttr.array[i*3 + 1] = currentY;
+    }
+    positionsAttr.needsUpdate = true;
+    
     // Auto rotation + scroll rotation + mouse interaction
     dataGroup.rotation.y = elapsedTime * 0.1 + targetRotationY + (mouseX * 0.2);
-    dataGroup.rotation.x = 0.5 + (mouseY * 0.1); // Keep the base tilt
+    dataGroup.rotation.x = 0.2 + (mouseY * 0.1); // Keep the base tilt
     dataGroup.position.y = targetPositionY;
     
     renderer.render(scene, camera);
