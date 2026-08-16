@@ -199,12 +199,35 @@
 \text{Molecular system} \rightarrow \text{Physical behavior} \rightarrow \text{Mathematical model} \rightarrow \text{Computational prediction}
 \]
                         </div>
-                        <p>For example:</p>
                         <div class="code-box" style="text-align: center;">
-RNA sequence → RNA structure → ΔG → predicted structure
+MOLECULE
+   ↓
+BIOLOGICAL PROCESS
+   ↓
+EXPERIMENT
+   ↓
+SEQUENCE
+   ↓
+FILE FORMAT
+   ↓
+COMPUTATIONAL OBJECT
+   ↓
+ALGORITHM
+   ↓
+STATISTICAL RESULT
+   ↓
+BIOLOGICAL INTERPRETATION
                         </div>
-                        <div class="code-box" style="text-align: center;">
-DNA + RNA polymerase + NTPs → transcription → kinetic model → predicted transcription rate
+
+                        <h4 style="color: var(--accent-mod2-light); margin-top: 2rem; margin-bottom: 1rem; font-family: var(--font-display);">The Central Hierarchy in Practice</h4>
+                        <p>Keep this sequence of translation in mind. For example, in structure prediction:</p>
+                        <div class="math-block" style="text-align: center; border-left-color: var(--accent-orange);">
+                            <p style="font-family: var(--font-mono); font-size: 0.95rem; margin: 0;">RNA sequence → RNA structure → \(\Delta G\) → predicted structure</p>
+                        </div>
+
+                        <p>Or in modeling transcription rates:</p>
+                        <div class="math-block" style="text-align: center; border-left-color: var(--accent-purple);">
+                            <p style="font-family: var(--font-mono); font-size: 0.95rem; margin: 0;">DNA + Polymerase + NTPs → transcription → kinetic model → predicted transcription rate</p>
                         </div>
                     </div>
                 </section>
