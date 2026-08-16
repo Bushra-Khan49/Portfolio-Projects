@@ -138,8 +138,8 @@ const speeds = new Float32Array(particleCount);
 const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
 const color2 = new THREE.Color('#ff4da6'); // Lighter Pink/Reddish
 
-const radius = 7;
-const height = 50;
+const radius = 3.5; // Condensed radius
+const height = 30;  // Condensed height
 
 let idx = 0;
 for(let i = 0; i < radialSegments; i++) {
