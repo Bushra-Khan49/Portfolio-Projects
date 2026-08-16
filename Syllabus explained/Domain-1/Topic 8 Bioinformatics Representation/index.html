@@ -461,17 +461,17 @@ Base       A T G C                   A U G C
                 <!-- PHASE 4: SUMMARY & ERROR PROPAGATION -->
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">The Mental Framework: 7 Questions to Ask</h3>
-                        <p>Whenever you encounter a new bioinformatics method, ask these seven questions to map it back to physical reality:</p>
-                        <ol style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8;">
-                            <li><span class="term-highlight">What is the biological object?</span> (DNA, RNA, Protein, Cell, Population)</li>
-                            <li><span class="term-highlight">What physical process produced the data?</span> (Transcription, Sequencing, Binding)</li>
-                            <li><span class="term-highlight">How is that object represented computationally?</span> (FASTA, FASTQ, BAM, Count matrix)</li>
-                            <li><span class="term-highlight">What mathematical model is being used?</span> (\(\Delta G\), Probability, Alignment score)</li>
-                            <li><span class="term-highlight">What assumptions does the model make?</span> (Often the most neglected question)</li>
-                            <li><span class="term-highlight">What information is lost during representation?</span> (e.g., losing physical dynamics when converting to FASTA)</li>
-                            <li><span class="term-highlight">If the representation is wrong, where does the error propagate?</span></li>
-                        </ol>
+                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">The Mental Framework: Mapping to Physical Reality</h3>
+                        <p>Whenever you encounter a new bioinformatics method, you must explicitly map it back to physical reality by establishing seven crucial parameters:</p>
+                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8;">
+                            <li><span class="term-highlight">Biological Object Identification:</span> Clearly define whether the algorithm models DNA, RNA, Protein, a Cell, or a Population.</li>
+                            <li><span class="term-highlight">Data Generation Physics:</span> Establish the physical process that produced the data, such as Transcription, Sequencing, or Binding interactions.</li>
+                            <li><span class="term-highlight">Computational Abstraction:</span> Identify how the object is represented digitally, whether through FASTA, FASTQ, BAM, or a Count Matrix.</li>
+                            <li><span class="term-highlight">Mathematical Translation:</span> Determine the specific mathematical model governing the computation, such as \(\Delta G\), Probability logic, or an Alignment Score.</li>
+                            <li><span class="term-highlight">Model Assumptions:</span> Explicitly declare the hidden assumptions the model makes about the biology, which is often the most critical point of failure.</li>
+                            <li><span class="term-highlight">Information Attrition:</span> Acknowledge the physical information lost during representation, such as losing physical molecular dynamics when converting to a flat FASTA string.</li>
+                            <li><span class="term-highlight">Error Propagation:</span> Trace precisely where errors will propagate in the pipeline if the initial molecular representation is chemically or physically incorrect.</li>
+                        </ul>
 
                         <div class="highlight-box" style="margin-top: 3rem; background: rgba(0,0,0,0.4);">
                             <h4 style="color: #ff4757; font-family: var(--font-display); margin-bottom: 1rem; font-size: 1.3rem;">The Deepest Bioinformatics Lesson</h4>
