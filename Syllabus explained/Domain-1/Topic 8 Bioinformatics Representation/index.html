@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=8">
     <!-- MathJax for rendering math formulas beautifully -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -79,8 +79,22 @@
         /* Hierarchy Colors */
         .h-primary { color: #ffffff !important; font-family: var(--font-display) !important; text-transform: uppercase; } /* White for main headings */
         .h-secondary { color: #00e5ff !important; font-family: var(--font-display) !important;} /* Cyan for subheadings */
-        .h-tertiary { color: #b388ff !important; } /* Purple for math/physics concepts */
+        .h-tertiary { color: #ff007f !important; } /* Pink/Secondary for Module 2 */
         .text-application { color: #82b1ff; font-weight: 600; } /* Blue for applications/bioinformatics */
+
+        .info-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .info-block h4 {
+            color: #ff007f;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-family: var(--font-display);
+        }
     </style>
 </head>
 <body>
@@ -99,9 +113,9 @@
                 
                 <!-- Hero -->
                 <section class="hero-section fade-up">
-                    <h5 class="eyebrow" style="color: #00e5ff;">Module 2: Transcription • Topic 8</h5>
+                    <h5 class="eyebrow" style="color: #ff007f;">TOPIC 8</h5>
                     <h1 class="h-primary" style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1rem;">Bioinformatics Representation & Inference</h1>
-                    <h2 style="color: #aab2c0; font-family: var(--font-secondary); font-size: 1.5rem; font-weight: normal; margin-bottom: 2rem;">Bioinformatics algorithms do not operate on abstract letters. They operate on models of biological molecules. If your model is biologically wrong, the computational result can be internally consistent but completely false.</h2>
+                    <h2 style="color: #aab2c0; font-family: var(--font-secondary); font-size: 1.5rem; font-weight: normal; margin-bottom: 2rem;">Bioinformatics algorithms do not operate on abstract letters alone. They are models of biological molecules. If your model of the molecule is wrong, the computational result can be internally consistent but biologically wrong.</h2>
                     <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
                         <div class="mouse"></div>
                         <span>Scroll to Explore</span>
@@ -112,109 +126,77 @@
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">Why This Matters</h3>
-                        <p>The central dogma (DNA → RNA → Protein) is often taught as a deterministic machine. However, biological systems are inherently <strong class="text-application">probabilistic</strong>.</p>
-                        <p>A cell contains \(10^5\) copies of various RNA molecules. When we sequence them, we don't sequence every molecule; we sample a subset. Because of this, observed counts are highly stochastic.</p>
-                        <p>Computational biology rarely deals with absolute certainty. Instead of assuming the observation is the exact biological state, we must model the probability of an observation given a biological state:</p>
-                        <div class="math-block" style="border-left-color: #00e5ff; text-align: center;">
-                            <p style="font-size: 1.5rem; margin: 0.5rem 0; color: #00e5ff;">\(P(\text{observation} \mid \text{biological state})\)</p>
-                        </div>
-                        <p>This transition from deterministic biology to probabilistic statistics is the foundational shift necessary for quantitative bioinformatics.</p>
+                        <p>A computational error does not necessarily cause a program to crash. A script can be syntactically correct and computationally successful while producing biologically incorrect results.</p>
+                        <p style="margin-top: 1rem;">Understanding representation is crucial to avoiding plausible but wrong conclusions.</p>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">Why Should a Bioinformatician Care?</h3>
-                        <p>A critical conceptual mistake is conflating <strong style="color: #ff4757;">Error</strong> with <strong style="color: #00e5ff;">Uncertainty</strong>. They are mathematically and biologically distinct.</p>
-                        
-                        <h4 class="h-secondary" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Error</h4>
-                        <p>You extracted the wrong sequence. If the true sequence is <code>AUGCGUAC</code> but your pipeline outputs <code>AUGCGAC</code>, that is a discrete error.</p>
-                        
-                        <h4 class="h-secondary" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Uncertainty</h4>
-                        <p>The sequencer signal is ambiguous, and the algorithm isn't sure whether a base is A or G. This represents statistical uncertainty.</p>
-                        
-                        <h4 class="h-secondary" style="margin-top: 2rem;">Where Does This Fit?</h4>
-                        <div class="code-box" style="text-align: center; border-color: #b388ff; color: #aab2c0;">
-                            1. Minimize Errors<br>↓<br>2. Quantify Uncertainty<br>↓<br>3. Propagate Uncertainty Appropriately<br>↓<br><span class="text-application">Robust Bioinformatics Pipeline</span>
-                        </div>
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">What Problem Does This Solve?</h3>
+                        <p>It solves the "silent error" problem in bioinformatics pipelines.</p>
+                        <p style="margin-top: 1rem;">By understanding the chain of representations from physical molecule to statistical result, we can accurately diagnose where errors propagate and validate the biological meaning of a computational output.</p>
                     </div>
                 </section>
                 
+                <!-- Chain of Representation -->
                 <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">Step 1 — The Chain of Representations</h3>
-                        
-                        <div class="split-text" style="margin-top: 1.5rem;">
-                            <div>
-                                <p>Bioinformatics is a chain of representations and inferences. Every transformation introduces the potential for error or uncertainty.</p>
-                                
-                                <p>As we move down this chain, information is inherently lost. Converting physical RNA into a FASTA string retains sequence identity but completely discards instantaneous physical state, molecular folding, and transient kinetics.</p>
-                                
-                                <div class="math-block" style="border-left-color: #ff007f;">
-                                    <p style="margin-bottom: 0.5rem; color: var(--text-muted);">The Inference Pipeline:</p>
-                                    <ul style="margin-left: 1.5rem; font-size: 1.1rem; color: #aab2c0;">
-                                        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">1. Physical Reality:</strong> DNA / RNA molecules</li>
-                                        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">2. Experimental Signal:</strong> Sequencing optics / voltage</li>
-                                        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">3. Digital Representation:</strong> FASTQ / FASTA strings</li>
-                                        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">4. Mathematical Objects:</strong> Probabilities, Scores, Counts</li>
-                                        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">5. Computational Conclusion:</strong> Expression levels, Variants</li>
-                                        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">6. Biological Interpretation</strong></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="image-container">
-                            <img src="bioinformatics_representation.jpg" alt="The Chain of Biological Representation" loading="lazy" decoding="async">
-                            <figcaption>Figure 8.1: The continuous translation from physical molecule to computational model and biological insight.</figcaption>
-                        </div>
-                    </div>
-                </section>
+                    <h3 class="h-primary" style="margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">The Core Mechanics: A Chain of Representation</h3>
+                    <p style="margin-bottom: 2rem; color: #aab2c0; font-size: 1.1rem;">Bioinformatics is fundamentally a chain of representations and inferences. Every transformation introduces the potential for error or uncertainty.</p>
 
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width" style="margin-bottom: 2rem;">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">Step 2 — Assumptions & Plausible Failures</h3>
-                        <p style="font-size: 0.95rem; color: var(--text-muted);"><em>Every method operates on hidden assumptions.</em></p>
-                        
-                        <div style="margin-top: 1.5rem;">
-                            <h4 class="h-tertiary" style="margin-bottom: 1rem;">The Silent Error Problem</h4>
-                            <p>RNA structure predictors assume specific thermodynamic models and ionic equilibrium. RNA-seq methods assume specific annotations and mapping distributions. If your biological assumption is wrong—for example, treating a kinetically trapped molecule as if it were in thermodynamic equilibrium—then even with an excellent algorithm and perfect code, the result will be completely false.</p>
-                            
-                            <div class="math-block" style="border-left-color: #ff4757; text-align: center;">
-                                <p style="font-size: 1.5rem; margin: 0.5rem 0; color: #ff4757; font-weight: bold;">Excellent Computation + Wrong Model = Precisely Wrong Answer</p>
-                            </div>
-                            
-                            <p style="margin-top: 1.5rem;">If the representation is wrong at the top of the chain (e.g. wrong genomic coordinate), it propagates silently through alignment, quantification, and statistics, culminating in a biologically impossible conclusion backed by pristine statistical confidence.</p>
-                        </div>
+                    <div class="info-block">
+                        <h4>1. Physical Reality</h4>
+                        <p><strong>Object:</strong> A physical RNA molecule.</p>
+                        <p><strong>Characteristics:</strong> Has a 3D structure, dynamic kinetics, and exists in a specific cellular microenvironment (e.g., pH, salt concentration).</p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>2. Experimental Signal</h4>
+                        <p><strong>Object:</strong> Fluorophore flashes or voltage changes in a nanopore.</p>
+                        <p><strong>Characteristics:</strong> The sequencer observes a physical property of the molecule or its copied fragments. This is a noisy, probabilistic observation.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>3. Digital Representation</h4>
+                        <p><strong>Object:</strong> A string of characters (A, T, G, C, N) in a FASTQ file.</p>
+                        <p><strong>Information Loss:</strong> The physical state (structure, kinetics) is completely discarded. All that remains is sequence identity and a quality score indicating the machine's confidence.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>4. Mathematical Object</h4>
+                        <p><strong>Object:</strong> An alignment score, a count matrix, or a probability distribution.</p>
+                        <p><strong>Assumption:</strong> The algorithm assumes the digital representation accurately reflects the original molecule. It operates purely on mathematical rules.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>5. Computational Conclusion</h4>
+                        <p><strong>Object:</strong> A p-value indicating differential expression or a called variant.</p>
+                        <p><strong>Vulnerability:</strong> If the assumption in step 4 is wrong, the mathematics will still produce a conclusion, but it will be biologically meaningless.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>6. Biological Interpretation</h4>
+                        <p>The final step where a human (or downstream algorithm) attributes biological meaning to the computational output.</p>
                     </div>
                 </section>
 
                 <section class="section-block fade-up" style="margin-bottom: 5rem;">
-                    <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(130, 177, 255, 0.05); border-color: rgba(130, 177, 255, 0.3);">
+                    <div class="glass-card tilt-effect hover-target full-width" style="background: rgba(255, 0, 127, 0.05); border-color: rgba(255, 0, 127, 0.3);">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">Bioinformatics Connection</h3>
-                        <p>To avoid thermodynamic bankruptcy or statistical failure, we must use a rigorous analytical framework. <strong class="text-application">The 7-Question Mental Framework</strong> helps map any algorithm back to biological reality.</p>
+                        <p>To avoid statistical failure, we must map every algorithm back to biological reality using a rigorous analytical framework. You must constantly evaluate the following parameters:</p>
                         
                         <div style="margin-top: 2rem;">
-                            <ol style="color: #aab2c0; font-size: 1.1rem; line-height: 2; padding-left: 1.5rem;">
-                                <li style="margin-bottom: 1rem;"><strong class="text-application">What is the biological object?</strong> (DNA, RNA, Protein, Cell, Population)</li>
-                                <li style="margin-bottom: 1rem;"><strong class="text-application">What physical process produced the data?</strong> (Transcription, Sequencing, Binding, Expression)</li>
-                                <li style="margin-bottom: 1rem;"><strong class="text-application">How is that object represented computationally?</strong> (FASTA, FASTQ, BAM, Count Matrix)</li>
-                                <li style="margin-bottom: 1rem;"><strong class="text-application">What mathematical model is being used?</strong> (Probability, Likelihood, Alignment score, \(\Delta G\))</li>
-                                <li style="margin-bottom: 1rem;"><strong class="text-application" style="color: #ff4757;">What assumptions does the model make?</strong> <em>(The most neglected question)</em></li>
-                                <li style="margin-bottom: 1rem;"><strong class="text-application">What physical information is lost during representation?</strong></li>
-                                <li style="margin-bottom: 1rem;"><strong class="text-application">If the representation is wrong, where does the error propagate?</strong></li>
-                            </ol>
+                            <ul style="color: #aab2c0; font-size: 1.1rem; line-height: 2; padding-left: 1.5rem; list-style-type: square;">
+                                <li style="margin-bottom: 1rem;">Define the <strong>biological object</strong> (DNA, RNA, Protein, Cell, Population) being analyzed.</li>
+                                <li style="margin-bottom: 1rem;">Identify the <strong>physical process</strong> that produced the data (Transcription, Sequencing, Binding, Expression).</li>
+                                <li style="margin-bottom: 1rem;">Understand how that object is <strong>represented computationally</strong> (FASTA, FASTQ, BAM, Count Matrix).</li>
+                                <li style="margin-bottom: 1rem;">Analyze the <strong>mathematical model</strong> being used (Probability, Likelihood, Alignment score).</li>
+                                <li style="margin-bottom: 1rem;"><strong style="color: #ff007f;">Audit the assumptions</strong> the model makes (This is the most critical and often neglected step).</li>
+                                <li style="margin-bottom: 1rem;">Acknowledge what <strong>physical information was lost</strong> during representation.</li>
+                                <li style="margin-bottom: 1rem;">Trace where the <strong>error propagates</strong> if the initial representation is flawed.</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
                 
-                <section class="section-block fade-up" style="margin-bottom: 5rem;">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary" style="margin-bottom: 1rem; text-align: center;">Master Systems Overview</h3>
-                        <p style="text-align: center; font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; font-style: italic;">
-                            "You aren't learning molecular structure as isolated chemistry. You're learning what the computational objects in bioinformatics actually represent, what they leave out, and why errors in those representations can propagate into scientific conclusions."
-                        </p>
-                    </div>
-                </section>
-
                 <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
                     <a href="../Topic 7 Domain Summary/index.html" style="text-decoration: none;">
                         <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,0.2);">
@@ -254,6 +236,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>

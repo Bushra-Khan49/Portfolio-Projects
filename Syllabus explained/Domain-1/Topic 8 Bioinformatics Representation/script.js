@@ -111,112 +111,95 @@ gsap.to('.hero-section h1', {
 
 // (3D Tilt effect removed as requested)
 
-// --- 5. Three.js Background (DNA Helix) ---
+// --- 5. Three.js Background (Data Grid Flow) ---
 const canvasColumn = document.querySelector('.canvas-column');
 const canvas = document.getElementById('webgl-canvas');
 const scene = new THREE.Scene();
 // Fog to blend into dark background
-scene.fog = new THREE.Fog('#030409', 10, 45);
+scene.fog = new THREE.Fog('#030409', 5, 25);
 
 const camera = new THREE.PerspectiveCamera(45, canvasColumn.clientWidth / canvasColumn.clientHeight, 0.1, 100);
-camera.position.z = 18; // Moved closer to make it bigger
+camera.position.z = 12;
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 renderer.setSize(canvasColumn.clientWidth, canvasColumn.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Create Particle DNA Double Helix
-const particleCount = 1000; // Increased density
+// Create Data Point Cloud
+const particleCount = 2000;
 const geometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
 
-const radius = 5.0; // Increased diameter
-const heightStr = 45;
-
-const color1 = new THREE.Color('#00e5ff'); // Bright Cyan
-const color2 = new THREE.Color('#ff007f'); // Bright Neon Pink
+const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
+const color2 = new THREE.Color('#00e5ff'); // Cyan
 
 for(let i = 0; i < particleCount; i++) {
-    const strand = i % 2;
-    const t = i / particleCount;
-    const angle = t * Math.PI * 24 + (strand * Math.PI); // 12 full turns
-    
-    const x = Math.cos(angle) * radius;
-    const y = (t - 0.5) * heightStr;
-    const z = Math.sin(angle) * radius;
+    // Distribute points in a wide, deep cylinder/grid flow
+    const x = (Math.random() - 0.5) * 30;
+    const y = (Math.random() - 0.5) * 30;
+    const z = (Math.random() - 0.5) * 20;
     
     positions[i*3] = x;
     positions[i*3 + 1] = y;
     positions[i*3 + 2] = z;
     
-    if(strand === 0) {
-        colors[i*3] = color1.r;
-        colors[i*3+1] = color1.g;
-        colors[i*3+2] = color1.b;
-    } else {
-        colors[i*3] = color2.r;
-        colors[i*3+1] = color2.g;
-        colors[i*3+2] = color2.b;
-    }
+    // Mix colors based on position
+    const mixRatio = Math.random();
+    colors[i*3] = color1.r * mixRatio + color2.r * (1 - mixRatio);
+    colors[i*3+1] = color1.g * mixRatio + color2.g * (1 - mixRatio);
+    colors[i*3+2] = color1.b * mixRatio + color2.b * (1 - mixRatio);
 }
 
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-// Add connecting lines (rungs)
+// Connect some points with lines to make it look like a network/mesh
 const lineMaterial = new THREE.LineBasicMaterial({ 
     color: 0x888888, 
     transparent: true, 
-    opacity: 0.4,
+    opacity: 0.15,
     blending: THREE.AdditiveBlending
 });
 const lineGeometry = new THREE.BufferGeometry();
-const linePositions = new Float32Array(particleCount * 3);
-
-let lineIndex = 0;
-for(let i = 0; i < particleCount-1; i+=2) {
-    linePositions[lineIndex++] = positions[i*3];
-    linePositions[lineIndex++] = positions[i*3+1];
-    linePositions[lineIndex++] = positions[i*3+2];
-    
-    linePositions[lineIndex++] = positions[(i+1)*3];
-    linePositions[lineIndex++] = positions[(i+1)*3+1];
-    linePositions[lineIndex++] = positions[(i+1)*3+2];
+const linePositions = new Float32Array((particleCount / 2) * 3);
+for(let i = 0; i < particleCount / 2; i++) {
+    linePositions[i*3] = positions[i*3];
+    linePositions[i*3+1] = positions[i*3+1];
+    linePositions[i*3+2] = positions[i*3+2];
 }
 lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
-const rungs = new THREE.LineSegments(lineGeometry, lineMaterial);
-scene.add(rungs);
+const networkLines = new THREE.LineSegments(lineGeometry, lineMaterial);
+scene.add(networkLines);
 
 const material = new THREE.PointsMaterial({
-    size: 0.25,
+    size: 0.15,
     vertexColors: true,
     transparent: true,
-    opacity: 0.35, // reduced opacity for more translucency
-    blending: THREE.AdditiveBlending // Creates a beautiful glow effect
+    opacity: 0.6,
+    blending: THREE.AdditiveBlending
 });
 
 const particles = new THREE.Points(geometry, material);
-scene.add(particles);
 
-// DNA Container Group for easy rotation
-const dnaGroup = new THREE.Group();
-dnaGroup.add(particles);
-dnaGroup.add(rungs);
-scene.add(dnaGroup);
+const dataGroup = new THREE.Group();
+dataGroup.add(particles);
+dataGroup.add(networkLines);
+scene.add(dataGroup);
 
 // Initial slight tilt
-dnaGroup.rotation.z = 0.2;
-dnaGroup.rotation.x = 0.2;
+dataGroup.rotation.x = 0.5;
 
-// Scroll & Mouse Interaction for DNA
+// Scroll & Mouse Interaction for Data Flow
 let targetRotationY = 0;
+let targetPositionY = 0;
 let mouseX = 0;
 let mouseY = 0;
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    targetRotationY = scrollY * 0.002;
+    targetRotationY = scrollY * 0.001;
+    targetPositionY = scrollY * 0.005;
 });
 
 // only track mouse inside canvas column
@@ -234,8 +217,9 @@ function animate3D() {
     const elapsedTime = clock.getElapsedTime();
     
     // Auto rotation + scroll rotation + mouse interaction
-    dnaGroup.rotation.y = elapsedTime * 0.2 + targetRotationY + (mouseX * 0.3);
-    dnaGroup.rotation.x = 0.2 + (mouseY * 0.1); // Keep the base tilt
+    dataGroup.rotation.y = elapsedTime * 0.1 + targetRotationY + (mouseX * 0.2);
+    dataGroup.rotation.x = 0.5 + (mouseY * 0.1); // Keep the base tilt
+    dataGroup.position.y = targetPositionY;
     
     renderer.render(scene, camera);
 }
