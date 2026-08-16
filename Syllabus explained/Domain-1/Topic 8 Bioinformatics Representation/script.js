@@ -128,12 +128,12 @@ renderer.setSize(canvasColumn.clientWidth, canvasColumn.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Create a Gaussian Bell Curve (Probability Distribution) to represent "Inference"
-const geometry = new THREE.PlaneGeometry(60, 60, 50, 50);
+const geometry = new THREE.PlaneGeometry(100, 100, 60, 60);
 const material = new THREE.MeshBasicMaterial({
     color: '#ff007f', // Module 2 color (Pink)
     wireframe: true,
     transparent: true,
-    opacity: 0.15,
+    opacity: 0.35, // Increased brightness
     blending: THREE.AdditiveBlending
 });
 
@@ -169,7 +169,8 @@ function animate3D() {
     const positionsAttr = geometry.attributes.position;
     
     // Very slow "breathing" of the statistical variance (width of the bell curve)
-    const variance = 150 + Math.sin(elapsedTime * 0.5) * 50; 
+    // Increased base variance so the curve is much wider and bigger overall
+    const variance = 350 + Math.sin(elapsedTime * 0.5) * 100; 
     
     for(let i = 0; i < positionsAttr.count; i++) {
         const x = positionsAttr.getX(i);
@@ -177,7 +178,7 @@ function animate3D() {
         
         // 2D Gaussian function: e^(-(x^2 + y^2) / 2*sigma^2)
         const distSq = x*x + y*y;
-        const z = Math.exp(-distSq / variance) * 12; // Max height of 12
+        const z = Math.exp(-distSq / variance) * 20; // Max height increased to 20
         
         positionsAttr.setZ(i, z);
     }
