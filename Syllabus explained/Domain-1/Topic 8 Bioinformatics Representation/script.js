@@ -111,72 +111,36 @@ gsap.to('.hero-section h1', {
 
 // (3D Tilt effect removed as requested)
 
-// --- 5. Three.js Background (Minimalist Constellation / Gene Network) ---
+// --- 5. Three.js Background (Cohesive Data Wave) ---
 const canvasColumn = document.querySelector('.canvas-column');
 const canvas = document.getElementById('webgl-canvas');
 const scene = new THREE.Scene();
 
 // Subtle fog for depth
-scene.fog = new THREE.Fog('#030409', 10, 40);
+scene.fog = new THREE.Fog('#030409', 15, 50);
 
 const camera = new THREE.PerspectiveCamera(45, canvasColumn.clientWidth / canvasColumn.clientHeight, 0.1, 100);
-camera.position.z = 20;
+camera.position.z = 25;
+camera.position.y = 5;
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 renderer.setSize(canvasColumn.clientWidth, canvasColumn.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Create a sparse, elegant constellation of nodes
-const particleCount = 120;
-const geometry = new THREE.BufferGeometry();
-const positions = new Float32Array(particleCount * 3);
-const velocities = [];
-
-const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
-const color2 = new THREE.Color('#ff4da6'); // Lighter Pink
-
-// Initialize particles randomly in a large volume
-for(let i = 0; i < particleCount; i++) {
-    positions[i*3] = (Math.random() - 0.5) * 40;
-    positions[i*3+1] = (Math.random() - 0.5) * 40;
-    positions[i*3+2] = (Math.random() - 0.5) * 20;
-    
-    // Very slow random drift velocities
-    velocities.push({
-        x: (Math.random() - 0.5) * 0.02,
-        y: (Math.random() - 0.5) * 0.02,
-        z: (Math.random() - 0.5) * 0.02
-    });
-}
-
-geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-// Subtle points
-const material = new THREE.PointsMaterial({
-    size: 0.12,
-    color: color1,
-    transparent: true,
-    opacity: 0.4,
-    blending: THREE.AdditiveBlending
-});
-
-const particles = new THREE.Points(geometry, material);
-
-// Lines for the dynamic network
-const lineMaterial = new THREE.LineBasicMaterial({
-    color: color2,
+// Create a single, cohesive, slow-moving structural wave (Not dispersed, not fast)
+const geometry = new THREE.PlaneGeometry(80, 40, 60, 30);
+const material = new THREE.MeshBasicMaterial({
+    color: '#ff007f', // Module 2 color (Pink)
+    wireframe: true,
     transparent: true,
     opacity: 0.15,
     blending: THREE.AdditiveBlending
 });
-// We will update line geometry every frame
-const lineGeometry = new THREE.BufferGeometry();
-const networkLines = new THREE.LineSegments(lineGeometry, lineMaterial);
 
-const dataGroup = new THREE.Group();
-dataGroup.add(particles);
-dataGroup.add(networkLines);
-scene.add(dataGroup);
+const waveMesh = new THREE.Mesh(geometry, material);
+// Lay the plane down so it looks like a landscape/ribbon
+waveMesh.rotation.x = -Math.PI / 2 + 0.3;
+scene.add(waveMesh);
 
 // Scroll & Mouse Interaction
 let targetRotationY = 0;
@@ -186,7 +150,7 @@ let mouseY = 0;
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    targetRotationY = scrollY * 0.0005; // Very slow scroll rotation
+    targetRotationY = scrollY * 0.0002; // Very subtle scroll effect
     targetPositionY = scrollY * 0.002;
 });
 
@@ -205,44 +169,22 @@ function animate3D() {
     const elapsedTime = clock.getElapsedTime();
     const positionsAttr = geometry.attributes.position;
     
-    // Update particle positions
-    for(let i = 0; i < particleCount; i++) {
-        positionsAttr.array[i*3] += velocities[i].x;
-        positionsAttr.array[i*3+1] += velocities[i].y;
-        positionsAttr.array[i*3+2] += velocities[i].z;
+    // Very slow, gentle wave undulation (cohesive structure, no flying particles)
+    for(let i = 0; i < positionsAttr.count; i++) {
+        const x = positionsAttr.getX(i);
+        const y = positionsAttr.getY(i);
         
-        // Bounce off bounds softly
-        if(Math.abs(positionsAttr.array[i*3]) > 20) velocities[i].x *= -1;
-        if(Math.abs(positionsAttr.array[i*3+1]) > 20) velocities[i].y *= -1;
-        if(Math.abs(positionsAttr.array[i*3+2]) > 10) velocities[i].z *= -1;
+        // Gentle math wave: slow speed (0.3), large wavelength
+        const z = Math.sin(x * 0.1 + elapsedTime * 0.3) * 1.5 + 
+                  Math.cos(y * 0.1 + elapsedTime * 0.2) * 1.5;
+        
+        positionsAttr.setZ(i, z);
     }
     positionsAttr.needsUpdate = true;
     
-    // Dynamically connect nodes that are close to each other
-    const linePositions = [];
-    const connectDistance = 6.0;
-    
-    for(let i = 0; i < particleCount; i++) {
-        for(let j = i + 1; j < particleCount; j++) {
-            const dx = positionsAttr.array[i*3] - positionsAttr.array[j*3];
-            const dy = positionsAttr.array[i*3+1] - positionsAttr.array[j*3+1];
-            const dz = positionsAttr.array[i*3+2] - positionsAttr.array[j*3+2];
-            const distSq = dx*dx + dy*dy + dz*dz;
-            
-            if(distSq < connectDistance * connectDistance) {
-                linePositions.push(
-                    positionsAttr.array[i*3], positionsAttr.array[i*3+1], positionsAttr.array[i*3+2],
-                    positionsAttr.array[j*3], positionsAttr.array[j*3+1], positionsAttr.array[j*3+2]
-                );
-            }
-        }
-    }
-    lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-    
-    // Very subtle auto rotation + scroll + mouse
-    dataGroup.rotation.y = elapsedTime * 0.05 + targetRotationY + (mouseX * 0.1);
-    dataGroup.rotation.x = (mouseY * 0.05); 
-    dataGroup.position.y = targetPositionY;
+    // Subtle auto rotation + mouse interaction
+    waveMesh.rotation.z = (elapsedTime * 0.02) + targetRotationY + (mouseX * 0.05);
+    waveMesh.position.y = -5 + targetPositionY + (mouseY * 1.0);
     
     renderer.render(scene, camera);
 }
