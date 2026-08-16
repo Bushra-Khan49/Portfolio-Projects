@@ -135,17 +135,23 @@ const color1 = new THREE.Color('#ff007f'); // Module 2 color (Pink)
 const color2 = new THREE.Color('#ff4da6'); // Lighter Pink/Reddish
 
 for(let i = 0; i < particleCount; i++) {
-    // Distribute points in a wide, deep cylinder/grid flow
-    const x = (Math.random() - 0.5) * 30;
-    const y = (Math.random() - 0.5) * 30;
-    const z = (Math.random() - 0.5) * 20;
+    // Structured Double Helix (Less dispersed)
+    const t = i * 0.04;
+    const radius = 5;
+    const strandOffset = (i % 2 === 0) ? 0 : Math.PI; // Two opposing strands
+    
+    // Minimal noise for organic feel without being scattered
+    const noise = 0.6;
+    const x = Math.cos(t + strandOffset) * radius + (Math.random() - 0.5) * noise;
+    const y = (t * 0.6) - 25 + (Math.random() - 0.5) * noise; // Spread along Y-axis
+    const z = Math.sin(t + strandOffset) * radius + (Math.random() - 0.5) * noise;
     
     positions[i*3] = x;
     positions[i*3 + 1] = y;
     positions[i*3 + 2] = z;
     
-    // Mix colors based on position
-    const mixRatio = Math.random();
+    // Smooth color gradient along the helix
+    const mixRatio = Math.sin(t * 0.2) * 0.5 + 0.5;
     colors[i*3] = color1.r * mixRatio + color2.r * (1 - mixRatio);
     colors[i*3+1] = color1.g * mixRatio + color2.g * (1 - mixRatio);
     colors[i*3+2] = color1.b * mixRatio + color2.b * (1 - mixRatio);
