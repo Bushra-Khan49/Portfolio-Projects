@@ -335,10 +335,18 @@
 
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Nearest-Neighbor Effects & Dynamic Programming</h3>
-                        <p>The energetic contribution of one base pair can depend on the bases immediately adjacent to it. Therefore RNA folding algorithms often use <span class="term-highlight">nearest-neighbor thermodynamic parameters</span>.</p>
-                        <p>The algorithm evaluates \(\Delta G(S)\) for thousands of structures to find the minimum free energy structure: \( S^* = \arg\min_S \Delta G(S) \).</p>
-                        <p>Because the number of possible structures grows exponentially, the algorithm uses <span class="term-highlight">Dynamic Programming</span>—solving smaller subproblems (like small loops) and reusing their results. So an RNA structure predictor combines RNA thermodynamics + combinatorial optimization + dynamic programming.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Computational Solution: Nearest-Neighbors & Dynamic Programming</h3>
+                        <p>Because vertical stacking energy is so powerful, the energetic contribution of a single base pair cannot be calculated in isolation. It depends entirely on the bases immediately stacked above and below it. To capture this physical reality, RNA folding algorithms rely on <span class="term-highlight">nearest-neighbor thermodynamic parameters</span>.</p>
+                        
+                        <p>But introducing these parameters creates a massive computational problem. For an RNA molecule just a few hundred bases long, there are an astronomical number of ways it could potentially fold. If a computer tried to calculate the total energy (\(\Delta G(S)\)) of every possible shape one by one to find the most stable one (\( S^* = \arg\min_S \Delta G(S) \)), the universe would end before it finished.</p>
+
+                        <p>To solve this, algorithms use <span class="term-highlight">Dynamic Programming</span>. Rather than calculating the whole molecule at once, the algorithm breaks the sequence into tiny fragments, solves the optimal folding energy for those small subproblems (like a single hairpin loop), and intelligently reuses those answers to build up the final shape without repeating calculations.</p>
+                        
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 0, 127, 0.05); border: 1px solid rgba(255, 0, 127, 0.3); border-radius: 8px; text-align: center;">
+                            <p style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-mod2-light); margin: 0;">
+                                <strong style="color: #fff;">RNA Structure Prediction</strong> = (RNA Thermodynamics) + (Combinatorial Optimization) + (Dynamic Programming)
+                            </p>
+                        </div>
                     </div>
                 </section>
 
