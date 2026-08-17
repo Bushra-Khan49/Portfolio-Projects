@@ -175,7 +175,7 @@
                 <section class="hero-section fade-up">
                     <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 8</h5>
                     <h1 class="h-primary" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">RNA</h1>
-                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">Bioinformatics algorithms do not operate on abstract letters alone. They are models of biological molecules. If your model of the molecule is wrong, the computational result can be internally consistent but biologically meaningless.</h2>
+                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">Bioinformatics algorithms operate on models of biological molecules. Flawed models yield biologically meaningless results.</h2>
                     <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
                         <div class="mouse" style="border-color: var(--accent-mod2);"></div>
                         <span style="color: var(--accent-mod2);">Scroll to Explore</span>
@@ -270,12 +270,19 @@ Base       A T G C                   A U G C
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
                         <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Base Pairing vs Base Stacking</h3>
-                        <p>When people first learn nucleic-acid stability, they often focus on A-U and G-C pairs, thinking: "G-C has three hydrogen bonds, so it must always be more stable." That is incomplete. RNA stability also depends heavily on <span class="term-highlight">base stacking</span>.</p>
-                        <p>Adjacent aromatic bases can interact through stacking interactions. Therefore a simplified picture of RNA stability is:</p>
-                        <div class="math-block" style="border-left-color: var(--accent-orange);">
+                        <div class="split-text">
+                            <div>
+                                <p>When people first learn nucleic-acid stability, they often focus on A-U and G-C pairs, thinking: "G-C has three hydrogen bonds, so it must always be more stable." That is incomplete. RNA stability also depends heavily on <span class="term-highlight">base stacking</span>.</p>
+                                <p>Adjacent aromatic bases can interact through stacking interactions.</p>
+                            </div>
+                            <div>
+                                <p>Therefore a simplified picture of RNA stability is:</p>
+                                <div class="math-block" style="border-left-color: var(--accent-orange);">
 \[ \text{stability} \sim \text{base pairing} + \text{stacking} + \text{loop effects} + \text{solvent effects} + \text{ions} + \text{conformational effects} \]
+                                </div>
+                                <p>This is why serious RNA structure prediction doesn't simply count G-C and A-U pairs.</p>
+                            </div>
                         </div>
-                        <p>This is why serious RNA structure prediction doesn't simply count G-C and A-U pairs.</p>
                     </div>
                 </section>
 
@@ -295,64 +302,89 @@ Base       A T G C                   A U G C
                     
                     <!-- FAMILY A: THERMODYNAMICS -->
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-tertiary" style="margin-bottom: 1.5rem;">Family A — Thermodynamics</h3>
-                        <p><strong>Question answered: Which state is thermodynamically favored?</strong></p>
+                        <h3 class="h-tertiary" style="margin-bottom: 1.5rem;">Thermodynamics & Gibbs Free Energy (ΔG)</h3>
+                        <p>Which molecular state is thermodynamically favored? The probability of a state existing is determined by the balance of energy and entropy.</p>
                         
                         <div class="math-block">
-                            <p style="color: var(--accent-orange); font-weight: bold; margin-bottom: 0.5rem;">Gibbs Free Energy Equation:</p>
                             \[ \Delta G = \Delta H - T\Delta S \]
                         </div>
                         
-                        <p>Before understanding the equation, understand the symbol <strong>\(\Delta\)</strong>. It means "change" (\(\Delta G = G_{\text{final}} - G_{\text{initial}}\)). We're asking what happens to the state when the system goes from unfolded to folded.</p>
-                        
+                        <p>Let's break down these symbols:</p>
                         <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                            <li><span class="term-highlight">\(\Delta G\) (Gibbs Free Energy):</span> The total energy "cost" of changing states. If favorable, \(\Delta G < 0\).</li>
                             <li><span class="term-highlight">\(\Delta H\) (Enthalpy):</span> Captures changes in energetic interactions (hydrogen bonds, stacking, solvent interactions). If favorable, \(\Delta H < 0\).</li>
-                            <li><span class="term-highlight">\(\Delta S\) (Entropy):</span> Reflects how many microscopic states are accessible. Boltzmann expressed this as \(S = k_B\ln\Omega\). An unfolded RNA has many configurations (\(\Omega\) is large). A folded RNA is constrained (\(\Omega\) is small). Thus, folding carries an entropic penalty (\(\Delta S < 0\)).</li>
-                            <li><span class="term-highlight">\(T\) (Temperature):</span> Controls the balance. Since \(\Delta S\) is negative during folding, the \(-T\Delta S\) term becomes positive, opposing folding. Higher temperature makes folding less favorable.</li>
+                            <li><span class="term-highlight">\(\Delta S\) (Entropy):</span> Reflects how many microscopic states are accessible. A folded RNA is constrained, so folding carries an entropic penalty (\(\Delta S < 0\)).</li>
+                            <li><span class="term-highlight">\(T\) (Temperature):</span> Represents the thermal heat constantly bumping into the molecules. Higher temperature makes folding less favorable.</li>
                         </ul>
 
                         <div class="highlight-box" style="margin-top: 2rem;">
-                            <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 1rem;">The Boltzmann Distribution</h4>
-                            <p><strong>Question answered: How does free energy influence the population of molecular states?</strong></p>
+                            <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 1rem;">What is the Boltzmann Distribution?</h4>
+                            <p>How does a slight energy difference influence the population of molecular states? The answer lies in the Boltzmann Distribution.</p>
                             <div class="math-block" style="border-left-color: var(--accent-gold);">
 \[ P_i = \frac{e^{-G_i/(RT)}}{\sum_j e^{-G_j/(RT)}} \]
                             </div>
-                            <p>An algorithm might find the single structure with the lowest \(\Delta G\). But real RNA molecules populate an <em>ensemble</em> of conformations. A state with lower free energy is more probable, but other states can still have nonzero probability. The quantity \(RT\) represents the thermal-energy scale.</p>
+                            
+                            <p>Let's break down these symbols:</p>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                                <li><span class="term-highlight">\(P_i\) (Probability):</span> The likelihood that a specific conformation will form and stay together.</li>
+                                <li><span class="term-highlight">\(e\) (Euler's number):</span> A mathematical constant used for exponential growth.</li>
+                                <li><span class="term-highlight">\(G_i\) (Gibbs Free Energy):</span> The total energy cost of that specific state.</li>
+                                <li><span class="term-highlight">\(R\) (Gas constant) & \(T\) (Temperature):</span> Represents the thermal energy scale.</li>
+                            </ul>
+                            
+                            <p style="margin-top: 1rem;">Think of it like a valley. An algorithm might find the single structure with the lowest \(\Delta G\) (the deepest valley). But real RNA molecules populate an <em>ensemble</em> of conformations. A state in a deep, stable valley has a high probability, but states in shallower valleys still have nonzero probability. The enzyme doesn't actively "decide"—it simply lets thermal physics do the filtering.</p>
                         </div>
                     </div>
 
                     <!-- FAMILY B: KINETICS -->
                     <div class="glass-card full-width tilt-effect hover-target" style="margin-top: 2rem;">
-                        <h3 class="h-quaternary" style="margin-bottom: 1.5rem;">Family B — Kinetics</h3>
+                        <h3 class="h-quaternary" style="margin-bottom: 1.5rem;">Kinetics</h3>
                         <p>Thermodynamics asks: <em>Which state is energetically favored?</em> Kinetics asks: <em>How quickly does the system move between states?</em></p>
                         
                         <div class="split-text">
                             <div>
-                                <p><strong>Question answered: What chemical event corresponds to nucleotide incorporation?</strong></p>
+                                <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">What chemical event corresponds to nucleotide incorporation?</h4>
                                 <div class="math-block" style="border-left-color: var(--accent-purple);">
 \[ NTP + RNA_n \rightarrow RNA_{n+1} + PP_i \]
                                 </div>
-                                <p>The terminal two phosphates leave as Pyrophosphate (\(PP_i\)), breaking bonds to drive transcription kinetics.</p>
+                                <p>Let's break down these symbols:</p>
+                                <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                                    <li><span class="term-highlight">\(NTP\)</span>: A free nucleotide tri-phosphate.</li>
+                                    <li><span class="term-highlight">\(RNA_n\)</span>: The growing RNA chain of length n.</li>
+                                    <li><span class="term-highlight">\(PP_i\)</span>: Pyrophosphate (the terminal two phosphates that leave, breaking bonds to drive transcription).</li>
+                                </ul>
                             </div>
                             <div>
-                                <p><strong>Question answered: How quickly is RNA being produced?</strong></p>
+                                <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">How quickly is RNA being produced?</h4>
                                 <div class="math-block" style="border-left-color: var(--accent-purple);">
 \[ v = \frac{d[RNA]}{dt} \]
                                 </div>
-                                <p>Polymerase speed depends on nucleotide availability, template sequence, pausing, and termination. The derivative represents how rapidly concentration changes with time.</p>
+                                <p>Let's break down these symbols:</p>
+                                <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                                    <li><span class="term-highlight">\(v\)</span>: The velocity or rate of the reaction.</li>
+                                    <li><span class="term-highlight">\(\frac{d}{dt}\)</span>: The mathematical derivative, representing how rapidly concentration changes with time.</li>
+                                    <li><span class="term-highlight">\([RNA]\)</span>: The concentration of RNA.</li>
+                                </ul>
+                                <p style="margin-top: 1rem;">Think of it like a car's speedometer. Polymerase speed depends on nucleotide availability, template sequence, pausing, and termination. The derivative simply reads the speedometer at a given moment in time.</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- FAMILY C: COMPUTATIONAL MODELING -->
                     <div class="glass-card full-width tilt-effect hover-target" style="margin-top: 2rem;">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Family C — Computational Modeling</h3>
-                        <p><strong>Question answered: How similar are two sequences according to our chosen scoring model?</strong></p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Computational Modeling</h3>
+                        <p>How similar are two sequences according to our chosen scoring model?</p>
                         
                         <div class="math-block" style="border-left-color: var(--accent-mod2-light);">
 \[ Score = \sum s(x_i,y_i) + \text{gap penalties} \]
                         </div>
-                        <p>Real alignment algorithms distinguish between gap opening and gap extension. The algorithm isn't measuring chemical energy; it is estimating sequence similarity according to a mathematical model, which serves as a proxy for biological homology.</p>
+                        <p>Let's break down these symbols:</p>
+                        <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                            <li><span class="term-highlight">\(\sum\) (Sigma)</span>: Summing up all the individual scores across the sequence.</li>
+                            <li><span class="term-highlight">\(s(x_i,y_i)\)</span>: The substitution score for aligning character \(x_i\) with character \(y_i\).</li>
+                            <li><span class="term-highlight">\(\text{gap penalties}\)</span>: Deductions for introducing insertions or deletions.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">Think of it like grading a test with a rubric. Real alignment algorithms distinguish between gap opening and gap extension. The algorithm isn't measuring chemical energy; it is estimating sequence similarity according to a mathematical model, which serves as a proxy for biological homology.</p>
                     </div>
                 </section>
 
