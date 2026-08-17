@@ -267,22 +267,19 @@ Base       A T G C                   A U G C
                     </div>
                 </section>
 
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Base Pairing vs Base Stacking</h3>
-                        <div class="split-text">
-                            <div>
-                                <p>When people first learn nucleic-acid stability, they often focus on A-U and G-C pairs, thinking: "G-C has three hydrogen bonds, so it must always be more stable." That is incomplete. RNA stability also depends heavily on <span class="term-highlight">base stacking</span>.</p>
-                                <p>Adjacent aromatic bases can interact through stacking interactions.</p>
-                            </div>
-                            <div>
-                                <p>Therefore a simplified picture of RNA stability is:</p>
-                                <div class="math-block" style="border-left-color: var(--accent-orange);">
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Base Pairing</h3>
+                        <p>When people first learn nucleic-acid stability, they often focus on A-U and G-C pairs, thinking: "G-C has three hydrogen bonds, so it must always be more stable." That is incomplete. RNA stability also depends heavily on <span class="term-highlight">base stacking</span>.</p>
+                        <p>Adjacent aromatic bases can interact through stacking interactions.</p>
+                    </div>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Base Stacking</h3>
+                        <p>Therefore a simplified picture of RNA stability is:</p>
+                        <div class="math-block" style="border-left-color: var(--accent-orange); padding: 1rem; overflow-x: auto;">
 \[ \text{stability} \sim \text{base pairing} + \text{stacking} + \text{loop effects} + \text{solvent effects} + \text{ions} + \text{conformational effects} \]
-                                </div>
-                                <p>This is why serious RNA structure prediction doesn't simply count G-C and A-U pairs.</p>
-                            </div>
                         </div>
+                        <p>This is why serious RNA structure prediction doesn't simply count G-C and A-U pairs.</p>
                     </div>
                 </section>
 
@@ -337,38 +334,36 @@ Base       A T G C                   A U G C
                     </div>
 
                     <!-- FAMILY B: KINETICS -->
-                    <div class="glass-card full-width tilt-effect hover-target" style="margin-top: 2rem;">
-                        <h3 class="h-quaternary" style="margin-bottom: 1.5rem;">Kinetics</h3>
-                        <p>Thermodynamics asks: <em>Which state is energetically favored?</em> Kinetics asks: <em>How quickly does the system move between states?</em></p>
-                        
-                        <div class="split-text">
-                            <div>
-                                <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">What chemical event corresponds to nucleotide incorporation?</h4>
-                                <div class="math-block" style="border-left-color: var(--accent-purple);">
+                    <section class="card-grid section-block fade-up" style="margin-top: 2rem;">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-quaternary" style="margin-bottom: 1.5rem;">Kinetics: Nucleotide Incorporation</h3>
+                            <p style="margin-bottom: 1.5rem;">Thermodynamics asks: <em>Which state is energetically favored?</em> Kinetics asks: <em>How quickly does the system move between states?</em></p>
+                            <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">What chemical event corresponds to nucleotide incorporation?</h4>
+                            <div class="math-block" style="border-left-color: var(--accent-purple); padding: 1rem; overflow-x: auto;">
 \[ NTP + RNA_n \rightarrow RNA_{n+1} + PP_i \]
-                                </div>
-                                <p>Let's break down these symbols:</p>
-                                <ul style="padding-left: 1.5rem; line-height: 1.8;">
-                                    <li><span class="term-highlight">\(NTP\)</span>: A free nucleotide tri-phosphate.</li>
-                                    <li><span class="term-highlight">\(RNA_n\)</span>: The growing RNA chain of length n.</li>
-                                    <li><span class="term-highlight">\(PP_i\)</span>: Pyrophosphate (the terminal two phosphates that leave, breaking bonds to drive transcription).</li>
-                                </ul>
                             </div>
-                            <div>
-                                <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">How quickly is RNA being produced?</h4>
-                                <div class="math-block" style="border-left-color: var(--accent-purple);">
-\[ v = \frac{d[RNA]}{dt} \]
-                                </div>
-                                <p>Let's break down these symbols:</p>
-                                <ul style="padding-left: 1.5rem; line-height: 1.8;">
-                                    <li><span class="term-highlight">\(v\)</span>: The velocity or rate of the reaction.</li>
-                                    <li><span class="term-highlight">\(\frac{d}{dt}\)</span>: The mathematical derivative, representing how rapidly concentration changes with time.</li>
-                                    <li><span class="term-highlight">\([RNA]\)</span>: The concentration of RNA.</li>
-                                </ul>
-                                <p style="margin-top: 1rem;">Think of it like a car's speedometer. Polymerase speed depends on nucleotide availability, template sequence, pausing, and termination. The derivative simply reads the speedometer at a given moment in time.</p>
-                            </div>
+                            <p>Let's break down these symbols:</p>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                                <li><span class="term-highlight">\(NTP\)</span>: A free nucleotide tri-phosphate.</li>
+                                <li><span class="term-highlight">\(RNA_n\)</span>: The growing RNA chain of length n.</li>
+                                <li><span class="term-highlight">\(PP_i\)</span>: Pyrophosphate (the terminal two phosphates that leave, breaking bonds to drive transcription).</li>
+                            </ul>
                         </div>
-                    </div>
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-quaternary" style="margin-bottom: 1.5rem;">Kinetics: Polymerase Velocity</h3>
+                            <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">How quickly is RNA being produced?</h4>
+                            <div class="math-block" style="border-left-color: var(--accent-purple); padding: 1rem; overflow-x: auto;">
+\[ v = \frac{d[RNA]}{dt} \]
+                            </div>
+                            <p>Let's break down these symbols:</p>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                                <li><span class="term-highlight">\(v\)</span>: The velocity or rate of the reaction.</li>
+                                <li><span class="term-highlight">\(\frac{d}{dt}\)</span>: The mathematical derivative, representing how rapidly concentration changes with time.</li>
+                                <li><span class="term-highlight">\([RNA]\)</span>: The concentration of RNA.</li>
+                            </ul>
+                            <p style="margin-top: 1rem;">Think of it like a car's speedometer. Polymerase speed depends on nucleotide availability, template sequence, pausing, and termination. The derivative simply reads the speedometer at a given moment in time.</p>
+                        </div>
+                    </section>
 
                     <!-- FAMILY C: COMPUTATIONAL MODELING -->
                     <div class="glass-card full-width tilt-effect hover-target" style="margin-top: 2rem;">
