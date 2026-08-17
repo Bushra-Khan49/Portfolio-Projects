@@ -320,7 +320,7 @@
                             <li><span class="term-highlight">\(s(x_i,y_i)\)</span>: The substitution score for aligning character \(x_i\) with character \(y_i\).</li>
                             <li><span class="term-highlight">\(\text{gap penalties}\)</span>: Deductions for introducing insertions or deletions.</li>
                         </ul>
-                        <p style="margin-top: 1rem;">Think of it like grading a test with a rubric. Real alignment algorithms distinguish between gap opening and gap extension. The algorithm isn't measuring chemical energy; it is estimating sequence similarity according to a mathematical model, which serves as a proxy for biological homology.</p>
+                        <p style="margin-top: 1rem;">Alignment algorithms do not measure physical chemistry; they measure statistical probability. The equation above does not calculate real energy. Instead, it uses a mathematical scoring matrix to estimate evolutionary similarity. A high mathematical score serves as a proxy for biological homology.</p>
                     </div>
                 </section>
 
@@ -328,23 +328,24 @@
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1.5rem;">The Most Abstract Equations: Representation & Error</h3>
-                        <p>You have the actual biological object (\(X\)). But we cannot put a physical molecule into a computer. We create a representation (\(\hat{X}\)).</p>
+                        <p><strong>\(X\)</strong> is the physical, wet-lab RNA molecule. It has atoms, mass, and moves in water.</p>
+                        <p><strong>\(\hat{X}\)</strong> (X-hat) is your FASTA text file. It is just a string of letters.</p>
                         
                         <div class="math-block" style="text-align: center;">
 \[ \hat{X} \approx X \]
                         </div>
-                        <p>The FASTA sequence is \(\hat{X}\). It lacks atoms, bonds, solvent, and dynamics. We hope \(\hat{X} \approx X\) for the question we are asking. "Good representation" means representation appropriate to the question.</p>
+                        <p>We <em>hope</em> the text file accurately represents the physical molecule. If it does, we can run computations.</p>
 
-                        <h4 style="color: var(--accent-orange); margin-top: 2rem; font-size: 1.2rem;">What happens when the input is wrong?</h4>
-                        <p>Your computational method \(f\) transforms an input into an output (\(Y = f(X)\)). But your pipeline uses the representation \(\hat{X}\). So your output becomes:</p>
+                        <h4 style="color: var(--accent-orange); margin-top: 2rem; font-size: 1.2rem;">What happens when the input text is wrong?</h4>
+                        <p>If a parsing error deletes a single letter from your FASTA file, your input \(\hat{X}\) is now physically false. But the algorithm (\(f\)) doesn't know that. It runs flawlessly on the broken text file:</p>
                         <div class="math-block" style="border-left-color: #ff4757; text-align: center;">
 \[ \hat{Y} = f(\hat{X}) \]
                         </div>
-                        <p>The difference between what you wanted and what you got is the error:</p>
+                        <p>The difference between the true biological answer and your computed answer is the representation error:</p>
                         <div class="math-block" style="border-left-color: #ff4757; text-align: center;">
 \[ \hat{Y} - Y = f(\hat{X}) - f(X) \]
                         </div>
-                        <p>If a coordinate parsing error deletes one nucleotide from \(\hat{X}\), your structure predictor \(f\) will execute perfectly and calculate a \(\Delta G\) for \(\hat{X}\). The algorithm worked flawlessly, but the output belongs to a molecule that doesn't physically exist.</p>
+                        <p><strong>The Conclusion:</strong> The algorithm executed perfectly, but your output (\(\hat{Y}\)) is biologically meaningless because the starting representation (\(\hat{X}\)) belonged to a molecule that doesn't exist.</p>
                     </div>
                 </section>
 
@@ -391,37 +392,33 @@
                 <!-- REAL WORLD PIPELINE EXAMPLES -->
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Pipeline Realities: FASTA vs FASTQ & Coordinates</h3>
+                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">How Abstraction Fails in Practice</h3>
+                        <p>Because algorithms blindly trust the mathematical representation (\(\hat{X}\)), any failure to capture physical reality during data processing propagates forward into catastrophic biological errors.</p>
                         
                         <div style="border-left: 3px solid var(--accent-orange); padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">FASTA vs FASTQ (Error vs Uncertainty)</h4>
-                            <p>FASTA represents sequence identity. FASTQ represents sequence + <span class="term-highlight">measurement uncertainty</span>. The FASTQ quality score (\(Q\)) is translated mathematically: \(P_e = 10^{-Q/10}\). A read isn't simply a string; it is an observation with quantitative uncertainty. Bioinformatics must minimize <strong>error</strong> (extracting the wrong sequence) while propagating <strong>uncertainty</strong> (how much we trust a base call).</p>
+                            <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">The Sequence Failure (FASTA vs FASTQ)</h4>
+                            <p>FASTA claims absolute truth (the letter is A). FASTQ admits machine uncertainty (the letter is A, but the machine is only 90% sure). Treating FASTQ data like FASTA ignores the physical reality of sequencing errors, leading to false variant calls.</p>
                         </div>
 
                         <div style="border-left: 3px solid var(--accent-purple); padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Sequence Orientation & Strandness</h4>
-                            <p>A sequence <code>5' - ATGC - 3'</code> has a reverse complement <code>5' - GCAT - 3'</code>. If your pipeline ignores strand information in RNA-seq, it can assign reads to the wrong overlapping gene on the opposite strand. Orientation is not cosmetic; it is physical reality.</p>
+                            <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">The Geometry Failure (Strandness)</h4>
+                            <p>Ignoring <code>5' → 3'</code> orientation isn't a formatting typo; it physically places the sequence on the wrong side of the DNA double helix. In RNA-seq, this geometry failure causes you to count reads for the wrong overlapping gene.</p>
                         </div>
 
                         <div style="border-left: 3px solid var(--accent-mod2-light); padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: var(--accent-mod2-light); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Coordinate Systems & Splicing</h4>
-                            <p>There are two major coordinate conventions: <strong>1-based inclusive</strong> and <strong>0-based half-open</strong>. That one-character difference creates an off-by-one error, potentially shifting the reading frame of every downstream codon. Furthermore, genomic coordinate space \(\neq\) transcript coordinate space due to splicing. RNA-seq alignment isn't finding a string; it is finding where RNA originated across discontinuous genomic regions.</p>
+                            <h4 style="color: var(--accent-mod2-light); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">The Space Failure (Coordinates)</h4>
+                            <p>Mixing up <strong>1-based inclusive</strong> and <strong>0-based half-open</strong> counting systems creates an off-by-one error. A single integer mistake here shifts the entire downstream reading frame, mutating every subsequent amino acid in the computer.</p>
                         </div>
 
-                        <!-- Restored Application Examples -->
-                        <div style="border-left: 3px solid #ff4da6; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #ff4da6; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Sequence Representation in RNA-Seq</h4>
-                            <p><strong>DESeq2</strong> identifies differentially expressed genes by analyzing count matrices. This works because the algorithm assumes the count matrix represents accurate genomic annotations extracted upstream. If your pipeline accidentally extracted sequences from the wrong strand or used a 0-based coordinate system incorrectly, the sequence representation is flawed. <strong>DESeq2</strong> does not know this; it will happily process the flawed counts and output a statistically significant, biologically false result.</p>
-                        </div>
-
-                        <div style="border-left: 3px solid #ff007f; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #ff007f; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Thermodynamics in Structure Prediction</h4>
-                            <p>Algorithms like <strong>ViennaRNA</strong> predict secondary structures by minimizing free energy. This works because it calculates \(\Delta G\) using rigorous thermodynamic parameters derived for RNA chemistry. If your input is inadvertently DNA—or if you fail to account for ionic conditions—the algorithm will still execute perfectly and draw a beautiful hairpin structure. However, because the underlying molecular representation is wrong, the structure belongs to a molecule that doesn't physically exist.</p>
-                        </div>
-
-                        <div style="border-left: 3px solid #b30059; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #b30059; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Coordinate Parsing & Sequence Extraction</h4>
-                            <p>Tools like <strong>BedTools</strong> rely entirely on strict coordinate conventions. A genome annotation (e.g., <code>chr7:55,086,724-55,275,031</code>) seems purely computational. But those coordinates map to physical DNA. If you parse an inclusive boundary as exclusive, you shift the reading frame. The downstream FASTA file is generated flawlessly, yet the biological object it represents has been completely corrupted.</p>
+                        <!-- Consequence / Tool Connection -->
+                        <div style="margin-top: 3rem; background: rgba(255, 0, 127, 0.05); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255, 0, 127, 0.3);">
+                            <h4 style="color: #fff; font-size: 1.2rem; margin-bottom: 1rem; text-align: center;">The Consequence for Bioinformatics Tools</h4>
+                            <p style="margin-bottom: 1rem;">Because tools execute math flawlessly without checking biology:</p>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                                <li>A <strong>Space Failure</strong> (coordinates) breaks <strong style="color: #b30059;">BedTools</strong>, generating an entirely corrupted FASTA output.</li>
+                                <li>A <strong>Geometry Failure</strong> (strandness) breaks <strong style="color: #ff4da6;">DESeq2</strong>, which happily outputs statistically significant, biologically false differential expression.</li>
+                                <li>A <strong>Chemistry Failure</strong> (ignoring ionic conditions) breaks <strong style="color: #ff007f;">ViennaRNA</strong>, causing it to confidently draw a hairpin structure for a molecule that cannot exist in reality.</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
