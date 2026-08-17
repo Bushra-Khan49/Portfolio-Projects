@@ -171,11 +171,12 @@
         <div class="content-column" id="smooth-wrapper">
             <div id="smooth-content" class="content-inner">
                 
+                
                 <!-- PHASE 1: THE HOOK -->
                 <section class="hero-section fade-up">
-                    <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 8</h5>
-                    <h1 class="h-primary" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">RNA</h1>
-                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">Bioinformatics algorithms do not operate on abstract letters alone. They are models of biological molecules. If your model of the molecule is wrong, the computational result can be internally consistent but biologically meaningless.</h2>
+                    <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">PHASE 1: CORE INFORMATION STORAGE</h5>
+                    <h1 class="h-primary" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">DNA</h1>
+                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">The Ultimate Archival Database of Life</h2>
                     <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
                         <div class="mouse" style="border-color: var(--accent-mod2);"></div>
                         <span style="color: var(--accent-mod2);">Scroll to Explore</span>
@@ -185,49 +186,32 @@
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">Why This Matters</h3>
-                        <p>Think back to what we've established about DNA replication and molecular fidelity. The molecules we track—DNA, RNA, and proteins—have complex physical properties, kinetic histories, and thermodynamic constraints.</p>
-                        <p>When you look at a FASTQ file or a sequencing read, it is incredibly tempting to think, "These are just strings of A, T, G, and C." But biologically, they are not just strings. They represent dynamic physical objects.</p>
-                        <p>That distinction becomes dangerously important in computational biology. A computational error does not necessarily cause a program to crash. A script can be syntactically correct, execute flawlessly, and produce a nice volcano plot while harboring a profound biological error.</p>
+                        <p>In bioinformatics, we treat DNA as the ultimate long-term archival database of life. Every instruction needed to build, maintain, and reproduce an organism is encoded inside DNA.</p>
+                        <p>Unlike RNA (temporary working copies) or proteins (functional machines), DNA is designed for long-term storage.</p>
+                        <ul style="color: #e8eaf6; padding-left: 0; list-style-type: none; line-height: 1.8; margin-top: 1rem;">
+                            <li><span style="margin-right: 8px;">🗄️</span> Store information stably</li>
+                            <li><span style="margin-right: 8px;">🛡️</span> Protect it from damage</li>
+                            <li><span style="margin-right: 8px;">🖨️</span> Copy with extremely high accuracy</li>
+                            <li><span style="margin-right: 8px;">🔧</span> Repair mistakes whenever possible</li>
+                        </ul>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">The Central Hierarchy</h3>
-                        <p>Keep this hierarchy in mind throughout bioinformatics:</p>
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">What is DNA?</h3>
+                        <p>DNA (Deoxyribonucleic Acid) is a massive, highly stable polymer composed of repeating molecular units called nucleotides. Unlike RNA, which acts as a temporary working copy, or proteins, which function as cellular machines, DNA is chemically optimized for long-term data storage.</p>
+                        <p>Every instruction needed to build, maintain, and reproduce an organism is encoded inside this structure.</p>
                         
-                        <div class="math-block" style="text-align: center; border-left-color: var(--accent-gold);">
-\[
-\text{Molecular system} \rightarrow \text{Physical behavior} \rightarrow \text{Mathematical model} \rightarrow \text{Computational prediction}
-\]
+                        <div class="highlight-box" style="margin-top: 1.5rem; text-align: center;">
+                            <p style="color: var(--text-muted); font-style: italic;">[Figure 1: Hierarchical packaging of DNA, from double helix to a condensed chromosome]</p>
                         </div>
+                        
+                        <h4 style="color: var(--accent-mod2-light); margin-top: 2rem; margin-bottom: 1rem; font-family: var(--font-display);">Think of it like a book:</h4>
                         <div class="code-box" style="text-align: center;">
-MOLECULE
-   ↓
-BIOLOGICAL PROCESS
-   ↓
-EXPERIMENT
-   ↓
-SEQUENCE
-   ↓
-FILE FORMAT
-   ↓
-COMPUTATIONAL OBJECT
-   ↓
-ALGORITHM
-   ↓
-STATISTICAL RESULT
-   ↓
-BIOLOGICAL INTERPRETATION
-                        </div>
-
-                        <h4 style="color: var(--accent-mod2-light); margin-top: 2rem; margin-bottom: 1rem; font-family: var(--font-display);">The Central Hierarchy in Practice</h4>
-                        <p>Keep this sequence of translation in mind. For example, in structure prediction:</p>
-                        <div class="math-block" style="text-align: center; border-left-color: var(--accent-orange);">
-                            <p style="font-family: var(--font-mono); font-size: 0.95rem; margin: 0;">RNA sequence → RNA structure → \(\Delta G\) → predicted structure</p>
-                        </div>
-
-                        <p>Or in modeling transcription rates:</p>
-                        <div class="math-block" style="text-align: center; border-left-color: var(--accent-purple);">
-                            <p style="font-family: var(--font-mono); font-size: 0.95rem; margin: 0;">DNA + Polymerase + NTPs → transcription → kinetic model → predicted transcription rate</p>
+Letters    →   Bases
+Words      →   Codons
+Sentences  →   Genes
+Chapters   →   Chromosomes
+Book       →   Genome
                         </div>
                     </div>
                 </section>
@@ -235,284 +219,204 @@ BIOLOGICAL INTERPRETATION
                 <!-- PHASE 2: MOLECULAR CHEMISTRY & STRUCTURE -->
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Principle 1 — DNA and RNA are not merely different alphabets</h3>
-                        <p>At the sequence level, you might see <code>ATGCGTAC</code> vs <code>AUGCGUAC</code>. It is tempting to think <code>T ↔ U</code> and therefore DNA and RNA are essentially the same thing. That is only true at a very limited information-representation level.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">DNA is Made of Repeating Nucleotides</h3>
+                        <p>Every nucleotide has three components. The sequence of these letters stores genetic information, functioning much like binary code in a computer.</p>
+                        
+                        <div class="highlight-box" style="margin-bottom: 2rem; text-align: center;">
+                            <p style="color: var(--text-muted); font-style: italic;">[Figure 2: The molecular structure of a nucleotide, detailing the phosphate, sugar, and nitrogenous base]</p>
+                        </div>
+
+                        <div class="split-text" style="grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+                            <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border-top: 3px solid var(--accent-orange);">
+                                <h4 style="color: var(--accent-orange); margin-bottom: 1rem; font-size: 1.1rem;">1. Phosphate Group</h4>
+                                <p style="font-size: 0.9rem;">Think of it as the links in a chain.</p>
+                                <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #d1d5db;">
+                                    <li>Contains phosphorus & oxygen</li>
+                                    <li>Negatively charged</li>
+                                    <li>Connects neighboring nucleotides</li>
+                                    <li>Part of the DNA backbone</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border-top: 3px solid var(--accent-purple);">
+                                <h4 style="color: var(--accent-purple); margin-bottom: 1rem; font-size: 1.1rem;">2. Deoxyribose Sugar</h4>
+                                <p style="font-size: 0.9rem;">A five-carbon sugar that gives DNA its direction.</p>
+                                <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #d1d5db;">
+                                    <li>Holds the base & phosphate</li>
+                                    <li>Lacks one oxygen compared with ribose (the sugar in RNA)</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border-top: 3px solid var(--accent-mod2);">
+                                <h4 style="color: var(--accent-mod2); margin-bottom: 1rem; font-size: 1.1rem;">3. Nitrogenous Base</h4>
+                                <p style="font-size: 0.9rem;">This is where the biological information is actually stored.</p>
+                                <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #d1d5db;">
+                                    <li>Adenine (A) - Purine</li>
+                                    <li>Thymine (T) - Pyrimidine</li>
+                                    <li>Guanine (G) - Purine</li>
+                                    <li>Cytosine (C) - Pyrimidine</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card full-width tilt-effect hover-target">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Purines vs Pyrimidines</h3>
                         
                         <div class="split-text">
                             <div>
-                                <p>The most important structural difference is the sugar backbone. DNA contains deoxyribose (<code>2'-H</code>). RNA contains ribose (<code>2'-OH</code>).</p>
-                                <p>That <span class="term-highlight">single hydroxyl group</span> has enormous physical consequences. It alters hydrogen bonding, hydration shells, local geometry, and chemical reactivity. It is the reason RNA tends to have different conformational possibilities from DNA.</p>
-                            </div>
-                            <div class="code-box" style="text-align: center;">
-             DNA                     RNA
-Sugar      deoxyribose              ribose
-              │                       │
-            2'-H                     2'-OH
-Base       A T G C                   A U G C
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Principle 2 — RNA Structural Complexity</h3>
-                        <p>DNA most commonly exists as a relatively stable double-stranded helix. RNA, however, is frequently single-stranded, but that single strand can fold back onto itself.</p>
-                        <div class="code-box">
-5' ────GGG─────CCC──── 3'
-          \     /
-           \___/
-                        </div>
-                        <p>The sequence itself contains information that allows different parts of the molecule to interact. So the computational problem becomes: <br><br><code>sequence → possible intramolecular interactions → structure</code></p>
-                    </div>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Principle 3 — Base Pairing vs Base Stacking</h3>
-                        <p>When people first learn nucleic-acid stability, they often focus on A-U and G-C pairs, thinking: "G-C has three hydrogen bonds, so it must always be more stable." That is incomplete. RNA stability also depends heavily on <span class="term-highlight">base stacking</span>.</p>
-                        <p>Adjacent aromatic bases can interact through stacking interactions. Therefore a simplified picture of RNA stability is:</p>
-                        <div class="math-block" style="border-left-color: var(--accent-orange);">
-\[ \text{stability} \sim \text{base pairing} + \text{stacking} + \text{loop effects} + \text{solvent effects} + \text{ions} + \text{conformational effects} \]
-                        </div>
-                        <p>This is why serious RNA structure prediction doesn't simply count G-C and A-U pairs.</p>
-                    </div>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Principle 4 — Nearest-Neighbor Effects & Dynamic Programming</h3>
-                        <p>The energetic contribution of one base pair can depend on the bases immediately adjacent to it. Therefore RNA folding algorithms often use <span class="term-highlight">nearest-neighbor thermodynamic parameters</span>.</p>
-                        <p>The algorithm evaluates \(\Delta G(S)\) for thousands of structures to find the minimum free energy structure: \( S^* = \arg\min_S \Delta G(S) \).</p>
-                        <p>Because the number of possible structures grows exponentially, the algorithm uses <span class="term-highlight">Dynamic Programming</span>—solving smaller subproblems (like small loops) and reusing their results. So an RNA structure predictor combines RNA thermodynamics + combinatorial optimization + dynamic programming.</p>
-                    </div>
-                </section>
-
-                <!-- THE THREE FAMILIES OF EQUATIONS -->
-                <section class="section-block fade-up" style="margin-top: 4rem;">
-                    <h2 class="h-primary" style="text-align: center; margin-bottom: 2rem;">The 3 Conceptual Families of Equations</h2>
-                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem;">Rather than memorizing every equation independently, organize them into three conceptual families: Thermodynamics, Kinetics, and Computational Modeling.</p>
-                    
-                    <!-- FAMILY A: THERMODYNAMICS -->
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-tertiary" style="margin-bottom: 1.5rem;">Family A — Thermodynamics</h3>
-                        <p><strong>Question answered: Which state is thermodynamically favored?</strong></p>
-                        
-                        <div class="math-block">
-                            <p style="color: var(--accent-orange); font-weight: bold; margin-bottom: 0.5rem;">Gibbs Free Energy Equation:</p>
-                            \[ \Delta G = \Delta H - T\Delta S \]
-                        </div>
-                        
-                        <p>Before understanding the equation, understand the symbol <strong>\(\Delta\)</strong>. It means "change" (\(\Delta G = G_{\text{final}} - G_{\text{initial}}\)). We're asking what happens to the state when the system goes from unfolded to folded.</p>
-                        
-                        <ul style="padding-left: 1.5rem; line-height: 1.8;">
-                            <li><span class="term-highlight">\(\Delta H\) (Enthalpy):</span> Captures changes in energetic interactions (hydrogen bonds, stacking, solvent interactions). If favorable, \(\Delta H < 0\).</li>
-                            <li><span class="term-highlight">\(\Delta S\) (Entropy):</span> Reflects how many microscopic states are accessible. Boltzmann expressed this as \(S = k_B\ln\Omega\). An unfolded RNA has many configurations (\(\Omega\) is large). A folded RNA is constrained (\(\Omega\) is small). Thus, folding carries an entropic penalty (\(\Delta S < 0\)).</li>
-                            <li><span class="term-highlight">\(T\) (Temperature):</span> Controls the balance. Since \(\Delta S\) is negative during folding, the \(-T\Delta S\) term becomes positive, opposing folding. Higher temperature makes folding less favorable.</li>
-                        </ul>
-
-                        <div class="highlight-box" style="margin-top: 2rem;">
-                            <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 1rem;">The Boltzmann Distribution</h4>
-                            <p><strong>Question answered: How does free energy influence the population of molecular states?</strong></p>
-                            <div class="math-block" style="border-left-color: var(--accent-gold);">
-\[ P_i = \frac{e^{-G_i/(RT)}}{\sum_j e^{-G_j/(RT)}} \]
-                            </div>
-                            <p>An algorithm might find the single structure with the lowest \(\Delta G\). But real RNA molecules populate an <em>ensemble</em> of conformations. A state with lower free energy is more probable, but other states can still have nonzero probability. The quantity \(RT\) represents the thermal-energy scale.</p>
-                        </div>
-                    </div>
-
-                    <!-- FAMILY B: KINETICS -->
-                    <div class="glass-card full-width tilt-effect hover-target" style="margin-top: 2rem;">
-                        <h3 class="h-quaternary" style="margin-bottom: 1.5rem;">Family B — Kinetics</h3>
-                        <p>Thermodynamics asks: <em>Which state is energetically favored?</em> Kinetics asks: <em>How quickly does the system move between states?</em></p>
-                        
-                        <div class="split-text">
-                            <div>
-                                <p><strong>Question answered: What chemical event corresponds to nucleotide incorporation?</strong></p>
-                                <div class="math-block" style="border-left-color: var(--accent-purple);">
-\[ NTP + RNA_n \rightarrow RNA_{n+1} + PP_i \]
-                                </div>
-                                <p>The terminal two phosphates leave as Pyrophosphate (\(PP_i\)), breaking bonds to drive transcription kinetics.</p>
+                                <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Purines (larger)</h4>
+                                <p><strong>A (Adenine) & G (Guanine)</strong></p>
+                                <p>Structure: Complex double-ring molecules consisting of a six-membered pyrimidine ring fused to a five-membered imidazole ring. They are larger and bulkier.</p>
                             </div>
                             <div>
-                                <p><strong>Question answered: How quickly is RNA being produced?</strong></p>
-                                <div class="math-block" style="border-left-color: var(--accent-purple);">
-\[ v = \frac{d[RNA]}{dt} \]
-                                </div>
-                                <p>Polymerase speed depends on nucleotide availability, template sequence, pausing, and termination. The derivative represents how rapidly concentration changes with time.</p>
+                                <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Pyrimidines (smaller)</h4>
+                                <p><strong>C (Cytosine) & T (Thymine)</strong></p>
+                                <p>Structure: Simpler single-ring molecules (a six-membered aromatic ring).</p>
+                                <p style="font-size: 0.85rem; color: var(--accent-purple);"><em>Note: In RNA, Thymine is replaced by Uracil (U), which lacks one methyl group but retains the Pyrimidine Core.</em></p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- FAMILY C: COMPUTATIONAL MODELING -->
-                    <div class="glass-card full-width tilt-effect hover-target" style="margin-top: 2rem;">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Family C — Computational Modeling</h3>
-                        <p><strong>Question answered: How similar are two sequences according to our chosen scoring model?</strong></p>
                         
-                        <div class="math-block" style="border-left-color: var(--accent-mod2-light);">
-\[ Score = \sum s(x_i,y_i) + \text{gap penalties} \]
+                        <div class="math-block" style="text-align: center; border-left-color: var(--accent-mod2); margin-top: 2rem;">
+                            <p style="margin: 0; font-size: 1.1rem; color: white;">A large base (Purine) always pairs with a small base (Pyrimidine).</p>
+                            <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.95rem;">This strictly maintains a uniform 2 nm diameter across the entire DNA double helix.</p>
                         </div>
-                        <p>Real alignment algorithms distinguish between gap opening and gap extension. The algorithm isn't measuring chemical energy; it is estimating sequence similarity according to a mathematical model, which serves as a proxy for biological homology.</p>
                     </div>
                 </section>
 
-                <!-- THE ABSTRACTION AND ERROR PROPAGATION -->
                 <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">The Most Abstract Equations: Representation & Error</h3>
-                        <p>You have the actual biological object (\(X\)). But we cannot put a physical molecule into a computer. We create a representation (\(\hat{X}\)).</p>
-                        
-                        <div class="math-block" style="text-align: center;">
-\[ \hat{X} \approx X \]
+                    <div class="split-text">
+                        <div class="glass-card tilt-effect hover-target" style="height: 100%;">
+                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The DNA Backbone</h3>
+                            <p>The backbone consists of alternating Sugar and Phosphate molecules.</p>
+                            <p>Nucleotides are connected by <span class="term-highlight">phosphodiester bonds</span>, creating a strong covalent framework that gives DNA its chemical stability.</p>
+                            <div class="highlight-box" style="margin-top: 2rem; text-align: center;">
+                                <p style="color: var(--text-muted); font-style: italic; font-size: 0.9rem;">[Figure 3: The sugar-phosphate backbone and phosphodiester bonds forming the DNA framework]</p>
+                            </div>
                         </div>
-                        <p>The FASTA sequence is \(\hat{X}\). It lacks atoms, bonds, solvent, and dynamics. We hope \(\hat{X} \approx X\) for the question we are asking. "Good representation" means representation appropriate to the question.</p>
-
-                        <h4 style="color: var(--accent-orange); margin-top: 2rem; font-size: 1.2rem;">What happens when the input is wrong?</h4>
-                        <p>Your computational method \(f\) transforms an input into an output (\(Y = f(X)\)). But your pipeline uses the representation \(\hat{X}\). So your output becomes:</p>
-                        <div class="math-block" style="border-left-color: #ff4757; text-align: center;">
-\[ \hat{Y} = f(\hat{X}) \]
+                        <div class="glass-card tilt-effect hover-target" style="height: 100%;">
+                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Antiparallel Strands & Direction</h3>
+                            <p>One strand runs <strong>5' → 3'</strong> and the other <strong>3' → 5'</strong>.</p>
+                            <p>DNA polymerases synthesize DNA only in the 5' → 3' direction. This directionality determines replication, transcription, and primer placement.</p>
                         </div>
-                        <p>The difference between what you wanted and what you got is the error:</p>
-                        <div class="math-block" style="border-left-color: #ff4757; text-align: center;">
-\[ \hat{Y} - Y = f(\hat{X}) - f(X) \]
-                        </div>
-                        <p>If a coordinate parsing error deletes one nucleotide from \(\hat{X}\), your structure predictor \(f\) will execute perfectly and calculate a \(\Delta G\) for \(\hat{X}\). The algorithm worked flawlessly, but the output belongs to a molecule that doesn't physically exist.</p>
                     </div>
                 </section>
 
-                <!-- PHASE 3: SUMMARY & REFERENCE TABLES -->
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Reference: The Depth of Representation</h3>
-                        <p>You don't need to know every chemical detail of DNA and RNA before doing bioinformatics. Rather, you need to know which molecular properties are relevant to the computational problem you are solving.</p>
-                        <div class="table-container">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">DNA Bases Pair Specifically</h3>
+                        <p>Adenine pairs only with Thymine. Guanine pairs only with Cytosine.</p>
+                        <p>This complementary pairing allows each strand to serve as a template for copying.</p>
+                        
+                        <div class="highlight-box" style="margin-bottom: 2rem; text-align: center;">
+                            <p style="color: var(--text-muted); font-style: italic;">[Figure 4: Complementary base pairing showing the 2 hydrogen bonds of A-T and 3 bonds of G-C]</p>
+                        </div>
+
+                        <div class="split-text" style="gap: 1rem;">
+                            <div class="math-block" style="text-align: center; border-left-color: #4ade80; margin: 0;">
+                                <h4 style="color: #4ade80; font-size: 1.2rem; margin-bottom: 0.5rem;">A = T</h4>
+                                <p style="color: white; margin: 0;">(2 Hydrogen Bonds)</p>
+                            </div>
+                            <div class="math-block" style="text-align: center; border-left-color: #60a5fa; margin: 0;">
+                                <h4 style="color: #60a5fa; font-size: 1.2rem; margin-bottom: 0.5rem;">G ≡ C</h4>
+                                <p style="color: white; margin: 0;">(3 Hydrogen Bonds)</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1.5rem; text-align: center; color: var(--text-muted);">GC-rich DNA requires more energy to separate due to the extra bond.</p>
+                    </div>
+                </section>
+
+                <!-- PACKAGING AND GROOVES -->
+                <section class="section-block fade-up">
+                    <div class="glass-card full-width tilt-effect hover-target">
+                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Chromosomes & Packaging</h3>
+                        <p>DNA is extremely long. If stretched out, the DNA from a single human cell would measure roughly 2 meters, yet it fits perfectly into a microscopic nucleus only a few micrometers wide. This requires highly organized, hierarchical packaging.</p>
+                        <p>The double helix wraps around octamers of proteins called <span class="term-highlight">core histones</span> (H2A, H2B, H3, H4) to form nucleosomes ("beads on a string"). Crucially, a special linker protein called <strong>Histone H1</strong> acts as a "clip" that binds to the DNA as it enters and exits the nucleosome, locking the structure together and allowing it to further compact into a dense 30 nm fiber.</p>
+                        
+                        <div class="highlight-box" style="margin-top: 2rem; text-align: center;">
+                            <p style="color: var(--text-muted); font-style: italic;">[Figure 5: DNA wrapped around the histone core. Histone H1 (linker) binds the structure to lock the DNA in place]</p>
+                        </div>
+
+                        <h4 style="color: var(--accent-mod2); margin-top: 3rem; margin-bottom: 1rem; font-size: 1.2rem;">Major and Minor Grooves</h4>
+                        <p>As DNA twists, it creates two alternating grooves: the <strong>Major Groove</strong> and the <strong>Minor Groove</strong>.</p>
+                        <div class="highlight-box" style="margin-top: 1.5rem; margin-bottom: 1.5rem; text-align: center;">
+                            <p style="color: var(--text-muted); font-style: italic;">[Figure 6: A 3D orbital view of the double helix highlighting the distinct major and minor grooves]</p>
+                        </div>
+                        <p>Many proteins—including transcription factors—bind DNA by reading patterns exposed in the major (wider) groove.</p>
+                    </div>
+                </section>
+
+                <!-- CONNECTION TO BIOINFORMATICS -->
+                <section class="section-block fade-up">
+                    <div class="glass-card full-width tilt-effect hover-target">
+                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Connection to Bioinformatics</h3>
+                        <p>The physical and chemical structures you explored above form the foundational rules for all computational biology algorithms. Here is a summary of how the structural biology of DNA directly translates into bioinformatics:</p>
+                        
+                        <div class="table-container" style="margin-top: 2rem; margin-bottom: 3rem;">
                             <table class="bio-table">
                                 <tr>
-                                    <th>Bioinformatics Task</th>
-                                    <th>Molecular Knowledge That Matters</th>
+                                    <th>DNA Property</th>
+                                    <th>Bioinformatics Application</th>
                                 </tr>
                                 <tr>
-                                    <td>FASTQ Parsing</td>
-                                    <td>Sequence representation, orientation, alphabet</td>
+                                    <td>Base Sequence</td>
+                                    <td>Genome Assembly</td>
                                 </tr>
                                 <tr>
-                                    <td>Genomic Coordinate Extraction</td>
-                                    <td>Genome representation, strand, coordinate conventions</td>
+                                    <td>Complementarity</td>
+                                    <td>Read Mapping</td>
                                 </tr>
                                 <tr>
-                                    <td>RNA-Seq Alignment</td>
-                                    <td>Sequence complementarity, splicing, strandness</td>
+                                    <td>5' → 3' Direction</td>
+                                    <td>Alignment Algorithms</td>
                                 </tr>
                                 <tr>
-                                    <td>Transcript Quantification</td>
-                                    <td>Transcript structure, isoforms, annotation</td>
+                                    <td>Mutations</td>
+                                    <td>Variant Calling</td>
                                 </tr>
                                 <tr>
-                                    <td>RNA Structure Prediction</td>
-                                    <td>Base pairing, stacking, thermodynamics</td>
+                                    <td>Conservation</td>
+                                    <td>Evolutionary Analysis</td>
                                 </tr>
                                 <tr>
-                                    <td>Protein Structure Prediction</td>
-                                    <td>Amino-acid chemistry, folding, energetics</td>
+                                    <td>Grooves & Packaging</td>
+                                    <td>Epigenomics / Motif Discovery</td>
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                </section>
 
-                <!-- REAL WORLD PIPELINE EXAMPLES -->
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">Pipeline Realities: FASTA vs FASTQ & Coordinates</h3>
-                        
                         <div style="border-left: 3px solid var(--accent-orange); padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">FASTA vs FASTQ (Error vs Uncertainty)</h4>
-                            <p>FASTA represents sequence identity. FASTQ represents sequence + <span class="term-highlight">measurement uncertainty</span>. The FASTQ quality score (\(Q\)) is translated mathematically: \(P_e = 10^{-Q/10}\). A read isn't simply a string; it is an observation with quantitative uncertainty. Bioinformatics must minimize <strong>error</strong> (extracting the wrong sequence) while propagating <strong>uncertainty</strong> (how much we trust a base call).</p>
+                            <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Base Sequence → Genome Assembly</h4>
+                            <p>Because DNA is a linear sequence of nucleotides, bioinformatics treats the genome as a massive text string. Genome Assembly algorithms (like De Bruijn graphs) stitch millions of short string fragments back together based on overlapping sequences.</p>
                         </div>
 
                         <div style="border-left: 3px solid var(--accent-purple); padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Sequence Orientation & Strandness</h4>
-                            <p>A sequence <code>5' - ATGC - 3'</code> has a reverse complement <code>5' - GCAT - 3'</code>. If your pipeline ignores strand information in RNA-seq, it can assign reads to the wrong overlapping gene on the opposite strand. Orientation is not cosmetic; it is physical reality.</p>
+                            <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Complementarity → Read Mapping</h4>
+                            <p>The strict rule that Purines pair with Pyrimidines (A=T, G≡C) guarantees that one strand perfectly dictates the other. Read Mapping algorithms (like BWA) exploit this complementarity to map short sequencer reads to a reference genome. If a sequencer reads "ATGC", the algorithm computationally searches the genome for the complementary "TACG" binding site.</p>
                         </div>
 
                         <div style="border-left: 3px solid var(--accent-mod2-light); padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: var(--accent-mod2-light); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Coordinate Systems & Splicing</h4>
-                            <p>There are two major coordinate conventions: <strong>1-based inclusive</strong> and <strong>0-based half-open</strong>. That one-character difference creates an off-by-one error, potentially shifting the reading frame of every downstream codon. Furthermore, genomic coordinate space \(\neq\) transcript coordinate space due to splicing. RNA-seq alignment isn't finding a string; it is finding where RNA originated across discontinuous genomic regions.</p>
+                            <h4 style="color: var(--accent-mod2-light); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">5' → 3' Direction → Alignment Algorithms</h4>
+                            <p>Because the two strands run in opposite directions, computational biologists must always account for both directions. When designing PCR Primers or using Alignment Algorithms, tools automatically generate the "reverse complement" of a sequence to ensure the computational model aligns with the physical reality of the antiparallel double helix.</p>
                         </div>
 
-                        <!-- Restored Application Examples -->
-                        <div style="border-left: 3px solid #ff4da6; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #ff4da6; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Sequence Representation in RNA-Seq</h4>
-                            <p><strong>DESeq2</strong> identifies differentially expressed genes by analyzing count matrices. This works because the algorithm assumes the count matrix represents accurate genomic annotations extracted upstream. If your pipeline accidentally extracted sequences from the wrong strand or used a 0-based coordinate system incorrectly, the sequence representation is flawed. <strong>DESeq2</strong> does not know this; it will happily process the flawed counts and output a statistically significant, biologically false result.</p>
+                        <div style="border-left: 3px solid #4ade80; padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: #4ade80; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Mutations → Variant Calling</h4>
+                            <p>By comparing a patient's DNA string to a reference string, bioinformaticians perform Variant Calling to find mutations (SNPs or structural changes) responsible for genetic diseases or cancer.</p>
                         </div>
 
-                        <div style="border-left: 3px solid #ff007f; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #ff007f; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Thermodynamics in Structure Prediction</h4>
-                            <p>Algorithms like <strong>ViennaRNA</strong> predict secondary structures by minimizing free energy. This works because it calculates \(\Delta G\) using rigorous thermodynamic parameters derived for RNA chemistry. If your input is inadvertently DNA—or if you fail to account for ionic conditions—the algorithm will still execute perfectly and draw a beautiful hairpin structure. However, because the underlying molecular representation is wrong, the structure belongs to a molecule that doesn't physically exist.</p>
+                        <div style="border-left: 3px solid #60a5fa; padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: #60a5fa; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Conservation → Evolutionary Analysis</h4>
+                            <p>Because critical genes (like those coding for ribosomes) are highly conserved across species, bioinformatics applications can compare DNA sequences across different organisms. This allows us to construct phylogenetic trees and trace evolutionary history over millions of years.</p>
                         </div>
 
-                        <div style="border-left: 3px solid #b30059; padding-left: 1.5rem; margin-top: 2rem;">
-                            <h4 style="color: #b30059; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Coordinate Parsing & Sequence Extraction</h4>
-                            <p>Tools like <strong>BedTools</strong> rely entirely on strict coordinate conventions. A genome annotation (e.g., <code>chr7:55,086,724-55,275,031</code>) seems purely computational. But those coordinates map to physical DNA. If you parse an inclusive boundary as exclusive, you shift the reading frame. The downstream FASTA file is generated flawlessly, yet the biological object it represents has been completely corrupted.</p>
+                        <div style="border-left: 3px solid var(--accent-gold); padding-left: 1.5rem; margin-top: 2rem;">
+                            <h4 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Grooves & Packaging → Epigenomics / Motif Discovery</h4>
+                            <p>Since proteins "read" the chemical signatures exposed in the grooves, tools scan DNA for Motifs to predict transcription factor binding. Furthermore, because DNA wraps tightly around Histone H1, Epigenomic pipelines (like ATAC-Seq) map exactly which parts of the genome are physically unwound and accessible, and which are locked away on histones.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- PHASE 4: SUMMARY & ERROR PROPAGATION -->
-                <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1.5rem;">The Mental Framework: Mapping to Physical Reality</h3>
-                        <p>Whenever you encounter a new bioinformatics method, you must explicitly map it back to physical reality by establishing seven crucial parameters:</p>
-                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8;">
-                            <li><span class="term-highlight">Biological Object Identification:</span> Clearly define whether the algorithm models DNA, RNA, Protein, a Cell, or a Population.</li>
-                            <li><span class="term-highlight">Data Generation Physics:</span> Establish the physical process that produced the data, such as Transcription, Sequencing, or Binding interactions.</li>
-                            <li><span class="term-highlight">Computational Abstraction:</span> Identify how the object is represented digitally, whether through FASTA, FASTQ, BAM, or a Count Matrix.</li>
-                            <li><span class="term-highlight">Mathematical Translation:</span> Determine the specific mathematical model governing the computation, such as \(\Delta G\), Probability logic, or an Alignment Score.</li>
-                            <li><span class="term-highlight">Model Assumptions:</span> Explicitly declare the hidden assumptions the model makes about the biology, which is often the most critical point of failure.</li>
-                            <li><span class="term-highlight">Information Attrition:</span> Acknowledge the physical information lost during representation, such as losing physical molecular dynamics when converting to a flat FASTA string.</li>
-                            <li><span class="term-highlight">Error Propagation:</span> Trace precisely where errors will propagate in the pipeline if the initial molecular representation is chemically or physically incorrect.</li>
-                        </ul>
-
-                        <div class="highlight-box" style="margin-top: 3rem; background: rgba(0,0,0,0.4);">
-                            <h4 style="color: #ff4757; font-family: var(--font-display); margin-bottom: 1rem; font-size: 1.3rem;">The Deepest Bioinformatics Lesson</h4>
-                            <div class="code-box" style="text-align: center; border-color: #ff4757;">
-REAL BIOLOGY
-     ↓
-incorrect representation X̂
-     ↓
-correct algorithm
-     ↓
-correct computation
-     ↓
-incorrect biological conclusion
-                            </div>
-                            <div class="math-block" style="border-left-color: #ff4757; text-align: center; margin-top: 2rem; background: rgba(255, 71, 87, 0.05);">
-                                <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757;">Excellent computation + Wrong model = Precisely wrong answer</p>
-                            </div>
-                        </div>
-
-                        <!-- Restored Consequence Summary -->
-                        <div class="highlight-box" style="margin-top: 3rem; background: rgba(0,0,0,0.4);">
-                            <h4 style="color: var(--accent-mod2); font-family: var(--font-display); margin-bottom: 1rem; font-size: 1.3rem;">If Flawless Understanding Did Not Exist</h4>
-                            <p>The cost of a silent error is profound. If we fail to properly represent the molecular biology:</p>
-                            <ul style="padding-left: 1.5rem; margin-top: 1rem; line-height: 1.8; color: #e8eaf6;">
-                                <li><strong>Computational Cost:</strong> We waste days running alignments and enrichment analyses on corrupted inputs.</li>
-                                <li><strong>Storage Cost:</strong> Massive BAM files are generated and stored unnecessarily.</li>
-                                <li><strong>Interpretation Cost:</strong> We spend precious time investigating a biological signal that isn't real.</li>
-                                <li><strong>Scientific Cost:</strong> A wrong computational assumption becomes a published, incorrect biological claim.</li>
-                            </ul>
-                            
-                            <div class="math-block" style="border-left-color: #ff4757; text-align: center; margin-top: 2rem; background: rgba(255, 71, 87, 0.05);">
-                                <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757;">Wrong + Program Crashed = Easy to fix.</p>
-                                <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757; margin-top: 0.5rem;">Wrong + Plausible-Looking = Dangerous science.</p>
-                            </div>
-                        </div>
-                        
-                        <p style="margin-top: 2rem; font-size: 1.1rem; text-align: center; font-style: italic; color: var(--accent-mod2-light);">"A sophisticated algorithm cannot compensate for an incorrect biological input representation unless it explicitly models that uncertainty."</p>
-
-                    </div>
-                </section>
-                
                 <!-- PHASE 5: NAVIGATION -->
                 <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
                     <a href="../Topic 7 Domain Summary/index.html" style="text-decoration: none;">
