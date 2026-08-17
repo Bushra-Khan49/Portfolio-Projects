@@ -207,8 +207,8 @@ p {
 }
 
 .glass-card:hover {
-    border-color: rgba(94, 106, 210, 0.8);
-    box-shadow: 0 0 30px rgba(0, 229, 255, 0.3), 0 0 60px rgba(255, 0, 127, 0.15);
+    border-color: rgba(255, 0, 127, 0.8);
+    box-shadow: 0 0 30px rgba(255, 0, 127, 0.3), 0 0 60px rgba(255, 0, 127, 0.15);
     top: -12px;
 }
 
