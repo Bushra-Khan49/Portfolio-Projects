@@ -335,16 +335,19 @@
 
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Computational Solution: Nearest-Neighbors & Dynamic Programming</h3>
-                        <p>Because vertical stacking energy is so powerful, the energetic contribution of a single base pair cannot be calculated in isolation. It depends entirely on the bases immediately stacked above and below it. To capture this physical reality, RNA folding algorithms rely on <span class="term-highlight">nearest-neighbor thermodynamic parameters</span>.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Computational Challenge of Physical Reality</h3>
                         
-                        <p>But introducing these parameters creates a massive computational problem. For an RNA molecule just a few hundred bases long, there are an astronomical number of ways it could potentially fold. If a computer tried to calculate the total energy (\(\Delta G(S)\)) of every possible shape one by one to find the most stable one (\( S^* = \arg\min_S \Delta G(S) \)), the universe would end before it finished.</p>
+                        <p>Because vertical stacking energy is so powerful, we cannot calculate the strength of a single base pair in isolation. Its strength depends entirely on the bases immediately stacked above and below it. In bioinformatics, this physical reality is captured using <span class="term-highlight">Nearest-Neighbor Models</span>.</p>
+                        
+                        <p>Imagine trying to predict the stability of a brick wall. You can't just look at one brick; you have to look at how it rests on the bricks beneath it and supports the bricks above it. The Nearest-Neighbor model does exactly this for RNA bases.</p>
 
-                        <p>To solve this, algorithms use <span class="term-highlight">Dynamic Programming</span>. Rather than calculating the whole molecule at once, the algorithm breaks the sequence into tiny fragments, solves the optimal folding energy for those small subproblems (like a single hairpin loop), and intelligently reuses those answers to build up the final shape without repeating calculations.</p>
+                        <p>But introducing this physical realism creates a massive computational problem. If an algorithm has to consider every base pair <em>in the context of its neighbors</em>, the number of ways a simple RNA molecule could potentially fold becomes astronomical. If a computer tried to calculate the total energy of every possible shape one by one, the universe would end before it finished.</p>
+
+                        <p>How computer scientists solve this massive combinatorial puzzle—using clever algorithms to find the most stable structure without checking every single one—is a topic we will explore in later modules. For now, the key takeaway is this:</p>
                         
                         <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 0, 127, 0.05); border: 1px solid rgba(255, 0, 127, 0.3); border-radius: 8px; text-align: center;">
                             <p style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-mod2-light); margin: 0;">
-                                <strong style="color: #fff;">RNA Structure Prediction</strong> = (RNA Thermodynamics) + (Combinatorial Optimization) + (Dynamic Programming)
+                                <strong style="color: #fff;">Bioinformatics Models</strong> must prioritize physical reality (like Base Stacking) over computational simplicity.
                             </p>
                         </div>
                     </div>
