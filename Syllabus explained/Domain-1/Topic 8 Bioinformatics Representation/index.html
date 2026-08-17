@@ -261,15 +261,28 @@
                 </section>
 
                 <section class="section-block fade-up">
-                    <div class="glass-card full-width tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">RNA Structural Complexity</h3>
-                        <p>DNA most commonly exists as a relatively stable double-stranded helix. RNA, however, is frequently single-stranded, but that single strand can fold back onto itself.</p>
-                        <div class="code-box">
+                    <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Why Does RNA Fold (and DNA Doesn't)?</h3>
+                    <div class="card-grid">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h4 style="color: var(--accent-mod2-light); margin-bottom: 1rem; font-size: 1.2rem;">The Search for Stability</h4>
+                            <p>DNA is almost always bound to a complementary partner strand. Its bases are fully paired and safely locked inside the stable double helix. It has no chemical "need" to fold back on itself.</p>
+                            <p>RNA, however, is synthesized as a single strand. In the watery environment of the cell, exposed chemical bases are thermodynamically unstable. To achieve a lower, more stable energy state, the RNA strand desperately searches for a partner. Lacking a separate complementary strand, it searches its <em>own</em> sequence for complementary regions and folds back on itself to pair up.</p>
+                            <div class="code-box" style="text-align: center; background: rgba(255, 0, 127, 0.05); border: 1px solid rgba(255, 0, 127, 0.3); margin-top: 1.5rem; color: #fff;">
 5' ────GGG─────CCC──── 3'
           \     /
            \___/
+                            </div>
                         </div>
-                        <p>The sequence itself contains information that allows different parts of the molecule to interact. So the computational problem becomes: <br><br><code>sequence → possible intramolecular interactions → structure</code></p>
+                        
+                        <div class="glass-card tilt-effect hover-target">
+                            <h4 style="color: var(--accent-mod2-light); margin-bottom: 1rem; font-size: 1.2rem;">The Power of the 2'-OH Group</h4>
+                            <p>This is where the chemical difference we just looked at becomes critical. That single <span class="term-highlight">2'-OH</span> group on the RNA sugar backbone acts as an extra "hook" for hydrogen bonding.</p>
+                            <p>While DNA is locked into a rigid, predictable helix, the extra hydrogen bonds in RNA allow it to twist into incredibly complex 3D shapes (like tRNA or the ribosome itself). RNA doesn't just store information; its structure allows it to act like a molecular machine.</p>
+                            <p style="margin-top: 1rem;">Because the sequence entirely dictates how the molecule will fold, the core computational challenge in RNA bioinformatics becomes:</p>
+                            <div class="math-block" style="border-left-color: var(--accent-mod2-light); text-align: center; padding: 1rem;">
+                                <code>sequence → intramolecular interactions → 3D structure</code>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
