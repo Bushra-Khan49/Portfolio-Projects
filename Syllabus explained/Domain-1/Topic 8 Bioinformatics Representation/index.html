@@ -285,20 +285,24 @@
                         </div>
                     </div>
                 </section>
-
-                <section class="card-grid section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Base Pairing</h3>
-                        <p>When people first learn nucleic-acid stability, they often focus on A-U and G-C pairs, thinking: "G-C has three hydrogen bonds, so it must always be more stable." That is incomplete. RNA stability also depends heavily on <span class="term-highlight">base stacking</span>.</p>
-                        <p>Adjacent aromatic bases can interact through stacking interactions.</p>
-                    </div>
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Base Stacking</h3>
-                        <p>Therefore a simplified picture of RNA stability is:</p>
-                        <div class="math-block" style="border-left-color: var(--accent-orange); padding: 1rem; overflow-x: auto;">
-\[ \text{stability} \sim \text{base pairing} + \text{stacking} + \text{loop effects} + \text{solvent effects} + \text{ions} + \text{conformational effects} \]
+                <section class="section-block fade-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--accent-mod2-light);">So, if RNA folds on itself to find thermodynamic stability, how exactly does it hold those folded shapes together? Computational models must calculate the energy of two primary physical forces:</p>
+                    
+                    <div class="card-grid">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">1. Base Pairing (Horizontal Bonds)</h3>
+                            <p>When an RNA strand folds back, the bases connect horizontally across the gap using hydrogen bonds. This is the classic <strong>Watson-Crick base pairing</strong> (A-U and G-C).</p>
+                            <p>When people first learn biology, they often stop here, thinking: <em>"G-C has three hydrogen bonds, so just count the G-C pairs to find the most stable structure."</em> However, in computational biology, relying only on horizontal hydrogen bonds is incomplete. An algorithm that just counts pairs will fail to predict the true structure.</p>
                         </div>
-                        <p>This is why serious RNA structure prediction doesn't simply count G-C and A-U pairs.</p>
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">2. Base Stacking (Vertical Bonds)</h3>
+                            <p>The chemical bases of RNA are flat, aromatic rings. Because they are hydrophobic (water-fearing), they pack tightly on top of each other like a stack of coins to hide from the surrounding water.</p>
+                            <p>This vertical <span class="term-highlight">Pi-Pi stacking</span> provides massive thermodynamic stability—often contributing even more stabilizing energy than horizontal base pairing! Therefore, a true computational model of RNA stability looks like this:</p>
+                            <div class="math-block" style="border-left-color: var(--accent-orange); padding: 1rem; overflow-x: auto;">
+\[ \text{stability} \sim \text{base pairing} + \text{stacking} + \text{loop penalties} + \text{solvent} \]
+                            </div>
+                            <p style="margin-top: 1rem;">This is why serious structure prediction algorithms don't just evaluate individual pairs; they evaluate the energy of <em>stacked pairs</em> (e.g., a G-C pair stacked vertically on top of an A-U pair).</p>
+                        </div>
                     </div>
                 </section>
 
