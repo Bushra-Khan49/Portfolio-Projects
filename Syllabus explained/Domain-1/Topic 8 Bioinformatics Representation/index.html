@@ -242,10 +242,6 @@
                         <h3 class="h-secondary" style="margin-bottom: 1.5rem;">What is the Difference Between DNA and RNA?</h3>
                         <p style="margin-bottom: 2rem;">At the sequence level, you might see <code>ATGCGTAC</code> vs <code>AUGCGUAC</code>. It is tempting to think <code>T ↔ U</code> and therefore DNA and RNA are essentially the same thing. That is only true at a very limited information-representation level.</p>
                         
-                        <div style="margin: 3rem 0;">
-                            <img src="topic_8_dna_rna.jpg" alt="Structural consequences of the 2'-hydroxyl group: DNA vs RNA" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                        </div>
-
                         <div class="card-grid" style="margin-bottom: 0; gap: 2rem;">
                             <div style="background: rgba(255, 0, 127, 0.03); border: 1px solid rgba(255, 0, 127, 0.15); border-radius: 12px; padding: 2rem;">
                                 <p>The most important structural difference is the sugar backbone. DNA contains deoxyribose (<code>2'-H</code>). RNA contains ribose (<code>2'-OH</code>).</p>
@@ -285,6 +281,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div style="margin: 3rem 0;">
+                            <img src="topic_8_dna_rna.jpg" alt="Structural consequences of the 2'-hydroxyl group: DNA vs RNA" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 2: Structural consequences of the 2'-hydroxyl group: DNA vs RNA.</p>
+                        </div>
                     </div>
                 </section>
 
@@ -301,6 +302,10 @@
                                     <p style="font-family: var(--font-mono); color: var(--accent-mod2-light); margin-bottom: 1rem;">5' - <span style="text-decoration: underline;">G G G</span> U C A <span style="text-decoration: underline;">C C C</span> - 3'</p>
                                     <p style="font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 0.5rem; color: #fff;">Folds into a Hairpin Loop:</p>
                                     <p style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.4; color: var(--accent-mod2-light); margin-bottom: 0;">The <strong style="color:#fff;">G G G</strong> bonds with the <strong style="color:#fff;">C C C</strong>, causing the intermediate <strong style="color:#fff;">U C A</strong> to bulge out into an unpaired loop.</p>
+                                </div>
+                                <div style="margin: 2rem 0;">
+                                    <img src="topic_8_search_for_stability.jpg" alt="RNA folding to search for stability" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 3: RNA's search for thermodynamic stability.</p>
                                 </div>
                             </div>
                             
@@ -329,7 +334,7 @@
                                 <p>However, an algorithm that just counts pairs will completely fail to predict the true structure. Why? Because counting pairs ignores the severe energy penalties of forcing the backbone into tight, unnatural loops, and it entirely ignores the massive energy contribution of the second force: Base Stacking.</p>
                                 <div style="margin: 2rem 0;">
                                     <img src="topic_8_base_pairing.jpg" alt="RNA Base Pairing" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 2: Watson-Crick base pairing and loop formation. Note that simple pairing counts do not equal thermodynamic stability.</p>
+                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 4: Watson-Crick base pairing and loop formation. Note that simple pairing counts do not equal thermodynamic stability.</p>
                                 </div>
                             </div>
                             <div class="glass-card tilt-effect hover-target" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
@@ -342,7 +347,7 @@
                                 <p>This is why serious structure prediction algorithms don't just evaluate individual pairs; they evaluate the energy of <em>stacked pairs</em> (e.g., a G-C pair stacked vertically on top of an A-U pair).</p>
                                 <div style="margin: 2rem 0;">
                                     <img src="topic_8_base_stacking.jpg" alt="RNA Base Stacking" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 3: Pi-Pi stacking of RNA bases. This hydrophobic exclusion provides massive thermodynamic stability.</p>
+                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 5: Pi-Pi stacking of RNA bases. This hydrophobic exclusion provides massive thermodynamic stability.</p>
                                 </div>
                             </div>
                         </div>
@@ -369,7 +374,7 @@
 
                         <div style="margin: 2rem 0;">
                             <img src="topic_8_computational_challenge.jpg" alt="The Computational Challenge of Physical Reality" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 4: The Nearest-Neighbor model and the combinatorial explosion of potential RNA folding structures.</p>
+                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 6: The Nearest-Neighbor model and the combinatorial explosion of potential RNA folding structures.</p>
                         </div>
                     </div>
                 </section>
