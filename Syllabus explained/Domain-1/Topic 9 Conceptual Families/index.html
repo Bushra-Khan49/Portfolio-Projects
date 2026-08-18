@@ -241,10 +241,6 @@
                     <!-- FAMILY A: THERMODYNAMICS -->
                     <div class="glass-card full-width tilt-effect hover-target">
                         <h3 class="h-tertiary" style="margin-bottom: 1.5rem;">Thermodynamics & Gibbs Free Energy (ΔG)</h3>
-                        <div style="margin: 2rem 0;">
-                            <img src="topic_9_thermodynamics.jpg" alt="Thermodynamics of protein/RNA folding" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 1: The folding funnel. Native states occupy the global minimum of the Gibbs Free Energy landscape.</p>
-                        </div>
                         <p>Which molecular state is thermodynamically favored? The probability of a state existing is determined by the balance of energy and entropy.</p>
                         
                         <div class="math-block">
@@ -275,6 +271,11 @@
                             </ul>
                             
                             <p style="margin-top: 1rem;">Think of it like a valley. An algorithm might find the single structure with the lowest \(\Delta G\) (the deepest valley). But real RNA molecules populate an <em>ensemble</em> of conformations. A state in a deep, stable valley has a high probability, but states in shallower valleys still have nonzero probability. The enzyme doesn't actively "decide"—it simply lets thermal physics do the filtering.</p>
+                        </div>
+                        
+                        <div style="margin: 2rem 0;">
+                            <img src="topic_9_thermodynamics.jpg" alt="Thermodynamics of protein/RNA folding" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 1: The folding funnel. Native states occupy the global minimum of the Gibbs Free Energy landscape.</p>
                         </div>
                     </div>
 
@@ -320,10 +321,6 @@
                     <!-- FAMILY C: COMPUTATIONAL MODELING -->
                     <div class="glass-card full-width tilt-effect hover-target" style="margin-top: 2rem;">
                         <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Computational Modeling</h3>
-                        <div style="margin: 2rem 0;">
-                            <img src="topic_9_computational.jpg" alt="Computational Modeling in bioinformatics" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 3: Abstracting biology into mathematics. A 3D molecular structure mapped directly into computable elements like distance matrices.</p>
-                        </div>
                         <p>How similar are two sequences according to our chosen scoring model?</p>
                         
                         <div class="math-block" style="border-left-color: var(--accent-mod2-light);">
@@ -336,6 +333,11 @@
                             <li><span class="term-highlight">\(\text{gap penalties}\)</span>: Deductions for introducing insertions or deletions.</li>
                         </ul>
                         <p style="margin-top: 1rem;">Alignment algorithms do not measure physical chemistry; they measure statistical probability. The equation above does not calculate real energy. Instead, it uses a mathematical scoring matrix to estimate evolutionary similarity. A high mathematical score serves as a proxy for biological homology.</p>
+                        
+                        <div style="margin: 2rem 0;">
+                            <img src="topic_9_computational.jpg" alt="Computational Modeling in bioinformatics" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 3: Abstracting biology into mathematics. A 3D molecular structure mapped directly into computable elements like distance matrices.</p>
+                        </div>
                     </div>
                 </section>
 
