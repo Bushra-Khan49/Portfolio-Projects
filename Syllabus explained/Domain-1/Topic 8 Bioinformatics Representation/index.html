@@ -185,13 +185,13 @@
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">Why This Matters</h3>
-                        <div style="margin: 2rem 0;">
-                            <img src="topic_8_why_matters.jpg" alt="The distinction between biological reality and computational representation" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 2: Biological reality (dynamic physical molecules) vs Computational representation (abstract text strings).</p>
-                        </div>
                         <p>Think back to what we've established about DNA replication and molecular fidelity. The molecules we track—DNA, RNA, and proteins—have complex physical properties, kinetic histories, and thermodynamic constraints.</p>
                         <p>When you look at a FASTQ file or a sequencing read, it is incredibly tempting to think, "These are just strings of A, T, G, and C." But biologically, they are not just strings. They represent dynamic physical objects.</p>
                         <p>That distinction becomes dangerously important in computational biology. A computational error does not necessarily cause a program to crash. A script can be syntactically correct, execute flawlessly, and produce a nice volcano plot while harboring a profound biological error.</p>
+                        <div style="margin: 2rem 0;">
+                            <img src="topic_8_why_matters.jpg" alt="The distinction between biological reality and computational representation" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 1: Biological reality (dynamic physical molecules) vs Computational representation (abstract text strings).</p>
+                        </div>
                     </div>
 
                     <div class="glass-card tilt-effect hover-target">
@@ -324,26 +324,26 @@
                         <div class="card-grid" style="margin-bottom: 0;">
                             <div class="glass-card tilt-effect hover-target" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
                                 <h3 class="h-secondary" style="margin-bottom: 1.5rem; color: var(--accent-mod2-light); font-size: 1.2rem;">1. Base Pairing (Horizontal Bonds)</h3>
-                                <div style="margin: 2rem 0;">
-                                    <img src="topic_8_base_pairing.jpg" alt="RNA Base Pairing" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 3: Watson-Crick base pairing and loop formation. Note that simple pairing counts do not equal thermodynamic stability.</p>
-                                </div>
                                 <p>When an RNA strand folds back, the bases connect horizontally across the gap using hydrogen bonds. This is the classic <strong>Watson-Crick base pairing</strong> (A-U and G-C).</p>
                                 <p>When people first learn biology, they often stop here, thinking: <em>"G-C has three hydrogen bonds, so just count the G-C pairs to find the most stable structure."</em></p>
                                 <p>However, an algorithm that just counts pairs will completely fail to predict the true structure. Why? Because counting pairs ignores the severe energy penalties of forcing the backbone into tight, unnatural loops, and it entirely ignores the massive energy contribution of the second force: Base Stacking.</p>
+                                <div style="margin: 2rem 0;">
+                                    <img src="topic_8_base_pairing.jpg" alt="RNA Base Pairing" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 2: Watson-Crick base pairing and loop formation. Note that simple pairing counts do not equal thermodynamic stability.</p>
+                                </div>
                             </div>
                             <div class="glass-card tilt-effect hover-target" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
                                 <h3 class="h-secondary" style="margin-bottom: 1.5rem; color: var(--accent-mod2-light); font-size: 1.2rem;">2. Base Stacking (Vertical Bonds)</h3>
-                                <div style="margin: 2rem 0;">
-                                    <img src="topic_8_base_stacking.jpg" alt="RNA Base Stacking" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 4: Pi-Pi stacking of RNA bases. This hydrophobic exclusion provides massive thermodynamic stability.</p>
-                                </div>
                                 <p>The chemical bases of RNA are flat, aromatic rings. Because they are hydrophobic (water-fearing), they pack tightly on top of each other like a stack of coins to hide from the surrounding water.</p>
                                 <p>This vertical <span class="term-highlight">Pi-Pi stacking</span> provides massive thermodynamic stability—often contributing even more stabilizing energy than horizontal base pairing!</p>
                                 <p style="margin-top: 1rem; margin-bottom: 1rem; color: #fff; font-family: var(--font-mono); font-size: 0.95rem; background: rgba(255,0,127,0.1); padding: 0.75rem; border-radius: 6px; border-left: 3px solid var(--accent-orange);">
                                     stability ~ (base pairing + stacking + loop penalties + solvent)
                                 </p>
                                 <p>This is why serious structure prediction algorithms don't just evaluate individual pairs; they evaluate the energy of <em>stacked pairs</em> (e.g., a G-C pair stacked vertically on top of an A-U pair).</p>
+                                <div style="margin: 2rem 0;">
+                                    <img src="topic_8_base_stacking.jpg" alt="RNA Base Stacking" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 3: Pi-Pi stacking of RNA bases. This hydrophobic exclusion provides massive thermodynamic stability.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -352,10 +352,6 @@
                 <section class="section-block fade-up">
                     <div class="glass-card full-width tilt-effect hover-target">
                         <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Computational Challenge of Physical Reality</h3>
-                        <div style="margin: 2rem 0;">
-                            <img src="topic_8_computational_challenge.jpg" alt="The Computational Challenge of Physical Reality" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
-                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 5: The Nearest-Neighbor model and the combinatorial explosion of potential RNA folding structures.</p>
-                        </div>
                         
                         <p>Because vertical stacking energy is so powerful, we cannot calculate the strength of a single base pair in isolation. Its strength depends entirely on the bases immediately stacked above and below it. In bioinformatics, this physical reality is captured using <span class="term-highlight">Nearest-Neighbor Models</span>.</p>
                         
@@ -369,6 +365,11 @@
                             <p style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-mod2-light); margin: 0;">
                                 <strong style="color: #fff;">Bioinformatics Models</strong> must prioritize physical reality (like Base Stacking) over computational simplicity.
                             </p>
+                        </div>
+
+                        <div style="margin: 2rem 0;">
+                            <img src="topic_8_computational_challenge.jpg" alt="The Computational Challenge of Physical Reality" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,127,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+                            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Figure 4: The Nearest-Neighbor model and the combinatorial explosion of potential RNA folding structures.</p>
                         </div>
                     </div>
                 </section>
