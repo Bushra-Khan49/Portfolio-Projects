@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 13: Identifying Nucleic Acids</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=11">
+    <style>
+        :root {
+            --accent-mod2: #ff007f;
+            --accent-mod2-light: #ff4da6;
+            --accent-mod2-dark: #b30059;
+            --accent-orange: #ff5722;
+            --accent-purple: #b388ff;
+            --accent-gold: #ffd54f;
+            --text-muted: #aab2c0;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 1.25rem;
+            left: 1.25rem;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            background: rgba(5, 10, 21, 0.75);
+            border: 1px solid rgba(255, 0, 127, 0.35);
+            border-radius: 999px;
+            color: var(--accent-mod2);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+            box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
+        }
+        .back-btn:hover {
+            background: rgba(255, 0, 127, 0.12);
+            border-color: rgba(255, 0, 127, 0.7);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.35);
+            transform: translateX(-2px);
+        }
+        .back-btn svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .h-primary { color: #ffffff !important; font-family: var(--font-display) !important; text-transform: uppercase; }
+        .h-secondary { color: var(--accent-mod2) !important; font-family: var(--font-display) !important;}
+        
+        .glass-card.hover-target {
+            border-color: rgba(255, 0, 127, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glass-card.hover-target:hover {
+            border-color: rgba(255, 0, 127, 0.6);
+            box-shadow: 0 8px 24px rgba(255, 0, 127, 0.15);
+        }
+        
+        p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #d1d5db;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 0, 127, 0.15);
+            border: 2px solid var(--accent-mod2-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            flex-shrink: 0;
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+<body>
+    <a class="back-btn" href="../../../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Portfolio
+    </a>
+
+    <main class="split-layout">
+        <div class="content-column" id="smooth-wrapper">
+            <div id="smooth-content" class="content-inner">
+                
+                <section class="hero-section fade-up">
+                    <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 13</h5>
+                    <h1 class="h-primary" style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">Identifying Nucleic Acids</h1>
+                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">Worked Examples from Chemical Signatures</h2>
+                </section>
+                
+                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <p style="font-size: 1.1rem;">Let's look at how these chemical structures influence molecular identification and data parsing workflows in bioinformatics pipelines.</p>
+                        
+                        <div style="margin-top: 2rem; border-left: 3px solid var(--accent-mod2); padding-left: 1.5rem;">
+                            <h3 class="h-primary" style="margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--accent-mod2-light) !important;">Example 1:</h3>
+                            <p style="color: #fff; font-weight: bold; margin-bottom: 1.5rem;">Given a molecular diagram or chemical data object, determine if the fragment represents DNA or RNA based on structural features.</p>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                
+                                <div style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+                                    <div class="step-circle">1</div>
+                                    <div>
+                                        <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Inspect the 2' Carbon Position</h4>
+                                        <p style="margin-bottom: 0; font-size: 0.95rem;">Locate the pentose sugar ring and identify the 2' carbon. Check whether it terminates in a hydroxyl group (-OH) or a hydrogen atom (-H). If it is an -OH group, the molecule is RNA.</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+                                    <div class="step-circle">2</div>
+                                    <div>
+                                        <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">Scan for Pyrimidine Substitutions</h4>
+                                        <p style="margin-bottom: 0; font-size: 0.95rem;">Examine the nitrogenous bases. Look for the presence of a methyl group at the C5 position of the pyrimidine rings. If the methyl group is present alongside a 2'-H sugar, it is Thymine (DNA). If the methyl group is missing at C5 and a 2'-OH is present, it is Uracil (RNA).</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+                                    <div class="step-circle">3</div>
+                                    <div>
+                                        <h4 style="color: var(--accent-orange); margin-bottom: 0.5rem;">Classify the Molecule</h4>
+                                        <p style="margin-bottom: 0; font-size: 0.95rem;">Synthesize the findings. A molecule with 2'-deoxyribose and Thymine is classified as <strong>DNA</strong>; a molecule with ribose and Uracil is classified as <strong>RNA</strong>.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Navigation -->
+                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
+                    <a href="../Topic 12 Evolutionary Logic/index.html" style="text-decoration: none;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2);">
+                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">←</span>
+                            <div>
+                                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: left;">Previous Topic</div>
+                                <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 12</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../../../index.html" style="text-decoration: none;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); text-align: right;">
+                            <div>
+                                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: right;">Return to</div>
+                                <div style="color: white; font-weight: bold; font-size: 1.1rem;">Portfolio</div>
+                            </div>
+                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">→</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="bottom-spacer"></div>
+            </div>
+        </div>
+        <div class="canvas-column">
+            <canvas id="webgl-canvas"></canvas>
+            <div class="canvas-overlay"></div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js?v=12"></script>
+</body>
+</html>
