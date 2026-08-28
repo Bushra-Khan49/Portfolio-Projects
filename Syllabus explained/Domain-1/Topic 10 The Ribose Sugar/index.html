@@ -204,26 +204,12 @@ DNA:   C—H  (oxygen removed)
                         <h3 class="h-primary" style="margin-bottom: 1rem;">Chemical Stability is a Kinetic Concept</h3>
                         <p>This doesn't mean RNA immediately falls apart. It simply means <strong>RNA is intrinsically more susceptible than DNA to backbone cleavage.</strong></p>
                         <p>To understand why, we must treat stability as a <em>kinetic</em> property—meaning it is about how fast a reaction occurs, not whether it can occur at all.</p>
-                        <p>For a simple first-order degradation process, the speed at which RNA breaks down is given by the rate equation:</p>
-                        <div class="math-block" style="border-left-color: var(--accent-purple); text-align: center; font-size: 0.95rem; margin: 1rem 0;">
-                            \[ v = k[\text{RNA}] \]
-                        </div>
-                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                            <li><strong>\(v\) (rate):</strong> The speed at which the RNA molecules are degrading.</li>
-                            <li><strong>\([\text{RNA}]\) (concentration):</strong> The amount of intact RNA currently present.</li>
-                            <li><strong>\(k\) (rate constant):</strong> The inherent chemical probability that any single RNA molecule will break apart in a given second. This is the crucial variable.</li>
-                        </ul>
-                        <p>We can also calculate the half-life (\(t_{1/2}\)), which is the time it takes for half of the RNA to degrade:</p>
+                        <p>The speed of degradation is defined by a rate constant (\(k\)), which represents the probability of a molecule breaking apart. Because RNA's 2′-OH provides an easy route for self-cleavage, its probability of breaking is very high—meaning RNA has a <strong>large \(k\)</strong>.</p>
+                        <p>This probability mathematically determines the molecule's half-life (\(t_{1/2}\)):</p>
                         <div class="math-block" style="border-left-color: var(--accent-purple); text-align: center; font-size: 0.95rem; margin: 1rem 0;">
                             \[ t_{1/2} = \frac{\ln 2}{k} \]
                         </div>
-                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                            <li><strong>\(t_{1/2}\) (half-life):</strong> The time required for half of the molecules in a sample to degrade.</li>
-                            <li><strong>\(\ln 2\):</strong> A mathematical constant (approximately 0.693) derived from the first-order exponential decay formula.</li>
-                            <li><strong>\(k\) (rate constant):</strong> The same probability constant from the rate equation.</li>
-                        </ul>
-                        <p>The rate constant \(k\) represents the probability of a molecule breaking apart in a given timeframe. The 2′-OH provides a physically favorable route for the molecule to attack its own backbone. Because this self-cleavage reaction requires far less activation energy than breaking a standard chemical bond, the probability of the reaction occurring is much higher. This higher probability mathematically translates to a <strong>larger \(k\).</strong></p>
-                        <p>In the half-life equation, \(k\) sits in the denominator. A larger \(k\) divides the constant by a larger number, resulting in a <strong>shorter half-life</strong>. DNA lacks the nucleophilic 2′-OH, forcing it to rely on much slower, less probable degradation pathways. This gives DNA a vastly smaller \(k\) and, consequently, an extremely long half-life.</p>
+                        <p>Because \(k\) sits in the denominator, a high probability of breaking (\(k\)) directly divides the constant to produce a <strong>short half-life</strong>. DNA lacks the 2′-OH, giving it a tiny \(k\) and, consequently, an extremely long half-life.</p>
                     </div>
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">The Evolutionary Tradeoff</h3>
