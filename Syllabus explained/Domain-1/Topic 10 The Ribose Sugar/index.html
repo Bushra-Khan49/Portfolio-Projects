@@ -200,12 +200,28 @@ DNA:   C—H
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">Chemical Stability is a Kinetic Concept</h3>
                         <p>Don’t interpret this as: <em>RNA immediately breaks apart.</em> It doesn’t. RNA can be quite stable under many biological conditions. The better statement is: <strong>RNA is intrinsically more susceptible than DNA to backbone cleavage.</strong></p>
-                        <p>Stability is a kinetic property. For a simple first-order degradation process, the rate is <code>v = k[RNA]</code>. The half-life is <code>t₁/₂ = (ln 2) / k</code>. The 2′-OH changes the chemical reaction landscape, increasing \(k\) and leading to a shorter half-life.</p>
+                        <p>To understand why, we must treat stability as a <em>kinetic</em> property—meaning it is about how fast a reaction occurs, not whether it can occur at all.</p>
+                        <p>For a simple first-order degradation process, the speed at which RNA breaks down is given by the rate equation:</p>
+                        <div class="math-block" style="border-left-color: var(--accent-purple); text-align: center; font-size: 0.95rem; margin: 1rem 0;">
+                            \[ v = k[\text{RNA}] \]
+                        </div>
+                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                            <li><strong>\(v\) (rate):</strong> The speed at which the RNA molecules are degrading.</li>
+                            <li><strong>\([\text{RNA}]\) (concentration):</strong> The amount of intact RNA currently present.</li>
+                            <li><strong>\(k\) (rate constant):</strong> The inherent chemical probability that any single RNA molecule will break apart in a given second. This is the crucial variable.</li>
+                        </ul>
+                        <p>We can also calculate the half-life (\(t_{1/2}\)), which is the time it takes for half of the RNA to degrade:</p>
+                        <div class="math-block" style="border-left-color: var(--accent-purple); text-align: center; font-size: 0.95rem; margin: 1rem 0;">
+                            \[ t_{1/2} = \frac{\ln 2}{k} \]
+                        </div>
+                        <p>Here is how it all connects: The presence of the nucleophilic 2′-OH provides an easier chemical pathway for the backbone to break. This easier pathway mathematically means a <strong>larger \(k\)</strong>. And because \(k\) is in the denominator of the half-life equation, a larger \(k\) directly results in a <strong>shorter half-life</strong>. DNA, lacking the 2′-OH, has a much smaller \(k\), meaning it degrades extremely slowly.</p>
                     </div>
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">Why Would Biology Tolerate This?</h3>
-                        <p>DNA and RNA solve different biological problems. If you need a molecule to act as a long-term archive, you want low unwanted reactivity and high structural stability (DNA). If you need a molecule that can fold into complex structures, interact with proteins, and form catalytic structures, RNA’s versatile chemistry is highly useful.</p>
-                        <p>The 2′-OH is simultaneously a chemical liability and a source of functional versatility.</p>
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Why Would Biology Tolerate This Instability?</h3>
+                        <p>If the 2′-OH makes the RNA backbone fundamentally more fragile, why didn't evolution just use DNA for everything?</p>
+                        <p>The answer is that biology does not want every molecule to last forever, nor does it want every molecule to be a rigid, inert rod. Evolution tolerates RNA's chemical instability because the exact same 2′-OH group that causes the fragility also unlocks immense <strong>functional versatility.</strong></p>
+                        <p>DNA is optimized for one specific job: being a long-term, unreactive archive. It is structurally constrained to protect its sequence.</p>
+                        <p>RNA, however, needs to act as a molecular machine. The 2′-OH allows RNA to form intricate 3D folds, recognize proteins, bind small molecules, and even act as a catalyst (a ribozyme) to drive chemical reactions. Biology accepts the tradeoff of a shorter molecular lifespan in exchange for the ability to build dynamic, functional nanomachines. The 2′-OH is a chemical liability, but it is an evolutionary superpower.</p>
                     </div>
                 </section>
 
