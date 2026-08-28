@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="style.css?v=13">
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -38,7 +38,7 @@
         .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: 12px; margin-bottom: 2rem; }
         .glass-card.hover-target:hover { border-color: rgba(255, 0, 127, 0.6); box-shadow: 0 8px 24px rgba(255, 0, 127, 0.15); }
         
-        p { line-height: 1.7; margin-bottom: 1rem; color: #d1d5db; font-size: 1.05rem; }
+        p, li { line-height: 1.7; margin-bottom: 1rem; color: #d1d5db; font-size: 1.05rem; }
         
         .code-box {
             background: #0f1423; border: 1px solid rgba(255, 0, 127, 0.15); padding: 1.5rem; border-radius: 8px;
@@ -51,10 +51,12 @@
             border-radius: 0 8px 8px 0; font-family: 'Inter', sans-serif; overflow-x: auto; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
 
-        .split-layout-card {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;
+        .split-layout-card { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+        .card-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+        @media (min-width: 768px) { 
+            .split-layout-card { grid-template-columns: 1fr 1fr; } 
+            .card-grid { grid-template-columns: 1fr 1fr; }
         }
-        @media (max-width: 768px) { .split-layout-card { grid-template-columns: 1fr; } }
         
         .bio-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin: 1.5rem 0; background: rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 0, 127, 0.15); }
         .bio-table th { text-align: left; padding: 1rem; background: rgba(255, 0, 127, 0.1); color: var(--accent-mod2-light); }
@@ -79,25 +81,21 @@
                     <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 10</h5>
                     <h1 class="h-primary" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">THE RIBOSE SUGAR</h1>
                     <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">The Molecular Switch Between RNA and DNA Stability</h2>
-                    <div class="scroll-indicator fade-up" style="margin-top: 3rem;">
-                        <div class="mouse" style="border-color: var(--accent-mod2);"></div>
-                        <span style="color: var(--accent-mod2);">Scroll to Explore</span>
-                    </div>
                 </section>
                 
                 <!-- 1. The Core Physical Difference -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Why This Matters</h3>
-                        <p>DNA and RNA look deceptively similar as sequences (<code>A T G C</code> vs <code>A U G C</code>). But at the molecular level, they are completely different polymers. The critical divergence is located at a single position on their pentose sugars: the <strong>2′ carbon</strong>.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Central Idea</h3>
+                        <p>DNA and RNA can look deceptively similar when represented as sequences: <code>DNA → A T G C</code> and <code>RNA → A U G C</code>. At the sequence level, this difference may appear small. But at the molecular level, they are chemically different polymers. The entire passage revolves around one apparently tiny difference:</p>
                         
                         <div class="split-layout-card" style="margin-top: 2rem;">
                             <div>
-                                <p>Every nucleotide consists of a base, a sugar, and a phosphate. The sugar and phosphate form the physical backbone of the polymer.</p>
-                                <p>RNA utilizes <strong>ribose</strong>, which has an oxygen-containing hydroxyl group (<code>2′-OH</code>). DNA utilizes <strong>2′-deoxyribose</strong>, meaning that oxygen has been removed (<code>2′-H</code>).</p>
-                                <p>This single functional group dictates chemical reactivity, backbone stability, structure, and how enzymes process the molecules.</p>
+                                <h4 class="sub-heading" style="margin-top: 0;">Start with the Nucleotide</h4>
+                                <p>Every nucleotide contains three components: a nitrogenous base, a sugar, and a phosphate. The bases provide sequence information, but the sugar and phosphate create the physical backbone that holds those bases together. When we discuss the sugar, we’re discussing part of the molecule that makes the nucleic-acid polymer possible.</p>
+                                <p>The important lesson is: <strong>The 2′-OH is not merely a decorative difference between RNA and DNA. It changes what the molecule can chemically do.</strong> And once chemistry changes, structure, stability, function, and eventually computational modeling can change too.</p>
                             </div>
-                            <div class="code-box" style="margin-top: 0; border-left: 3px solid var(--accent-purple);">
+                            <div class="code-box" style="margin-top: 0; border-left: 3px solid var(--accent-purple); text-align: center;">
              RNA                         DNA
           Ribose                    2′-deoxyribose
               │                            │
@@ -110,72 +108,114 @@
               │                            │
               ▼                            ▼
        different stability          greater stability
+              │                            │
+              ▼                            ▼
+       different structure         different structure
+              │                            │
+              ▼                            ▼
+       different functions         long-term storage
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">The Critical Carbon: 2′</h3>
+                        <p>Both ribose and deoxyribose are derived from a five-carbon sugar ("pentose"). The numbering is extremely important. The prime symbol (′) tells us we’re talking about sugar carbons, not atoms in the base.</p>
+                        <ul>
+                            <li><strong>1′</strong> = attached to the nitrogenous base</li>
+                            <li><strong>2′</strong> = the critical carbon distinguishing RNA from DNA</li>
+                            <li><strong>3′</strong> = participates in chain extension</li>
+                            <li><strong>4′</strong> = part of the sugar ring</li>
+                            <li><strong>5′</strong> = attached to phosphate</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">The Name "Deoxyribose"</h3>
+                        <p>The name itself tells you what happened. RNA contains ribose; DNA contains <strong>2′-deoxyribose</strong>.</p>
+                        <p>"Deoxy" means that an oxygen-containing hydroxyl group has been removed relative to ribose at the 2′ position.</p>
+                        <div class="code-box" style="border-left-color: var(--accent-gold);">
+RNA:   C—OH
+DNA:   C—H
+                        </div>
+                        <p>DNA is not a completely different type of sugar. It is a closely related sugar with a specific chemical modification.</p>
                     </div>
                 </section>
 
                 <!-- 2. Chemical Reactivity -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Chemical Reactivity & Backbone Stability</h3>
-                        
-                        <h4 class="sub-heading">The Nucleophilic 2′-OH</h4>
-                        <p>The oxygen in an –OH group possesses lone pairs of electrons, making it highly electronegative. Under appropriate conditions, the 2′-oxygen of RNA acts as a <strong>nucleophile</strong>—an electron-rich atom that donates an electron pair to an electron-deficient center.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Why Does an –OH Matter?</h3>
                         
                         <div class="split-layout-card">
                             <div>
-                                <p>In RNA, this 2′-OH sits dangerously close to the phosphorus in the backbone. This proximity creates an intramolecular transesterification pathway where RNA chemically attacks its own backbone, leading to cleavage.</p>
-                                <p>Because DNA (<code>2′-H</code>) lacks this oxygen, this specific cleavage mechanism is completely unavailable. This gives DNA a massive kinetic stability advantage for long-term information storage.</p>
+                                <p>An –OH group contains oxygen, which is highly electronegative and possesses lone pairs of electrons. Those electron pairs mean oxygen can participate in chemical reactions. One particularly important behavior is <strong>nucleophilicity</strong>.</p>
+                                <h4 class="sub-heading">What is a nucleophile?</h4>
+                                <p>A nucleophile is an electron-rich atom, ion, or molecule that can donate an electron pair to an electron-deficient center. In RNA, the oxygen of the 2′-OH can, under appropriate conditions, act as a nucleophile. This is the key chemical capability DNA lacks at that position.</p>
+                                <h4 class="sub-heading">Why is phosphorus relevant?</h4>
+                                <p>The nucleic-acid backbone is made largely of phosphodiester bonds (Sugar — O — P — O — Sugar). In RNA, you have a potentially nucleophilic 2′-oxygen located physically close to a phosphorus-containing linkage. That creates a chemical route for RNA backbone cleavage.</p>
                             </div>
-                            <div class="code-box" style="margin-top: 0; border-left: 3px solid #ff4757;">
-       RNA 2′-OH
+                            <div class="code-box" style="margin-top: 0; border-left: 3px solid #ff4757; text-align: center;">
+        2′-OH
            │
-  oxygen becomes nucleophilic
+           │ activation
+           ▼
+         2′-O⁻
            │
-  attacks adjacent phosphorus
-           │
-  cyclic phosphate intermediate
-           │
-  phosphodiester bond breaks
-           │
-       RNA CLEAVAGE
+           │ nucleophilic attack
+           ▼
+          P
+         / \
+        /   \
+     RNA    RNA
                             </div>
                         </div>
 
-                        <h4 class="sub-heading">The Chemical Tradeoff</h4>
-                        <p>RNA is not simply "bad or unstable"; it trades chemical stability for structural and functional versatility. The 2′-OH allows RNA to form complex tertiary structures and act as a catalytic machine.</p>
-                        <table class="bio-table">
-                            <thead><tr><th>Property</th><th>RNA</th><th>DNA</th></tr></thead>
-                            <tbody>
-                                <tr><td>Sugar</td><td>Ribose</td><td>2′-deoxyribose</td></tr>
-                                <tr><td>2′ group</td><td>–OH</td><td>–H</td></tr>
-                                <tr><td>Reactive 2′ oxygen</td><td>Present</td><td>Absent</td></tr>
-                                <tr><td>Chemical stability</td><td>Lower</td><td>Higher</td></tr>
-                                <tr><td>Structural flexibility</td><td>Different and generally greater</td><td>More constrained</td></tr>
-                                <tr><td>Typical major role</td><td>Diverse functional molecules</td><td>Long-term information storage</td></tr>
-                            </tbody>
-                        </table>
+                        <h4 class="sub-heading">RNA Can Attack Its Own Backbone</h4>
+                        <p>The important sequence is an <em>intramolecular transesterification</em> process:</p>
+                        <div class="math-block" style="border-left-color: #ff4757; text-align: center; font-size: 0.95rem;">
+                            \[ \text{2′-OH} \rightarrow \text{oxygen becomes nucleophilic} \rightarrow \text{attacks phosphorus} \rightarrow \text{cyclic phosphate intermediate} \rightarrow \text{backbone cleavage} \]
+                        </div>
+                        <p>Because RNA has this internal pathway that DNA lacks, DNA is much more resistant to this type of spontaneous backbone hydrolysis. That is a major reason the deoxyribose backbone is advantageous for long-term information preservation.</p>
+                    </div>
+                </section>
+
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Chemical Stability is a Kinetic Concept</h3>
+                        <p>Don’t interpret this as: <em>RNA immediately breaks apart.</em> It doesn’t. RNA can be quite stable under many biological conditions. The better statement is: <strong>RNA is intrinsically more susceptible than DNA to backbone cleavage.</strong></p>
+                        <p>Stability is a kinetic property. For a simple first-order degradation process, the rate is <code>v = k[RNA]</code>. The half-life is <code>t₁/₂ = (ln 2) / k</code>. The 2′-OH changes the chemical reaction landscape, increasing \(k\) and leading to a shorter half-life.</p>
+                    </div>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Why Would Biology Tolerate This?</h3>
+                        <p>DNA and RNA solve different biological problems. If you need a molecule to act as a long-term archive, you want low unwanted reactivity and high structural stability (DNA). If you need a molecule that can fold into complex structures, interact with proteins, and form catalytic structures, RNA’s versatile chemistry is highly useful.</p>
+                        <p>The 2′-OH is simultaneously a chemical liability and a source of functional versatility.</p>
                     </div>
                 </section>
 
                 <!-- 3. Structure -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Physical Geometry and Shape</h3>
-                        <p>The consequences of the 2′-OH don’t stop at chemical degradation. The hydroxyl group introduces oxygen, hydrogen, new hydrogen-bonding capabilities, and different hydration shells.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The 2′-OH Affects Structure Too</h3>
+                        <p>The hydroxyl group isn’t only chemically reactive. It also changes the physical geometry of the sugar. Introducing an oxygen and hydrogen brings additional electron density, hydrogen-bonding capability, different hydration behavior, and steric interactions. That changes how the sugar prefers to exist in three-dimensional space.</p>
                         
-                        <div class="math-block" style="text-align: center;">
-                            \[ \text{2′-OH} \rightarrow \text{sugar conformation} \rightarrow \text{backbone geometry} \rightarrow \text{RNA structure} \]
-                        </div>
+                        <div class="split-layout-card" style="margin-top: 2rem;">
+                            <div>
+                                <h4 class="sub-heading" style="margin-top: 0;">Sugar Puckering & Duplex Geometry</h4>
+                                <p>The sugar ring isn’t rigidly flat. It adopts different conformations called <em>sugar puckering</em>. One particularly important RNA conformation is approximately <strong>C3′-endo</strong>. This conformational preference contributes to RNA’s characteristic A-form geometry.</p>
+                                <p>Under common conditions, DNA duplexes are commonly B-form, while RNA duplexes are commonly A-form. RNA and DNA don’t naturally arrange their backbones in exactly the same geometry. The 2′-OH is part of the causal chain: <code>Sequence → chemical properties → conformational possibilities → 3D structure</code>.</p>
+                            </div>
+                            <div class="code-box" style="margin-top: 0; border-left: 3px solid var(--accent-orange); text-align: center;">
+      B-DNA                 A-form RNA
 
-                        <p>The five-membered sugar ring adopts different 3D conformations known as <strong>sugar puckering</strong>. RNA strongly prefers the <strong>C3′-endo</strong> conformation. This shifts the entire backbone geometry, forcing canonical RNA duplexes into a wide, deep <strong>A-form</strong> geometry, while DNA commonly adopts the narrower <strong>B-form</strong> geometry.</p>
-                        
-                        <div class="code-box" style="text-align: center; border-left: 3px solid var(--accent-orange);">
-sequence similarity (T ↔ U) ≠ molecular identity
-
-DNA → deoxyribose → 2′-H  → different chemistry → different geometry
-RNA → ribose      → 2′-OH → different chemistry → different geometry
+       /\                       __
+      /  \                    /    \
+     /    \                  |      |
+     \    /                   \____/
+      \  /
+       \/
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -183,14 +223,30 @@ RNA → ribose      → 2′-OH → different chemistry → different geometry
                 <!-- 4. Polymerase Kinetics -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Transcription & Polymerase Fidelity</h3>
-                        <p>RNA polymerase does not simply "read letters." It performs a high-speed, repeated chemical process. When adding incoming NTPs (ATP, GTP, CTP, UTP), the enzyme relies on the <strong>3′-OH</strong> to attack the incoming phosphate and extend the chain.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Transcription Connection</h3>
+                        <p>RNA polymerase does not simply "read letters." It performs a repeated chemical process at high speed. For each nucleotide: <code>incoming NTP → binding → positioning → base-pair recognition → conformational checking → chemical catalysis → RNA extension</code>.</p>
                         
-                        <div style="background: rgba(255, 0, 127, 0.05); padding: 1.5rem; border-left: 3px solid var(--accent-gold); border-radius: 4px; margin: 1.5rem 0;">
-                            <p style="margin: 0;"><strong>Critical Distinction:</strong> The <strong>3′-OH</strong> directly participates in chain extension. The <strong>2′-OH</strong> influences chemistry, conformation, and molecular recognition by the enzyme.</p>
+                        <div class="split-layout-card" style="margin-top: 2rem;">
+                            <div>
+                                <h4 class="sub-heading" style="margin-top: 0;">What Actually Gets Added?</h4>
+                                <p>The growing RNA chain has a free <strong>3′-OH</strong>. The 3′ oxygen of the growing RNA attacks the α-phosphate of the incoming NTP to form a new phosphodiester bond. <strong>Do not confuse the 2′-OH and 3′-OH!</strong> The 2′-OH affects chemistry and conformation; the 3′-OH directly participates in chain extension.</p>
+                                <h4 class="sub-heading">Polymerase as a Molecular Filter</h4>
+                                <p>The active site acts as a filter, asking: <em>Does this molecule have the correct chemical identity and geometry?</em> Polymerase fidelity is a molecular recognition problem before it becomes a sequence-data problem. It kinetically balances speed vs accuracy.</p>
+                            </div>
+                            <div class="code-box" style="margin-top: 0; border-left: 3px solid var(--accent-purple);">
+             FIDELITY
+                ↑
+                │
+                │
+                └────────────→ SPEED
+
+Polymerase recognizes a physical molecule:
+base → ribose → 2′-OH → phosphate
+
+Sequence identity + sugar identity + 3D geometry 
+= substrate recognition
+                            </div>
                         </div>
-                        
-                        <p>Polymerase fidelity is a kinetic molecular recognition problem. The active site acts as a filter, asking: <em>Does this molecule have the correct chemical identity and geometry?</em> It balances speed and accuracy by checking base-pair geometry, sugar identity (using the 2′-OH to distinguish NTPs from dNTPs), and conformational alignment before catalyzing the bond.</p>
                     </div>
                 </section>
 
@@ -198,31 +254,39 @@ RNA → ribose      → 2′-OH → different chemistry → different geometry
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
                         <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Bioinformatics Consequence</h3>
-                        <p>A sequence string (<code>AUGCGUAC</code>) is incredibly useful, but it is a massive compression of physical reality. The biological chain begins with molecular chemistry, moves through transcription and sequencing, and ends as digital data.</p>
+                        <p>When you work with sequence data, you see symbols (<code>AUGCGUAC</code>). But the biological system began with molecules. The sequence you analyze is the endpoint of a physical process:</p>
+                        
+                        <div class="code-box" style="border-left-color: var(--accent-gold); text-align: center;">
+molecular chemistry → transcription → RNA molecule → experimental processing → sequencing → digital sequence
+                        </div>
                         
                         <div class="split-layout-card" style="margin-top: 2rem;">
                             <div>
                                 <h4 class="sub-heading" style="margin-top: 0;">The Hidden Assumption</h4>
-                                <p>Whenever we convert a molecule to a sequence, we abstract away chemistry. We assume the sequence contains sufficient information for the question being asked.</p>
-                                <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8;">
-                                    <li><strong>Sequence Alignment:</strong> Chemistry can be safely abstracted.</li>
-                                    <li><strong>Structure Prediction:</strong> Chemistry and geometry must be accounted for.</li>
-                                    <li><strong>Molecular Dynamics:</strong> Atomic coordinates and explicit chemistry are required.</li>
-                                </ul>
+                                <p>Whenever we convert <code>molecule → sequence</code> we make an abstraction. We assume the sequence contains sufficient information for our question. For <em>sequence alignment</em>, chemistry can be abstracted. For <em>RNA structure prediction</em>, chemistry becomes vital.</p>
+                                <p>The mistake is not abstraction itself. The mistake is using an abstraction that removes information required for the question you’re asking.</p>
                             </div>
                             <div>
-                                <h4 class="sub-heading" style="margin-top: 0;">The Cost of Wrong Models</h4>
-                                <p>If a structure prediction model incorrectly treats RNA like DNA, the algorithm may still run flawlessly. It will produce no syntax errors or failed jobs.</p>
-                                <p>However, the incorrect chemical assumptions will yield an incorrect energetic landscape and a wrong biological interpretation.</p>
-                                <div class="math-block" style="margin-top: 1rem; border-left-color: #ff4757; text-align: center; background: rgba(255, 71, 87, 0.05); padding: 1rem;">
+                                <h4 class="sub-heading" style="margin-top: 0;">The Cost of a Wrong Representation</h4>
+                                <p>If a structure algorithm incorrectly treats RNA like DNA, the algorithm can be mathematically flawless and still produce a biologically wrong result because its model is wrong.</p>
+                                <div class="math-block" style="border-left-color: #ff4757; text-align: center; background: rgba(255, 71, 87, 0.05); padding: 1rem;">
                                     \[ \text{Correct algorithm} + \text{incorrect biological model} = \text{incorrect result} \]
                                 </div>
                             </div>
                         </div>
 
                         <div style="text-align: center; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                            <h4 class="sub-heading">Final Mental Model: The Five Distinctions You Should Never Confuse</h4>
+                            <ul style="color: #e8eaf6; text-align: left; max-width: 800px; margin: 0 auto 2rem auto; line-height: 1.8;">
+                                <li><strong>2′-OH vs 3′-OH:</strong> 2′-OH influences chemistry/conformation; 3′-OH directly extends the chain.</li>
+                                <li><strong>Chemical instability vs biological half-life:</strong> Susceptibility doesn't mean a short cellular half-life.</li>
+                                <li><strong>Sequence vs molecule:</strong> <code>AUGC</code> is a representation, not the complete physical reality.</li>
+                                <li><strong>RNA vs "messenger RNA":</strong> mRNA is only one type; many RNAs are highly stable.</li>
+                                <li><strong>Molecular chemistry vs computational model:</strong> Ignoring chemistry is only safe when it doesn't control the phenomenon you're predicting.</li>
+                            </ul>
+                            
                             <p style="font-size: 1.1rem; color: #fff;"><strong>The core question for any bioinformatics analysis is:</strong></p>
-                            <p style="color: var(--accent-mod2-light); font-size: 1.05rem;">What information did we lose when we moved from the physical molecule to the computational representation—and does that loss matter for what we’re trying to predict?</p>
+                            <p style="color: var(--accent-mod2-light); font-size: 1.05rem;">What information did we lose when we moved from the real molecule to the computational representation—and does that loss matter for what we’re trying to predict?</p>
                         </div>
                     </div>
                 </section>
@@ -259,6 +323,6 @@ RNA → ribose      → 2′-OH → different chemistry → different geometry
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=13"></script>
 </body>
 </html>
