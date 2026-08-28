@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Topic 10: The Ribose Sugar</title>
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css?v=11">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --accent-mod2: #ff007f;
@@ -18,57 +18,31 @@
             --accent-gold: #ffd54f;
             --text-muted: #aab2c0;
         }
-
         .back-btn {
-            position: fixed;
-            top: 1.25rem;
-            left: 1.25rem;
-            z-index: 9999;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.1rem;
-            background: rgba(5, 10, 21, 0.75);
-            border: 1px solid rgba(255, 0, 127, 0.35);
-            border-radius: 999px;
-            color: var(--accent-mod2);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            text-decoration: none;
-            letter-spacing: 0.04em;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.25s ease;
-            box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
+            position: fixed; top: 1.25rem; left: 1.25rem; z-index: 9999; display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.1rem; background: rgba(5, 10, 21, 0.75); border: 1px solid rgba(255, 0, 127, 0.35);
+            border-radius: 999px; color: var(--accent-mod2); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+            text-decoration: none; letter-spacing: 0.04em; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease; box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
         }
         .back-btn:hover {
-            background: rgba(255, 0, 127, 0.12);
-            border-color: rgba(255, 0, 127, 0.7);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.35);
-            transform: translateX(-2px);
+            background: rgba(255, 0, 127, 0.12); border-color: rgba(255, 0, 127, 0.7); box-shadow: 0 0 20px rgba(255, 0, 127, 0.35); transform: translateX(-2px);
         }
-        .back-btn svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
-
+        .back-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
         .h-primary { color: #ffffff !important; font-family: var(--font-display) !important; text-transform: uppercase; }
         .h-secondary { color: var(--accent-mod2) !important; font-family: var(--font-display) !important;}
+        .glass-card.hover-target { border-color: rgba(255, 0, 127, 0.2); transition: all 0.3s ease; }
+        .glass-card.hover-target:hover { border-color: rgba(255, 0, 127, 0.6); box-shadow: 0 8px 24px rgba(255, 0, 127, 0.15); }
+        p { line-height: 1.7; margin-bottom: 1rem; color: #d1d5db; }
         
-        .glass-card.hover-target {
-            border-color: rgba(255, 0, 127, 0.2);
-            transition: all 0.3s ease;
+        .code-box {
+            background: #0f1423; border: 1px solid rgba(255, 0, 127, 0.15); border-left: 3px solid var(--accent-purple);
+            padding: 1.5rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.9rem; color: #aab2c0;
+            overflow-x: auto; margin: 1.5rem 0; white-space: pre; line-height: 1.6; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .glass-card.hover-target:hover {
-            border-color: rgba(255, 0, 127, 0.6);
-            box-shadow: 0 8px 24px rgba(255, 0, 127, 0.15);
-        }
-        
-        p {
-            line-height: 1.7;
-            margin-bottom: 1rem;
-            color: #d1d5db;
+        .math-block {
+            background: rgba(0, 0, 0, 0.4); border-left: 3px solid var(--accent-mod2); padding: 1.5rem; margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0; font-family: 'Inter', sans-serif; overflow-x: auto; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -88,29 +62,165 @@
                     <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 10</h5>
                     <h1 class="h-primary" style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">The Ribose Sugar</h1>
                     <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">The Blueprint of Chemical Stability</h2>
+                    <p style="font-size: 1.1rem; max-width: 800px;">The 2'-OH is not merely a decorative difference between RNA and DNA. It changes what the molecule can chemically do. And once chemistry changes, structure, stability, function, and eventually computational modeling can change too.</p>
                 </section>
                 
+                <!-- 1. Central Idea & Nucleotide -->
                 <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">The Fundamental Divergence</h3>
-                        <p>The fundamental structural divergence between DNA and RNA lies in the pentose sugar ring. DNA utilizes <strong>2'-deoxyribose</strong>, whereas RNA utilizes <strong>ribose</strong>.</p>
-                        <p>The structural difference is isolated to a single carbon atom: the <strong>2' carbon</strong>.</p>
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">1. Start with the Nucleotide</h3>
+                        <p>Before discussing ribose, we need to know what a nucleotide actually is. It has three components: a nitrogenous base, a sugar, and a phosphate.</p>
                         
-                        <div class="card-grid" style="margin-top: 2rem;">
+                        <div class="code-box" style="border-left-color: var(--accent-orange);">
+DNA: nucleotide = deoxyribose + base + phosphate
+RNA: nucleotide = ribose + base + phosphate
+                        </div>
+                        
+                        <p>The bases provide sequence information (A T G C / A U G C). But the sugar and phosphate create the physical backbone that holds those bases together. When we discuss the sugar, we’re discussing part of the molecule that makes the nucleic-acid polymer possible.</p>
+
+                        <h4 style="color: var(--accent-gold); margin-top: 2rem; margin-bottom: 1rem;">Why is the sugar called a pentose?</h4>
+                        <p>Both ribose and deoxyribose are derived from a five-carbon sugar. The numbering is extremely important:</p>
+                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>1′</strong> = attached to the nitrogenous base</li>
+                            <li><strong>2′</strong> = the critical carbon distinguishing RNA from DNA</li>
+                            <li><strong>3′</strong> = participates in chain extension</li>
+                            <li><strong>4′</strong> = part of the sugar ring</li>
+                            <li><strong>5′</strong> = attached to phosphate</li>
+                        </ul>
+
+                        <h4 style="color: var(--accent-gold); margin-top: 2rem; margin-bottom: 1rem;">The 2′ carbon is the critical location</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                             <div style="background: rgba(255, 0, 127, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--accent-orange);">
-                                <h4 style="color: var(--accent-orange); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Ribose (RNA)</h4>
-                                <p>Possesses a hydroxyl group (-OH) attached to the 2' carbon. This reactive group makes RNA chemically unstable and prone to autocatalytic cleavage, fitting its role as a transient messenger.</p>
+                                <h4 style="color: var(--accent-orange); margin-bottom: 0.5rem;">Ribose (RNA)</h4>
+                                <div style="font-family: var(--font-mono); color: #fff;">C—OH</div>
                             </div>
                             <div style="background: rgba(255, 0, 127, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--accent-purple);">
-                                <h4 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">Deoxyribose (DNA)</h4>
-                                <p>Possesses a hydrogen atom (-H) attached to the 2' carbon. The absence of the oxygen atom removes the nucleophilic reactivity, making double-stranded DNA highly stable for long-term information storage.</p>
+                                <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">Deoxyribose (DNA)</h4>
+                                <div style="font-family: var(--font-mono); color: #fff;">C—H</div>
                             </div>
                         </div>
+                        <p style="margin-top: 1rem;">DNA is "deoxy" because the oxygen-containing hydroxyl group found in ribose is missing at the 2′ position.</p>
+                    </div>
+                </section>
 
-                        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0, 0, 0, 0.4); border-radius: 8px; border: 1px solid rgba(255,0,127,0.3);">
-                            <h4 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">The Data Perspective</h4>
-                            <p style="margin-bottom: 0;">From a data perspective, this molecular difference governs the kinetic constraints of transcription: RNA polymerases must process these distinct sugars at high speeds while maintaining fidelity, despite the steric hindrance introduced by the 2'-OH group.</p>
+                <!-- 2. Chemistry of 2' OH -->
+                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">2. The Chemistry of the –OH Group</h3>
+                        <p>The oxygen is highly electronegative and possesses lone pairs of electrons, meaning it can participate in chemical reactions. Specifically, it can act as a <strong>nucleophile</strong> (an electron-rich atom that can donate an electron pair to an electron-deficient center).</p>
+                        
+                        <h4 style="color: var(--accent-mod2-light); margin-top: 2rem; margin-bottom: 1rem;">RNA can attack its own backbone</h4>
+                        <p>The nucleic-acid backbone is made largely of phosphodiester bonds. In RNA, the potentially nucleophilic 2′-oxygen is physically close to the phosphorus-containing linkage.</p>
+                        <div class="code-box" style="border-left-color: var(--accent-mod2-light);">
+2′-OH
+  ↓
+oxygen becomes nucleophilic
+  ↓
+attacks phosphorus
+  ↓
+cyclic phosphate intermediate
+  ↓
+phosphodiester linkage breaks
+  ↓
+RNA backbone cleavage
                         </div>
+                        <p>This is an intramolecular transesterification process. RNA has an internal pathway for backbone cleavage that DNA lacks. Therefore, DNA is much more resistant to spontaneous backbone hydrolysis—a major reason its backbone is advantageous for long-term information preservation.</p>
+
+                        <h4 style="color: var(--accent-mod2-light); margin-top: 2rem; margin-bottom: 1rem;">Chemical Stability is Kinetic</h4>
+                        <p>RNA doesn't immediately break apart. It is intrinsically more <em>susceptible</em> than DNA. We can represent stability as a rate of degradation:</p>
+                        <div class="math-block">
+                            \[ v = k[RNA] \]
+                        </div>
+                        <p>The 2′-OH changes the chemical reaction landscape, contributing to a larger rate constant (\(k\)) and therefore a shorter half-life under certain conditions.</p>
+                    </div>
+                </section>
+
+                <!-- 3. Structure and Function -->
+                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">3. Structural Consequences</h3>
+                        <p>The hydroxyl group isn’t only chemically reactive; it changes the physical geometry of the sugar by introducing oxygen, hydrogen, additional electron density, hydrogen-bonding capability, and steric interactions.</p>
+                        
+                        <h4 style="color: var(--accent-purple); margin-top: 2rem; margin-bottom: 1rem;">Sugar Puckering & Duplex Geometry</h4>
+                        <p>The sugar ring isn’t rigidly flat. It adopts different conformations (sugar puckering). RNA strongly prefers a C3′-endo conformation, contributing to its characteristic A-form geometry. DNA commonly adopts B-form geometry.</p>
+                        <div class="code-box" style="border-left-color: var(--accent-purple);">
+DNA duplex → commonly B-form
+RNA duplex → commonly A-form
+                        </div>
+                        <p>This matters for folding. Sequence alone doesn't dictate structure. The 2′-OH influences the conformational possibilities that lead to the final 3D structure.</p>
+                        
+                        <h4 style="color: var(--accent-purple); margin-top: 2rem; margin-bottom: 1rem;">Evolutionary Tradeoff</h4>
+                        <p>DNA is optimized for low unwanted reactivity, high structural stability, efficient replication, and repairability (long-term archive). RNA is optimized to fold into complex structures, interact with proteins, form catalytic structures, and act as a transient or stable information carrier.</p>
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 8px; text-align: center; font-family: var(--font-mono); color: var(--accent-gold);">
+                            2′-OH → RNA has different chemical properties,<br>and evolution uses those properties for many functions.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Transcription -->
+                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">4. Polymerase Kinetics & Fidelity</h3>
+                        <p>RNA polymerase synthesizes RNA from ribonucleoside triphosphates (NTPs). At each cycle, it must repeatedly perform nucleotide incorporation.</p>
+                        
+                        <div style="padding-left: 1rem; border-left: 3px solid var(--text-muted); margin-bottom: 1.5rem;">
+                            <p><strong>Note:</strong> Chain extension occurs through the <strong>3′-OH</strong>, not the 2′-OH. The 3′ oxygen of the growing RNA attacks the α-phosphate of the incoming NTP. The polymerase must accommodate the entire ribose geometry (including the 2′-OH) while positioning the 3′-OH correctly for catalysis.</p>
+                        </div>
+                        
+                        <p>Fidelity comes from the active site acting as a molecular filter. The enzyme doesn't just recognize A, U, G, or C; it evaluates the 3D geometry, including the 2′-OH. Incorrect substrates fail to produce the geometry necessary for efficient catalysis.</p>
+                        
+                        <div class="code-box" style="border-left-color: var(--accent-orange);">
+candidate nucleotide → binding → geometric checking → 
+conformational checking → chemical catalysis → incorporation
+                        </div>
+                        
+                        <p>This is a multistep kinetic system balancing speed and accuracy. DNA polymerases also use the 2′ position to distinguish dNTPs from NTPs. The enzyme converts molecular structure into a physical decision.</p>
+                    </div>
+                </section>
+
+                <!-- 5. Bioinformatics Connection -->
+                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">5. The Bioinformatics Connection</h3>
+                        <p>When you work with sequence data, the computer sees symbols (AUGCGUAC). But the biological system began with molecules.</p>
+                        
+                        <div class="code-box" style="border-left-color: var(--accent-mod2);">
+atoms → chemical groups → molecular structure → molecular interactions 
+→ biological processes → experimental measurement → digital data 
+→ bioinformatics analysis
+                        </div>
+                        
+                        <p>The sequence string is a massive abstraction. It compresses nucleotides, ribose sugars, phosphates, hydrogen bonds, and 3D states into eight characters. Different bioinformatics problems require different levels of abstraction:</p>
+                        
+                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Level 1 (Sequence):</strong> Useful for alignment, read mapping, variant calling. Chemistry is mostly abstracted away.</li>
+                            <li><strong>Level 2 (Structure):</strong> Secondary/tertiary structure prediction. Chemistry becomes much more important.</li>
+                            <li><strong>Level 3 (Molecular Mechanics):</strong> Molecular dynamics. The 2′-OH must explicitly exist in the molecular representation.</li>
+                        </ul>
+
+                        <h4 style="color: #ff4757; margin-top: 2rem; margin-bottom: 1rem;">The hidden cost of ignoring molecular structure</h4>
+                        <p>If you predict RNA structure using a DNA model, the incorrect molecular identity leads to incorrect parameters, incorrect energy estimates, and an incorrect biological hypothesis. The algorithm can be mathematically flawless and still produce a biologically wrong result.</p>
+                        
+                        <div class="math-block" style="border-left-color: #ff4757; text-align: center; background: rgba(255, 71, 87, 0.05);">
+                            <p style="font-family: var(--font-mono); font-weight: bold; color: #ff4757; margin:0;">Correct computation on an incorrect model still produces an incorrect answer.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. Summary -->
+                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Summary: From Atom to Algorithm</h3>
+                        
+                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255, 0, 127, 0.3); text-align: center; margin-bottom: 2rem;">
+                            <div style="display: inline-block; text-align: left; font-family: var(--font-mono); font-size: 0.95rem; line-height: 2;">
+                                <div style="color: var(--accent-mod2-light);">[2'-OH] → chemical reactivity → backbone lability</div>
+                                <div style="color: var(--accent-purple);">[2'-OH] → sugar conformation → backbone geometry → RNA structure</div>
+                                <div style="color: var(--accent-gold); margin-top: 1rem;">molecular chemistry → structure → function → measurement → data → computational model</div>
+                            </div>
+                        </div>
+                        
+                        <p style="font-size: 1.1rem; text-align: center; color: var(--text-muted); max-width: 800px; margin: 0 auto;">The computational sequence may look like only <code>A U G C</code>, but underneath those four letters is a specific chemical architecture. If your computational question depends on that architecture, then the chemistry cannot safely be abstracted away.</p>
                     </div>
                 </section>
 
