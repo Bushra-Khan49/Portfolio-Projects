@@ -83,16 +83,31 @@
                     <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">The Molecular Switch Between RNA and DNA Stability</h2>
                 </section>
                 
-                <!-- 1. The Core Physical Difference -->
+                <!-- 1. Introduction: Why & Where -->
+                <section class="card-grid section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary" style="margin-bottom: 1rem;">Why It Matters</h3>
+                        <p>DNA and RNA sequences look deceptively similar: <code>DNA → A T G C</code> vs <code>RNA → A U G C</code>. It is tempting to view them as just different computational alphabets.</p>
+                        <p>But here is the hidden insight: <strong>The sequence you analyze is the endpoint of a physical process.</strong></p>
+                        <p>At the molecular level, they are entirely different polymers. Their divergence rests on one single oxygen atom on a sugar ring. That single atom is the switch that dictates why DNA is a stable, long-term archive, while RNA can fold, react, and catalyze like a molecular machine.</p>
+                    </div>
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary" style="margin-bottom: 1rem;">Where This Concept Fits</h3>
+                        <p>This concept is the critical bridge between <strong>molecular chemistry and computational biology.</strong></p>
+                        <p>In the physical cell, this chemical difference governs kinetics, structural geometry, and how enzymes like RNA polymerase discriminate between substrates.</p>
+                        <p>In bioinformatics, it dictates the boundaries of computational models. If you are doing basic sequence alignment, you can safely ignore the chemistry. But if you are predicting structure or molecular dynamics, abstracting away this physical reality will produce mathematically flawless, yet biologically incorrect results.</p>
+                    </div>
+                </section>
+
+                <!-- 2. The Core Physical Difference -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
                         <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Central Idea</h3>
-                        <p>DNA and RNA can look deceptively similar when represented as sequences: <code>DNA → A T G C</code> and <code>RNA → A U G C</code>. At the sequence level, this difference may appear small. But at the molecular level, they are chemically different polymers. The entire passage revolves around one apparently tiny difference:</p>
+                        <p>The entire passage revolves around one apparently tiny difference. Every nucleotide contains three components: a nitrogenous base, a sugar, and a phosphate. The bases provide sequence information, but the sugar and phosphate create the physical backbone.</p>
                         
                         <div class="split-layout-card" style="margin-top: 2rem;">
                             <div>
-                                <h4 class="sub-heading" style="margin-top: 0;">Start with the Nucleotide</h4>
-                                <p>Every nucleotide contains three components: a nitrogenous base, a sugar, and a phosphate. The bases provide sequence information, but the sugar and phosphate create the physical backbone that holds those bases together. When we discuss the sugar, we’re discussing part of the molecule that makes the nucleic-acid polymer possible.</p>
+                                <p>When we discuss the sugar, we’re discussing the part of the molecule that makes the nucleic-acid polymer possible.</p>
                                 <p>The important lesson is: <strong>The 2′-OH is not merely a decorative difference between RNA and DNA. It changes what the molecule can chemically do.</strong> And once chemistry changes, structure, stability, function, and eventually computational modeling can change too.</p>
                             </div>
                             <div class="code-box" style="margin-top: 0; border-left: 3px solid var(--accent-purple); text-align: center;">
