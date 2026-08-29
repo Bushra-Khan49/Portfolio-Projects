@@ -99,8 +99,19 @@
                         <p>The sequence is the information we analyze. The chemistry determines how that information behaves.</p>
                     </div>
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-secondary" style="margin-bottom: 1rem;">Where Does This Concept Fit?</h3>
-                        <div class="code-box" style="margin-top: 1.5rem; border-left: 3px solid var(--accent-mod2); text-align: center;">
+                        <h3 class="h-secondary" style="margin-bottom: 1rem;">Why Should a Bioinformatician Care?</h3>
+                        <p>As bioinformaticians, we rarely watch RNA degrade or fold. Instead, we analyze:</p>
+                        <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                            <li>FASTA & FASTQ files</li>
+                            <li>RNA-Seq read alignments</li>
+                            <li>Secondary structure predictions</li>
+                            <li>Molecular dynamics trajectories</li>
+                        </ul>
+                        <p>Yet every computational analysis assumes that these nucleic acids obey their chemical rules. If these physical principles failed, almost every downstream bioinformatics algorithm would become unreliable.</p>
+                        <p>Understanding the chemistry explains why we can treat DNA as a static archival string, but must model RNA as a dynamically folding, highly reactive molecule.</p>
+
+                        <h4 class="sub-heading" style="margin-top: 1.5rem; color: var(--accent-mod2);">Where Does This Fit?</h4>
+                        <div class="code-box" style="margin-top: 1rem; border-left: 3px solid var(--accent-mod2); text-align: center;">
 2′-OH Difference
 ↓
 Chemical Reactivity & Stability
@@ -110,7 +121,6 @@ Chemical Reactivity & Stability
 RNA/DNA Function
 ↓
 Bioinformatics Representation</div>
-
                         <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem; margin-top: 1.5rem;">
                             <li><strong>Sequence Analysis:</strong> Chemistry can be abstracted away.</li>
                             <li><strong>Structure Prediction:</strong> Sugar chemistry and thermodynamics matter.</li>
