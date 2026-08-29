@@ -201,29 +201,36 @@ DNA:   C—H  (oxygen removed)
 
                 <section class="card-grid section-block fade-up">
                     <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">Chemical Stability is a Kinetic Concept</h3>
-                        <p>Don’t interpret this as: <em>RNA immediately breaks apart.</em> It doesn’t. RNA can be quite stable under many biological conditions. The better statement is: <strong>RNA is intrinsically more susceptible than DNA to backbone cleavage.</strong></p>
-                        <p>To understand why, we must treat stability as a <em>kinetic</em> property—meaning it is about how fast a reaction occurs, not whether it can occur at all.</p>
-                        <p>For a simple first-order degradation process, the speed at which RNA breaks down is given by the rate equation:</p>
+                        <h3 class="h-primary" style="margin-bottom: 1rem;">Chemical Stability Is About Rate</h3>
+                        <p>RNA does not break down instantly. Under suitable biological conditions, it can remain stable. However, RNA is generally more prone than DNA to backbone cleavage because it degrades faster.</p>
+                        <p>Chemical stability is a kinetic concept: it describes how quickly a molecule breaks down, rather than whether breakdown is possible.</p>
+                        <p>For a first-order degradation reaction:</p>
                         <div class="math-block" style="border-left-color: var(--accent-purple); text-align: center; font-size: 0.95rem; margin: 1rem 0;">
-                            \[ v = k[\text{RNA}] \]
+                            \[ \text{Rate of degradation} = k[\text{RNA}] \]
                         </div>
+                        <p>where:</p>
                         <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                            <li><strong>\(v\) (rate):</strong> The speed at which the RNA molecules are degrading.</li>
-                            <li><strong>\([\text{RNA}]\) (concentration):</strong> The amount of intact RNA currently present.</li>
-                            <li><strong>\(k\) (rate constant):</strong> The inherent chemical probability that any single RNA molecule will break apart in a given second. This is the crucial variable.</li>
+                            <li><strong>Rate of degradation</strong> is how quickly intact RNA molecules are lost.</li>
+                            <li><strong>[\text{RNA}]</strong> is the concentration of intact RNA remaining.</li>
+                            <li><strong>\(k\)</strong> is the rate constant: the likelihood that an individual RNA molecule will undergo cleavage per unit time.</li>
                         </ul>
-                        <p>We can also calculate the half-life (\(t_{1/2}\)), which is the time it takes for half of the RNA to degrade:</p>
+                        <p>RNA half-life is given by:</p>
                         <div class="math-block" style="border-left-color: var(--accent-purple); text-align: center; font-size: 0.95rem; margin: 1rem 0;">
-                            \[ t_{1/2} = \frac{\ln 2}{k} \]
+                            \[ t_{1/2} = \frac{\ln 2}{k} = \frac{0.693}{k} \]
                         </div>
+                        <p>where:</p>
                         <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                            <li><strong>\(t_{1/2}\) (half-life):</strong> The time required for half of the molecules in a sample to degrade.</li>
-                            <li><strong>\(\ln 2\):</strong> A mathematical constant (approximately 0.693) derived from the first-order exponential decay formula.</li>
-                            <li><strong>\(k\) (rate constant):</strong> The same probability constant from the rate equation.</li>
+                            <li><strong>\(t_{1/2}\)</strong> is the half-life, or the time required for half of the RNA molecules to degrade.</li>
+                            <li><strong>\(\ln 2\)</strong> is a constant equal to approximately 0.693.</li>
+                            <li><strong>\(k\)</strong> is the degradation rate constant.</li>
                         </ul>
-                        <p>The rate constant \(k\) represents the probability of a molecule breaking apart in a given timeframe. The 2′-OH provides a physically favorable route for the molecule to attack its own backbone. Because this self-cleavage reaction requires far less activation energy than breaking a standard chemical bond, the probability of the reaction occurring is much higher. This higher probability mathematically translates to a <strong>larger \(k\).</strong></p>
-                        <p>In the half-life equation, \(k\) sits in the denominator. A larger \(k\) divides the constant by a larger number, resulting in a <strong>shorter half-life</strong>. DNA lacks the nucleophilic 2′-OH, forcing it to rely on much slower, less probable degradation pathways. This gives DNA a vastly smaller \(k\) and, consequently, an extremely long half-life.</p>
+                        <p>RNA contains a 2′-OH group on its ribose sugar. This group can act as an internal nucleophile and attack the adjacent phosphate in the backbone, promoting self-cleavage. Because the 2′-OH group provides RNA with an easier pathway for backbone cleavage, the reaction has a lower activation-energy barrier. As a result, cleavage occurs more frequently, giving RNA a larger degradation rate constant, \(k\).</p>
+                        <p>The rate constant \(k\) indicates how rapidly intact RNA is lost over time: a larger \(k\) means a greater fraction of RNA molecules cleaves during a given time interval. Thus, RNA degrades more rapidly.</p>
+                        <p>Since half-life is defined as:</p>
+                        <div class="math-block" style="border-left-color: var(--accent-purple); text-align: center; font-size: 0.95rem; margin: 1rem 0;">
+                            \[ t_{1/2} = \frac{0.693}{k} \]
+                        </div>
+                        <p>\(k\) is inversely related to half-life. Therefore, when \(k\) increases, the time needed for 50% of the RNA molecules to degrade decreases. In other words, a larger \(k\) produces a shorter half-life.</p>
                     </div>
                     <div class="glass-card tilt-effect hover-target">
                         <h3 class="h-primary" style="margin-bottom: 1rem;">The Evolutionary Tradeoff</h3>
