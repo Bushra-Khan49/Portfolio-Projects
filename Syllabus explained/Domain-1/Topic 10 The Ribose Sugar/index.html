@@ -144,53 +144,54 @@ Bioinformatics Representation</div>
                                 <p><strong>The presence of the 2′-OH in RNA introduces a highly reactive oxygen atom that sits physically adjacent to the backbone's phosphodiester bond, causing its intramolecular self-cleavage and making RNA inherently fragile.</strong> In contrast, DNA lacks this oxygen (2′-H), preventing self-cleavage and granting extreme stability required for long-term genetic storage.</p>
                                 <p>This single chemical difference also dictates computational modeling: algorithms can assume DNA forms a predictable double helix, while RNA's dynamic folding requires intense thermodynamic calculations (like Minimum Free Energy) to predict its 3D structure.</p>
                             </div>
-                            <figure class="comparison-figure" style="margin: 0; background: #0f1423; border: 1px solid rgba(255, 0, 127, 0.15); border-left: 3px solid var(--accent-purple); padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-                                <img src="ribose_vs_deoxyribose.jpg" alt="Ribose vs Deoxyribose" style="width: 100%; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;">
-                                <div style="display: flex; justify-content: space-around; text-align: center; font-family: var(--font-mono); font-size: 0.95rem; color: #e8eaf6;">
-                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 45%;">
-                                        <strong style="color: var(--accent-purple); font-size: 1.2rem; font-family: var(--font-display); letter-spacing: 1px;">RNA</strong>
-                                        <span>Ribose</span>
-                                        <span>different chemistry</span>
-                                        <span>different stability</span>
-                                        <span>different structure</span>
-                                        <span style="color: var(--accent-mod2-light); font-weight: bold;">different functions</span>
-                                    </div>
-                                    <div style="width: 1px; background: rgba(255, 0, 127, 0.2); margin: 0 1rem;"></div>
-                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 45%;">
-                                        <strong style="color: var(--accent-gold); font-size: 1.2rem; font-family: var(--font-display); letter-spacing: 1px;">DNA</strong>
-                                        <span>2′-deoxyribose</span>
-                                        <span>different chemistry</span>
-                                        <span>greater stability</span>
-                                        <span>different structure</span>
-                                        <span style="color: var(--accent-gold); font-weight: bold;">long-term storage</span>
-                                    </div>
-                                </div>
-                            </figure>
+                            <div class="code-box" style="margin-top: 0; border-left: 3px solid var(--accent-purple); text-align: center; white-space: pre-wrap; display: flex; justify-content: space-around;">
+<div><strong>RNA</strong>
+Ribose
+different chemistry
+different stability
+different structure
+different functions</div><div><strong>DNA</strong>
+2′-deoxyribose
+different chemistry
+greater stability
+different structure
+long-term storage</div>
+                            </div>
                         </div>
                     </div>
                 </section>
 
-                <section class="card-grid section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">The Critical Carbon: 2′</h3>
-                        <p>Both ribose and deoxyribose are derived from a five-carbon sugar ("pentose"). The numbering is extremely important. The prime symbol (′) tells us we’re talking about sugar carbons, not atoms in the base.</p>
-                        <ul>
-                            <li><strong>1′</strong> = attached to the nitrogenous base</li>
-                            <li><strong>2′</strong> = the critical carbon distinguishing RNA from DNA</li>
-                            <li><strong>3′</strong> = participates in chain extension</li>
-                            <li><strong>4′</strong> = part of the sugar ring</li>
-                            <li><strong>5′</strong> = attached to phosphate</li>
-                        </ul>
-                    </div>
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">The Name "Deoxyribose"</h3>
-                        <p>The name itself tells you exactly what the molecule is. <strong>Deoxy</strong> simply means "without oxygen."</p>
-                        <p>DNA uses <strong>2′-deoxyribose</strong>—which is literally just RNA's ribose sugar with the oxygen atom removed from the 2′ position.</p>
-                        <div class="code-box" style="border-left-color: var(--accent-gold);">
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <div class="split-layout-card">
+                            <div>
+                                <h3 class="h-primary" style="margin-bottom: 1rem;">The Critical Carbon: 2′</h3>
+                                <p>Both ribose and deoxyribose are derived from a five-carbon sugar ("pentose"). The numbering is extremely important. The prime symbol (′) tells us we’re talking about sugar carbons, not atoms in the base.</p>
+                                <ul style="color: #e8eaf6; padding-left: 1.5rem; line-height: 1.8; margin-bottom: 2rem;">
+                                    <li><strong>1′</strong> = attached to the nitrogenous base</li>
+                                    <li><strong>2′</strong> = the critical carbon distinguishing RNA from DNA</li>
+                                    <li><strong>3′</strong> = participates in chain extension</li>
+                                    <li><strong>4′</strong> = part of the sugar ring</li>
+                                    <li><strong>5′</strong> = attached to phosphate</li>
+                                </ul>
+
+                                <h3 class="h-primary" style="margin-bottom: 1rem;">The Name "Deoxyribose"</h3>
+                                <p>The name itself tells you exactly what the molecule is. <strong>Deoxy</strong> simply means "without oxygen."</p>
+                                <p>DNA uses <strong>2′-deoxyribose</strong>—which is literally just RNA's ribose sugar with the oxygen atom removed from the 2′ position.</p>
+                                <div class="code-box" style="border-left-color: var(--accent-gold);">
 RNA:   C—OH (hydroxyl group)
 DNA:   C—H  (oxygen removed)
+                                </div>
+                                <p>DNA does not use a newly invented sugar architecture. It uses the exact same ribose ring as RNA, deliberately stripped of one reactive oxygen atom to optimize it for long-term stability.</p>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                                <figure style="margin: 0;">
+                                    <img src="ribose_vs_deoxyribose.jpg" alt="Ribose vs Deoxyribose" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                                    <figcaption style="color: #aab2c0; font-size: 0.9rem; font-style: italic; line-height: 1.5; padding: 0 1rem;"><strong>Figure 1:</strong> Chemical structure comparison of Ribose (left, purple highlighting the 2′-OH) and 2′-Deoxyribose (right, gold highlighting the 2′-H), illustrating the single missing oxygen atom that dictates stability.</figcaption>
+                                </figure>
+                            </div>
                         </div>
-                        <p>DNA does not use a newly invented sugar architecture. It uses the exact same ribose ring as RNA, deliberately stripped of one reactive oxygen atom to optimize it for long-term stability.</p>
                     </div>
                 </section>
 
