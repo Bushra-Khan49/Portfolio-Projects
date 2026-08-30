@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Topic 11: Pyrimidine Substitution</title>
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css?v=11">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --accent-mod2: #ff007f;
@@ -18,7 +18,6 @@
             --accent-gold: #ffd54f;
             --text-muted: #aab2c0;
         }
-
         .back-btn {
             position: fixed;
             top: 1.25rem;
@@ -28,94 +27,355 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1.1rem;
-            background: rgba(5, 10, 21, 0.75);
-            border: 1px solid rgba(255, 0, 127, 0.35);
-            border-radius: 999px;
-            color: var(--accent-mod2);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
+            background: rgba(10, 11, 16, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
             text-decoration: none;
-            letter-spacing: 0.04em;
+            font-size: 0.85rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            transition: all 0.25s ease;
-            box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
-        }
-        .back-btn:hover {
-            background: rgba(255, 0, 127, 0.12);
-            border-color: rgba(255, 0, 127, 0.7);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.35);
-            transform: translateX(-2px);
-        }
-        .back-btn svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
-
-        .h-primary { color: #ffffff !important; font-family: var(--font-display) !important; text-transform: uppercase; }
-        .h-secondary { color: var(--accent-mod2) !important; font-family: var(--font-display) !important;}
-        
-        .glass-card.hover-target {
-            border-color: rgba(255, 0, 127, 0.2);
             transition: all 0.3s ease;
         }
-        .glass-card.hover-target:hover {
-            border-color: rgba(255, 0, 127, 0.6);
-            box-shadow: 0 8px 24px rgba(255, 0, 127, 0.15);
+        .back-btn:hover {
+            background: rgba(255, 0, 127, 0.2);
+            border-color: rgba(255, 0, 127, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 0, 127, 0.2);
         }
-        
-        p {
-            line-height: 1.7;
-            margin-bottom: 1rem;
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, 0); }
+            50% { opacity: 1; transform: translate(-50%, 5px); }
+        }
+        .tree-diagram {
+            font-family: var(--font-mono);
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            padding: 1.5rem;
             color: #d1d5db;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .math-block {
+            border-left-color: var(--accent-mod2) !important;
+            padding: 1.5rem !important;
+            margin: 2rem 0 !important;
+            background: rgba(255, 0, 127, 0.05) !important;
+        }
+        .math-block.error-detect {
+            border-left-color: var(--accent-gold) !important;
+            background: rgba(255, 213, 79, 0.05) !important;
+        }
+        .math-block.mutation {
+            border-left-color: var(--accent-orange) !important;
+            background: rgba(255, 87, 34, 0.05) !important;
+        }
+        h3.h-secondary {
+            color: var(--accent-mod2-light);
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
-    <a class="back-btn" href="../../../index.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"/>
-        </svg>
-        Portfolio
+    <a href="../index.html" class="back-btn">
+        <span>←</span> Domain 1
     </a>
 
     <main class="split-layout">
-        <div class="content-column" id="smooth-wrapper">
-            <div id="smooth-content" class="content-inner">
+        <!-- Left Column: Scrolling Content -->
+        <div class="content-column">
+            <div class="content-inner">
                 
-                <section class="hero-section fade-up">
-                    <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 11</h5>
-                    <h1 class="h-primary" style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">Pyrimidine Substitution</h1>
-                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">Uracil vs. Thymine</h2>
+                <section class="hero-section">
+                    <div class="eyebrow" style="color: var(--accent-mod2);">TOPIC 11</div>
+                    <h1 style="background: linear-gradient(90deg, #ff007f, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pyrimidine Substitution</h1>
+                    <p style="font-size: 1.25rem; max-width: 600px; margin: 1.5rem auto;">Uracil vs. Thymine: How One Methyl Group Protects Genetic Information</p>
+                    <div class="scroll-indicator">
+                        <span>Scroll to Explore</span>
+                        <div class="mouse"></div>
+                    </div>
                 </section>
-                
-                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
+
+                <!-- SECTION 1: Introduction -->
+                <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-primary" style="margin-bottom: 1rem;">The Fourth Base</h3>
-                        <p>While both molecules utilize Adenine, Cytosine, and Guanine, the fourth base changes depending on the nucleic acid type.</p>
-                        <p>DNA uses <strong>Thymine</strong> (5-methyluracil), whereas RNA uses <strong>Uracil</strong>.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Why This Matters</h3>
+                        <p>DNA and RNA both use three of the same canonical bases: <strong>Adenine (A)</strong>, <strong>Cytosine (C)</strong>, and <strong>Guanine (G)</strong>. The fourth pyrimidine differs:</p>
                         
-                        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0, 0, 0, 0.4); border-radius: 8px; border-left: 3px solid var(--accent-gold);">
-                            <h4 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 0.5rem; font-family: var(--font-display);">The Chemical Difference</h4>
-                            <p style="margin-bottom: 0;">The chemical difference is a single methyl group (<strong>-CH₃</strong>) at the C5 position of Thymine, which is absent in Uracil.</p>
+                        <div class="split-text align-center" style="margin: 2rem 0;">
+                            <div style="text-align: center;">
+                                <h4 style="color: var(--accent-purple);">DNA</h4>
+                                <ul style="list-style: none; padding: 0; font-family: var(--font-mono); font-size: 1.2rem; color: #fff;">
+                                    <li>A</li><li>C</li><li>G</li><li style="color: var(--accent-orange); font-weight: bold;">T</li>
+                                </ul>
+                            </div>
+                            <div style="text-align: center; font-size: 2rem; color: var(--text-muted);">vs</div>
+                            <div style="text-align: center;">
+                                <h4 style="color: var(--accent-mod2-light);">RNA</h4>
+                                <ul style="list-style: none; padding: 0; font-family: var(--font-mono); font-size: 1.2rem; color: #fff;">
+                                    <li>A</li><li>C</li><li>G</li><li style="color: var(--accent-mod2-light); font-weight: bold;">U</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p>At the sequence level, this looks like a simple alphabetic substitution (\(T \leftrightarrow U\)). But chemically:</p>
+                        
+                        <div class="math-block">
+                            \[ 	ext{Thymine} = 	ext{Uracil} + 	ext{CH}_3 \]
+                        </div>
+                        
+                        <p>That single methyl group has an important consequence for DNA damage recognition and repair. The deeper story is therefore not simply: <em>"DNA uses T; RNA uses U."</em> It is:</p>
+                        
+                        <p style="font-size: 1.2rem; color: #fff; text-align: center; padding: 1.5rem; border-left: 3px solid var(--accent-gold); background: rgba(255,213,79,0.05); margin: 2rem 0;">
+                            <strong>DNA uses thymine partly because it makes a common form of spontaneous DNA damage detectable.</strong>
+                        </p>
+                        <p>This is a beautiful example of molecular chemistry becoming an error-detection system.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION 2: The Pyrimidines -->
+                <section class="section-block fade-up">
+                    <div class="glass-card hover-target">
+                        <h3 class="h-secondary">The Pyrimidine Family</h3>
+                        <p>First, let's place these bases chemically. Cytosine, uracil, and thymine share the same basic pyrimidine ring framework.</p>
+                        
+                        <div class="tree-diagram" style="text-align: center;">
+Pyrimidines
+    │
+    ├─ Cytosine
+    │
+    ├─ Uracil
+    │
+    └─ Thymine
+                        </div>
+                        <p style="margin-top: 1.5rem;">Thymine is essentially a 5-methylated uracil:</p>
+                        <div class="math-block" style="padding: 1rem !important; margin: 1rem 0 !important;">
+                            \[ 	ext{Thymine} = 	ext{5-methyluracil} \]
                         </div>
                     </div>
                 </section>
 
-                <!-- Navigation -->
-                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
-                    <a href="../Topic 10 The Ribose Sugar/index.html" style="text-decoration: none;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2);">
-                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">←</span>
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary">The Critical Position: C5</h3>
+                        <p>The distinguishing methyl group is attached to carbon 5 of the pyrimidine ring. Conceptually:</p>
+                        
+                        <div class="split-text" style="font-family: var(--font-mono); text-align: center; margin: 2rem 0; font-size: 0.9rem;">
+                            <div>
+                                <div style="color: var(--accent-mod2-light); margin-bottom: 0.5rem; font-weight: bold;">URACIL</div>
+                                <div>  O</div>
+                                <div>  ||</div>
+                                <div>┌───────┐</div>
+                                <div>│       │</div>
+                                <div>│ ring  │</div>
+                                <div>│       │</div>
+                                <div>└───────┘</div>
+                                <div>  │</div>
+                                <div>  H</div>
+                                <div style="color: var(--text-muted); font-size: 0.8rem;">C5</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--accent-orange); margin-bottom: 0.5rem; font-weight: bold;">THYMINE</div>
+                                <div>  O</div>
+                                <div>  ||</div>
+                                <div>┌───────┐</div>
+                                <div>│       │</div>
+                                <div>│ ring  │</div>
+                                <div>│       │</div>
+                                <div>└───────┘</div>
+                                <div>  │</div>
+                                <div style="color: var(--accent-gold); font-weight: bold;"> CH₃</div>
+                                <div style="color: var(--text-muted); font-size: 0.8rem;">C5</div>
+                            </div>
+                        </div>
+                        <p>The structural difference you need to remember is that Uracil has a Hydrogen at C5, while Thymine has a Methyl (\(	ext{CH}_3\)) at C5.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION 3: Deamination -->
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Problem: Cytosine Can Deaminate</h3>
+                        <p>This is the central chemical mechanism. Cytosine can undergo a spontaneous chemical reaction called <strong>deamination</strong> (removal of an amino group, \(-	ext{NH}_2\)).</p>
+                        
+                        <div class="tree-diagram" style="text-align: center; display: flex; justify-content: center; align-items: center; gap: 2rem;">
+                            <div>
+                                <div style="color: var(--accent-purple); font-weight: bold; margin-bottom: 0.5rem;">Cytosine</div>
+                                <div>NH₂</div>
+                                <div>│</div>
+                                <div>ring</div>
+                            </div>
+                            <div style="color: var(--accent-gold);">
+                                <div>deamination</div>
+                                <div>───────────▶</div>
+                                <div>(H₂O in, NH₃ out)</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--accent-mod2-light); font-weight: bold; margin-bottom: 0.5rem;">Uracil</div>
+                                <div>O</div>
+                                <div>│</div>
+                                <div>ring</div>
+                            </div>
+                        </div>
+
+                        <div class="math-block mutation">
+                            \[ 	ext{Cytosine} ightarrow 	ext{Uracil} \]
+                        </div>
+                        
+                        <p>The important point is that a <strong>normal DNA base can chemically transform into a different base</strong>, creating a potential mutation.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION 4: Repair Logic -->
+                <section class="section-block fade-up">
+                    <div class="split-layout-card full-width">
+                        <div>
+                            <h3 class="h-secondary" style="margin-top: 0;">The Repair Problem</h3>
+                            <p>Because uracil normally pairs with adenine (\(U-A\)), a deaminated cytosine creates a \(U:G\) mismatch. If a hypothetical organism used uracil as its natural DNA base, its DNA would legitimately contain \(A-U\) pairs.</p>
+                            <p>If cytosine damage occurred (\(C-G ightarrow U-G\)), the repair machinery would see a \(U\). But how would it know whether that \(U\) is a <strong>legitimate U</strong> or a <strong>damaged C</strong>?</p>
+                        </div>
+                        <div>
+                            <h3 class="h-secondary" style="margin-top: 0; color: var(--accent-gold);">DNA Solves This By Using Thymine</h3>
+                            <p>DNA uses \(A-T\) instead. When cytosine deaminates (\(C-G ightarrow U-G\)), uracil becomes an <em>abnormal</em> base in DNA.</p>
+                            <div class="code-box">
+NORMAL DNA:
+A — T
+C — G
+
+DAMAGED DNA:
+A — U   ← suspicious!
+                            </div>
+                            <p style="margin-top: 1rem;">The cell treats uracil in DNA as a direct signal that something has gone wrong.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-secondary">The Information-Theoretic Problem</h3>
+                        <p>Think about it computationally. If DNA used \(U\) normally, the symbol \(U\) in DNA would be ambiguous (either a legitimate encoded base or damaged cytosine). But because DNA uses \(T\), the symbol \(U\) becomes highly informative: it strongly suggests <em>"something happened here."</em></p>
+                        
+                        <p>This is conceptually similar to <strong>error-detecting codes</strong> in computer science. The choice of thymine creates a kind of redundancy in the biological encoding system. The molecular alphabet itself contributes to error detection.</p>
+                        
+                        <div class="math-block error-detect" style="margin-bottom: 0 !important;">
+                            \[ T 	ext{ gives DNA a way to distinguish normal information from a common chemical error} \]
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 5: Mutation & RNA -->
+                <section class="section-block fade-up">
+                    <div class="glass-card hover-target full-width">
+                        <h3 class="h-secondary">How Does C→U Become a Mutation?</h3>
+                        <p>Let’s follow one DNA molecule through replication. If a \(U:G\) lesion is not repaired, replication converts it into a stable base substitution. During replication, \(U\) behaves like \(T\) and preferentially pairs with \(A\).</p>
+                        
+                        <div class="tree-diagram">
+Normal DNA:      C — G
+                   │ (spontaneous deamination)
+                   ▼
+Generation 1:    U — G
+                   │ 
+      ┌────────────┴────────────┐
+   repair                   no repair (replication)
+      │                         │
+      ▼                         ▼
+    C — G                     U — A
+                                │ (replication)
+                                ▼
+                              T — A
+                        </div>
+                        
+                        <div class="math-block mutation">
+                            \[ C:G ightarrow T:A \]
+                        </div>
+                        <p>This is a <strong>transition mutation</strong>. One chemical reaction becomes a permanent sequence change if repair fails.</p>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target">
+                        <h3 class="h-secondary">Why Does RNA Use Uracil?</h3>
+                        <p>RNA uses uracil because it does not require the same genome-wide damage-detection strategy as DNA, while uracil is metabolically simpler than thymine to produce.</p>
+                        <p>RNA is produced continuously and in massive quantities (especially rRNA). Biosynthesis of thymine involves an extra methylation step. Over billions of nucleotides, this small additional cost becomes a substantial metabolic investment. Since RNA's information strategy is typically <em>TRANSCRIBE → USE → DEGRADE</em>, it avoids paying the metabolic tax for long-term error detection.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION 6: Bioinformatics -->
+                <section class="section-block fade-up">
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Now Connect This To Bioinformatics</h3>
+                        <p>You may eventually see a variant in a VCF file:</p>
+                        <div class="code-box">
+Reference: ... C ...
+Sample:    ... T ...
+                        </div>
+                        <p style="margin-top: 1rem;">Computationally, this is just \(C ightarrow T\). But biologically, the reality may have been: <code>C → chemical lesion (U) → repair failure → replication → T</code>.</p>
+                        <p>If you analyze many variants, you may find substitution classes enriched (like \(C ightarrow T\) and \(G ightarrow A\)). Their frequencies tell researchers about DNA damage processes, mutational exposures, and repair mechanisms.</p>
+                        
+                        <div class="split-text align-center" style="margin-top: 2rem;">
+                            <div style="flex: 1;">
+                                <h4 style="color: var(--text-muted);">Computational Layer</h4>
+                                <p style="font-family: var(--font-mono); font-size: 0.9rem;">Describes WHAT changed.<br><br>Reference → C<br>Sample    → T</p>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="color: var(--accent-mod2-light);">Biological Layer</h4>
+                                <p style="font-family: var(--font-mono); font-size: 0.9rem;">Proposes HOW it happened.<br><br>C → deamination → U<br>→ repair failure → T</p>
+                            </div>
+                        </div>
+                        
+                        <p style="text-align: center; color: var(--accent-mod2-light); font-size: 1.1rem; margin-top: 2rem;">
+                            <strong style="color: white;">The Bigger Principle:</strong> Molecular design can encode error-detection information.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- Footer Navigation -->
+                <div style="display: flex; justify-content: space-between; margin-top: 4rem; gap: 1rem;">
+                    <a href="../Topic 10 The Ribose Sugar/index.html" style="text-decoration: none; flex: 1;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 0;">
+                            <span style="color: var(--text-muted); font-size: 1.5rem;">←</span>
                             <div>
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: left;">Previous Topic</div>
                                 <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 10</div>
                             </div>
                         </div>
                     </a>
-                    <a href="../Topic 12 Evolutionary Logic/index.html" style="text-decoration: none;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); text-align: right;">
+                    <a href="../Topic 12 Evolutionary Logic/index.html" style="text-decoration: none; flex: 1;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); text-align: right; margin-bottom: 0;">
                             <div>
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: right;">Next Topic</div>
                                 <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 12</div>
@@ -125,16 +385,22 @@
                     </a>
                 </div>
                 
-                <div class="bottom-spacer"></div>
+                <div class="bottom-spacer" style="height: 10vh;"></div>
             </div>
         </div>
+
+        <!-- Right Column: Interactive Canvas -->
         <div class="canvas-column">
             <canvas id="webgl-canvas"></canvas>
             <div class="canvas-overlay"></div>
         </div>
     </main>
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js?v=12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="script.js?v=11"></script>
 </body>
 </html>
