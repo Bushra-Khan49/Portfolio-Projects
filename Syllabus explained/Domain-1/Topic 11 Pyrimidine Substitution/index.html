@@ -237,7 +237,7 @@ Pyrimidines
 
                 <!-- SECTION 2: The Error-Detection Problem -->
                 <section class="section-block fade-up">
-                    <div class="split-layout-card full-width">
+                    <div class="split-layout-card full-width glass-card tilt-effect">
                         <div>
                             <h3 class="h-secondary" style="margin-top: 0;">The Vulnerability of Cytosine</h3>
                             <p>To understand why Thymine exists, we must examine a flaw in Cytosine. Cytosine is chemically unstable in water and undergoes spontaneous <strong>hydrolytic deamination</strong>—the loss of its exocyclic amino group (\(-\text{NH}_2\)).</p>
@@ -271,6 +271,10 @@ Pyrimidines
                             IF (Base == Uracil) THEN { Flag As Damage; Initiate Base-Excision Repair; }
                         </div>
                         
+                        <div style="margin: 2.5rem 0;">
+                            <img src="uracil_dna_glycosylase_repair.jpg" alt="Uracil-DNA Glycosylase detecting U:G mismatch" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                        </div>
+                        
                         <p style="margin-top: 1.5rem;">The alphabet itself acts as an error-detecting checksum. By excluding Uracil from the legitimate code, DNA ensures that the most common form of chemical degradation announces itself loudly as a systemic anomaly.</p>
                     </div>
                 </section>
@@ -285,6 +289,10 @@ Pyrimidines
                         
                         <div class="math-block" style="border-left-color: var(--accent-gold);">
                             \[ C:G \rightarrow U:G \rightarrow T:A \]
+                        </div>
+                        
+                        <div style="margin: 2.5rem 0;">
+                            <img src="bioinformatics_igv_mutation.jpg" alt="Bioinformatics Variant Calling of C-to-T Mutation" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                         </div>
                         
                         <p>Through this pathway, an uncorrected chemical lesion solidifies into a classic <strong>transition mutation</strong>. This mechanism explains why \(C \rightarrow T\) transitions are among the most overwhelmingly common spontaneous mutations observed across all domains of life.</p>
