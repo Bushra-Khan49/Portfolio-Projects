@@ -22,34 +22,17 @@
         }
 
         .back-btn {
-            position: fixed;
-            top: 1.25rem;
-            left: 1.25rem;
-            z-index: 9999;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.1rem;
-            background: rgba(10, 11, 16, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-family: var(--font-sans);
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
+            position: fixed; top: 1.25rem; left: 1.25rem; z-index: 9999; display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.1rem; background: rgba(5, 10, 21, 0.75); border: 1px solid rgba(255, 0, 127, 0.35);
+            border-radius: 999px; color: var(--accent-mod2); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+            text-decoration: none; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease; box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
         }
         .back-btn:hover {
-            background: rgba(255, 0, 127, 0.2);
-            border-color: rgba(255, 0, 127, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 0, 127, 0.2);
+            background: rgba(255, 0, 127, 0.12); border-color: rgba(255, 0, 127, 0.7); box-shadow: 0 0 20px rgba(255, 0, 127, 0.35); transform: translateX(-2px);
         }
+        .back-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+        .h-primary { color: #ffffff !important; font-family: 'Cinzel', serif !important; text-transform: uppercase; }
 
         .hero-section {
             height: 100vh;
@@ -151,8 +134,11 @@
     </style>
 </head>
 <body>
-    <a href="../index.html" class="back-btn">
-        <span>←</span> Domain 1
+    <a class="back-btn" href="../../../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Portfolio
     </a>
 
     <main class="split-layout">
@@ -160,10 +146,10 @@
         <div class="content-column">
             <div class="content-inner">
                 
-                <section class="hero-section">
-                    <div class="eyebrow" style="color: var(--accent-mod2);">TOPIC 11</div>
-                    <h1 style="background: linear-gradient(90deg, #ff007f, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pyrimidine Substitution</h1>
-                    <p style="font-size: 1.25rem; max-width: 600px; margin: 1.5rem 0;">Uracil vs. Thymine: How One Methyl Group Protects Genetic Information</p>
+                <section class="hero-section fade-up">
+                    <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 11</h5>
+                    <h1 class="h-primary" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">PYRIMIDINE SUBSTITUTION</h1>
+                    <h2 style="color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6; max-width: 600px;">Uracil vs. Thymine: How One Methyl Group Protects Genetic Information</h2>
                     <div class="scroll-indicator">
                         <span>Scroll to Explore</span>
                         <div class="mouse"></div>
@@ -330,19 +316,19 @@ Pyrimidines
                     </div>
                 </section>
                 
-                <!-- Footer Navigation -->
-                <div style="display: flex; justify-content: space-between; margin-top: 4rem; gap: 1rem;">
-                    <a href="../Topic 10 The Ribose Sugar/index.html" style="text-decoration: none; flex: 1;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 0;">
-                            <span style="color: var(--text-muted); font-size: 1.5rem;">←</span>
+                <!-- Navigation -->
+                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
+                    <a href="../Topic 10 The Ribose Sugar/index.html" style="text-decoration: none;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); border-radius: 50px; margin-bottom: 0;">
+                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">←</span>
                             <div>
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: left;">Previous Topic</div>
                                 <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 10</div>
                             </div>
                         </div>
                     </a>
-                    <a href="../Topic 12 Evolutionary Logic/index.html" style="text-decoration: none; flex: 1;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); text-align: right; margin-bottom: 0;">
+                    <a href="../Topic 12 Evolutionary Logic/index.html" style="text-decoration: none;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); border-radius: 50px; text-align: right; margin-bottom: 0;">
                             <div>
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: right;">Next Topic</div>
                                 <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 12</div>
