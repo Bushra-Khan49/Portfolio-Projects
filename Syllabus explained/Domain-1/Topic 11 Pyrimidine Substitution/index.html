@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Topic 11: Pyrimidine Substitution</title>
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css?v=11">
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --accent-mod2: #ff007f;
             --accent-mod2-light: #ff4da6;
-            --accent-mod2-dark: #b30059;
             --accent-orange: #ff5722;
             --accent-purple: #b388ff;
             --accent-gold: #ffd54f;
             --text-muted: #aab2c0;
         }
+
         .back-btn {
             position: fixed;
             top: 1.25rem;
@@ -47,6 +50,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(255, 0, 127, 0.2);
         }
+
         .hero-section {
             height: 100vh;
             display: flex;
@@ -58,6 +62,7 @@
             position: relative;
             z-index: 2;
         }
+
         .scroll-indicator {
             position: absolute;
             bottom: 3rem;
@@ -75,38 +80,60 @@
             opacity: 0.7;
             animation: pulse 2s infinite;
         }
+
         @keyframes pulse {
             0%, 100% { opacity: 0.5; transform: translate(-50%, 0); }
             50% { opacity: 1; transform: translate(-50%, 5px); }
         }
-        .tree-diagram {
-            font-family: var(--font-mono);
-            background: rgba(255,255,255,0.02);
-            border-radius: 8px;
-            padding: 1.5rem;
-            color: #d1d5db;
-            line-height: 1.5;
-            white-space: pre;
-            overflow-x: auto;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+
         .math-block {
-            border-left-color: var(--accent-mod2) !important;
-            padding: 1.5rem !important;
-            margin: 2rem 0 !important;
-            background: rgba(255, 0, 127, 0.05) !important;
+            border-left: 3px solid var(--accent-mod2);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: rgba(255, 0, 127, 0.05);
+            border-radius: 0 8px 8px 0;
+            text-align: center;
+            font-size: 1.1rem;
         }
-        .math-block.error-detect {
-            border-left-color: var(--accent-gold) !important;
-            background: rgba(255, 213, 79, 0.05) !important;
+        
+        .code-box {
+            background: #0a0b10;
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+            color: #ccc;
         }
-        .math-block.mutation {
-            border-left-color: var(--accent-orange) !important;
-            background: rgba(255, 87, 34, 0.05) !important;
+
+        .chem-comparison {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
         }
-        h3.h-secondary {
-            color: var(--accent-mod2-light);
-            margin-top: 0;
+        .chem-card {
+            flex: 1;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .chem-card h4 {
+            font-family: var(--font-display);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .chem-card .highlight {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 1rem;
         }
     </style>
 </head>
@@ -130,236 +157,120 @@
                     </div>
                 </section>
 
-                <!-- SECTION 1: Introduction -->
+                <!-- SECTION 1: The Chemical Distinction -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Why This Matters</h3>
-                        <p>DNA and RNA both use three of the same canonical bases: <strong>Adenine (A)</strong>, <strong>Cytosine (C)</strong>, and <strong>Guanine (G)</strong>. The fourth pyrimidine differs:</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Chemical Distinction</h3>
+                        <p>DNA and RNA utilize near-identical alphabets, sharing Adenine (A), Cytosine (C), and Guanine (G). The divergence occurs exclusively in the pyrimidine base complementary to Adenine: RNA utilizes <strong>Uracil</strong>, whereas DNA utilizes <strong>Thymine</strong>.</p>
                         
-                        <div class="split-text align-center" style="margin: 2rem 0;">
-                            <div style="text-align: center;">
-                                <h4 style="color: var(--accent-purple);">DNA</h4>
-                                <ul style="list-style: none; padding: 0; font-family: var(--font-mono); font-size: 1.2rem; color: #fff;">
-                                    <li>A</li><li>C</li><li>G</li><li style="color: var(--accent-orange); font-weight: bold;">T</li>
-                                </ul>
+                        <p>At the sequence level, this appears to be a trivial alphabetic substitution (\(T \leftrightarrow U\)). However, at the molecular level, Thymine and Uracil are practically identical, separated only by a single functional group at the carbon-5 position of the pyrimidine ring.</p>
+                        
+                        <div class="math-block" style="border-left-color: var(--accent-purple);">
+                            \[ \text{Thymine} = \text{5-methyluracil} \]
+                        </div>
+
+                        <div class="chem-comparison">
+                            <div class="chem-card">
+                                <h4 style="color: var(--accent-mod2-light);">URACIL</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">Used in RNA</p>
+                                <div class="highlight" style="background: rgba(255, 77, 166, 0.1); color: var(--accent-mod2-light);">
+                                    C5 — H
+                                </div>
                             </div>
-                            <div style="text-align: center; font-size: 2rem; color: var(--text-muted);">vs</div>
-                            <div style="text-align: center;">
-                                <h4 style="color: var(--accent-mod2-light);">RNA</h4>
-                                <ul style="list-style: none; padding: 0; font-family: var(--font-mono); font-size: 1.2rem; color: #fff;">
-                                    <li>A</li><li>C</li><li>G</li><li style="color: var(--accent-mod2-light); font-weight: bold;">U</li>
-                                </ul>
+                            <div class="chem-card">
+                                <h4 style="color: var(--accent-orange);">THYMINE</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">Used in DNA</p>
+                                <div class="highlight" style="background: rgba(255, 87, 34, 0.1); color: var(--accent-orange);">
+                                    C5 — CH₃
+                                </div>
                             </div>
                         </div>
                         
-                        <p>At the sequence level, this looks like a simple alphabetic substitution (\(T \leftrightarrow U\)). But chemically:</p>
-                        
-                        <div class="math-block">
-                            \[ 	ext{Thymine} = 	ext{Uracil} + 	ext{CH}_3 \]
-                        </div>
-                        
-                        <p>That single methyl group has an important consequence for DNA damage recognition and repair. The deeper story is therefore not simply: <em>"DNA uses T; RNA uses U."</em> It is:</p>
-                        
-                        <p style="font-size: 1.2rem; color: #fff; text-align: center; padding: 1.5rem; border-left: 3px solid var(--accent-gold); background: rgba(255,213,79,0.05); margin: 2rem 0;">
-                            <strong>DNA uses thymine partly because it makes a common form of spontaneous DNA damage detectable.</strong>
-                        </p>
-                        <p>This is a beautiful example of molecular chemistry becoming an error-detection system.</p>
+                        <p>This single methyl group (\(-\text{CH}_3\)) radically alters the information-processing capabilities of the cell. The choice of Thymine in DNA is not an accident of chemistry; it is an elegant evolutionary strategy that transforms the molecular alphabet into an active <strong>error-detection system</strong>.</p>
                     </div>
                 </section>
 
-                <!-- SECTION 2: The Pyrimidines -->
-                <section class="section-block fade-up">
-                    <div class="glass-card hover-target">
-                        <h3 class="h-secondary">The Pyrimidine Family</h3>
-                        <p>First, let's place these bases chemically. Cytosine, uracil, and thymine share the same basic pyrimidine ring framework.</p>
-                        
-                        <div class="tree-diagram" style="text-align: center;">
-Pyrimidines
-    │
-    ├─ Cytosine
-    │
-    ├─ Uracil
-    │
-    └─ Thymine
-                        </div>
-                        <p style="margin-top: 1.5rem;">Thymine is essentially a 5-methylated uracil:</p>
-                        <div class="math-block" style="padding: 1rem !important; margin: 1rem 0 !important;">
-                            \[ 	ext{Thymine} = 	ext{5-methyluracil} \]
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-secondary">The Critical Position: C5</h3>
-                        <p>The distinguishing methyl group is attached to carbon 5 of the pyrimidine ring. Conceptually:</p>
-                        
-                        <div class="split-text" style="font-family: var(--font-mono); text-align: center; margin: 2rem 0; font-size: 0.9rem;">
-                            <div>
-                                <div style="color: var(--accent-mod2-light); margin-bottom: 0.5rem; font-weight: bold;">URACIL</div>
-                                <div>  O</div>
-                                <div>  ||</div>
-                                <div>┌───────┐</div>
-                                <div>│       │</div>
-                                <div>│ ring  │</div>
-                                <div>│       │</div>
-                                <div>└───────┘</div>
-                                <div>  │</div>
-                                <div>  H</div>
-                                <div style="color: var(--text-muted); font-size: 0.8rem;">C5</div>
-                            </div>
-                            <div>
-                                <div style="color: var(--accent-orange); margin-bottom: 0.5rem; font-weight: bold;">THYMINE</div>
-                                <div>  O</div>
-                                <div>  ||</div>
-                                <div>┌───────┐</div>
-                                <div>│       │</div>
-                                <div>│ ring  │</div>
-                                <div>│       │</div>
-                                <div>└───────┘</div>
-                                <div>  │</div>
-                                <div style="color: var(--accent-gold); font-weight: bold;"> CH₃</div>
-                                <div style="color: var(--text-muted); font-size: 0.8rem;">C5</div>
-                            </div>
-                        </div>
-                        <p>The structural difference you need to remember is that Uracil has a Hydrogen at C5, while Thymine has a Methyl (\(	ext{CH}_3\)) at C5.</p>
-                    </div>
-                </section>
-
-                <!-- SECTION 3: Deamination -->
-                <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Problem: Cytosine Can Deaminate</h3>
-                        <p>This is the central chemical mechanism. Cytosine can undergo a spontaneous chemical reaction called <strong>deamination</strong> (removal of an amino group, \(-	ext{NH}_2\)).</p>
-                        
-                        <div class="tree-diagram" style="text-align: center; display: flex; justify-content: center; align-items: center; gap: 2rem;">
-                            <div>
-                                <div style="color: var(--accent-purple); font-weight: bold; margin-bottom: 0.5rem;">Cytosine</div>
-                                <div>NH₂</div>
-                                <div>│</div>
-                                <div>ring</div>
-                            </div>
-                            <div style="color: var(--accent-gold);">
-                                <div>deamination</div>
-                                <div>───────────▶</div>
-                                <div>(H₂O in, NH₃ out)</div>
-                            </div>
-                            <div>
-                                <div style="color: var(--accent-mod2-light); font-weight: bold; margin-bottom: 0.5rem;">Uracil</div>
-                                <div>O</div>
-                                <div>│</div>
-                                <div>ring</div>
-                            </div>
-                        </div>
-
-                        <div class="math-block mutation">
-                            \[ 	ext{Cytosine} ightarrow 	ext{Uracil} \]
-                        </div>
-                        
-                        <p>The important point is that a <strong>normal DNA base can chemically transform into a different base</strong>, creating a potential mutation.</p>
-                    </div>
-                </section>
-
-                <!-- SECTION 4: Repair Logic -->
+                <!-- SECTION 2: The Error-Detection Problem -->
                 <section class="section-block fade-up">
                     <div class="split-layout-card full-width">
                         <div>
-                            <h3 class="h-secondary" style="margin-top: 0;">The Repair Problem</h3>
-                            <p>Because uracil normally pairs with adenine (\(U-A\)), a deaminated cytosine creates a \(U:G\) mismatch. If a hypothetical organism used uracil as its natural DNA base, its DNA would legitimately contain \(A-U\) pairs.</p>
-                            <p>If cytosine damage occurred (\(C-G ightarrow U-G\)), the repair machinery would see a \(U\). But how would it know whether that \(U\) is a <strong>legitimate U</strong> or a <strong>damaged C</strong>?</p>
+                            <h3 class="h-secondary" style="margin-top: 0;">The Vulnerability of Cytosine</h3>
+                            <p>To understand why Thymine exists, we must examine a flaw in Cytosine. Cytosine is chemically unstable in water and undergoes spontaneous <strong>hydrolytic deamination</strong>—the loss of its exocyclic amino group (\(-\text{NH}_2\)).</p>
+                            <p>When Cytosine loses this amino group, the molecule physically transforms into Uracil.</p>
+                            <div class="math-block" style="border-left-color: #ff4757; padding: 1rem !important; margin: 1rem 0 !important; background: rgba(255, 71, 87, 0.05);">
+                                \[ \text{Cytosine} \xrightarrow{\text{deamination}} \text{Uracil} \]
+                            </div>
+                            <p>This means a normal DNA base can spontaneously transmute into a different base, creating an immediate threat to genomic integrity.</p>
                         </div>
                         <div>
-                            <h3 class="h-secondary" style="margin-top: 0; color: var(--accent-gold);">DNA Solves This By Using Thymine</h3>
-                            <p>DNA uses \(A-T\) instead. When cytosine deaminates (\(C-G ightarrow U-G\)), uracil becomes an <em>abnormal</em> base in DNA.</p>
-                            <div class="code-box">
-NORMAL DNA:
-A — T
-C — G
-
-DAMAGED DNA:
-A — U   ← suspicious!
-                            </div>
-                            <p style="margin-top: 1rem;">The cell treats uracil in DNA as a direct signal that something has gone wrong.</p>
+                            <h3 class="h-secondary" style="margin-top: 0;">The Ambiguity Crisis</h3>
+                            <p>Imagine a hypothetical organism that uses Uracil in its DNA. Its genome would legitimately contain \(A-U\) base pairs.</p>
+                            <p>However, when a Cytosine spontaneously deaminates, a previously stable \(C-G\) pair becomes a \(U-G\) mismatch. The repair machinery inspecting the genome would encounter a Uracil. But how could the machinery determine if that Uracil was meant to be there (a legitimate \(A-U\) pair waiting for replication), or if it was the corrupted footprint of a damaged Cytosine?</p>
+                            <p><strong>The symbol \(U\) would be computationally ambiguous.</strong></p>
                         </div>
                     </div>
                 </section>
 
+                <!-- SECTION 3: The Information-Theoretic Solution -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary">The Information-Theoretic Problem</h3>
-                        <p>Think about it computationally. If DNA used \(U\) normally, the symbol \(U\) in DNA would be ambiguous (either a legitimate encoded base or damaged cytosine). But because DNA uses \(T\), the symbol \(U\) becomes highly informative: it strongly suggests <em>"something happened here."</em></p>
+                        <h3 class="h-secondary">Molecular Error-Detecting Codes</h3>
+                        <p>By investing the metabolic energy to add a methyl group to Uracil—thereby creating <strong>Thymine</strong>—biology solved this information-theoretic crisis.</p>
                         
-                        <p>This is conceptually similar to <strong>error-detecting codes</strong> in computer science. The choice of thymine creates a kind of redundancy in the biological encoding system. The molecular alphabet itself contributes to error detection.</p>
+                        <p>Because DNA uses \(A-T\) exclusively, Uracil is entirely foreign to the DNA alphabet. If a Cytosine deaminates into a Uracil, it creates a \(U:G\) mismatch. Because \(U\) is never supposed to exist in the archival genome, the repair machinery (specifically Uracil-DNA Glycosylase) doesn't need to guess the molecule's history. It simply operates on a binary rule:</p>
                         
-                        <div class="math-block error-detect" style="margin-bottom: 0 !important;">
-                            \[ T 	ext{ gives DNA a way to distinguish normal information from a common chemical error} \]
+                        <div class="code-box" style="text-align: center; font-size: 1rem; color: #fff;">
+                            IF (Base == Uracil) THEN { Flag As Damage; Initiate Base-Excision Repair; }
                         </div>
+                        
+                        <p style="margin-top: 1.5rem;">The alphabet itself acts as an error-detecting checksum. By excluding Uracil from the legitimate code, DNA ensures that the most common form of chemical degradation announces itself loudly as a systemic anomaly.</p>
                     </div>
                 </section>
 
-                <!-- SECTION 5: Mutation & RNA -->
+                <!-- SECTION 4: Mutational Consequences -->
                 <section class="section-block fade-up">
                     <div class="glass-card hover-target full-width">
-                        <h3 class="h-secondary">How Does C→U Become a Mutation?</h3>
-                        <p>Let’s follow one DNA molecule through replication. If a \(U:G\) lesion is not repaired, replication converts it into a stable base substitution. During replication, \(U\) behaves like \(T\) and preferentially pairs with \(A\).</p>
+                        <h3 class="h-secondary">The Pathway to Mutation</h3>
+                        <p>What happens if this error-detection system fails? If the repair machinery does not catch the deaminated Cytosine before the next round of DNA replication, the mutation becomes permanent.</p>
                         
-                        <div class="tree-diagram">
-Normal DNA:      C — G
-                   │ (spontaneous deamination)
-                   ▼
-Generation 1:    U — G
-                   │ 
-      ┌────────────┴────────────┐
-   repair                   no repair (replication)
-      │                         │
-      ▼                         ▼
-    C — G                     U — A
-                                │ (replication)
-                                ▼
-                              T — A
+                        <p>During replication, the DNA polymerase reads the abnormal Uracil. Because Uracil's hydrogen-bonding face is identical to Thymine, the polymerase treats it as a \(T\) and inserts an Adenine (\(A\)) across from it. In the subsequent replication cycle, that Adenine will pair with a true Thymine.</p>
+                        
+                        <div class="math-block" style="border-left-color: var(--accent-gold);">
+                            \[ C:G \rightarrow U:G \rightarrow T:A \]
                         </div>
                         
-                        <div class="math-block mutation">
-                            \[ C:G ightarrow T:A \]
-                        </div>
-                        <p>This is a <strong>transition mutation</strong>. One chemical reaction becomes a permanent sequence change if repair fails.</p>
+                        <p>Through this pathway, an uncorrected chemical lesion solidifies into a classic <strong>transition mutation</strong>. This mechanism explains why \(C \rightarrow T\) transitions are among the most overwhelmingly common spontaneous mutations observed across all domains of life.</p>
                     </div>
                 </section>
                 
+                <!-- SECTION 5: RNA Strategy -->
                 <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target">
-                        <h3 class="h-secondary">Why Does RNA Use Uracil?</h3>
-                        <p>RNA uses uracil because it does not require the same genome-wide damage-detection strategy as DNA, while uracil is metabolically simpler than thymine to produce.</p>
-                        <p>RNA is produced continuously and in massive quantities (especially rRNA). Biosynthesis of thymine involves an extra methylation step. Over billions of nucleotides, this small additional cost becomes a substantial metabolic investment. Since RNA's information strategy is typically <em>TRANSCRIBE → USE → DEGRADE</em>, it avoids paying the metabolic tax for long-term error detection.</p>
+                    <div class="glass-card tilt-effect hover-target full-width">
+                        <h3 class="h-secondary">Why Does RNA Retain Uracil?</h3>
+                        <p>If Thymine is so structurally advantageous for preserving information, why doesn't RNA use it?</p>
+                        <p>The distinction stems from different information strategies. DNA's primary imperative is <strong>long-term archival preservation</strong>, justifying the steep metabolic cost of synthesizing Thymine (which requires an extra, energy-intensive methylation step). </p>
+                        <p>RNA, conversely, is generally a transient, high-turnover molecule (like mRNA) or a mass-produced structural component (like rRNA). The sheer volume of RNA synthesized by the cell would make universal Thymine usage metabolically exorbitant. Because RNA is frequently degraded and resynthesized rather than inherited across generations, it simply doesn't require a genome-wide, fail-safe error detection system. It prioritizes <strong>metabolic economy over archival integrity</strong>.</p>
                     </div>
                 </section>
 
-                <!-- SECTION 6: Bioinformatics -->
+                <!-- SECTION 6: Bioinformatics Consequence (Matched to Topic 10 format) -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Now Connect This To Bioinformatics</h3>
-                        <p>You may eventually see a variant in a VCF file:</p>
-                        <div class="code-box">
-Reference: ... C ...
-Sample:    ... T ...
-                        </div>
-                        <p style="margin-top: 1rem;">Computationally, this is just \(C ightarrow T\). But biologically, the reality may have been: <code>C → chemical lesion (U) → repair failure → replication → T</code>.</p>
-                        <p>If you analyze many variants, you may find substitution classes enriched (like \(C ightarrow T\) and \(G ightarrow A\)). Their frequencies tell researchers about DNA damage processes, mutational exposures, and repair mechanisms.</p>
+                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Bioinformatics Consequence</h3>
+                        <p>When you work with genomic data, you are looking at the digital abstraction of these chemical processes. Understanding the chemical reality of Pyrimidine substitution prevents severe misinterpretations in dry-lab pipelines.</p>
                         
-                        <div class="split-text align-center" style="margin-top: 2rem;">
-                            <div style="flex: 1;">
-                                <h4 style="color: var(--text-muted);">Computational Layer</h4>
-                                <p style="font-family: var(--font-mono); font-size: 0.9rem;">Describes WHAT changed.<br><br>Reference → C<br>Sample    → T</p>
-                            </div>
-                            <div style="flex: 1;">
-                                <h4 style="color: var(--accent-mod2-light);">Biological Layer</h4>
-                                <p style="font-family: var(--font-mono); font-size: 0.9rem;">Proposes HOW it happened.<br><br>C → deamination → U<br>→ repair failure → T</p>
-                            </div>
-                        </div>
+                        <h4 class="sub-heading" style="color: var(--accent-orange); margin-top: 2rem; margin-bottom: 0.5rem; font-size: 1.1rem;">1. Variant Calling Abstractions</h4>
+                        <p style="margin-bottom: 1.5rem;">A variant caller observes read alignments and reports a <code>C → T</code> substitution in a VCF file. The algorithm treats this purely as an alphabetic change. However, as a bioinformatician, you must recognize the <strong>Biological Layer</strong>: that sequence variant is likely the fossil record of an uncorrected Cytosine deamination event. The algorithm describes <em>what</em> changed; the chemistry explains <em>how</em> it happened.</p>
                         
-                        <p style="text-align: center; color: var(--accent-mod2-light); font-size: 1.1rem; margin-top: 2rem;">
-                            <strong style="color: white;">The Bigger Principle:</strong> Molecular design can encode error-detection information.
-                        </p>
+                        <h4 class="sub-heading" style="color: var(--accent-orange); margin-bottom: 0.5rem; font-size: 1.1rem;">2. Analyzing Mutation Spectra</h4>
+                        <p style="margin-bottom: 1.5rem;">When analyzing cancer genomes or evolutionary phylogenies, you will often find substitution classes heavily enriched for <code>C → T</code> (and the complementary <code>G → A</code> on the reverse strand). These mutational signatures are direct readouts of DNA damage processes. Understanding the deamination rate allows researchers to use these transition mutations as "molecular clocks" to estimate evolutionary time or identify exposure to specific mutagens.</p>
+                        
+                        <h4 class="sub-heading" style="color: var(--accent-orange); margin-bottom: 0.5rem; font-size: 1.1rem;">3. RNA-Seq vs DNA-Seq Interpretation</h4>
+                        <p style="margin-bottom: 1.5rem;">In an RNA-Seq dataset, finding Uracil (represented computationally as <code>T</code> or <code>U</code> depending on the aligner) is entirely normal. In DNA-Seq, Uracil is a catastrophic anomaly. Simply treating DNA and RNA as interchangeable string variables hides the fact that the alphabet itself encodes critical information about molecular identity and systemic damage detection.</p>
+                        
+                        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                            <p style="text-align: center; color: var(--accent-mod2-light); font-size: 1.05rem;"><strong style="color: white;">The key takeaway:</strong> Molecular design encodes error-detection information. The choice of Thymine in DNA is an elegant evolutionary checksum that turns a spontaneous chemical flaw (deamination) into a recognizable anomaly, bridging physical chemistry, evolution, and the mutational signatures we analyze in bioinformatics.</p>
+                        </div>
                     </div>
                 </section>
                 
