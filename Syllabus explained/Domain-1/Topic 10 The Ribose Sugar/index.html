@@ -320,12 +320,27 @@ molecular chemistry → transcription → RNA molecule → experimental processi
 
                         <div style="text-align: center; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
                             <h4 class="sub-heading">Final Mental Model: The Five Distinctions You Should Never Confuse</h4>
-                            <ul style="color: #e8eaf6; text-align: left; max-width: 800px; margin: 0 auto 2rem auto; line-height: 1.8;">
-                                <li><strong>2′-OH vs 3′-OH:</strong> 2′-OH influences chemistry/conformation; 3′-OH directly extends the chain.</li>
-                                <li><strong>Chemical instability vs biological half-life:</strong> Susceptibility doesn't mean a short cellular half-life.</li>
-                                <li><strong>Sequence vs molecule:</strong> <code>AUGC</code> is a representation, not the complete physical reality.</li>
-                                <li><strong>RNA vs "messenger RNA":</strong> mRNA is only one type; many RNAs are highly stable.</li>
-                                <li><strong>Molecular chemistry vs computational model:</strong> Ignoring chemistry is only safe when it doesn't control the phenomenon you're predicting.</li>
+                            <ul style="color: #e8eaf6; text-align: left; max-width: 800px; margin: 0 auto 2rem auto; line-height: 1.8; list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">1. The 2′-OH vs The 3′-OH</strong><br>
+                                    The 2′-OH dictates the fundamental physical differences between RNA and DNA (reactivity, sugar pucker, A-form vs. B-form helices). In contrast, the 3′-OH is the universal hook for polymerization. Polymerases use the 3′-OH to attack incoming nucleotides to build the backbone. One defines the molecule's identity and geometry; the other builds the chain.
+                                </li>
+                                <li style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">2. Chemical Instability vs Biological Half-Life</strong><br>
+                                    Because RNA has a 2′-OH, it is chemically susceptible to self-cleavage. However, <em>in vivo</em>, cells heavily protect, fold, and modify RNAs. Ribosomal RNA (rRNA) and transfer RNA (tRNA) can be incredibly stable, lasting for days. Do not mistake inherent chemical fragility for an obligatory short biological lifespan.
+                                </li>
+                                <li style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">3. The Sequence vs The Molecule</strong><br>
+                                    When you download a FASTA file, you are analyzing a digital abstraction. The string <code>AUGC</code> completely strips away the sugar-phosphate backbone, the thermodynamics of base stacking, and 3D folding. Always remember that bioinformatics algorithms process the <em>representation</em>, while the biological system processed the physical <em>molecule</em>.
+                                </li>
+                                <li style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">4. "RNA" vs "mRNA"</strong><br>
+                                    It is a common mistake to use "RNA" as a synonym for "mRNA". While mRNAs are intentionally transient and rapidly degraded to control protein expression, they only make up ~1–5% of a cell's total RNA. The vast majority of cellular RNA forms stable, long-lasting structural and catalytic machines.
+                                </li>
+                                <li>
+                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">5. Molecular Chemistry vs Computational Models</strong><br>
+                                    You can safely abstract away the 2′-OH when running a simple sequence alignment. But if you are predicting 3D structures, running molecular dynamics, or modeling polymerase binding, ignoring the physical chemistry of ribose guarantees an incorrect result. Always ensure your algorithm's abstractions match the biological reality of the question you are asking.
+                                </li>
                             </ul>
                             
                             <p style="font-size: 1.1rem; color: #fff;"><strong>The core question for any bioinformatics analysis is:</strong></p>
