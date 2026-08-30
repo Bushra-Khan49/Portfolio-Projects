@@ -200,8 +200,8 @@ Pyrimidines
                         
                         <figure style="margin: 2.5rem 0; text-align: center;">
                             <img src="uracil_vs_thymine_molecular.jpg" alt="Comparative Molecular Analysis of Uracil vs Thymine" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-                            <figcaption style="margin-top: 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.95rem; font-family: var(--font-sans); line-height: 1.6; text-align: left; padding: 0 1rem; border-left: 3px solid var(--accent-mod2-light);">
-                                <strong style="color: var(--accent-mod2-light);">Figure 1.</strong> Comparative molecular structure of Uracil and Thymine, highlighting the critical C5 methyl group that distinguishes DNA's archival pyrimidine from RNA's.
+                            <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                <strong>Figure 1:</strong> Comparative molecular structure of Uracil and Thymine, highlighting the critical C5 methyl group that distinguishes DNA's archival pyrimidine from RNA's.
                             </figcaption>
                         </figure>
 
@@ -241,29 +241,31 @@ Pyrimidines
 
                 <!-- SECTION 2: The Error-Detection Problem -->
                 <section class="section-block fade-up">
-                    <div class="split-layout-card full-width glass-card tilt-effect">
-                        <div>
-                            <h3 class="h-secondary" style="margin-top: 0;">The Vulnerability of Cytosine</h3>
-                            <p>To understand why Thymine exists, we must examine a flaw in Cytosine. Cytosine is chemically unstable in water and undergoes spontaneous <strong>hydrolytic deamination</strong>—the loss of its exocyclic amino group (\(-\text{NH}_2\)).</p>
-                            <p>When Cytosine loses this amino group, the molecule physically transforms into Uracil.</p>
-                            <div class="math-block" style="border-left-color: #ff4757; padding: 1rem !important; margin: 1rem 0 !important; background: rgba(255, 71, 87, 0.05);">
-                                \[ \text{Cytosine} \xrightarrow{\text{deamination}} \text{Uracil} \]
+                    <div class="glass-card tilt-effect full-width">
+                        <div class="split-layout-card">
+                            <div>
+                                <h3 class="h-secondary" style="margin-top: 0;">The Vulnerability of Cytosine</h3>
+                                <p>To understand why Thymine exists, we must examine a flaw in Cytosine. Cytosine is chemically unstable in water and undergoes spontaneous <strong>hydrolytic deamination</strong>—the loss of its exocyclic amino group (\(-\text{NH}_2\)).</p>
+                                <p>When Cytosine loses this amino group, the molecule physically transforms into Uracil.</p>
+                                <div class="math-block" style="border-left-color: #ff4757; padding: 1rem !important; margin: 1rem 0 !important; background: rgba(255, 71, 87, 0.05);">
+                                    \[ \text{Cytosine} \xrightarrow{\text{deamination}} \text{Uracil} \]
+                                </div>
+                                <p>This means a normal DNA base can spontaneously transmute into a different base, creating an immediate threat to genomic integrity.</p>
                             </div>
-                            <p>This means a normal DNA base can spontaneously transmute into a different base, creating an immediate threat to genomic integrity.</p>
+                            <div>
+                                <h3 class="h-secondary" style="margin-top: 0;">The Ambiguity Crisis</h3>
+                                <p>Imagine a hypothetical organism that uses Uracil in its DNA. Its genome would legitimately contain \(A-U\) base pairs.</p>
+                                <p>However, when a Cytosine spontaneously deaminates, a previously stable \(C-G\) pair becomes a \(U-G\) mismatch. The repair machinery inspecting the genome would encounter a Uracil. But how could the machinery determine if that Uracil was meant to be there (a legitimate \(A-U\) pair waiting for replication), or if it was the corrupted footprint of a damaged Cytosine?</p>
+                                <p><strong>The symbol \(U\) would be computationally ambiguous.</strong></p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="h-secondary" style="margin-top: 0;">The Ambiguity Crisis</h3>
-                            <p>Imagine a hypothetical organism that uses Uracil in its DNA. Its genome would legitimately contain \(A-U\) base pairs.</p>
-                            <p>However, when a Cytosine spontaneously deaminates, a previously stable \(C-G\) pair becomes a \(U-G\) mismatch. The repair machinery inspecting the genome would encounter a Uracil. But how could the machinery determine if that Uracil was meant to be there (a legitimate \(A-U\) pair waiting for replication), or if it was the corrupted footprint of a damaged Cytosine?</p>
-                            <p><strong>The symbol \(U\) would be computationally ambiguous.</strong></p>
-                        </div>
-                    </div>
-                    <figure style="margin-top: 2rem; margin-bottom: 2rem; text-align: center;">
+                        <figure style="margin-top: 3rem; margin-bottom: 0; text-align: center;">
                         <img src="cytosine_deamination.jpg" alt="Spontaneous hydrolytic deamination of Cytosine to Uracil" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-                        <figcaption style="margin-top: 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.95rem; font-family: var(--font-sans); line-height: 1.6; text-align: left; padding: 0 1rem; border-left: 3px solid var(--accent-mod2-light);">
-                            <strong style="color: var(--accent-mod2-light);">Figure 2.</strong> Spontaneous hydrolytic deamination of Cytosine. The loss of the exocyclic amino group chemically transforms the base into Uracil, generating a highly mutagenic U:G mismatch in the double helix.
-                        </figcaption>
-                    </figure>
+                        <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                <strong>Figure 2:</strong> Spontaneous hydrolytic deamination of Cytosine. The loss of the exocyclic amino group chemically transforms the base into Uracil, generating a highly mutagenic U:G mismatch in the double helix.
+                            </figcaption>
+                        </figure>
+                    </div>
                 </section>
 
                 <!-- SECTION 3: The Information-Theoretic Solution -->
@@ -280,8 +282,8 @@ Pyrimidines
                         
                         <figure style="margin: 2.5rem 0; text-align: center;">
                             <img src="uracil_dna_glycosylase_repair.jpg" alt="Uracil-DNA Glycosylase detecting U:G mismatch" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-                            <figcaption style="margin-top: 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.95rem; font-family: var(--font-sans); line-height: 1.6; text-align: left; padding: 0 1rem; border-left: 3px solid var(--accent-mod2-light);">
-                                <strong style="color: var(--accent-mod2-light);">Figure 3.</strong> Uracil-DNA Glycosylase (UNG) scanning the double helix. The enzyme detects the U:G mismatch and initiates base-excision repair (BER) by flipping the anomalous Uracil base out of the helix.
+                            <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                <strong>Figure 3:</strong> Uracil-DNA Glycosylase (UNG) scanning the double helix. The enzyme detects the U:G mismatch and initiates base-excision repair (BER) by flipping the anomalous Uracil base out of the helix.
                             </figcaption>
                         </figure>
                         
@@ -303,8 +305,8 @@ Pyrimidines
                         
                         <figure style="margin: 2.5rem 0; text-align: center;">
                             <img src="bioinformatics_igv_mutation.jpg" alt="Bioinformatics Variant Calling of C-to-T Mutation" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-                            <figcaption style="margin-top: 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.95rem; font-family: var(--font-sans); line-height: 1.6; text-align: left; padding: 0 1rem; border-left: 3px solid var(--accent-mod2-light);">
-                                <strong style="color: var(--accent-mod2-light);">Figure 4.</strong> Bioinformatics representation of an un-repaired deamination event. Short sequencing reads aligned to a reference genome display a false C-to-T transition artifact (SNP) during variant calling.
+                            <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                <strong>Figure 4:</strong> Bioinformatics representation of an un-repaired deamination event. Short sequencing reads aligned to a reference genome display a false C-to-T transition artifact (SNP) during variant calling.
                             </figcaption>
                         </figure>
                         
