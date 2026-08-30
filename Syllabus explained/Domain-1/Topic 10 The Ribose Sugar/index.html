@@ -319,32 +319,66 @@ molecular chemistry → transcription → RNA molecule → experimental processi
                         </div>
 
                         <div style="text-align: center; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
-                            <h4 class="sub-heading">Final Mental Model: The Five Distinctions You Should Never Confuse</h4>
-                            <ul style="color: #e8eaf6; text-align: left; max-width: 800px; margin: 0 auto 2rem auto; line-height: 1.8; list-style-type: none; padding-left: 0;">
-                                <li style="margin-bottom: 1.5rem;">
-                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">1. The 2′-OH vs The 3′-OH</strong><br>
-                                    The 2′-OH dictates the fundamental physical differences between RNA and DNA (reactivity, sugar pucker, A-form vs. B-form helices). In contrast, the 3′-OH is the universal hook for polymerization. Polymerases use the 3′-OH to attack incoming nucleotides to build the backbone. One defines the molecule's identity and geometry; the other builds the chain.
-                                </li>
-                                <li style="margin-bottom: 1.5rem;">
-                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">2. Chemical Instability vs Biological Half-Life</strong><br>
-                                    Because RNA has a 2′-OH, it is chemically susceptible to self-cleavage. However, <em>in vivo</em>, cells heavily protect, fold, and modify RNAs. Ribosomal RNA (rRNA) and transfer RNA (tRNA) can be incredibly stable, lasting for days. Do not mistake inherent chemical fragility for an obligatory short biological lifespan.
-                                </li>
-                                <li style="margin-bottom: 1.5rem;">
-                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">3. The Sequence vs The Molecule</strong><br>
-                                    When you download a FASTA file, you are analyzing a digital abstraction. The string <code>AUGC</code> completely strips away the sugar-phosphate backbone, the thermodynamics of base stacking, and 3D folding. Always remember that bioinformatics algorithms process the <em>representation</em>, while the biological system processed the physical <em>molecule</em>.
-                                </li>
-                                <li style="margin-bottom: 1.5rem;">
-                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">4. "RNA" vs "mRNA"</strong><br>
-                                    It is a common mistake to use "RNA" as a synonym for "mRNA". While mRNAs are intentionally transient and rapidly degraded to control protein expression, they only make up ~1–5% of a cell's total RNA. The vast majority of cellular RNA forms stable, long-lasting structural and catalytic machines.
-                                </li>
-                                <li>
-                                    <strong style="color: var(--accent-orange); font-size: 1.1rem;">5. Molecular Chemistry vs Computational Models</strong><br>
-                                    You can safely abstract away the 2′-OH when running a simple sequence alignment. But if you are predicting 3D structures, running molecular dynamics, or modeling polymerase binding, ignoring the physical chemistry of ribose guarantees an incorrect result. Always ensure your algorithm's abstractions match the biological reality of the question you are asking.
-                                </li>
-                            </ul>
+                            <h3 class="h-secondary" style="margin-bottom: 1.5rem; text-align: center;">Industry Pitfalls: The Bioinformatics of the 2′-OH</h3>
+                            <p style="text-align: center; margin-bottom: 2rem;">Theoretical misunderstandings create real-world data artifacts. Here is how the chemistry of the 2′-OH directly impacts your files, tools, and pipelines.</p>
                             
-                            <p style="font-size: 1.1rem; color: #fff;"><strong>The core question for any bioinformatics analysis is:</strong></p>
-                            <p style="color: var(--accent-mod2-light); font-size: 1.05rem;">What information did we lose when we moved from the real molecule to the computational representation—and does that loss matter for what we’re trying to predict?</p>
+                            <div style="text-align: left; max-width: 900px; margin: 0 auto; line-height: 1.8;">
+                                <h4 class="sub-heading" style="color: var(--accent-orange); margin-bottom: 0.5rem; font-size: 1.1rem;">1. Transcriptome Degradation (3′ Bias)</h4>
+                                <p style="margin-bottom: 1.5rem;">Because the 2′-OH makes RNA highly susceptible to spontaneous hydrolysis, RNA samples degrade quickly. During RNA-Seq library prep, this degradation means the 5′ ends are often lost. If you run <code>Picard CollectRnaSeqMetrics</code> on your <code>BAM</code> files, you will frequently observe a severe <strong>3′ bias</strong> in transcript coverage. Tools like <strong>Salmon</strong> and <strong>Kallisto</strong> require specific statistical models to correct for this transcript-length degradation bias during quantification.</p>
+
+                                <h4 class="sub-heading" style="color: var(--accent-orange); margin-bottom: 0.5rem; font-size: 1.1rem;">2. Direct RNA Sequencing (Nanopore Basecalling)</h4>
+                                <p style="margin-bottom: 1.5rem;">In Oxford Nanopore sequencing, the raw electrical signal (stored in <code>.pod5</code> or <code>.fast5</code> files) is generated as a nucleic acid passes through a protein pore. The bulky, electronegative 2′-OH fundamentally alters the physical transit speed and electrical impedance compared to DNA. If you accidentally apply a DNA basecalling model (using <strong>Dorado</strong> or <strong>Guppy</strong>) to a Direct RNA dataset, the algorithm will misinterpret the voltage squiggles, outputting garbage <code>FASTQ</code> files.</p>
+
+                                <h4 class="sub-heading" style="color: var(--accent-orange); margin-bottom: 0.5rem; font-size: 1.1rem;">3. Thermodynamic Structure Prediction</h4>
+                                <p style="margin-bottom: 1.5rem;">The C3′-endo sugar pucker forced by the 2′-OH drives RNA into A-form helices with distinct thermodynamics. When predicting secondary structures, you must use tools designed for RNA thermodynamics (e.g., <strong>RNAfold</strong> from the ViennaRNA package). These algorithms use Nearest Neighbor parameters empirically derived specifically for RNA's physical chemistry. Applying DNA thermodynamic models will yield entirely wrong Minimum Free Energy (MFE) structures and invalid dot-bracket <code>((....))</code> outputs.</p>
+
+                                <h4 class="sub-heading" style="color: var(--accent-orange); margin-bottom: 0.5rem; font-size: 1.1rem;">4. Molecular Dynamics Force Fields</h4>
+                                <p style="margin-bottom: 1.5rem;">If you load an RNA structural file (<code>.pdb</code>) into a molecular dynamics engine like <strong>GROMACS</strong> or <strong>AMBER</strong>, you must explicitly select an RNA-specific force field. If you accidentally apply a DNA force field (which incorrectly assumes a relaxed C2′-endo pucker), the 2′-OH will violently clash with adjacent phosphates in the simulation. The calculated atomic forces will skyrocket, and your trajectory file (<code>.xtc</code> or <code>.trr</code>) will instantly crash or produce physically impossible conformations.</p>
+
+                                <h4 class="sub-heading" style="color: var(--accent-orange); margin-bottom: 0.5rem; font-size: 1.1rem;">5. Variant Calling False Positives</h4>
+                                <p style="margin-bottom: 2.5rem;">To sequence RNA using Illumina, it must first be converted to cDNA using Reverse Transcriptase (RT). Because RT lacks the extreme fidelity and proofreading of DNA polymerases, it introduces thousands of artificial mutations. If you run a standard DNA variant caller (like <strong>GATK HaplotypeCaller</strong>) on RNA-Seq data, your <code>VCF</code> file will be swamped with false-positive SNPs. You must use specialized RNA-Seq variant calling pipelines that account for RT enzyme kinetics and RNA editing (e.g., ADAR activity).</p>
+
+                                <h4 class="sub-heading" style="text-align: center; margin-bottom: 1rem;">Summary: Chemistry → Pipeline Consequence</h4>
+                                <div style="overflow-x: auto;">
+                                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: rgba(0,0,0,0.2); font-size: 0.95rem;">
+                                        <thead>
+                                            <tr style="border-bottom: 2px solid var(--accent-gold); text-align: left;">
+                                                <th style="padding: 1rem; color: #fff;">MOLECULAR EVENT</th>
+                                                <th style="padding: 1rem; color: #fff;">BIOLOGICAL EFFECT</th>
+                                                <th style="padding: 1rem; color: #fff;">BIOINFORMATICS CONNECTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                <td style="padding: 1rem; color: #aab2c0;"><strong>2′-OH Hydrolysis</strong></td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Rapid RNA degradation</td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Severe 3′ bias in <code>BAM</code> coverage; requires <strong>Salmon</strong> bias correction.</td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                <td style="padding: 1rem; color: #aab2c0;"><strong>2′-OH Electronegativity</strong></td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Alters Nanopore electrical impedance</td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Requires specific RNA neural network models in <strong>Dorado</strong> for accurate <code>FASTQ</code> generation.</td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                <td style="padding: 1rem; color: #aab2c0;"><strong>C3′-endo Pucker</strong></td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Drives A-form helix geometry</td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Dictates RNA-specific Nearest Neighbor energies for <strong>RNAfold</strong> dot-bracket predictions.</td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                <td style="padding: 1rem; color: #aab2c0;"><strong>Steric Bulk of 2′-OH</strong></td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Determines 3D interaction constraints</td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Requires explicit RNA force fields in <strong>GROMACS</strong> to prevent <code>.pdb</code> trajectory crashes.</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 1rem; color: #aab2c0;"><strong>Reverse Transcriptase</strong></td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Low fidelity conversion to cDNA</td>
+                                                <td style="padding: 1rem; color: #aab2c0;">Creates artificial SNPs; requires strict <strong>GATK RNA-Seq</strong> filtering for <code>VCF</code> generation.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p style="text-align: center; color: var(--accent-mod2-light); font-size: 1.05rem;"><strong>The key takeaway:</strong> As a bioinformatician, you rarely observe the physical 2′-OH. Instead, you observe the statistical anomalies, coverage biases, and structural thermodynamics it creates in your data. Understanding the chemistry helps you choose the correct statistical model and prevents you from treating RNA exactly like DNA.</p>
+                            </div>
                         </div>
                     </div>
                 </section>
