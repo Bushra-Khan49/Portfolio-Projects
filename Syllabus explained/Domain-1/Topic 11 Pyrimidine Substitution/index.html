@@ -56,8 +56,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
             padding: 0 2rem;
             position: relative;
             z-index: 2;
@@ -66,11 +66,11 @@
         .scroll-indicator {
             position: absolute;
             bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 2rem;
+            transform: none;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.5rem;
             color: var(--text-muted);
             font-family: var(--font-mono);
@@ -82,8 +82,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, 0); }
-            50% { opacity: 1; transform: translate(-50%, 5px); }
+            0%, 100% { opacity: 0.5; transform: translate(0, 0); }
+            50% { opacity: 1; transform: translate(0, 5px); }
         }
 
         .math-block {
@@ -96,6 +96,19 @@
             font-size: 1.1rem;
         }
         
+
+        .tree-diagram {
+            font-family: var(--font-mono);
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            padding: 1.5rem;
+            color: #d1d5db;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 1.5rem 0;
+        }
         .code-box {
             background: #0a0b10;
             border: 1px solid rgba(255,255,255,0.05);
@@ -150,7 +163,7 @@
                 <section class="hero-section">
                     <div class="eyebrow" style="color: var(--accent-mod2);">TOPIC 11</div>
                     <h1 style="background: linear-gradient(90deg, #ff007f, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pyrimidine Substitution</h1>
-                    <p style="font-size: 1.25rem; max-width: 600px; margin: 1.5rem auto;">Uracil vs. Thymine: How One Methyl Group Protects Genetic Information</p>
+                    <p style="font-size: 1.25rem; max-width: 600px; margin: 1.5rem 0;">Uracil vs. Thymine: How One Methyl Group Protects Genetic Information</p>
                     <div class="scroll-indicator">
                         <span>Scroll to Explore</span>
                         <div class="mouse"></div>
@@ -165,7 +178,19 @@
                         
                         <p>At the sequence level, this appears to be a trivial alphabetic substitution (\(T \leftrightarrow U\)). However, at the molecular level, Thymine and Uracil are practically identical, separated only by a single functional group at the carbon-5 position of the pyrimidine ring.</p>
                         
+                        
+                        <div class="tree-diagram">
+Pyrimidines
+    │
+    ├─ Cytosine
+    │
+    ├─ Uracil
+    │
+    └─ Thymine
+                        </div>
+
                         <div class="math-block" style="border-left-color: var(--accent-purple);">
+
                             \[ \text{Thymine} = \text{5-methyluracil} \]
                         </div>
 
@@ -186,7 +211,38 @@
                             </div>
                         </div>
                         
+                        
+                        <div class="split-text" style="font-family: var(--font-mono); display: flex; gap: 4rem; justify-content: center; margin: 2rem 0; font-size: 0.95rem; background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                            <div>
+                                <div style="color: var(--accent-mod2-light); margin-bottom: 0.5rem; font-weight: bold;">URACIL</div>
+                                <div>  O</div>
+                                <div>  ||</div>
+                                <div>┌───────┐</div>
+                                <div>│       │</div>
+                                <div>│ ring  │</div>
+                                <div>│       │</div>
+                                <div>└───────┘</div>
+                                <div>  │</div>
+                                <div>  H</div>
+                                <div style="color: var(--text-muted); font-size: 0.8rem;">C5</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--accent-orange); margin-bottom: 0.5rem; font-weight: bold;">THYMINE</div>
+                                <div>  O</div>
+                                <div>  ||</div>
+                                <div>┌───────┐</div>
+                                <div>│       │</div>
+                                <div>│ ring  │</div>
+                                <div>│       │</div>
+                                <div>└───────┘</div>
+                                <div>  │</div>
+                                <div style="color: var(--accent-gold); font-weight: bold;"> CH₃</div>
+                                <div style="color: var(--text-muted); font-size: 0.8rem;">C5</div>
+                            </div>
+                        </div>
+
                         <p>This single methyl group (\(-\text{CH}_3\)) radically alters the information-processing capabilities of the cell. The choice of Thymine in DNA is not an accident of chemistry; it is an elegant evolutionary strategy that transforms the molecular alphabet into an active <strong>error-detection system</strong>.</p>
+
                     </div>
                 </section>
 
