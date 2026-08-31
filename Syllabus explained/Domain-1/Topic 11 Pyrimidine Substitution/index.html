@@ -168,14 +168,13 @@
                             <p>Imagine an error-detection system. When data is corrupted, the system must be able to recognize the anomaly to fix it.</p>
                             <p>The use of Thymine in DNA performs exactly this task.</p>
                             
-                            <div class="tree-diagram" style="margin: 1.5rem 0; font-family: var(--font-mono); font-size: 0.95rem; text-align: center; color: #d1d5db; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6;">
-                                Normal DNA
-                                <br>│<br>▼<br>
-                                Spontaneous Damage (Cytosine → Uracil)
-                                <br>│<br>▼<br>
-                                Detected as an Anomaly
-                                <br>
-                                <span style="font-size: 0.85rem; color: #9ca3af;">(Because normal DNA strictly uses Thymine)</span>
+                            <div style="margin: 1.5rem 0; font-family: var(--font-mono); font-size: 0.95rem; text-align: center; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                                <div style="color: var(--accent-mod2-light); font-weight: bold;">Normal DNA</div>
+                                <div style="color: #9ca3af;">↓</div>
+                                <div style="color: #ff4757; font-weight: bold;">Spontaneous Damage (Cytosine → Uracil)</div>
+                                <div style="color: #9ca3af;">↓</div>
+                                <div style="color: var(--accent-gold); font-weight: bold;">Detected as an Anomaly</div>
+                                <div style="font-size: 0.85rem; color: #9ca3af;">(Because normal DNA strictly uses Thymine)</div>
                             </div>
 
                             <p>Without Thymine, repair enzymes could not distinguish between a legitimate Uracil and a damaged Cytosine, leading to permanent mutations.</p>
@@ -185,25 +184,17 @@
                         <div class="glass-card tilt-effect hover-target" style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
                             <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Where Does Thymine Fit?</h3>
                             
-                            <div class="tree-diagram" style="margin: 1.5rem 0; font-family: var(--font-mono); font-size: 0.95rem; text-align: center; color: #d1d5db; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6;">
-                                RNA (Temporary Messenger)
-                                <br>↓<br>
-                                Uses Uracil
-                                <br>
-                                <span style="font-size: 0.85rem; color: #9ca3af;">(Metabolically cheap)</span>
-                                
-                                <br><br><br>
-                                
-                                DNA (Long-Term Archive)
-                                <br>↓<br>
-                                Uses Thymine
-                                <br>
-                                <span style="font-size: 0.85rem; color: #9ca3af;">(Uracil + Methyl group)</span>
-                                <br>↓<br>
-                                Error Detection & Genomic Preservation
+                            <div style="margin: 1.5rem 0; font-family: var(--font-mono); font-size: 0.95rem; text-align: center; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                                <div style="color: var(--accent-blue); font-weight: bold;">RNA (Temporary Messenger)</div>
+                                <div style="color: #9ca3af;">↓</div>
+                                <div style="color: var(--accent-orange); font-weight: bold;">DNA (Long-Term Archive)</div>
+                                <div style="color: #9ca3af;">↓</div>
+                                <div style="color: var(--accent-purple); font-weight: bold;">Error Detection</div>
+                                <div style="color: #9ca3af;">↓</div>
+                                <div style="color: var(--accent-mod2-light); font-weight: bold;">Genomic Preservation</div>
                             </div>
 
-                            <p>RNA uses Uracil for metabolic efficiency. DNA structures itself to make error detection possible by investing energy into Thymine, preserving the genome across generations.</p>
+                            <p>RNA uses Uracil for metabolic efficiency. DNA structures itself to make error detection possible by investing energy into Thymine. This error detection preserves the genome across generations.</p>
                         </div>
 
                     </div>
