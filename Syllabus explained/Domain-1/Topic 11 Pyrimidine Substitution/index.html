@@ -164,6 +164,8 @@
                         
                         <p>At the sequence level, this appears to be a trivial alphabetic substitution (\(T \leftrightarrow U\)). However, at the molecular level, Thymine and Uracil are practically identical, separated only by a single functional group at the carbon-5 position of the pyrimidine ring.</p>
                         
+                        <p>The deeper story is therefore not simply: <em>DNA uses T; RNA uses U.</em> It is: <strong>DNA uses thymine partly because it makes a common form of spontaneous DNA damage detectable.</strong> This is a beautiful example of molecular chemistry becoming an error-detection system.</p>
+                        
                         
                         <div class="tree-diagram">
 Pyrimidines
@@ -215,6 +217,20 @@ Pyrimidines
                                 <p>Imagine a hypothetical organism that uses Uracil in its DNA. Its genome would legitimately contain \(A-U\) base pairs.</p>
                                 <p>However, when a Cytosine spontaneously deaminates, a previously stable \(C-G\) pair becomes a \(U-G\) mismatch. The repair machinery inspecting the genome would encounter a Uracil. But how could the machinery determine if that Uracil was meant to be there (a legitimate \(A-U\) pair waiting for replication), or if it was the corrupted footprint of a damaged Cytosine?</p>
                                 <p><strong>The symbol \(U\) would be computationally ambiguous.</strong></p>
+                            
+                            <div class="split-text" style="font-family: var(--font-mono); display: flex; gap: 4rem; justify-content: center; margin: 1.5rem 0; font-size: 0.95rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); color: #d1d5db;">
+                                <div>
+                                    <div style="color: var(--accent-mod2-light); margin-bottom: 0.5rem; font-weight: bold;">NORMAL DNA</div>
+                                    <div>A — T</div>
+                                    <div>C — G</div>
+                                    <div>G — C</div>
+                                </div>
+                                <div>
+                                    <div style="color: #ff4757; margin-bottom: 0.5rem; font-weight: bold;">DAMAGED DNA</div>
+                                    <div>A — U   <span style="color: var(--accent-orange);">← suspicious</span></div>
+                                    <div>C — G</div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <figure style="margin-top: 3rem; margin-bottom: 0; text-align: center;">
@@ -230,7 +246,7 @@ Pyrimidines
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
                         <h3 class="h-secondary">Molecular Error-Detecting Codes</h3>
-                        <p>By investing the metabolic energy to add a methyl group to Uracil—thereby creating <strong>Thymine</strong>—biology solved this information-theoretic crisis.</p>
+                        <p>In computer science, an error-detecting code introduces structure that allows a system to recognize corruption. DNA has a biological analogue. By investing the metabolic energy to add a methyl group to Uracil—thereby creating <strong>Thymine</strong>—biology solved this information-theoretic crisis.</p>
                         
                         <p>Because DNA uses \(A-T\) exclusively, Uracil is entirely foreign to the DNA alphabet. If a Cytosine deaminates into a Uracil, it creates a \(U:G\) mismatch. Because \(U\) is never supposed to exist in the archival genome, the repair machinery (specifically Uracil-DNA Glycosylase) doesn't need to guess the molecule's history. It simply operates on a binary rule:</p>
                         
@@ -269,6 +285,32 @@ Pyrimidines
                         </figure>
                         
                         <p>Through this pathway, an uncorrected chemical lesion solidifies into a classic <strong>transition mutation</strong>. This mechanism explains why \(C \rightarrow T\) transitions are among the most overwhelmingly common spontaneous mutations observed across all domains of life.</p>
+
+                        <div class="tree-diagram" style="margin: 2rem 0; font-size: 0.9rem; text-align: left; padding-left: 2rem;">
+Normal DNA
+  C — G
+  │
+  │ spontaneous deamination
+  ▼
+  U — G
+  │
+  ├───────────────┐
+  │               │
+ repair       no repair
+  │               │
+  ▼               ▼
+  C — G       replication
+                  │
+                  ▼
+                U — A
+                  │
+                  ▼
+                T — A
+                  │
+                  ▼
+             C:G → T:A
+                        </div>
+                        <p>One chemical reaction can therefore become a permanent sequence change if repair fails.</p>
                     </div>
                 </section>
                 
@@ -278,6 +320,25 @@ Pyrimidines
                         <h3 class="h-secondary">Why Does RNA Retain Uracil?</h3>
                         <p>If Thymine is so structurally advantageous for preserving information, why doesn't RNA use it?</p>
                         <p>The distinction stems from different information strategies. DNA's primary imperative is <strong>long-term archival preservation</strong>, justifying the steep metabolic cost of synthesizing Thymine (which requires an extra, energy-intensive methylation step). </p>
+                        
+                        <div class="split-text" style="font-family: var(--font-mono); display: flex; gap: 4rem; justify-content: center; margin: 2rem 0; font-size: 0.95rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); color: #d1d5db;">
+                            <div style="text-align: center;">
+                                <div style="color: var(--accent-orange); margin-bottom: 0.5rem; font-weight: bold;">DNA</div>
+                                <div>STORE</div><div>↓</div>
+                                <div>PRESERVE</div><div>↓</div>
+                                <div>COPY</div><div>↓</div>
+                                <div>REPAIR</div><div>↓</div>
+                                <div>STORE AGAIN</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--accent-mod2-light); margin-bottom: 0.5rem; font-weight: bold;">RNA</div>
+                                <div>TRANSCRIBE</div><div>↓</div>
+                                <div>USE</div><div>↓</div>
+                                <div>PROCESS</div><div>↓</div>
+                                <div>ACT</div><div>↓</div>
+                                <div>DEGRADE</div>
+                            </div>
+                        </div>
                         <p>RNA, conversely, is generally a transient, high-turnover molecule (like mRNA) or a mass-produced structural component (like rRNA). The sheer volume of RNA synthesized by the cell would make universal Thymine usage metabolically exorbitant. Because RNA is frequently degraded and resynthesized rather than inherited across generations, it simply doesn't require a genome-wide, fail-safe error detection system. It prioritizes <strong>metabolic economy over archival integrity</strong>.</p>
                     </div>
                 </section>
