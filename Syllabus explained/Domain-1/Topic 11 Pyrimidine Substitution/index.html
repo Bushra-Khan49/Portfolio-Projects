@@ -7,11 +7,16 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="style.css?v=12">
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
+
+        .pink-heading {
+            color: #ff007f !important;
+            text-shadow: 0 0 15px rgba(255, 0, 127, 0.4), 0 0 30px rgba(255, 0, 127, 0.2) !important;
+        }
         :root {
             --accent-mod2: #ff007f;
             --accent-mod2-light: #ff4da6;
@@ -163,7 +168,7 @@
                         
                         <!-- LEFT CARD -->
                         <div class="glass-card tilt-effect hover-target" style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
-                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">What Problem Does Thymine Solve?</h3>
+                            <h3 class="h-secondary pink-heading" style="margin-bottom: 1.5rem;">What Problem Does Thymine Solve?</h3>
                             
                             <p>Imagine an error-detection system. When data is corrupted, the system must be able to recognize the anomaly to fix it.</p>
                             <p>The use of Thymine in DNA performs exactly this task.</p>
@@ -182,7 +187,7 @@
                         
                         <!-- RIGHT CARD -->
                         <div class="glass-card tilt-effect hover-target" style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
-                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Where Does Thymine Fit?</h3>
+                            <h3 class="h-secondary pink-heading" style="margin-bottom: 1.5rem;">Where Does Thymine Fit?</h3>
                             
                             <div style="margin: 1.5rem 0; font-family: var(--font-mono); font-size: 0.95rem; text-align: center; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                                 <div style="color: var(--accent-blue); font-weight: bold;">RNA (Temporary Messenger)</div>
@@ -200,7 +205,7 @@
 
                     <!-- THE CENTRAL HIERARCHY -->
                     <div class="glass-card tilt-effect hover-target full-width" style="margin-top: 2rem;">
-                        <h3 class="h-secondary" style="margin-bottom: 1rem;">The Central Hierarchy in Practice</h3>
+                        <h3 class="h-secondary pink-heading" style="margin-bottom: 1rem;">The Central Hierarchy in Practice</h3>
                         <p>Remember the vertical sequence of translation. Here is where <strong>Topic 11 (Pyrimidine Substitution)</strong> fits in the pipeline—acting as the chemical basis that prevents bioinformatic misinterpretation:</p>
                         
                         <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255, 0, 127, 0.05); border: 1px solid rgba(255, 0, 127, 0.3); border-radius: 8px;">
@@ -245,7 +250,7 @@
                 <!-- SECTION 1: The Chemical Distinction -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Chemical Distinction</h3>
+                        <h3 class="h-secondary pink-heading" style="margin-bottom: 1.5rem;">The Chemical Distinction</h3>
                         <div style="display: flex; gap: 3rem; align-items: center; flex-wrap: wrap;">
                             <div style="flex: 1; min-width: 300px;">
                                 <p>DNA and RNA utilize near-identical alphabets, sharing Adenine (A), Cytosine (C), and Guanine (G). The divergence occurs exclusively in the pyrimidine base complementary to Adenine: RNA utilizes <strong>Uracil</strong>, whereas DNA utilizes <strong>Thymine</strong>.</p>
@@ -291,7 +296,7 @@
                     <div class="glass-card tilt-effect full-width">
                         <div class="split-layout-card">
                             <div>
-                                <h3 class="h-secondary" style="margin-top: 0;">The Vulnerability of Cytosine</h3>
+                                <h3 class="h-secondary pink-heading" style="margin-top: 0;">The Vulnerability of Cytosine</h3>
                                 <p>To understand why Thymine exists, we must examine a flaw in Cytosine. Cytosine is chemically unstable in water and undergoes spontaneous <strong>hydrolytic deamination</strong>—the loss of its exocyclic amino group (\(-\text{NH}_2\)).</p>
                                 <p>When Cytosine loses this amino group, the molecule physically transforms into Uracil.</p>
                                 <div class="math-block" style="border-left-color: #ff4757; padding: 1rem !important; margin: 1rem 0 !important; background: rgba(255, 71, 87, 0.05);">
@@ -300,7 +305,7 @@
                                 <p>This means a normal DNA base can spontaneously transmute into a different base, creating an immediate threat to genomic integrity.</p>
                             </div>
                             <div>
-                                <h3 class="h-secondary" style="margin-top: 0;">The Ambiguity Crisis</h3>
+                                <h3 class="h-secondary pink-heading" style="margin-top: 0;">The Ambiguity Crisis</h3>
                                 <p>Imagine a hypothetical organism that uses Uracil in its DNA. Its genome would legitimately contain \(A-U\) base pairs.</p>
                                 <p>However, when a Cytosine spontaneously deaminates, a previously stable \(C-G\) pair becomes a \(U-G\) mismatch. The repair machinery inspecting the genome would encounter a Uracil. But how could the machinery determine if that Uracil was meant to be there (a legitimate \(A-U\) pair waiting for replication), or if it was the corrupted footprint of a damaged Cytosine?</p>
                                 <p><strong>The symbol \(U\) would be computationally ambiguous.</strong></p>
@@ -332,7 +337,7 @@
                 <!-- SECTION 3: The Information-Theoretic Solution -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary">Molecular Error-Detecting Codes</h3>
+                        <h3 class="h-secondary pink-heading">Molecular Error-Detecting Codes</h3>
                         <p>In computer science, an error-detecting code introduces structure that allows a system to recognize corruption. DNA has a biological analogue. By investing the metabolic energy to add a methyl group to Uracil—thereby creating <strong>Thymine</strong>—biology solved this information-theoretic crisis.</p>
                         
                         <p>Because DNA uses \(A-T\) exclusively, Uracil is entirely foreign to the DNA alphabet. If a Cytosine deaminates into a Uracil, it creates a \(U:G\) mismatch. Because \(U\) is never supposed to exist in the archival genome, the repair machinery (specifically Uracil-DNA Glycosylase) doesn't need to guess the molecule's history. It simply operates on a binary rule:</p>
@@ -355,7 +360,7 @@
                 <!-- SECTION 4: Mutational Consequences -->
                 <section class="section-block fade-up">
                     <div class="glass-card hover-target full-width">
-                        <h3 class="h-secondary">The Pathway to Mutation</h3>
+                        <h3 class="h-secondary pink-heading">The Pathway to Mutation</h3>
                         <p>What happens if this error-detection system fails? If the repair machinery does not catch the deaminated Cytosine before the next round of DNA replication, the mutation becomes permanent.</p>
                         
                         <p>During replication, the DNA polymerase reads the abnormal Uracil. Because Uracil's hydrogen-bonding face is identical to Thymine, the polymerase treats it as a \(T\) and inserts an Adenine (\(A\)) across from it. In the subsequent replication cycle, that Adenine will pair with a true Thymine.</p>
@@ -386,7 +391,7 @@
                 <!-- SECTION 5: RNA Strategy -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary">Why Does RNA Retain Uracil?</h3>
+                        <h3 class="h-secondary pink-heading">Why Does RNA Retain Uracil?</h3>
                         <p>If Thymine is so structurally advantageous for preserving information, why doesn't RNA use it?</p>
                         <p>The distinction stems from different information strategies. DNA's primary imperative is <strong>long-term archival preservation</strong>, justifying the steep metabolic cost of synthesizing Thymine (which requires an extra, energy-intensive methylation step). </p>
                         
@@ -415,7 +420,7 @@
                 <!-- SECTION 6: Bioinformatics Consequence (Matched to Topic 10 format) -->
                 <section class="section-block fade-up">
                     <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary" style="margin-bottom: 1.5rem;">The Bioinformatics Consequence</h3>
+                        <h3 class="h-secondary pink-heading" style="margin-bottom: 1.5rem;">The Bioinformatics Consequence</h3>
                         <p>When you work with genomic data, you are looking at the digital abstraction of these chemical processes. Understanding the chemical reality of Pyrimidine substitution prevents severe misinterpretations in dry-lab pipelines.</p>
                         
                         <h4 class="sub-heading" style="color: var(--accent-orange); margin-top: 2rem; margin-bottom: 0.5rem; font-size: 1.1rem;">1. Variant Calling Abstractions</h4>
