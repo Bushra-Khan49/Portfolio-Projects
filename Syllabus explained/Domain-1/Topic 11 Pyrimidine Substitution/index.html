@@ -160,96 +160,52 @@
                 <!-- INTRODUCTION: WHY & WHERE -->
                 <section class="section-block fade-up">
                     <div style="display: flex; gap: 2rem; align-items: stretch; flex-wrap: wrap; width: 100%;">
+                        
+                        <!-- LEFT CARD -->
                         <div class="glass-card tilt-effect hover-target" style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
-                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">WHY THIS MATTERS</h3>
-                        <p>DNA and RNA both use three of the same canonical bases:</p>
-                        
-                        <div class="split-text" style="font-family: var(--font-mono); margin: 1.5rem 0; font-size: 0.95rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); color: #d1d5db;">
-                            <div style="display: flex; gap: 2rem; justify-content: center;">
-                                <div style="text-align: left;">
-                                    <div>Adenine</div>
-                                    <div>Cytosine</div>
-                                    <div>Guanine</div>
-                                </div>
-                                <div style="text-align: right; color: var(--accent-gold); font-weight: bold;">
-                                    <div>A</div>
-                                    <div>C</div>
-                                    <div>G</div>
-                                </div>
+                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">What Problem Does Thymine Solve?</h3>
+                            
+                            <p>Imagine an error-detection system. When data is corrupted, the system must be able to recognize the anomaly to fix it.</p>
+                            <p>The use of Thymine in DNA performs exactly this task.</p>
+                            
+                            <div class="tree-diagram" style="margin: 1.5rem 0; font-family: var(--font-mono); font-size: 0.95rem; text-align: center; color: #d1d5db; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6;">
+                                Normal DNA
+                                <br>│<br>▼<br>
+                                Spontaneous Damage (Cytosine → Uracil)
+                                <br>│<br>▼<br>
+                                Detected as an Anomaly
+                                <br>
+                                <span style="font-size: 0.85rem; color: #9ca3af;">(Because normal DNA strictly uses Thymine)</span>
                             </div>
-                        </div>
 
-                        <p>The fourth pyrimidine differs:</p>
-                        
-                        <div class="split-text" style="font-family: var(--font-mono); display: flex; gap: 4rem; justify-content: center; margin: 1.5rem 0; font-size: 0.95rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); color: #d1d5db; text-align: center;">
-                            <div>
-                                <div style="color: var(--accent-orange); margin-bottom: 0.5rem; font-weight: bold;">DNA</div>
-                                <div>A</div>
-                                <div>C</div>
-                                <div>G</div>
-                                <div style="color: var(--accent-mod2-light); font-weight: bold;">T</div>
-                            </div>
-                            <div>
-                                <div style="color: var(--accent-blue); margin-bottom: 0.5rem; font-weight: bold;">RNA</div>
-                                <div>A</div>
-                                <div>C</div>
-                                <div>G</div>
-                                <div style="color: var(--accent-mod2-light); font-weight: bold;">U</div>
-                            </div>
-                        </div>
-
-                        <p>At the sequence level, this looks like a simple alphabetic substitution (\(T \leftrightarrow U\)). But chemically:</p>
-
-                        <div class="math-block" style="border-left-color: var(--accent-purple);">
-                            \[ \text{Thymine} = \text{Uracil} + \text{CH}_3 \]
+                            <p>Without Thymine, repair enzymes could not distinguish between a legitimate Uracil and a damaged Cytosine, leading to permanent mutations.</p>
                         </div>
                         
-                        <p>That single methyl group has an important consequence for DNA damage recognition and repair. The deeper story is therefore not simply: <em>DNA uses T; RNA uses U.</em> It is:</p>
-
-                        <p><strong>DNA uses thymine partly because it makes a common form of spontaneous DNA damage detectable.</strong></p>
-
-                        <p>This is a beautiful example of molecular chemistry becoming an error-detection system.</p>
-                        </div>
+                        <!-- RIGHT CARD -->
                         <div class="glass-card tilt-effect hover-target" style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
-                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">WHERE DO THESE BASES FIT?</h3>
-                        <p>Both are pyrimidines.</p>
-
-                        <div class="tree-diagram" style="margin: 2rem 0; font-size: 0.9rem; text-align: center; color: #d1d5db; display: flex; justify-content: center;">
-                 NITROGENOUS BASES
-                        │
-              ┌─────────┴─────────┐
-              │                   │
-          PURINES             PYRIMIDINES
-              │                   │
-         ┌────┼────┐        ┌─────┼─────┐
-         │    │    │        │     │     │
-         A    G   ...       C     U     T
-                              │     │     │
-                             RNA   RNA   DNA
-                        </div>
-
-                        <p>More simply:</p>
-                        <p style="font-family: var(--font-mono); text-align: center; color: var(--accent-gold); margin: 1rem 0;">
-                            DNA → A T G C<br>
-                            RNA → A U G C
-                        </p>
-
-                        <p>The distinction is therefore particularly interesting because T and U perform essentially the corresponding base-pairing role:</p>
-                        
-                        <div class="split-text" style="font-family: var(--font-mono); display: flex; gap: 4rem; justify-content: center; margin: 1.5rem 0; font-size: 0.95rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); color: #d1d5db;">
-                            <div style="text-align: center;">
-                                <div style="color: var(--accent-orange); margin-bottom: 0.5rem; font-weight: bold;">DNA</div>
-                                <div>A — T</div>
+                            <h3 class="h-secondary" style="margin-bottom: 1.5rem;">Where Does Thymine Fit?</h3>
+                            
+                            <div class="tree-diagram" style="margin: 1.5rem 0; font-family: var(--font-mono); font-size: 0.95rem; text-align: center; color: #d1d5db; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6;">
+                                RNA (Temporary Messenger)
+                                <br>↓<br>
+                                Uses Uracil
+                                <br>
+                                <span style="font-size: 0.85rem; color: #9ca3af;">(Metabolically cheap)</span>
+                                
+                                <br><br><br>
+                                
+                                DNA (Long-Term Archive)
+                                <br>↓<br>
+                                Uses Thymine
+                                <br>
+                                <span style="font-size: 0.85rem; color: #9ca3af;">(Uracil + Methyl group)</span>
+                                <br>↓<br>
+                                Error Detection & Genomic Preservation
                             </div>
-                            <div style="text-align: center;">
-                                <div style="color: var(--accent-blue); margin-bottom: 0.5rem; font-weight: bold;">RNA</div>
-                                <div>A — U</div>
-                            </div>
+
+                            <p>RNA uses Uracil for metabolic efficiency. DNA structures itself to make error detection possible by investing energy into Thymine, preserving the genome across generations.</p>
                         </div>
 
-                        <p>Yet DNA and RNA made different evolutionary choices about which base to use. Why?</p>
-                        <p>The answer becomes clear when we examine cytosine damage.</p>
-                        </div>
                     </div>
                 </section>
 
