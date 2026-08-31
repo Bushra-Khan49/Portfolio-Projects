@@ -404,7 +404,11 @@ p {
 
 
 /* Pink glow for card headings */
-.glass-card .h-secondary, 
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.glass-card .h-secondary,
+.glass-card .sub-heading,
 .split-layout-card .h-secondary {
     color: var(--accent-mod2) !important;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2) !important;
