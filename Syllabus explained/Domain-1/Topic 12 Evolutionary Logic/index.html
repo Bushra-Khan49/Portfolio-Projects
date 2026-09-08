@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=15">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -15,9 +15,6 @@
             --accent-mod2: #ff007f;
             --accent-mod2-light: #ff4da6;
             --accent-mod2-dark: #b30059;
-            --accent-orange: #ff5722;
-            --accent-purple: #b388ff;
-            --accent-gold: #ffd54f;
             --text-muted: #aab2c0;
             --accent: #ff007f;
         }
@@ -26,6 +23,8 @@
             color: #ff007f !important;
             font-weight: bold !important;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 24px rgba(255, 255, 255, 0.3) !important;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
         }
         
         body { margin: 0; padding: 0; background-color: #050510; color: #f1f1f1; font-family: 'Inter', sans-serif; overflow-x: hidden; }
@@ -33,19 +32,34 @@
         .content-column { flex: 1; padding: 0; overflow-y: auto; scroll-behavior: smooth; }
         .content-inner { max-width: 1200px; margin: 0 auto; padding-bottom: 10vh; }
         .section-block { margin-bottom: 4rem; padding: 0 2rem; }
-        .glass-card { background: rgba(20, 20, 30, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+        
+        .glass-card { 
+            background: rgba(20, 20, 30, 0.6); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 12px; 
+            padding: 2.5rem; 
+            position: relative; 
+            overflow: hidden; 
+            height: 100%;
+            box-sizing: border-box;
+        }
+        
         .h-primary { color: #ffffff !important; font-family: 'Cinzel', serif !important; text-transform: uppercase; }
         .h-secondary { font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
         .hero-section { min-height: 55vh; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; text-align: left; padding: 5vh 2rem 5vh 2rem; }
         
         .math-block { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); overflow-x: auto; margin: 1.5rem 0; text-align: center; color: #e2e8f0; }
-        .code-box { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; color: #aab2c0; font-size: 0.9rem; line-height: 1.5; overflow-x: auto; margin: 1.5rem 0; white-space: pre; text-align: center; }
+        .code-box { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; color: #aab2c0; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin: 1.5rem 0; white-space: pre; text-align: center; }
         p { line-height: 1.7; margin-bottom: 1.2rem; font-size: 1.05rem; }
+        ul, ol { margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.7; }
 
-        /* Flex Layouts */
-        .flex-row { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
-        .flex-col { flex: 1; min-width: 300px; display: flex; flex-direction: column; }
-        .flex-col .glass-card { flex-grow: 1; } /* Ensure equal height */
+        /* Grid Layouts for Information Flow */
+        .grid-layout { display: grid; gap: 2rem; margin-bottom: 2rem; }
+        .grid-2 { grid-template-columns: 1fr 1fr; }
+        .grid-1 { grid-template-columns: 1fr; }
+        @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+        
+        .flow-arrow { text-align: center; color: var(--accent); font-size: 1.5rem; margin: 1rem 0; opacity: 0.7; }
     </style>
 </head>
 <body>
@@ -58,234 +72,202 @@
                     <h2 style="color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6; max-width: 800px;">From Molecular Damage to Variant Calling</h2>
                 </section>
                 
-                <!-- SECTION 1: Damage vs Mutation & 5mC -->
+                <!-- INTRO & CONTEXT (2 Cards Side-by-Side) -->
                 <section class="section-block fade-up">
-                    <div class="flex-row">
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Damage vs Mutation</h3>
-                                <p>This distinction is fundamental.</p>
-                                <p><strong>Chemical damage</strong></p>
-                                <div class="math-block">\( C \rightarrow U \)</div>
-                                <p>This is a lesion. The original genomic information has not necessarily been permanently changed yet. If repaired, no mutation remains.</p>
-                                <p>But if replication converts the lesion into a stable base-pair change:</p>
-                                <div class="math-block">\( C:G \rightarrow T:A \)</div>
-                                <p>then we have a <strong>mutation</strong>.</p>
-                                <div class="math-block">\( \boxed{ \text{damage} \neq \text{mutation} } \)</div>
-                                <p>Mutation can be the heritable consequence of unrepaired damage.</p>
-                            </div>
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Why Are We Starting This?</h3>
+                            <p>In Topic 11, we saw how DNA uses Thymine to flag chemical damage (like cytosine deamination) so repair enzymes can fix it.</p>
+                            <p>But what happens when that damage <strong>escapes repair</strong> and undergoes replication? A transient chemical lesion becomes a permanent genomic mutation.</p>
+                            <p>We are starting this topic because the sequencer does not see "damage"—it only sees abstract letters. To understand bioinformatics, we must understand how a molecular accident transforms into a statistical variant call.</p>
                         </div>
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">The Epigenetic Trap: 5-Methylcytosine</h3>
-                                <p>There is an especially important complication. DNA can contain <strong>5-methylcytosine</strong>, which is cytosine with a methyl group at C5.</p>
-                                <p>If it undergoes deamination:</p>
-                                <div class="math-block">\( \boxed{5mC \rightarrow T} \)</div>
-                                <p>The resulting base T is a normal DNA base. Therefore, it creates a mismatch that is more difficult to distinguish from an ordinary T.</p>
-                                <p>Notice the conceptual symmetry:</p>
-                                <ul style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
-                                    <li><strong>Unmethylated cytosine:</strong> C → U. U is abnormal in DNA.</li>
-                                    <li><strong>Methylated cytosine:</strong> 5mC → T. T is normal in DNA.</li>
-                                </ul>
-                                <div class="math-block">\( \boxed{ 5mC\text{ deamination can evade the simple “U is abnormal” strategy} } \)</div>
-                                <p>This is a major bridge between epigenetics, DNA damage, and mutation spectra.</p>
-                            </div>
+                        
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Where Does This Fit?</h3>
+                            <p>This is the bridge between physical reality and computational data. It fits exactly at the boundary where molecular biology ends and data science begins:</p>
+                            <div class="code-box" style="text-align: left;">1. Chemistry (Spontaneous Deamination)
+  ↓
+2. Biology (Failed Repair & Replication)
+  ↓
+3. Technology (Sequencing the Mutation)
+  ↓
+4. Computation (Variant Calling)</div>
+                            <p>Understanding this pipeline prevents the most dangerous assumption in bioinformatics: mistaking a computational observation for a biological truth.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- SECTION 2: Transitions & Repair -->
+                <!-- THE MOLECULAR FOUNDATION (2 Cards Side-by-Side) -->
                 <section class="section-block fade-up">
-                    <div class="flex-row">
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Transitions vs Transversions</h3>
-                                <p>There are two classes of nucleotide substitutions.</p>
-                                <p><strong>Transitions</strong><br>Purine → purine: \( A \leftrightarrow G \)<br>or pyrimidine → pyrimidine: \( C \leftrightarrow T \)</p>
-                                <p><strong>Transversions</strong><br>Purine ↔ pyrimidine: \( A/G \leftrightarrow C/T \)</p>
-                                <div class="math-block">\( \boxed{C\rightarrow T = \text{transition}} \)</div>
-                            </div>
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Damage vs. Mutation</h3>
+                            <p>This distinction is fundamental.</p>
+                            <p><strong>Chemical damage:</strong> \( C \rightarrow U \)<br>
+                            This is a lesion. The original genomic information has not necessarily been permanently changed yet. If repaired, no mutation remains.</p>
+                            <p>But if replication converts the lesion into a stable base-pair change:</p>
+                            <div class="math-block">\( C:G \rightarrow T:A \)</div>
+                            <p>then we have a <strong>mutation</strong>.</p>
+                            <div class="math-block">\( \boxed{ \text{damage} \neq \text{mutation} } \)</div>
+                            <p>Mutation can be the heritable consequence of unrepaired damage.</p>
                         </div>
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">The Physical Repair</h3>
-                                <p>A uracil-DNA glycosylase can hydrolyze the N-glycosidic bond connecting the base to the deoxyribose. Conceptually:</p>
-                                <div class="math-block">\( DNA-U \xrightarrow{\text{glycosylase}} DNA\text{-abasic site} \)</div>
-                                <p>The base is removed, but the sugar-phosphate backbone initially remains. So:</p>
-                                <div class="math-block">\( \boxed{ \text{base removed} \neq \text{strand removed} } \)</div>
-                                <p>The DNA now contains an AP site (apurinic/apyrimidinic site). An AP site is chemically unstable and is processed by downstream repair machinery:</p>
-                                <div class="code-box">AP site
-↓
-phosphodiester backbone cleavage
-↓
-gap
-↓
-DNA synthesis
-↓
-ligation</div>
-                            </div>
+
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Transitions vs. Transversions</h3>
+                            <p>When damage becomes a mutation, it falls into one of two classes.</p>
+                            <p><strong>Transitions (Like replaces Like)</strong><br>
+                            Purine → purine: \( A \leftrightarrow G \)<br>
+                            Pyrimidine → pyrimidine: \( C \leftrightarrow T \)</p>
+                            <p><strong>Transversions (Category Swap)</strong><br>
+                            Purine ↔ pyrimidine: \( A/G \leftrightarrow C/T \)</p>
+                            <p>Because cytosine (a pyrimidine) deaminates to uracil (another pyrimidine), the resulting mutation is a transition:</p>
+                            <div class="math-block">\( \boxed{C\rightarrow T = \text{transition}} \)</div>
                         </div>
                     </div>
                 </section>
 
-                <!-- SECTION 3: Computation & Observation -->
+                <!-- THE EPI-GENETIC COMPLICATION (1 Card Full Width) -->
                 <section class="section-block fade-up">
-                    <h3 class="h-secondary pink-heading" style="margin-bottom: 2rem;">The Computational Abstraction</h3>
-                    <div class="flex-row">
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Sequencing Does Not See "C"</h3>
-                                <p>This is an important conceptual correction. A FASTQ file contains <code>ACGTACCGT...</code></p>
-                                <p>But the sequencer did not directly see a letter C. It measured some physical signal. Depending on the technology, that might involve:</p>
-                                <ul style="color: var(--text-muted); line-height: 1.7;">
-                                    <li>fluorescence</li>
-                                    <li>electrical current</li>
-                                    <li>ionic changes</li>
-                                    <li>polymerase kinetics</li>
-                                </ul>
-                                <p>The computational system transforms:</p>
-                                <div class="math-block">\( \boxed{\text{physical signal}} \rightarrow \boxed{\text{base call}} \)</div>
-                                <p>So even the letter "C" is already a computational abstraction.</p>
-                            </div>
-                        </div>
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Three Levels of the Same Event</h3>
-                                <p><strong>Level 1 — Molecular</strong><br>\( C:G \rightarrow U:G \)<br><span style="color: var(--text-muted);">chemical damage.</span></p>
-                                <p><strong>Level 2 — Genetic</strong><br>After replication: \( C:G \rightarrow T:A \)<br><span style="color: var(--text-muted);">stable sequence change.</span></p>
-                                <p><strong>Level 3 — Computational</strong><br>The reference genome contains: <code>...C...</code><br>while the sample contains evidence for: <code>...T...</code></p>
-                                <p>A variant caller may therefore produce: <code>REF=C, ALT=T</code>.</p>
-                                <p>The VCF does not know that the molecular mechanism was cytosine deamination. It is reporting an observed/inferred sequence difference.</p>
-                                <div class="math-block">\( \boxed{ \text{VCF representation} \neq \text{molecular mechanism} } \)</div>
-                            </div>
+                    <div class="grid-layout grid-1">
+                        <div class="glass-card tilt-effect hover-target" style="border-left: 4px solid var(--accent);">
+                            <h3 class="h-secondary pink-heading">The Epigenetic Trap: 5-Methylcytosine</h3>
+                            <p>We established that DNA uses Thymine so that when Cytosine deaminates into Uracil, the repair machinery knows U doesn't belong.</p>
+                            <p>But there is a major complication: Epigenetics. DNA often contains <strong>5-methylcytosine (5mC)</strong>, which is cytosine with a methyl group added to silence gene expression.</p>
+                            <p>If 5-methylcytosine undergoes deamination, the chemistry changes dramatically:</p>
+                            <div class="math-block">\( \boxed{5mC \xrightarrow{\text{deamination}} T} \)</div>
+                            <p>The resulting base (T) is a <strong>normal DNA base</strong>. It creates a T:G mismatch that is incredibly difficult for the cell to distinguish from a normal T. The error signal is completely lost.</p>
+                            <div class="math-block">\( \boxed{ 5mC\text{ deamination evades the simple “U is abnormal” strategy} } \)</div>
+                            <p>This is why methylated regions (like CpG islands in vertebrate genomes) are massive hotspots for C→T mutations. The cell's security system is blind to them.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- SECTION 4: Statistics & Bayes -->
+                <!-- THE MEASUREMENT GAP (2 Cards Side-by-Side) -->
                 <section class="section-block fade-up">
-                    <div class="flex-row">
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">What Does a Variant Caller Do?</h3>
-                                <p>Suppose the reference has <code>A C G T A</code>. At one position, reads contain:</p>
-                                <div class="code-box">Read 1: A C G T A
-Read 2: A C G T A
-Read 3: A T G T A
-Read 4: A T G T A
-Read 5: A T G T A</div>
-                                <p>Imagine \( n=100 \) reads cover a position, with 80 = C, 20 = T. A naive allele fraction is:</p>
-                                <div class="math-block">\( \boxed{AF=20\%} \)</div>
-                                <p>But the caller cannot simply say "20% T means mutation." It must consider sequencing errors. If the per-base error probability is \( \epsilon = 0.001 \), then \( P(T|C)=0.001 \).</p>
-                                <p>A real variant should generate substantially more T observations than expected from random sequencing error.</p>
-                            </div>
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Sequencing Does Not See "C"</h3>
+                            <p>Once a mutation occurs, we sequence the genome. But this introduces a massive conceptual gap.</p>
+                            <p>A FASTQ file contains <code>ACGTACCGT...</code></p>
+                            <p>But the sequencer did not directly see a letter C. It measured a physical signal—like fluorescence flashes, electrical current disruptions, or hydrogen ion releases.</p>
+                            <p>The computational system transforms this:</p>
+                            <div class="math-block">\( \boxed{\text{physical signal}} \rightarrow \boxed{\text{base call}} \)</div>
+                            <p>Even the letter "C" in a FASTQ file is an abstraction. It is an inference made by an algorithm, susceptible to noise.</p>
                         </div>
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Bayesian View of Variant Calling</h3>
-                                <p>Conceptually, the caller wants \( P(\text{variant}\mid\text{reads}) \). Using Bayes’ theorem:</p>
-                                <div class="math-block">\( \boxed{ P(V|D) = \frac{P(D|V)P(V)}{P(D)} } \)</div>
-                                <p>where \( V \) = variant hypothesis, \( D \) = sequencing data.</p>
-                                <p>The key term is \( P(D|V) \) — How likely are the observed bases if a true variant exists?</p>
-                                <p>Compare this with \( P(D|\neg V) \) — How likely are the same observations if no variant exists? Therefore:</p>
-                                <div class="math-block">\( \boxed{ \frac{P(D|V)}{P(D|\neg V)} } \)</div>
-                                <p>is essentially asking: How much more strongly do these reads support a variant than sequencing noise?</p>
-                            </div>
+
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Three Levels of the Same Event</h3>
+                            <p>This brings us to one of the most useful mental models in bioinformatics.</p>
+                            <p><strong>Level 1 — Molecular</strong><br>
+                            \( C:G \rightarrow U:G \)<br>
+                            <span style="color: var(--text-muted);">A physical chemical damage event.</span></p>
+                            <p><strong>Level 2 — Genetic</strong><br>
+                            \( C:G \rightarrow T:A \)<br>
+                            <span style="color: var(--text-muted);">A stable, heritable sequence change.</span></p>
+                            <p><strong>Level 3 — Computational</strong><br>
+                            <code>REF=C, ALT=T</code><br>
+                            <span style="color: var(--text-muted);">An observation reported by a Variant Caller.</span></p>
+                            <p>The VCF does not know the molecular mechanism. It only knows the statistical observation.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- SECTION 5: Mutation Spectra -->
+                <!-- THE STATISTICAL REALITY (2 Cards Side-by-Side) -->
                 <section class="section-block fade-up">
-                    <h3 class="h-secondary pink-heading" style="margin-bottom: 2rem;">Mutation Spectra & Context</h3>
-                    <div class="flex-row">
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Why Sequence Context Matters</h3>
-                                <p>Suppose we simply record: \( C\rightarrow T \). We have discarded information.</p>
-                                <p>Instead, record: <code>5'-A[C>T]G-3'</code></p>
-                                <p>Now the mutation has a local context. For trinucleotide-based mutation classification, one often represents substitutions using the six pyrimidine-centered classes:</p>
-                                <div class="math-block">\( C>A,\ C>G,\ C>T,\ T>A,\ T>C,\ T>G \)</div>
-                                <p>with reverse-complement normalization allowing all substitutions to be represented consistently.</p>
-                                <p>The computational system can therefore transform:</p>
-                                <div class="math-block">\( \boxed{\text{millions of individual variants}} \rightarrow \boxed{\text{a structured mutation profile}} \)</div>
-                            </div>
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">What Does a Variant Caller Do?</h3>
+                            <p>Suppose the reference genome has <code>C</code>. At one position, the sequencer provides 100 reads. 80 say <code>C</code>, and 20 say <code>T</code>.</p>
+                            <p>A naive allele fraction is:</p>
+                            <div class="math-block">\( \boxed{AF = 20\%} \)</div>
+                            <p>But the caller cannot simply say "20% T means a mutation." It must consider sequencing errors (the noise in the physical signal). If the sequencer's error rate is 0.1%, it expects some fake <code>T</code>s.</p>
+                            <p>A real variant must generate substantially more <code>T</code> observations than expected from random sequencing noise.</p>
                         </div>
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Reverse-Complement Normalization</h3>
-                                <p>DNA is double-stranded. Suppose one strand contains \( C\rightarrow T \). The complementary strand contains \( G\rightarrow A \).</p>
-                                <p>These are the same physical mutation viewed from opposite strands. To avoid double-counting, computational analyses often choose a canonical pyrimidine representation.</p>
-                                <p>Thus, \( G>A \) is represented as its complementary \( C>T \).</p>
-                                <p>This is a beautiful example of molecular structure directly influencing computational data representation.</p>
-                            </div>
+
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The Bayesian View</h3>
+                            <p>Conceptually, the caller calculates the probability that a variant actually exists given the reads it sees: \( P(\text{variant}\mid\text{reads}) \).</p>
+                            <p>Using Bayes’ theorem:</p>
+                            <div class="math-block">\( \boxed{ P(V|D) = \frac{P(D|V)P(V)}{P(D)} } \)</div>
+                            <p>The key term is \( P(D|V) \) vs \( P(D|\neg V) \):</p>
+                            <div class="math-block">\( \boxed{ \frac{P(D|V)}{P(D|\neg V)} } \)</div>
+                            <p>It asks: <em>How much more strongly do these reads support a real mutation rather than just sequencing noise?</em></p>
                         </div>
                     </div>
                 </section>
-                
-                <!-- SECTION 6: Failures & Statistics -->
+
+                <!-- SCALING TO POPULATIONS (2 Cards Side-by-Side) -->
                 <section class="section-block fade-up">
-                    <div class="flex-row">
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Hidden Assumptions in a VCF</h3>
-                                <p>When we see <code>REF=C, ALT=T</code>, the pipeline has assumed that:</p>
-                                <ol style="color: var(--text-muted); line-height: 1.7;">
-                                    <li>reads were generated correctly</li>
-                                    <li>base calls are sufficiently accurate</li>
-                                    <li>sequencing errors are modeled</li>
-                                    <li>reads were aligned correctly</li>
-                                    <li>the evidence is not caused by mapping artifacts</li>
-                                    <li>the allele is sufficiently supported</li>
-                                </ol>
-                                <div class="math-block">\( \boxed{ \text{A variant call is an inference,} \\ \text{not a direct observation of a mutation molecule.} } \)</div>
-                            </div>
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Mutation Spectra</h3>
+                            <p>Once we can call variants reliably, we don't just look at one. We look at millions. If we simply record <code>C→T</code>, we discard vital information.</p>
+                            <p>Instead, we record the sequence context: <code>5'-A[C>T]G-3'</code>.</p>
+                            <p>By classifying all mutations by their context, we build a <strong>mutation spectrum</strong>.</p>
+                            <div class="math-block">\( \boxed{\text{millions of variants}} \rightarrow \boxed{\text{structured mutation profile}} \)</div>
+                            <p>If a specific profile is heavily enriched for <code>C→T</code> in CpG contexts, we can mathematically link the computational data all the way back to 5-methylcytosine deamination.</p>
                         </div>
-                        <div class="flex-col">
-                            <div class="glass-card tilt-effect hover-target">
-                                <h3 class="h-secondary pink-heading">Independent Molecules vs Reads</h3>
-                                <p>Suppose PCR creates 20 copies from one original molecule. We might observe 20 reads → T. It looks extremely convincing.</p>
-                                <p>But those 20 reads may represent 1 original molecule, rather than 20 independent observations.</p>
-                                <p>This is why sequencing pipelines care about:</p>
-                                <ul style="color: var(--text-muted); line-height: 1.7;">
-                                    <li>molecular duplicates</li>
-                                    <li>unique molecular identifiers (UMIs)</li>
-                                    <li>library complexity</li>
-                                    <li>strand evidence and base quality</li>
-                                </ul>
-                                <div class="math-block">\( \boxed{\text{How much independent physical evidence supports this sequence state?}} \)</div>
-                            </div>
+
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Reverse-Complement Normalization</h3>
+                            <p>DNA is double-stranded. If one strand contains a <code>C→T</code> mutation, the complementary strand inherently contains a <code>G→A</code> mutation.</p>
+                            <p>They are the exact same physical event viewed from opposite sides.</p>
+                            <p>To avoid double-counting in mutation spectra, computational analyses choose a canonical representation (usually pyrimidines).</p>
+                            <p>Thus, every <code>G→A</code> is computationally flipped and represented as its complement <code>C→T</code>.</p>
+                            <p>This is a beautiful example of molecular structure directly dictating computational data design.</p>
                         </div>
                     </div>
                 </section>
-                
-                <!-- SECTION 7: The Final Chain -->
+
+                <!-- THE TRAPS (1 Card Full Width) -->
                 <section class="section-block fade-up">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <h3 class="h-secondary pink-heading">The Pipeline as a Chain of Filters</h3>
-                        <p>Every stage is a filter. If an upstream stage is wrong:</p>
-                        <div class="math-block">\( \boxed{ \text{downstream computation can be perfectly executed} \\ \text{and still produce the wrong biological conclusion} } \)</div>
-                        <p>The complete bioinformatics mental model is:</p>
-                        <div class="code-box">Structure
+                    <div class="grid-layout grid-1">
+                        <div class="glass-card tilt-effect hover-target" style="border-left: 4px solid var(--accent-gold);">
+                            <h3 class="h-secondary pink-heading" style="color: var(--accent-gold) !important; text-shadow: 0 0 12px rgba(255, 213, 79, 0.6) !important;">The Traps of Computation</h3>
+                            <p>When we see <code>REF=C, ALT=T</code> in a VCF, it carries a massive stack of hidden assumptions:</p>
+                            <ul>
+                                <li>The reads were generated without chemical degradation in the library.</li>
+                                <li>The physical signals were called accurately by the sequencer.</li>
+                                <li>The read aligned to the correct genomic coordinate (no mapping artifacts).</li>
+                                <li>The read pileup represents independent physical molecules, not just PCR duplicates.</li>
+                            </ul>
+                            <p>Suppose PCR amplification creates 20 copies from a single damaged DNA molecule. The sequencer outputs 20 reads showing <code>T</code>. It looks like overwhelming statistical evidence. But it is 20 reads representing <strong>1 original molecule</strong>.</p>
+                            <p>If we treat read count as independent evidence, the statistics fail. The computational system must constantly fight to reconstruct reality.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FINAL SYNTHESIS (1 Card Full Width) -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
+                        <div class="glass-card tilt-effect hover-target text-center">
+                            <h3 class="h-secondary pink-heading" style="text-align: center;">The Pipeline as a Chain of Filters</h3>
+                            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem auto;">Every stage in bioinformatics is a filter. If an upstream stage is fundamentally wrong (e.g., chemical damage in the sample), the downstream algorithms can execute perfectly and still produce a completely false biological conclusion.</p>
+                            
+                            <div class="code-box" style="display: inline-block; text-align: center; font-size: 1.1rem; line-height: 2;">
+Structure (The Methyl Group)
 ↓
-Chemistry
+Chemistry (Deamination)
 ↓
-Damage
+Damage (C→U)
 ↓
-Repair
+Repair (UNG Enzyme)
 ↓
-Replication
+Replication (U:A → T:A)
 ↓
-Mutation
+Mutation (Fixed C→T)
 ↓
-Measurement
+Measurement (Fluorescent Signals)
 ↓
-Statistics
+Statistics (Bayesian Inference)
 ↓
-Variant
+Variant (VCF File)
 ↓
-Biological inference</div>
-                        <p>That is why understanding the methyl group on thymine is not a small detail. It is an example of how molecular chemistry ultimately becomes computational data.</p>
+Biological Inference
+                            </div>
+                            
+                            <p style="text-align: center; max-width: 800px; margin: 2rem auto 0 auto;">Understanding the methyl group on thymine is not a small biological detail. It is the perfect example of how molecular chemistry ultimately becomes computational data.</p>
+                        </div>
                     </div>
                 </section>
 
