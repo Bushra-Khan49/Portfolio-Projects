@@ -137,13 +137,13 @@
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Epigenetic Trap: 5-Methylcytosine</h3>
-                            <p>DNA methylation is a critical regulatory mechanism, but it introduces a structural vulnerability. Cells often attach a methyl group to Cytosine, forming <strong>5-methylcytosine (5mC)</strong>.</p>
-                            <p>When 5mC undergoes deamination, the chemistry changes:</p>
-                            <div class="math-block">\( \boxed{5mC \xrightarrow{\text{deamination}} T} \)</div>
-                            <p>Instead of generating Uracil, the deamination of 5mC generates Thymine (a normal base). The original <code>5mC:G</code> pair becomes a <code>T:G</code> mismatch.</p>
-                            <p>When the repair machinery identifies a <code>T:G</code> mismatch, it cannot easily determine whether the Thymine or the Guanine is the correct original base. By producing Thymine, 5mC deamination evades the standard "Uracil is abnormal" detection strategy.</p>
-                            <div class="math-block">\( \boxed{ 5mC\text{ deamination evades simple error detection} } \)</div>
-                            <p>Because the repair machinery struggles to resolve this ambiguity, methylated regions—such as CpG islands in vertebrate genomes—serve as major hotspots for C→T mutations.</p>
+                            <p>To help control which genes are turned on or off, cells often attach a small chemical tag (called a methyl group) to Cytosine. We call this tagged version <strong>5-methylcytosine (5mC)</strong>.</p>
+                            <p>This tag is incredibly useful for biology, but it creates a dangerous trap.</p>
+                            <p>Earlier, we saw that when normal Cytosine breaks down, it turns into Uracil. The cell easily catches this mistake because Uracil doesn't belong in DNA. But when a <em>tagged</em> Cytosine (5mC) breaks down, the extra tag changes the chemistry. Instead of turning into Uracil, it turns directly into <strong>Thymine</strong>.</p>
+                            <div class="math-block">\( \boxed{ \text{Tagged Cytosine (5mC)} \xrightarrow{\text{breaks down}} \text{Thymine (T)} } \)</div>
+                            <p>This is a massive problem. The original <code>C:G</code> pair is now a <code>T:G</code> mismatch.</p>
+                            <p>When the cell's repair enzymes patrol the DNA and find this <code>T:G</code> pair, they get confused. They know a mistake happened because T should only pair with A. But because both Thymine and Guanine are perfectly normal DNA letters, the repair system cannot easily tell which one is the original letter and which one is the imposter.</p>
+                            <p>Because the repair machinery struggles to solve this puzzle, it often fails to fix it. As a result, these tagged regions of DNA are major hotspots for mutations in the human genome.</p>
                         </div>
                     </div>
                 </section>
