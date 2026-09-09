@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=20">
+    <link rel="stylesheet" href="style.css?v=21">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -197,39 +197,30 @@
                 </section>
 
                 <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">Mutation Spectra & Trinucleotide Context</h3>
-                            <p>Instead of analyzing individual mutations, we can aggregate millions of substitutions to identify biological mechanisms. If \( C\rightarrow T \) transitions are highly enriched, it indicates a specific mutagenic process.</p>
-                            <p>To maximize this information, we record the flanking sequence context: <code>5'-A[C>T]G-3'</code>.</p>
-                            <p>Because there are 4 possible upstream and 4 possible downstream bases, a single substitution type can occur in \( 4 \times 4 = 16 \) trinucleotide contexts. Multiplying the 6 canonical substitutions by 16 contexts generates a <strong>96-channel mutation spectrum</strong>.</p>
-                            <p>This structured profile acts as a biological signature. For example, UV damage consistently produces \( C \rightarrow T \) mutations specifically at dipyrimidine (CC or TC) sites.</p>
-                        </div>
+                            <h3 class="h-secondary pink-heading">4 Key Bioinformatics Applications</h3>
+                            
+                            <h4 style="color: var(--accent); margin-top: 1.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">1. Mutation Spectra & Trinucleotide Context</h4>
+                            <p>Instead of analyzing individual mutations, we can aggregate millions of substitutions to identify biological mechanisms. If <code>C&gt;T</code> transitions are highly enriched, it indicates a specific mutagenic process.</p>
+                            <p>To maximize this information, we record the flanking sequence context: <code>5'-A[C&gt;T]G-3'</code>.</p>
+                            <p>Because there are 4 possible upstream and 4 possible downstream bases, a single substitution type can occur in 16 trinucleotide contexts. Multiplying the 6 canonical substitutions by 16 contexts generates a 96-channel mutation spectrum.</p>
+                            <p>This structured profile acts as a biological signature. For example, UV damage consistently produces <code>C&gt;T</code> mutations specifically at dipyrimidine (CC or TC) sites.</p>
 
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">Reverse-Complement Normalization</h3>
-                            <p>Because DNA is double-stranded, a \( C\rightarrow T \) mutation on the forward strand is physically identical to a \( G\rightarrow A \) mutation on the reverse strand.</p>
-                            <p>To prevent double-counting, computational tools normalize substitutions to a canonical pyrimidine representation. Whenever an algorithm detects a \( G>A \) variant, it computes the reverse-complement to classify it as \( C>T \) (adjusting the flanking bases accordingly).</p>
+                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">2. Reverse-Complement Normalization</h4>
+                            <p>Because DNA is double-stranded, a <code>C&gt;T</code> mutation on the forward strand is physically identical to a <code>G&gt;A</code> mutation on the reverse strand.</p>
+                            <p>To prevent double-counting, computational tools normalize substitutions to a canonical pyrimidine representation. Whenever an algorithm detects a <code>G&gt;A</code> variant, it computes the reverse-complement to classify it as <code>C&gt;T</code> (adjusting the flanking bases accordingly).</p>
                             <p>This step condenses the 12 possible base substitutions into 6 canonical classes, ensuring the statistical models accurately reflect the physical structure of the DNA duplex without artificially inflating the data.</p>
-                        </div>
-                    </div>
-                </section>
 
-                <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Hidden Assumptions in a VCF</h3>
+                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">3. The Hidden Assumptions in a VCF</h4>
                             <p>A variant call (<code>REF=C, ALT=T</code>) relies on multiple underlying assumptions: the DNA was not degraded during preparation, the base-calling error models are accurate, and the reads aligned to the correct genomic coordinate.</p>
                             <p>Alignment is a frequent source of error. The human genome contains duplicated pseudogenes that share high sequence similarity with functional genes. If a read from a pseudogene maps incorrectly to the target gene, the slight sequence divergence will present as a heterozygous mutation.</p>
                             <p>The variant caller will output a variant, but the observation is entirely an alignment artifact.</p>
-                            <div class="math-block">\( \boxed{ \text{A variant call is an inference, not an observation.} } \)</div>
-                        </div>
 
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">PCR Duplicates vs. Independent Molecules</h3>
+                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">4. PCR Duplicates vs. Independent Molecules</h4>
                             <p>If a damaged DNA molecule (e.g., containing U) undergoes PCR amplification prior to sequencing, it generates multiple identical copies.</p>
                             <p>The sequencer may output 20 reads containing a <code>T</code>. While this appears as strong statistical evidence for a variant, the 20 reads are technical duplicates representing exactly one original physical molecule.</p>
-                            <p>To resolve this, pipelines use <strong>Unique Molecular Identifiers (UMIs)</strong>—random barcodes attached to molecules prior to amplification. If 20 <code>T</code> reads share the same UMI, the algorithm collapses them into a single observation, recovering the true independent molecule count.</p>
+                            <p>To resolve this, pipelines use Unique Molecular Identifiers (UMIs)—random barcodes attached to molecules prior to amplification. If 20 <code>T</code> reads share the same UMI, the algorithm collapses them into a single observation, recovering the true independent molecule count.</p>
                         </div>
                     </div>
                 </section>
