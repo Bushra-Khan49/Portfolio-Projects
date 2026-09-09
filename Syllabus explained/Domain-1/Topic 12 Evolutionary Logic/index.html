@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=19">
+    <link rel="stylesheet" href="style.css?v=20">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -169,25 +169,29 @@
                 </section>
 
                 <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">What Does a Variant Caller Actually Do?</h3>
-                            <p>Assume a reference genome position is <code>C</code>. We sequence a sample and obtain 100 reads: 80 <code>C</code> and 20 <code>T</code>. The Allele Fraction (AF) is 20%.</p>
-                            <p>Applying a hard threshold (e.g., "call a variant if AF > 10%") is statistically flawed. Observing 1 <code>T</code> in 5 reads versus 2,000 <code>T</code>s in 10,000 reads both yield a 20% AF, but the statistical confidence is vastly different.</p>
-                            <p>Modern variant callers use probabilistic models. Given a known sequencing error rate (e.g., \( \epsilon = 0.001 \)), the algorithm expects a baseline of random <code>T</code> observations. To call a variant, the algorithm must calculate that the observed alternative bases significantly exceed the expected sequencing noise.</p>
-                        </div>
-
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Bayesian View of Variant Calling</h3>
-                            <p>Variant callers use Bayes’ Theorem to calculate the probability that a true variant exists given the observed read data: \( P(\text{variant}\mid\text{reads}) \).</p>
+                            <h3 class="h-secondary pink-heading">Statistical Inference: The Bayesian Variant Caller</h3>
+                            <p>Assume a reference genome position is <code>C</code>. We sequence a sample and obtain 100 reads covering this coordinate: 80 reads report <code>C</code> and 20 reads report <code>T</code>. The resulting Allele Fraction (AF) is 20%.</p>
+                            
+                            <p>Applying a hard numerical threshold (e.g., "call a variant if AF > 10%") is a flawed methodology. An observation of 1 <code>T</code> in 5 reads yields a 20% AF, exactly as observing 2,000 <code>T</code>s in 10,000 reads yields a 20% AF. However, the statistical confidence in these two scenarios is vastly different due to the depth of coverage.</p>
+                            
+                            <p>Because sequencing instruments have a known baseline error rate (e.g., \( \epsilon = 0.001 \)), they consistently generate random false-positive base calls. A variant caller must therefore determine whether the observed alternative bases significantly exceed this expected technical noise. To accomplish this, modern callers do not use arbitrary cutoffs; they use probabilistic models driven by Bayes’ Theorem.</p>
+                            
+                            <p>The algorithm calculates the posterior probability that a true biological variant exists given the observed read data: \( P(\text{variant}\mid\text{reads}) \).</p>
+                            
                             <div class="math-block">\( \boxed{ P(V|D) = \frac{P(D|V)P(V)}{P(D)} } \)</div>
-                            <p>The core of this calculation is the likelihood ratio:</p>
+                            
+                            <p>The core of this statistical inference relies on computing a likelihood ratio that compares two opposing hypotheses:</p>
+                            
                             <ul>
-                                <li><strong>\( P(D|V) \):</strong> The probability of observing the read data if the patient truly possesses the variant.</li>
-                                <li><strong>\( P(D|\neg V) \):</strong> The probability of observing the read data if the patient sequence matches the reference, and all alternative bases are purely technical errors.</li>
+                                <li><strong>\( P(D|V) \):</strong> The probability of observing exactly this read data if the patient truly possesses the variant (the signal hypothesis).</li>
+                                <li><strong>\( P(D|\neg V) \):</strong> The probability of observing this exact read data if the patient sequence perfectly matches the reference, and all alternative bases are purely technical errors (the noise hypothesis).</li>
                             </ul>
+                            
                             <div class="math-block">\( \boxed{ \frac{P(D|V)}{P(D|\neg V)} } \)</div>
-                            <p>This ratio quantifies how strongly the data supports a biological mutation over a technological artifact.</p>
+                            
+                            <p>By evaluating this ratio, the algorithm mathematically quantifies how strongly the sequencing data supports a true biological mutation over a technological artifact. Only when this statistical evidence is sufficiently robust does the caller formally report the variant.</p>
                         </div>
                     </div>
                 </section>
