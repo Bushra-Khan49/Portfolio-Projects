@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=18">
+    <link rel="stylesheet" href="style.css?v=19">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -76,26 +76,24 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Why Are We Starting This?</h3>
-                            <p>In Topic 11, we saw how DNA evolved to use Thymine to flag chemical damage. Because DNA uses Thymine instead of Uracil, anytime Cytosine deaminates into Uracil, the repair enzymes immediately know that a chemical accident has occurred.</p>
-                            <p>But biology is not perfect. What happens when that damage <strong>escapes repair</strong> and undergoes cellular replication? A transient, temporary chemical lesion becomes a permanent genomic mutation.</p>
-                            <p>We are starting this topic because as bioinformaticians, we don't look at cells through a microscope. We look at data. The sequencer does not see "damage"—it only sees abstract letters in a FASTQ file. To truly master bioinformatics, we must understand exactly how a physical molecular accident in a living cell transforms into a statistical variant call on a computer.</p>
+                            <p>In Topic 11, we established that DNA evolved to use Thymine to flag cytosine deamination. But when chemical damage escapes repair and undergoes cellular replication, a transient lesion becomes a permanent genomic mutation.</p>
+                            <p>We are starting this topic because sequencing instruments do not detect molecular "damage"—they output text representations of bases. To correctly interpret bioinformatics data, we must trace exactly how a physical molecular event transforms into a statistical variant call.</p>
                         </div>
                         
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Where Does This Fit?</h3>
-                            <p>This topic is the ultimate bridge between physical reality and computational data. It sits exactly at the boundary where molecular biology ends and data science begins.</p>
-                            <p>To understand the sequence data we analyze, we must track the information through four distinct phases:</p>
+                            <p>This topic bridges molecular biology and computational data science. To interpret sequence data accurately, we must track the information through four distinct phases:</p>
                             <div class="code-box">1. Chemistry 
-   (A water molecule hits Cytosine, turning it into Uracil)
+   (Cytosine deaminates into Uracil)
    ↓
 2. Biology 
-   (The repair machinery fails, and the cell replicates)
+   (Repair fails, and replication occurs)
    ↓
 3. Technology 
-   (A sequencing machine captures flashes of light)
+   (Sequencer records physical signals)
    ↓
 4. Computation 
-   (An algorithm guesses the letter and writes a VCF)</div>
+   (Algorithm infers the base and writes a VCF)</div>
                         </div>
                     </div>
                 </section>
@@ -105,23 +103,19 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Physical State of the DNA</h3>
-                            <p>Let’s follow what happens physically inside the nucleus. Initially, we have a normal, healthy DNA double helix with a <code>C:G</code> base pair. After a deamination event, we have a <code>U:G</code> mismatch.</p>
-                            <p>Here is a critical clarification: The DNA is still a fully connected double helix. It has not broken into pieces. Instead, the chemical identity of a single base has simply changed. This distinction is crucial:</p>
-                            <div class="math-block">\( \boxed{\text{DNA damage does not necessarily mean DNA strand break}} \)</div>
-                            <p>If the DNA backbone broke every time a base was damaged, our genomes would shatter into millions of pieces every day. Instead, the sugar-phosphate backbone remains entirely intact, acting like a scaffold.</p>
-                            <p>Repair enzymes like uracil-DNA glycosylase scan the DNA for abnormal bases. When they find Uracil, they clip the base off the sugar, leaving an empty "abasic" site. Only then is the backbone carefully opened, a new Cytosine inserted, and the gap sealed.</p>
+                            <p>Let’s trace the physical event. Following deamination, a normal <code>C:G</code> pair becomes a <code>U:G</code> mismatch.</p>
+                            <p>The DNA double helix remains completely intact; only the chemical identity of a single base has changed. Therefore, DNA damage does not inherently mean a DNA strand break. The sugar-phosphate backbone acts as a continuous scaffold.</p>
+                            <p>Repair enzymes, such as uracil-DNA glycosylase, cleave the abnormal base from the sugar. This creates an abasic site while leaving the backbone untouched. Only afterward is the backbone opened to insert a new Cytosine.</p>
                             <div class="math-block">\( \boxed{\text{base removed} \neq \text{strand removed}} \)</div>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Damage vs. Mutation</h3>
-                            <p>This brings us to one of the most fundamental distinctions in genomics. Chemical damage (\( C \rightarrow U \)) is just a lesion. It is a typo on a printed page. You can still use white-out and fix it. The original genomic information has not been permanently changed yet.</p>
-                            <p>If the repair enzymes catch it (\( U:G \rightarrow C:G \)), no mutation remains.</p>
-                            <p>But suppose the cell replicates its DNA before the repair happens. The DNA polymerase enzyme reads the damaged <code>U</code>. Because Uracil chemically prefers to pair with Adenine, the polymerase inserts an <code>A</code>. After the next round of replication, that <code>U:A</code> pair becomes a permanent <code>T:A</code> pair.</p>
+                            <p>This distinction is fundamental. Chemical damage (\( C \rightarrow U \)) is a transient lesion. The original sequence information remains physically present on the complementary strand. If repaired (\( U:G \rightarrow C:G \)), no mutation occurs.</p>
+                            <p>However, if cellular replication occurs prior to repair, DNA polymerase will pair the Uracil with an Adenine. The subsequent replication locks this into a <code>T:A</code> base pair.</p>
                             <div class="math-block">\( \boxed{ C:G \rightarrow U:G \rightarrow U:A \rightarrow T:A } \)</div>
-                            <p>Now, the typo has been sent to the printing press and copied into the next generation. We now have a <strong>mutation</strong>.</p>
-                            <div class="math-block">\( \boxed{ \text{damage (temporary)} \neq \text{mutation (permanent)} } \)</div>
-                            <p>Mutation is the heritable consequence of unrepaired damage.</p>
+                            <p>A mutation is the heritable consequence of unrepaired damage. Once the change is replicated into a <code>T:A</code> pair, the cell's repair machinery can no longer identify it as an error.</p>
+                            <div class="math-block">\( \boxed{ \text{damage (transient)} \neq \text{mutation (permanent)} } \)</div>
                         </div>
                     </div>
                 </section>
@@ -131,18 +125,13 @@
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Epigenetic Trap: 5-Methylcytosine</h3>
-                            <p>We established that DNA uses Thymine as an ingenious error-detection system: when Cytosine deaminates into Uracil, the repair machinery knows U doesn't belong and removes it.</p>
-                            <p>But biology introduces a massive complication: <strong>Epigenetics</strong>. To regulate gene expression and silence ancient viruses in our genome, our cells often attach a methyl group to Cytosine, creating <strong>5-methylcytosine (5mC)</strong>.</p>
-                            <p>This is a necessary regulatory mechanism, but it creates a dangerous chemical blind spot. If a methylated Cytosine undergoes the exact same deamination process, the chemistry changes dramatically:</p>
+                            <p>DNA methylation is a critical regulatory mechanism, but it introduces a structural vulnerability. Cells often attach a methyl group to Cytosine, forming <strong>5-methylcytosine (5mC)</strong>.</p>
+                            <p>When 5mC undergoes deamination, the chemistry changes:</p>
                             <div class="math-block">\( \boxed{5mC \xrightarrow{\text{deamination}} T} \)</div>
-                            <p>Look closely at that equation. Instead of \( C \rightarrow U \), we have \( 5mC \rightarrow T \). The resulting base (T) is a perfectly normal DNA base! Therefore, the original \( 5mC:G \) pair turns into a \( T:G \) mismatch.</p>
-                            <p>When the repair machinery comes along, it sees a T and a G. Which one is wrong? Was it originally an A:T pair where the A got damaged, or a C:G pair where the C got damaged? The error signal is completely ambiguous.</p>
-                            <ul>
-                                <li><strong>Unmethylated cytosine:</strong> Deaminates to U. U is obviously abnormal in DNA. Easy to fix.</li>
-                                <li><strong>Methylated cytosine:</strong> Deaminates to T. T is normal in DNA. Hard to fix.</li>
-                            </ul>
-                            <div class="math-block">\( \boxed{ 5mC\text{ deamination evades the simple “U is abnormal” strategy} } \)</div>
-                            <p>Because the repair machinery struggles to fix this, methylated regions (like CpG islands in vertebrate genomes) are massive hotspots for C→T mutations. This is a profound example of how adding a regulatory layer (epigenetics) inherently compromises the stability of the underlying genetic code.</p>
+                            <p>Instead of generating Uracil, the deamination of 5mC generates Thymine (a normal base). The original <code>5mC:G</code> pair becomes a <code>T:G</code> mismatch.</p>
+                            <p>When the repair machinery identifies a <code>T:G</code> mismatch, it cannot easily determine whether the Thymine or the Guanine is the correct original base. By producing Thymine, 5mC deamination evades the standard "Uracil is abnormal" detection strategy.</p>
+                            <div class="math-block">\( \boxed{ 5mC\text{ deamination evades simple error detection} } \)</div>
+                            <p>Because the repair machinery struggles to resolve this ambiguity, methylated regions—such as CpG islands in vertebrate genomes—serve as major hotspots for C→T mutations.</p>
                         </div>
                     </div>
                 </section>
@@ -155,31 +144,25 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Sequencing Does Not See "C"</h3>
-                            <p>When we open a FASTQ file, we see neat rows of letters: <code>ACGTACCGT...</code></p>
-                            <p>It is incredibly easy to forget that the sequencing machine did not directly look at a molecule and see a microscopic letter "C". Instead, it measured a raw, noisy analog signal. Depending on the sequencer, that signal is:</p>
-                            <ul>
-                                <li>Flashes of fluorescent light (Illumina)</li>
-                                <li>Tiny disruptions in electrical current (Oxford Nanopore)</li>
-                                <li>Hydrogen ions changing the pH of a micro-well (Ion Torrent)</li>
-                            </ul>
-                            <p>The computational system must take this noisy physical signal and run it through a base-calling algorithm:</p>
-                            <div class="math-block">\( \boxed{\text{physical signal (light/current)}} \rightarrow \boxed{\text{base call (A,C,T,G)}} \)</div>
-                            <p>When the algorithm makes its guess, it assigns a confidence value called a <strong>Phred Quality Score</strong> (e.g., Q30 means a 1 in 1,000 chance of the guess being wrong). But remember: a Q30 score only measures the <em>machine's</em> confidence in reading the flash of light; it has no idea if the original molecule was chemically damaged before it ever entered the machine.</p>
+                            <p>In a FASTQ file, we observe sequence strings like <code>ACGTACCGT</code>.</p>
+                            <p>However, a sequencing instrument does not directly read characters. It measures raw analog signals—such as fluorescent emissions, electrical current shifts, or pH changes. The computational system must pass this signal through a base-calling algorithm to infer the nucleotide:</p>
+                            <div class="math-block">\( \boxed{\text{physical signal}} \rightarrow \boxed{\text{base call}} \)</div>
+                            <p>The base caller assigns a <strong>Phred Quality Score</strong> (e.g., Q30) to quantify its statistical confidence in the signal translation. Crucially, this score only measures the instrument's technical confidence in interpreting the signal; it cannot determine if the original molecule was chemically damaged prior to sequencing.</p>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Three Levels of the Same Event</h3>
-                            <p>To avoid catastrophic errors in bioinformatics, we must separate a mutation into three distinct conceptual levels:</p>
+                            <p>To analyze sequence data accurately, we must separate a mutation into three distinct conceptual levels:</p>
                             <p><strong>Level 1 — Molecular</strong><br>
                             \( C:G \rightarrow U:G \)<br>
-                            <span style="color: var(--text-muted);">This is the physical chemical damage happening in real-time.</span></p>
+                            <span style="color: var(--text-muted);">The physical chemical damage event.</span></p>
                             <p><strong>Level 2 — Genetic</strong><br>
-                            After replication: \( C:G \rightarrow T:A \)<br>
-                            <span style="color: var(--text-muted);">This is the stable sequence change locked into the DNA.</span></p>
+                            \( C:G \rightarrow T:A \)<br>
+                            <span style="color: var(--text-muted);">The stable, heritable sequence change after replication.</span></p>
                             <p><strong>Level 3 — Computational</strong><br>
-                            The reference genome contains <code>...C...</code> while our sample contains evidence for <code>...T...</code>.<br>
-                            <span style="color: var(--text-muted);">A variant caller produces a VCF entry: <code>REF=C, ALT=T</code>.</span></p>
-                            <p>The VCF file does not know that the molecular mechanism was cytosine deamination. It has no idea if the damage happened yesterday or a thousand years ago. It is purely reporting a mathematical difference between two strings of text.</p>
+                            <code>REF=C, ALT=T</code><br>
+                            <span style="color: var(--text-muted);">The statistical observation reported in a Variant Call Format (VCF) file.</span></p>
+                            <p>The VCF file reports a mathematical difference between the sample reads and the reference genome. It does not encode the underlying molecular mechanism (deamination) or the timing of the event.</p>
                             <div class="math-block">\( \boxed{ \text{VCF representation} \neq \text{molecular mechanism} } \)</div>
                         </div>
                     </div>
@@ -189,23 +172,22 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">What Does a Variant Caller Actually Do?</h3>
-                            <p>Suppose the reference genome says a position should be <code>C</code>. We sequence our sample and get 100 reads. 80 say <code>C</code>, and 20 say <code>T</code>. A naive calculation gives us an Allele Fraction (AF):</p>
-                            <div class="math-block">\( \boxed{AF = \frac{20}{100} = 20\%} \)</div>
-                            <p>If we were naive, we might set a hard threshold: <em>"If AF > 10%, call it a mutation."</em> But this fails miserably in real-world genomics. If you have 5 reads and 1 says T, that's an AF of 20%. If you have 10,000 reads and 2,000 say T, that is also an AF of 20%. The statistical confidence between these two scenarios is astronomically different.</p>
-                            <p>A modern variant caller doesn't use hard thresholds; it uses probabilistic models. It assumes that some of those <code>T</code>s are fake—caused by the sequencing machine misreading the physical signal. If the sequencer has a known error probability of \( \epsilon = 0.001 \), it will randomly produce fake <code>T</code>s. To call a real mutation, the software must prove that seeing twenty <code>T</code>s is statistically impossible to explain by random sequencing noise alone.</p>
+                            <p>Assume a reference genome position is <code>C</code>. We sequence a sample and obtain 100 reads: 80 <code>C</code> and 20 <code>T</code>. The Allele Fraction (AF) is 20%.</p>
+                            <p>Applying a hard threshold (e.g., "call a variant if AF > 10%") is statistically flawed. Observing 1 <code>T</code> in 5 reads versus 2,000 <code>T</code>s in 10,000 reads both yield a 20% AF, but the statistical confidence is vastly different.</p>
+                            <p>Modern variant callers use probabilistic models. Given a known sequencing error rate (e.g., \( \epsilon = 0.001 \)), the algorithm expects a baseline of random <code>T</code> observations. To call a variant, the algorithm must calculate that the observed alternative bases significantly exceed the expected sequencing noise.</p>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Bayesian View of Variant Calling</h3>
-                            <p>To solve this, variant callers use Bayes’ Theorem. Conceptually, the caller wants to calculate the probability that a true variant exists, given the noisy reads it just looked at: \( P(\text{variant}\mid\text{reads}) \).</p>
+                            <p>Variant callers use Bayes’ Theorem to calculate the probability that a true variant exists given the observed read data: \( P(\text{variant}\mid\text{reads}) \).</p>
                             <div class="math-block">\( \boxed{ P(V|D) = \frac{P(D|V)P(V)}{P(D)} } \)</div>
-                            <p>Let's break down the most important part of this equation—the Likelihood Ratio. We are comparing two universes:</p>
+                            <p>The core of this calculation is the likelihood ratio:</p>
                             <ul>
-                                <li><strong>\( P(D|V) \):</strong> In a universe where the patient <em>truly has</em> a heterozygous C/T mutation, what is the probability of seeing exactly 80 'C's and 20 'T's?</li>
-                                <li><strong>\( P(D|\neg V) \):</strong> In a universe where the patient is <em>homozygous normal</em> (C/C), what is the exact probability that the sequencer's lasers and chemical phasing errors conspired to accidentally produce twenty fake 'T's?</li>
+                                <li><strong>\( P(D|V) \):</strong> The probability of observing the read data if the patient truly possesses the variant.</li>
+                                <li><strong>\( P(D|\neg V) \):</strong> The probability of observing the read data if the patient sequence matches the reference, and all alternative bases are purely technical errors.</li>
                             </ul>
                             <div class="math-block">\( \boxed{ \frac{P(D|V)}{P(D|\neg V)} } \)</div>
-                            <p>This ratio is the heart of bioinformatics variant calling. It asks: <em>How much more strongly do these reads support a real biological mutation rather than a technological artifact?</em></p>
+                            <p>This ratio quantifies how strongly the data supports a biological mutation over a technological artifact.</p>
                         </div>
                     </div>
                 </section>
@@ -214,19 +196,17 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Mutation Spectra & Trinucleotide Context</h3>
-                            <p>Instead of agonizing over a single mutation, bioinformaticians often zoom out and analyze millions of substitutions across a whole genome. If \( C\rightarrow T \) is heavily enriched, it gives us a massive biological clue (e.g., deamination or UV damage).</p>
-                            <p>But context matters immensely. If we simply record every mutation as \( C\rightarrow T \), we throw away vital data. Instead, we record the neighboring bases: <code>5'-A[C>T]G-3'</code>.</p>
-                            <p>Since there are 4 possible bases before the mutation, and 4 possible bases after it, a simple \( C \rightarrow T \) transition can occur in \( 4 \times 4 = 16 \) different trinucleotide contexts (e.g., ACA, ACC, ACG, ACT). When we multiply the 6 canonical substitutions by these 16 contexts, we get a <strong>96-channel mutation spectrum</strong>.</p>
-                            <div class="math-block">\( \boxed{\text{millions of variants}} \rightarrow \boxed{\text{96-channel mutation profile}} \)</div>
-                            <p>This 96-bar chart acts like a genomic fingerprint. For example, UV light damage creates a massive, distinct spike in \( C \rightarrow T \) mutations specifically at CC or TC dinucleotides.</p>
+                            <p>Instead of analyzing individual mutations, we can aggregate millions of substitutions to identify biological mechanisms. If \( C\rightarrow T \) transitions are highly enriched, it indicates a specific mutagenic process.</p>
+                            <p>To maximize this information, we record the flanking sequence context: <code>5'-A[C>T]G-3'</code>.</p>
+                            <p>Because there are 4 possible upstream and 4 possible downstream bases, a single substitution type can occur in \( 4 \times 4 = 16 \) trinucleotide contexts. Multiplying the 6 canonical substitutions by 16 contexts generates a <strong>96-channel mutation spectrum</strong>.</p>
+                            <p>This structured profile acts as a biological signature. For example, UV damage consistently produces \( C \rightarrow T \) mutations specifically at dipyrimidine (CC or TC) sites.</p>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Reverse-Complement Normalization</h3>
-                            <p>Here is a perfect example of physical chemistry dictating how we write algorithms. DNA is double-stranded. If one strand suffers a \( C\rightarrow T \) mutation, the complementary strand inherently contains a \( G\rightarrow A \) mutation.</p>
-                            <p>They are not two different mutations. They are the exact same physical event viewed from opposite sides of the helix.</p>
-                            <p>If a bioinformatician counted both, they would double-count their data. To fix this, computational analyses choose a standard perspective—usually sticking to the pyrimidines (C and T). Therefore, whenever a variant caller outputs a \( G>A \) variant, the mutation signature algorithm intercepts it, mathematically flips the G to a C, flips the A to a T, and flips the neighboring bases accordingly.</p>
-                            <p>This condenses 12 possible substitutions down to 6 canonical pyrimidine classes, ensuring that our statistical models accurately reflect the physical, double-stranded molecules without artificially inflating our data.</p>
+                            <p>Because DNA is double-stranded, a \( C\rightarrow T \) mutation on the forward strand is physically identical to a \( G\rightarrow A \) mutation on the reverse strand.</p>
+                            <p>To prevent double-counting, computational tools normalize substitutions to a canonical pyrimidine representation. Whenever an algorithm detects a \( G>A \) variant, it computes the reverse-complement to classify it as \( C>T \) (adjusting the flanking bases accordingly).</p>
+                            <p>This step condenses the 12 possible base substitutions into 6 canonical classes, ensuring the statistical models accurately reflect the physical structure of the DNA duplex without artificially inflating the data.</p>
                         </div>
                     </div>
                 </section>
@@ -235,23 +215,17 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Hidden Assumptions in a VCF</h3>
-                            <p>When we proudly open a VCF file and see <code>REF=C, ALT=T</code>, we are standing on top of a massive tower of hidden computational assumptions. The pipeline has quietly assumed that:</p>
-                            <ol>
-                                <li>The original DNA was not chemically degraded during library preparation.</li>
-                                <li>The sequencing machine's camera accurately captured the physical signals.</li>
-                                <li>The statistical error models inside the base-caller are perfectly tuned.</li>
-                                <li><strong>The alignment algorithm mapped the reads to the correct genomic coordinate.</strong></li>
-                            </ol>
-                            <p>That last point is a major trap. The human genome is filled with ancient, duplicated "pseudogenes" that look 99% identical to real genes. If a read from a pseudogene accidentally aligns to our target gene, that 1% difference will look exactly like a heterozygous mutation. The variant caller will confidently output <code>REF=C, ALT=T</code>, but the "mutation" is actually just an alignment algorithm mapping a read to the wrong chromosome!</p>
+                            <p>A variant call (<code>REF=C, ALT=T</code>) relies on multiple underlying assumptions: the DNA was not degraded during preparation, the base-calling error models are accurate, and the reads aligned to the correct genomic coordinate.</p>
+                            <p>Alignment is a frequent source of error. The human genome contains duplicated pseudogenes that share high sequence similarity with functional genes. If a read from a pseudogene maps incorrectly to the target gene, the slight sequence divergence will present as a heterozygous mutation.</p>
+                            <p>The variant caller will output a variant, but the observation is entirely an alignment artifact.</p>
                             <div class="math-block">\( \boxed{ \text{A variant call is an inference, not an observation.} } \)</div>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Illusion of PCR Duplicates</h3>
-                            <p>Consider a terrifying scenario. Suppose during sample preparation, a single DNA molecule gets chemically damaged (C→U). Before sequencing, PCR amplifies that one damaged molecule into 20 identical copies.</p>
-                            <p>The sequencer reads them and outputs 20 reads showing <code>T</code>. To a naive statistical algorithm, seeing twenty identical mutations looks like overwhelming mathematical proof! But in reality, those 20 reads represent exactly <strong>1 original molecule</strong>. They are not 20 independent biological observations; they are 20 technological photocopies of a single mistake.</p>
-                            <p>To solve this, advanced bioinformatics pipelines use Unique Molecular Identifiers (UMIs). Think of a UMI as a random barcode glued to the original DNA molecule <em>before</em> PCR amplification. If the computer sees 20 'T' reads, but they all share the exact same UMI barcode, the software knows it is being tricked. It mathematically collapses those 20 reads into a single observation, destroying the illusion of statistical significance.</p>
-                            <div class="math-block">\( \boxed{ \text{Algorithms constantly fight to reconstruct physical reality from digital noise.} } \)</div>
+                            <h3 class="h-secondary pink-heading">PCR Duplicates vs. Independent Molecules</h3>
+                            <p>If a damaged DNA molecule (e.g., containing U) undergoes PCR amplification prior to sequencing, it generates multiple identical copies.</p>
+                            <p>The sequencer may output 20 reads containing a <code>T</code>. While this appears as strong statistical evidence for a variant, the 20 reads are technical duplicates representing exactly one original physical molecule.</p>
+                            <p>To resolve this, pipelines use <strong>Unique Molecular Identifiers (UMIs)</strong>—random barcodes attached to molecules prior to amplification. If 20 <code>T</code> reads share the same UMI, the algorithm collapses them into a single observation, recovering the true independent molecule count.</p>
                         </div>
                     </div>
                 </section>
@@ -261,11 +235,9 @@
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading" style="text-align: center;">The Bioinformatics Pipeline as a Chain of Filters</h3>
-                            <p style="text-align: center; max-width: 800px; margin: 0 auto;">Think of the entire bioinformatics pipeline as progressively transforming reality. Every single stage is a filter. If an upstream stage is fundamentally wrong (for example, if the DNA was left out on a hot lab bench and underwent massive chemical deamination), no amount of brilliant Python code can fix it.</p>
-                            <div class="math-block">\( \boxed{\text{Downstream computation can execute perfectly and still produce the wrong biological conclusion}} \)</div>
-                            <p style="text-align: center; margin-bottom: 2rem;">Here is the complete bridge from a living cell to a data scientist's screen:</p>
+                            <p style="text-align: center; max-width: 800px; margin: 0 auto;">The bioinformatics pipeline progressively transforms physical reality into computational data. Every stage acts as a filter. If an upstream process is compromised (e.g., DNA degradation causing widespread deamination), downstream algorithms will execute correctly but yield false biological conclusions.</p>
                             
-                            <div class="code-box" style="line-height: 1.8; text-align: left; max-width: 750px; margin: 0 auto;">REAL DNA
+                            <div class="code-box" style="line-height: 1.8; text-align: left; max-width: 750px; margin: 2rem auto;">REAL DNA
    │
    ▼
 Chemical state (Spontaneous Deamination C→U)
@@ -280,13 +252,13 @@ Library molecules (Unrepaired damage is replicated, U:A → T:A)
 Sequenced molecules
    │
    ▼
-Instrument signals (Flashes of light in the flow cell)
+Instrument signals (Fluorescent emissions or electrical current)
    │
    ▼
-Base calls (The algorithm guesses 'T' based on Phred scores)
+Base calls (The algorithm infers 'T' and assigns a Phred score)
    │
    ▼
-Aligned reads (Mapped to Chromosome 1, avoiding pseudogenes)
+Aligned reads (Mapped to target coordinate, avoiding pseudogenes)
    │
    ▼
 Variant evidence (Bayesian Likelihood: REF=C, ALT=T)
@@ -295,12 +267,12 @@ Variant evidence (Bayesian Likelihood: REF=C, ALT=T)
 VCF
    │
    ▼
-Mutation spectrum (Analyzing the 96-channel 5'-A[C>T]G-3' context)
+Mutation spectrum (Analyzing the 96-channel context)
    │
    ▼
 Biological interpretation</div>
                             
-                            <p style="text-align: center; max-width: 800px; margin: 2rem auto 0 auto;">That is why understanding a tiny detail like the methyl group on thymine is not just a molecular biology trivia question. It is the perfect example of how molecular chemistry ultimately dictates, shapes, and becomes computational data.</p>
+                            <p style="text-align: center; max-width: 800px; margin: 2rem auto 0 auto;">Understanding a molecular detail like the methyl group on thymine is essential, as it demonstrates how molecular chemistry inherently dictates and shapes computational data.</p>
                         </div>
                     </div>
                 </section>
