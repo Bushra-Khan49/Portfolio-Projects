@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=22">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -144,10 +144,15 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Sequencing Does Not See "C"</h3>
-                            <p>In a FASTQ file, we observe sequence strings like <code>ACGTACCGT</code>.</p>
-                            <p>However, a sequencing instrument does not directly read characters. It measures raw analog signals—such as fluorescent emissions, electrical current shifts, or pH changes. The computational system must pass this signal through a base-calling algorithm to infer the nucleotide:</p>
-                            <div class="math-block">\( \boxed{\text{physical signal}} \rightarrow \boxed{\text{base call}} \)</div>
-                            <p>The base caller assigns a <strong>Phred Quality Score</strong> (e.g., Q30) to quantify its statistical confidence in the signal translation. Crucially, this score only measures the instrument's technical confidence in interpreting the signal; it cannot determine if the original molecule was chemically damaged prior to sequencing.</p>
+                            <p>In a FASTQ file, we observe discrete sequence strings like <code>ACGTACCGT</code>. However, a sequencing instrument does not directly read characters. It measures continuous, raw analog signals over time—such as fluorescent emissions (Illumina) or electrical current shifts (Oxford Nanopore).</p>
+                            <p>To transform this physical signal into digital text, the computational system uses a <strong>base-calling algorithm</strong>. This statistical process performs three critical operations:</p>
+                            <ol>
+                                <li><strong>Signal De-noising:</strong> The algorithm corrects for physical artifacts. For optical sequencers, it corrects for "cross-talk" (overlapping emission spectra of different fluorescent dyes) and "phasing" (where some DNA molecules in a cluster fall out of sync, blurring the signal across cycles).</li>
+                                <li><strong>Probabilistic Inference:</strong> At each sequencing cycle, the algorithm evaluates the processed signal against statistical models (often relying on machine learning or hidden Markov models). It calculates the probability distribution for all four possible nucleotides.</li>
+                                <li><strong>The Base Call:</strong> The algorithm selects the nucleotide with the highest probability.</li>
+                            </ol>
+                            <p>Once the base is inferred, the algorithm must report its statistical confidence. It calculates a <strong>Phred Quality Score</strong> using the formula \( Q = -10 \log_{10}(P) \), where \( P \) is the probability that the base call is incorrect. For example, a Q30 score indicates a 1 in 1,000 probability of an incorrect call (99.9% technical accuracy).</p>
+                            <p>Crucially, a Phred score only measures the instrument's technical confidence in interpreting the immediate physical signal. If the original DNA molecule was chemically damaged (e.g., C deaminated to U) before it ever entered the machine, the sequencer will read the damaged base perfectly. It will output a <code>T</code> with a flawless Q30 score. The computational system assumes the input biology was intact, highlighting the gap between technical signal processing and biological reality.</p>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
