@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=17">
+    <link rel="stylesheet" href="style.css?v=18">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -49,7 +49,7 @@
         .hero-section { min-height: 55vh; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; text-align: left; padding: 5vh 2rem 5vh 2rem; }
         
         .math-block { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); overflow-x: auto; margin: 1.5rem 0; text-align: center; color: #e2e8f0; }
-        .code-box { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; color: #aab2c0; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin: 1.5rem 0; white-space: pre; text-align: center; }
+        .code-box { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; color: #aab2c0; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin: 1.5rem 0; white-space: pre; text-align: left; }
         p { line-height: 1.8; margin-bottom: 1.2rem; font-size: 1.05rem; }
         ul, ol { margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; }
         li { margin-bottom: 0.8rem; }
@@ -85,7 +85,7 @@
                             <h3 class="h-secondary pink-heading">Where Does This Fit?</h3>
                             <p>This topic is the ultimate bridge between physical reality and computational data. It sits exactly at the boundary where molecular biology ends and data science begins.</p>
                             <p>To understand the sequence data we analyze, we must track the information through four distinct phases:</p>
-                            <div class="code-box" style="text-align: left; padding: 1.5rem; margin-top: 1rem;">1. Chemistry 
+                            <div class="code-box">1. Chemistry 
    (A water molecule hits Cytosine, turning it into Uracil)
    ↓
 2. Biology 
@@ -146,27 +146,30 @@
                         </div>
                     </div>
                 </section>
-
-                <!-- ROW 4: Sequencing & Three Levels (Grid-2) -->
+                
+                <!-- BIOINFORMATICS DEEP DIVE SECTION (Rows 4 to 8) -->
+                
                 <section class="section-block fade-up">
+                    <h2 class="h-primary" style="font-size: 2.5rem; margin-bottom: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 1rem; color: #fff !important;">The Bioinformatics Deep Dive</h2>
+                    
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Sequencing Does Not See "C"</h3>
-                            <p>Now we move out of the cell and into the computational realm. When we open a FASTQ file, we see rows of letters: <code>ACGTACCGT...</code></p>
-                            <p>It is easy to forget that the sequencing machine did not directly look at a molecule and see a microscopic letter "C". Instead, it measured a raw, noisy physical signal. Depending on the sequencing technology used, that signal might involve:</p>
+                            <p>When we open a FASTQ file, we see neat rows of letters: <code>ACGTACCGT...</code></p>
+                            <p>It is incredibly easy to forget that the sequencing machine did not directly look at a molecule and see a microscopic letter "C". Instead, it measured a raw, noisy analog signal. Depending on the sequencer, that signal is:</p>
                             <ul>
                                 <li>Flashes of fluorescent light (Illumina)</li>
-                                <li>Tiny changes in electrical current (Oxford Nanopore)</li>
-                                <li>Release of hydrogen ions changing the pH (Ion Torrent)</li>
+                                <li>Tiny disruptions in electrical current (Oxford Nanopore)</li>
+                                <li>Hydrogen ions changing the pH of a micro-well (Ion Torrent)</li>
                             </ul>
-                            <p>The computational system must take this noisy analog signal and transform it into a digital letter:</p>
+                            <p>The computational system must take this noisy physical signal and run it through a base-calling algorithm:</p>
                             <div class="math-block">\( \boxed{\text{physical signal (light/current)}} \rightarrow \boxed{\text{base call (A,C,T,G)}} \)</div>
-                            <p>This means that even the letter "C" on your screen is already a computational abstraction. It is a statistical guess made by an algorithm, and algorithms can make mistakes.</p>
+                            <p>When the algorithm makes its guess, it assigns a confidence value called a <strong>Phred Quality Score</strong> (e.g., Q30 means a 1 in 1,000 chance of the guess being wrong). But remember: a Q30 score only measures the <em>machine's</em> confidence in reading the flash of light; it has no idea if the original molecule was chemically damaged before it ever entered the machine.</p>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Three Levels of the Same Event</h3>
-                            <p>To avoid getting confused in bioinformatics, we must separate a mutation into three distinct conceptual levels:</p>
+                            <p>To avoid catastrophic errors in bioinformatics, we must separate a mutation into three distinct conceptual levels:</p>
                             <p><strong>Level 1 — Molecular</strong><br>
                             \( C:G \rightarrow U:G \)<br>
                             <span style="color: var(--text-muted);">This is the physical chemical damage happening in real-time.</span></p>
@@ -176,32 +179,30 @@
                             <p><strong>Level 3 — Computational</strong><br>
                             The reference genome contains <code>...C...</code> while our sample contains evidence for <code>...T...</code>.<br>
                             <span style="color: var(--text-muted);">A variant caller produces a VCF entry: <code>REF=C, ALT=T</code>.</span></p>
-                            <p>The VCF file does not know that the molecular mechanism was cytosine deamination. It has no idea if the damage happened yesterday or a thousand years ago. It is purely reporting a mathematical difference between two sequences.</p>
+                            <p>The VCF file does not know that the molecular mechanism was cytosine deamination. It has no idea if the damage happened yesterday or a thousand years ago. It is purely reporting a mathematical difference between two strings of text.</p>
                             <div class="math-block">\( \boxed{ \text{VCF representation} \neq \text{molecular mechanism} } \)</div>
                         </div>
                     </div>
                 </section>
 
-                <!-- ROW 5: Variant Calling & Bayes (Grid-2) -->
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">What Does a Variant Caller Actually Do?</h3>
-                            <p>Suppose the reference genome says the sequence should be <code>A C G T A</code>. When we sequence our sample, we get 100 reads covering that exact genomic position.</p>
-                            <p>Out of those 100 reads, 80 say <code>C</code>, and 20 say <code>T</code>. A naive calculation gives us an allele fraction (AF):</p>
-                            <div class="math-block">\( \boxed{AF=20\%} \)</div>
-                            <p>If we were naive, we might say, “20% of the reads say T, therefore this patient has a mutation.” But a modern Variant Caller cannot do that. It must assume that some of those <code>T</code>s are fake—caused by the sequencing machine misreading the physical signal.</p>
-                            <p>If the sequencer has a known error probability of \( \epsilon = 0.001 \), then it will randomly produce fake <code>T</code>s 0.1% of the time. To call a real mutation, the software must prove that seeing twenty <code>T</code>s is statistically impossible to explain by random sequencing noise alone.</p>
+                            <p>Suppose the reference genome says a position should be <code>C</code>. We sequence our sample and get 100 reads. 80 say <code>C</code>, and 20 say <code>T</code>. A naive calculation gives us an Allele Fraction (AF):</p>
+                            <div class="math-block">\( \boxed{AF = \frac{20}{100} = 20\%} \)</div>
+                            <p>If we were naive, we might set a hard threshold: <em>"If AF > 10%, call it a mutation."</em> But this fails miserably in real-world genomics. If you have 5 reads and 1 says T, that's an AF of 20%. If you have 10,000 reads and 2,000 say T, that is also an AF of 20%. The statistical confidence between these two scenarios is astronomically different.</p>
+                            <p>A modern variant caller doesn't use hard thresholds; it uses probabilistic models. It assumes that some of those <code>T</code>s are fake—caused by the sequencing machine misreading the physical signal. If the sequencer has a known error probability of \( \epsilon = 0.001 \), it will randomly produce fake <code>T</code>s. To call a real mutation, the software must prove that seeing twenty <code>T</code>s is statistically impossible to explain by random sequencing noise alone.</p>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Bayesian View of Variant Calling</h3>
-                            <p>To solve this, variant callers use Bayes’ Theorem. Conceptually, the caller wants to know the probability that a true variant exists, given the noisy reads it just looked at: \( P(\text{variant}\mid\text{reads}) \).</p>
+                            <p>To solve this, variant callers use Bayes’ Theorem. Conceptually, the caller wants to calculate the probability that a true variant exists, given the noisy reads it just looked at: \( P(\text{variant}\mid\text{reads}) \).</p>
                             <div class="math-block">\( \boxed{ P(V|D) = \frac{P(D|V)P(V)}{P(D)} } \)</div>
-                            <p>The most important part of this equation is comparing two likelihoods:</p>
+                            <p>Let's break down the most important part of this equation—the Likelihood Ratio. We are comparing two universes:</p>
                             <ul>
-                                <li>\( P(D|V) \): How likely are we to see exactly twenty <code>T</code>s if a <strong>true variant</strong> exists in the patient?</li>
-                                <li>\( P(D|\neg V) \): How likely are we to see exactly twenty <code>T</code>s if <strong>no variant</strong> exists, and this is just random machine noise?</li>
+                                <li><strong>\( P(D|V) \):</strong> In a universe where the patient <em>truly has</em> a heterozygous C/T mutation, what is the probability of seeing exactly 80 'C's and 20 'T's?</li>
+                                <li><strong>\( P(D|\neg V) \):</strong> In a universe where the patient is <em>homozygous normal</em> (C/C), what is the exact probability that the sequencer's lasers and chemical phasing errors conspired to accidentally produce twenty fake 'T's?</li>
                             </ul>
                             <div class="math-block">\( \boxed{ \frac{P(D|V)}{P(D|\neg V)} } \)</div>
                             <p>This ratio is the heart of bioinformatics variant calling. It asks: <em>How much more strongly do these reads support a real biological mutation rather than a technological artifact?</em></p>
@@ -209,30 +210,29 @@
                     </div>
                 </section>
 
-                <!-- ROW 6: Spectra & Reverse Complement (Grid-2) -->
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">Mutation Spectra & Context</h3>
-                            <p>Instead of agonizing over a single mutation, bioinformaticians often zoom out and analyze millions of substitutions across a whole genome. We count how many times we see \( C\rightarrow T \), compared to \( C\rightarrow A \) or \( C\rightarrow G \).</p>
-                            <p>If \( C\rightarrow T \) is heavily enriched, it gives us a massive biological clue (likely deamination). But context matters immensely. If we simply record every mutation as \( C\rightarrow T \), we throw away valuable data.</p>
-                            <p>Instead, we record the neighboring bases: <code>5'-A[C>T]G-3'</code>.</p>
-                            <p>By capturing the local neighborhood, the computational system transforms a chaotic list of millions of variants into a highly structured <strong>mutation signature</strong>. Different carcinogens, defective repair enzymes, and chemical damages leave distinct contextual footprints in the genome.</p>
+                            <h3 class="h-secondary pink-heading">Mutation Spectra & Trinucleotide Context</h3>
+                            <p>Instead of agonizing over a single mutation, bioinformaticians often zoom out and analyze millions of substitutions across a whole genome. If \( C\rightarrow T \) is heavily enriched, it gives us a massive biological clue (e.g., deamination or UV damage).</p>
+                            <p>But context matters immensely. If we simply record every mutation as \( C\rightarrow T \), we throw away vital data. Instead, we record the neighboring bases: <code>5'-A[C>T]G-3'</code>.</p>
+                            <p>Since there are 4 possible bases before the mutation, and 4 possible bases after it, a simple \( C \rightarrow T \) transition can occur in \( 4 \times 4 = 16 \) different trinucleotide contexts (e.g., ACA, ACC, ACG, ACT). When we multiply the 6 canonical substitutions by these 16 contexts, we get a <strong>96-channel mutation spectrum</strong>.</p>
+                            <div class="math-block">\( \boxed{\text{millions of variants}} \rightarrow \boxed{\text{96-channel mutation profile}} \)</div>
+                            <p>This 96-bar chart acts like a genomic fingerprint. For example, UV light damage creates a massive, distinct spike in \( C \rightarrow T \) mutations specifically at CC or TC dinucleotides.</p>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Reverse-Complement Normalization</h3>
                             <p>Here is a perfect example of physical chemistry dictating how we write algorithms. DNA is double-stranded. If one strand suffers a \( C\rightarrow T \) mutation, the complementary strand inherently contains a \( G\rightarrow A \) mutation.</p>
                             <p>They are not two different mutations. They are the exact same physical event viewed from opposite sides of the helix.</p>
-                            <p>If a bioinformatician counted both, they would double-count the data. To fix this, computational analyses choose a standard perspective—usually sticking to pyrimidines (C and T). Therefore, whenever the algorithm sees a \( G>A \) variant, it computationally flips it to its reverse complement: \( C>T \).</p>
-                            <p>This ensures the statistical models accurately reflect the physical molecules.</p>
+                            <p>If a bioinformatician counted both, they would double-count their data. To fix this, computational analyses choose a standard perspective—usually sticking to the pyrimidines (C and T). Therefore, whenever a variant caller outputs a \( G>A \) variant, the mutation signature algorithm intercepts it, mathematically flips the G to a C, flips the A to a T, and flips the neighboring bases accordingly.</p>
+                            <p>This condenses 12 possible substitutions down to 6 canonical pyrimidine classes, ensuring that our statistical models accurately reflect the physical, double-stranded molecules without artificially inflating our data.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- ROW 7: Hidden Assumptions (Grid-1) -->
                 <section class="section-block fade-up">
-                    <div class="grid-layout grid-1">
+                    <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Hidden Assumptions in a VCF</h3>
                             <p>When we proudly open a VCF file and see <code>REF=C, ALT=T</code>, we are standing on top of a massive tower of hidden computational assumptions. The pipeline has quietly assumed that:</p>
@@ -240,11 +240,18 @@
                                 <li>The original DNA was not chemically degraded during library preparation.</li>
                                 <li>The sequencing machine's camera accurately captured the physical signals.</li>
                                 <li>The statistical error models inside the base-caller are perfectly tuned.</li>
-                                <li>The alignment algorithm mapped the reads to the correct genomic coordinate (avoiding pseudogenes).</li>
+                                <li><strong>The alignment algorithm mapped the reads to the correct genomic coordinate.</strong></li>
                             </ol>
-                            <div class="math-block">\( \boxed{ \text{A variant call is an inference, not a direct observation of a mutation molecule.} } \)</div>
-                            <p><strong>The Illusion of PCR Duplicates:</strong> Consider a terrifying scenario. Suppose during library prep, a single DNA molecule gets damaged, and PCR amplifies it into 20 identical copies. The sequencer reads them and outputs 20 reads showing <code>T</code>. To a naive algorithm, this looks like overwhelming statistical evidence! But in reality, those 20 reads represent exactly <strong>1 original molecule</strong>. They are not 20 independent observations; they are 20 photocopies of a single mistake.</p>
-                            <p>This is why advanced pipelines desperately try to identify independent molecules using Unique Molecular Identifiers (UMIs) and by aggressively filtering PCR duplicates. The algorithm is constantly fighting to reconstruct physical reality from digital noise.</p>
+                            <p>That last point is a major trap. The human genome is filled with ancient, duplicated "pseudogenes" that look 99% identical to real genes. If a read from a pseudogene accidentally aligns to our target gene, that 1% difference will look exactly like a heterozygous mutation. The variant caller will confidently output <code>REF=C, ALT=T</code>, but the "mutation" is actually just an alignment algorithm mapping a read to the wrong chromosome!</p>
+                            <div class="math-block">\( \boxed{ \text{A variant call is an inference, not an observation.} } \)</div>
+                        </div>
+
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The Illusion of PCR Duplicates</h3>
+                            <p>Consider a terrifying scenario. Suppose during sample preparation, a single DNA molecule gets chemically damaged (C→U). Before sequencing, PCR amplifies that one damaged molecule into 20 identical copies.</p>
+                            <p>The sequencer reads them and outputs 20 reads showing <code>T</code>. To a naive statistical algorithm, seeing twenty identical mutations looks like overwhelming mathematical proof! But in reality, those 20 reads represent exactly <strong>1 original molecule</strong>. They are not 20 independent biological observations; they are 20 technological photocopies of a single mistake.</p>
+                            <p>To solve this, advanced bioinformatics pipelines use Unique Molecular Identifiers (UMIs). Think of a UMI as a random barcode glued to the original DNA molecule <em>before</em> PCR amplification. If the computer sees 20 'T' reads, but they all share the exact same UMI barcode, the software knows it is being tricked. It mathematically collapses those 20 reads into a single observation, destroying the illusion of statistical significance.</p>
+                            <div class="math-block">\( \boxed{ \text{Algorithms constantly fight to reconstruct physical reality from digital noise.} } \)</div>
                         </div>
                     </div>
                 </section>
@@ -253,12 +260,12 @@
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Bioinformatics Pipeline as a Chain of Filters</h3>
-                            <p>Think of the entire bioinformatics pipeline as progressively transforming reality. Every single stage is a filter. If an upstream stage is fundamentally wrong (for example, if the DNA was left out on a hot lab bench and underwent massive chemical deamination), no amount of code can fix it.</p>
+                            <h3 class="h-secondary pink-heading" style="text-align: center;">The Bioinformatics Pipeline as a Chain of Filters</h3>
+                            <p style="text-align: center; max-width: 800px; margin: 0 auto;">Think of the entire bioinformatics pipeline as progressively transforming reality. Every single stage is a filter. If an upstream stage is fundamentally wrong (for example, if the DNA was left out on a hot lab bench and underwent massive chemical deamination), no amount of brilliant Python code can fix it.</p>
                             <div class="math-block">\( \boxed{\text{Downstream computation can execute perfectly and still produce the wrong biological conclusion}} \)</div>
-                            <p>Here is the complete bridge from a living cell to a data scientist's screen:</p>
+                            <p style="text-align: center; margin-bottom: 2rem;">Here is the complete bridge from a living cell to a data scientist's screen:</p>
                             
-                            <div class="code-box" style="line-height: 1.8; text-align: left; max-width: 750px; margin: 2rem auto;">REAL DNA
+                            <div class="code-box" style="line-height: 1.8; text-align: left; max-width: 750px; margin: 0 auto;">REAL DNA
    │
    ▼
 Chemical state (Spontaneous Deamination C→U)
@@ -276,24 +283,24 @@ Sequenced molecules
 Instrument signals (Flashes of light in the flow cell)
    │
    ▼
-Base calls (The algorithm guesses 'T')
+Base calls (The algorithm guesses 'T' based on Phred scores)
    │
    ▼
-Aligned reads (Mapped to Chromosome 1)
+Aligned reads (Mapped to Chromosome 1, avoiding pseudogenes)
    │
    ▼
-Variant evidence (REF=C, ALT=T)
+Variant evidence (Bayesian Likelihood: REF=C, ALT=T)
    │
    ▼
 VCF
    │
    ▼
-Mutation spectrum (Analyzing the 5'-A[C>T]G-3' context)
+Mutation spectrum (Analyzing the 96-channel 5'-A[C>T]G-3' context)
    │
    ▼
 Biological interpretation</div>
                             
-                            <p>That is why understanding a tiny detail like the methyl group on thymine is not just a molecular biology trivia question. It is the perfect example of how molecular chemistry ultimately dictates, shapes, and becomes computational data.</p>
+                            <p style="text-align: center; max-width: 800px; margin: 2rem auto 0 auto;">That is why understanding a tiny detail like the methyl group on thymine is not just a molecular biology trivia question. It is the perfect example of how molecular chemistry ultimately dictates, shapes, and becomes computational data.</p>
                         </div>
                     </div>
                 </section>
