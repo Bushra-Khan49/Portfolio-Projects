@@ -144,6 +144,12 @@
                             <p>This is a massive problem. The original <code>C:G</code> pair is now a <code>T:G</code> mismatch.</p>
                             <p>When the cell's repair enzymes patrol the DNA and find this <code>T:G</code> pair, they get confused. They know a mistake happened because T should only pair with A. But because both Thymine and Guanine are perfectly normal DNA letters, the repair system cannot easily tell which one is the original letter and which one is the imposter.</p>
                             <p>Because the repair machinery struggles to solve this puzzle, it often fails to fix it. As a result, these tagged regions of DNA are major hotspots for mutations in the human genome.</p>
+                            <figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="epigenetic_trap.jpg" alt="DNA methylation trap" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 1:</strong> The Epigenetic Trap. A methylated cytosine (5mC) undergoes deamination to directly form Thymine, evading standard damage-detection mechanisms.
+                                </figcaption>
+                            </figure>
                         </div>
                     </div>
                 </section>
@@ -165,6 +171,12 @@
                             </ol>
                             <p>Once the base is inferred, the algorithm must report its statistical confidence. It calculates a <strong>Phred Quality Score</strong> using the formula \( Q = -10 \log_{10}(P) \), where \( P \) is the probability that the base call is incorrect. For example, a Q30 score indicates a 1 in 1,000 probability of an incorrect call (99.9% technical accuracy).</p>
                             <p>Crucially, a Phred score only measures the instrument's technical confidence in interpreting the immediate physical signal. If the original DNA molecule was chemically damaged (e.g., C deaminated to U) before it ever entered the machine, the sequencer will read the damaged base perfectly. It will output a <code>T</code> with a flawless Q30 score. The computational system assumes the input biology was intact, highlighting the gap between technical signal processing and biological reality.</p>
+                            <figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="base_calling_signals.jpg" alt="Base calling signals to text" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 2:</strong> The Base Caller. Continuous physical signals (e.g., fluorescence intensities) are computationally translated into a digital sequence with probability confidence scores.
+                                </figcaption>
+                            </figure>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
@@ -209,6 +221,12 @@
                             <div class="math-block">\( \boxed{ \frac{P(D|V)}{P(D|\neg V)} } \)</div>
                             
                             <p>By evaluating this ratio, the algorithm mathematically quantifies how strongly the sequencing data supports a true biological mutation over a technological artifact. Only when this statistical evidence is sufficiently robust does the caller formally report the variant.</p>
+                            <figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="bayesian_inference.jpg" alt="Bayesian inference for variant calling" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 3:</strong> Bayesian Inference. The variant caller compares the probability distribution of a true genetic signal against the expected distribution of sequencing noise to confidently identify biological mutations.
+                                </figcaption>
+                            </figure>
                         </div>
                     </div>
                 </section>
@@ -223,6 +241,12 @@
                             <p>To maximize this information, we record the flanking sequence context: <code>5'-A[C&gt;T]G-3'</code>.</p>
                             <p>Because there are 4 possible upstream and 4 possible downstream bases, a single substitution type can occur in 16 trinucleotide contexts. Multiplying the 6 canonical substitutions by 16 contexts generates a 96-channel mutation spectrum.</p>
                             <p>This structured profile acts as a biological signature. For example, UV damage consistently produces <code>C&gt;T</code> mutations specifically at dipyrimidine (CC or TC) sites.</p>
+                            <figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="mutation_spectrum.jpg" alt="96-channel mutation spectrum" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 4:</strong> A 96-channel mutation spectrum. By classifying base substitutions based on their adjacent context, bioinformaticians can trace the unique molecular signatures of specific mutagens.
+                                </figcaption>
+                            </figure>
 
                             <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">2. Reverse-Complement Normalization</h4>
                             <p>Because DNA is double-stranded, a <code>C&gt;T</code> mutation on the forward strand is physically identical to a <code>G&gt;A</code> mutation on the reverse strand.</p>
@@ -238,6 +262,12 @@
                             <p>If a damaged DNA molecule (e.g., containing U) undergoes PCR amplification prior to sequencing, it generates multiple identical copies.</p>
                             <p>The sequencer may output 20 reads containing a <code>T</code>. While this appears as strong statistical evidence for a variant, the 20 reads are technical duplicates representing exactly one original physical molecule.</p>
                             <p>To resolve this, pipelines use Unique Molecular Identifiers (UMIs)—random barcodes attached to molecules prior to amplification. If 20 <code>T</code> reads share the same UMI, the algorithm collapses them into a single observation, recovering the true independent molecule count.</p>
+                            <figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="umi_barcodes.jpg" alt="Unique Molecular Identifiers" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 5:</strong> Unique Molecular Identifiers (UMIs). Physical sequence barcodes allow computational pipelines to distinguish true biological duplicates from artificial PCR amplification duplicates.
+                                </figcaption>
+                            </figure>
                         </div>
                     </div>
                 </section>
