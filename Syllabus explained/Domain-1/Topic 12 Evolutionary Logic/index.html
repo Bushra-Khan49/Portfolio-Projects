@@ -137,7 +137,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="core_mutation_v2.jpg" alt="Replication Pathway" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure A:</strong> The Replication Pathway. Transient damage (U:G) only becomes a permanent mutation (T:A) if the cell replicates the DNA before repair enzymes can fix it.
+                                    <strong>Figure 2:</strong> The Replication Pathway. Transient damage (U:G) only becomes a permanent mutation (T:A) if the cell replicates the DNA before repair enzymes can fix it.
                                 </figcaption>
                             </figure>
                         </div>
@@ -159,7 +159,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="epigenetic_trap_v2.jpg" alt="DNA methylation trap" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 2:</strong> The Epigenetic Trap. A methylated cytosine (5mC) undergoes deamination to directly form Thymine, evading standard damage-detection mechanisms.
+                                    <strong>Figure 3:</strong> The Epigenetic Trap. A methylated cytosine (5mC) undergoes deamination to directly form Thymine, evading standard damage-detection mechanisms.
                                 </figcaption>
                             </figure>
                         </div>
@@ -197,7 +197,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="three_levels.jpg" alt="Three Levels of the Same Event" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 3:</strong> Three Levels of the Same Event. A single biological event transitions from a physical lesion, to a genetic mutation, to a statistical observation.
+                                    <strong>Figure 5:</strong> Three Levels of the Same Event. A single biological event transitions from a physical lesion, to a genetic mutation, to a statistical observation.
                                 </figcaption>
                             </figure>
                             <p><strong>Level 1 — Molecular</strong><br>
@@ -219,30 +219,26 @@
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Statistical Inference: The Bayesian Variant Caller</h3>
-                            <p>Assume a reference genome position is <code>C</code>. We sequence a sample and obtain 100 reads covering this coordinate: 80 reads report <code>C</code> and 20 reads report <code>T</code>. The resulting Allele Fraction (AF) is 20%.</p>
+                            <p>Let's say our sequencing machine reads a spot on a genome and tells us that 20% of the DNA has a "T" mutation, while 80% is a normal "C". This 20% is called the <strong>Allele Fraction (AF)</strong>.</p>
                             
-                            <p>Applying a hard numerical threshold (e.g., "call a variant if AF > 10%") is a flawed methodology. An observation of 1 <code>T</code> in 5 reads yields a 20% AF, exactly as observing 2,000 <code>T</code>s in 10,000 reads yields a 20% AF. However, the statistical confidence in these two scenarios is vastly different due to the depth of coverage.</p>
+                            <p>If we just made a simple rule like "always trust a mutation if it's over 10%", we would make terrible mistakes. Why? Because percentages hide the depth of the data. Finding 1 "T" out of 5 reads is 20%. Finding 2,000 "T"s out of 10,000 reads is also 20%. But we trust the 10,000-read data much more.</p>
                             
-                            <p>Because sequencing instruments have a known baseline error rate (e.g., \( \epsilon = 0.001 \)), they consistently generate random false-positive base calls. A variant caller must therefore determine whether the observed alternative bases significantly exceed this expected technical noise. To accomplish this, modern callers do not use arbitrary cutoffs; they use probabilistic models driven by Bayes’ Theorem.</p>
+                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">The Detective Work: Signal vs. Noise</h4>
+                            <p>Sequencing machines are not perfect. Like static on a radio, they constantly make tiny, random mistakes. This is the expected technical "noise".</p>
                             
-                            <p>The algorithm calculates the posterior probability that a true biological variant exists given the observed read data: \( P(\text{variant}\mid\text{reads}) \).</p>
+                            <p>Instead of using blind percentage cutoffs, modern variant callers act like detectives. They use <strong>Bayesian Statistics</strong> to weigh the evidence by comparing two competing stories:</p>
                             
-                            <div class="math-block">\( \boxed{ P(V|D) = \frac{P(D|V)P(V)}{P(D)} } \)</div>
-                            
-                            <p>The core of this statistical inference relies on computing a likelihood ratio that compares two opposing hypotheses:</p>
-                            
-                            <ul>
-                                <li><strong>\( P(D|V) \):</strong> The probability of observing exactly this read data if the patient truly possesses the variant (the signal hypothesis).</li>
-                                <li><strong>\( P(D|\neg V) \):</strong> The probability of observing this exact read data if the patient sequence perfectly matches the reference, and all alternative bases are purely technical errors (the noise hypothesis).</li>
+                            <ul style="color: #d1d5db; line-height: 1.8; font-size: 1.15rem; margin-bottom: 2rem; list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 1rem;"><span style="color: #ff007f; margin-right: 10px;">➔</span><strong>Story A (The Signal):</strong> The patient actually has a real, biological mutation.</li>
+                                <li style="margin-bottom: 1rem;"><span style="color: #00e5ff; margin-right: 10px;">➔</span><strong>Story B (The Noise):</strong> The patient is completely normal, and the machine just glitched.</li>
                             </ul>
                             
-                            <div class="math-block">\( \boxed{ \frac{P(D|V)}{P(D|\neg V)} } \)</div>
+                            <p>The algorithm calculates the exact mathematical probability for both stories. By dividing the math of Story A by the math of Story B (a likelihood ratio), the computer measures exactly how strongly the data proves this is a real biological mutation over a mere machine error. We don't guess; we calculate the confidence.</p>
                             
-                            <p>By evaluating this ratio, the algorithm mathematically quantifies how strongly the sequencing data supports a true biological mutation over a technological artifact. Only when this statistical evidence is sufficiently robust does the caller formally report the variant.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="bayesian_stats_v2.jpg" alt="Bayesian inference for variant calling" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 5:</strong> Bayesian Inference. The variant caller compares the probability distribution of a true genetic signal against the expected distribution of sequencing noise to confidently identify biological mutations.
+                                    <strong>Figure 6:</strong> Bayesian Inference. The variant caller compares the probability distribution of a true genetic signal against the expected distribution of sequencing noise to confidently identify biological mutations.
                                 </figcaption>
                             </figure>
                         </div>
@@ -262,7 +258,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="mutation_spectra.svg" alt="96-channel mutation spectrum" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 6:</strong> A 96-channel mutation spectrum. By classifying base substitutions based on their adjacent context, bioinformaticians can trace the unique molecular signatures of specific mutagens.
+                                    <strong>Figure 7:</strong> A 96-channel mutation spectrum. By classifying base substitutions based on their adjacent context, bioinformaticians can trace the unique molecular signatures of specific mutagens.
                                 </figcaption>
                             </figure>
 
@@ -273,7 +269,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="rev_comp_v2.jpg" alt="Reverse Complement Normalization" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 7:</strong> Reverse-Complement Normalization. Because DNA is double-stranded, a C&gt;T mutation on one strand is physically indistinguishable from a G&gt;A mutation on the other.
+                                    <strong>Figure 8:</strong> Reverse-Complement Normalization. Because DNA is double-stranded, a C&gt;T mutation on one strand is physically indistinguishable from a G&gt;A mutation on the other.
                                 </figcaption>
                             </figure>
 
@@ -281,7 +277,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="vcf_assumptions.svg" alt="Hidden VCF Assumptions" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure B:</strong> The VCF Abstraction. A single row in a VCF file hides massive assumptions about molecular integrity, sequence alignment, and algorithmic error modeling.
+                                    <strong>Figure 9:</strong> The VCF Abstraction. A single row in a VCF file hides massive assumptions about molecular integrity, sequence alignment, and algorithmic error modeling.
                                 </figcaption>
                             </figure>
                             <p>A variant call (<code>REF=C, ALT=T</code>) relies on multiple underlying assumptions: the DNA was not degraded during preparation, the base-calling error models are accurate, and the reads aligned to the correct genomic coordinate.</p>
@@ -290,7 +286,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="alignment_error.svg" alt="Pseudogene Alignment Error" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 8:</strong> The Pseudogene Trap. A read originating from a duplicated pseudogene incorrectly aligns to a target gene, generating a false positive variant call.
+                                    <strong>Figure 10:</strong> The Pseudogene Trap. A read originating from a duplicated pseudogene incorrectly aligns to a target gene, generating a false positive variant call.
                                 </figcaption>
                             </figure>
 
@@ -301,7 +297,7 @@
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="umis_v2.jpg" alt="Unique Molecular Identifiers" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 9:</strong> Unique Molecular Identifiers (UMIs). Physical sequence barcodes allow computational pipelines to distinguish true biological duplicates from artificial PCR amplification duplicates.
+                                    <strong>Figure 11:</strong> Unique Molecular Identifiers (UMIs). Physical sequence barcodes allow computational pipelines to distinguish true biological duplicates from artificial PCR amplification duplicates.
                                 </figcaption>
                             </figure>
                         </div>
@@ -354,7 +350,7 @@ Biological interpretation</div>
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="pipeline_v2.jpg" alt="Bioinformatics Pipeline Filter" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 10:</strong> The Chain of Filters. The bioinformatics pipeline transforms physical molecular reality into computational abstraction.
+                                    <strong>Figure 12:</strong> The Chain of Filters. The bioinformatics pipeline transforms physical molecular reality into computational abstraction.
                                 </figcaption>
                             </figure>
 <p style="text-align: center; max-width: 800px; margin: 2rem auto 0 auto;">Understanding a molecular detail like the methyl group on thymine is essential, as it demonstrates how molecular chemistry inherently dictates and shapes computational data.</p>
