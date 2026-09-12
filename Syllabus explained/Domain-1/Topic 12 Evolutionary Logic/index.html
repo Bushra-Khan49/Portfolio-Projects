@@ -129,7 +129,7 @@
                             <p>A mutation is the heritable consequence of unrepaired damage. Once the change is replicated into a <code>T:A</code> pair, the cell's repair machinery can no longer identify it as an error.</p>
                             <div class="math-block">\( \boxed{ \text{damage (transient)} \neq \text{mutation (permanent)} } \)</div>
                             <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="core_mutation.svg" alt="Replication Pathway" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <img src="core_mutation_v2.jpg" alt="Replication Pathway" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure A:</strong> The Replication Pathway. Transient damage (U:G) only becomes a permanent mutation (T:A) if the cell replicates the DNA before repair enzymes can fix it.
                                 </figcaption>
@@ -151,7 +151,7 @@
                             <p>When the cell's repair enzymes patrol the DNA and find this <code>T:G</code> pair, they get confused. They know a mistake happened because T should only pair with A. But because both Thymine and Guanine are perfectly normal DNA letters, the repair system cannot easily tell which one is the original letter and which one is the imposter.</p>
                             <p>Because the repair machinery struggles to solve this puzzle, it often fails to fix it. As a result, these tagged regions of DNA are major hotspots for mutations in the human genome.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="epigenetic_trap.svg" alt="DNA methylation trap" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <img src="epigenetic_trap_v2.jpg" alt="DNA methylation trap" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 1:</strong> The Epigenetic Trap. A methylated cytosine (5mC) undergoes deamination to directly form Thymine, evading standard damage-detection mechanisms.
                                 </figcaption>
@@ -178,7 +178,7 @@
                             <p>Once the base is inferred, the algorithm must report its statistical confidence. It calculates a <strong>Phred Quality Score</strong> using the formula \( Q = -10 \log_{10}(P) \), where \( P \) is the probability that the base call is incorrect. For example, a Q30 score indicates a 1 in 1,000 probability of an incorrect call (99.9% technical accuracy).</p>
                             <p>Crucially, a Phred score only measures the instrument's technical confidence in interpreting the immediate physical signal. If the original DNA molecule was chemically damaged (e.g., C deaminated to U) before it ever entered the machine, the sequencer will read the damaged base perfectly. It will output a <code>T</code> with a flawless Q30 score. The computational system assumes the input biology was intact, highlighting the gap between technical signal processing and biological reality.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="base_calling.svg" alt="Base calling signals to text" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <img src="base_calling_v2.jpg" alt="Base calling signals to text" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 2:</strong> The Base Caller. Continuous physical signals (e.g., fluorescence intensities) are computationally translated into a digital sequence with probability confidence scores.
                                 </figcaption>
@@ -228,7 +228,7 @@
                             
                             <p>By evaluating this ratio, the algorithm mathematically quantifies how strongly the sequencing data supports a true biological mutation over a technological artifact. Only when this statistical evidence is sufficiently robust does the caller formally report the variant.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="bayesian_stats.svg" alt="Bayesian inference for variant calling" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <img src="bayesian_stats_v2.jpg" alt="Bayesian inference for variant calling" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 3:</strong> Bayesian Inference. The variant caller compares the probability distribution of a true genetic signal against the expected distribution of sequencing noise to confidently identify biological mutations.
                                 </figcaption>
@@ -259,7 +259,7 @@
                             <p>To prevent double-counting, computational tools normalize substitutions to a canonical pyrimidine representation. Whenever an algorithm detects a <code>G&gt;A</code> variant, it computes the reverse-complement to classify it as <code>C&gt;T</code> (adjusting the flanking bases accordingly).</p>
                             <p>This step condenses the 12 possible base substitutions into 6 canonical classes, ensuring the statistical models accurately reflect the physical structure of the DNA duplex without artificially inflating the data.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="rev_comp.svg" alt="Reverse Complement Normalization" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <img src="rev_comp_v2.jpg" alt="Reverse Complement Normalization" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 5:</strong> Reverse-Complement Normalization. Because DNA is double-stranded, a C&gt;T mutation on one strand is physically indistinguishable from a G&gt;A mutation on the other.
                                 </figcaption>
@@ -287,7 +287,7 @@
                             <p>The sequencer may output 20 reads containing a <code>T</code>. While this appears as strong statistical evidence for a variant, the 20 reads are technical duplicates representing exactly one original physical molecule.</p>
                             <p>To resolve this, pipelines use Unique Molecular Identifiers (UMIs)—random barcodes attached to molecules prior to amplification. If 20 <code>T</code> reads share the same UMI, the algorithm collapses them into a single observation, recovering the true independent molecule count.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="umis.svg" alt="Unique Molecular Identifiers" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <img src="umis_v2.jpg" alt="Unique Molecular Identifiers" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 7:</strong> Unique Molecular Identifiers (UMIs). Physical sequence barcodes allow computational pipelines to distinguish true biological duplicates from artificial PCR amplification duplicates.
                                 </figcaption>
@@ -340,7 +340,7 @@ Biological interpretation</div>
                             
                             
                             <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="pipeline.svg" alt="Bioinformatics Pipeline Filter" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <img src="pipeline_v2.jpg" alt="Bioinformatics Pipeline Filter" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 8:</strong> The Chain of Filters. The bioinformatics pipeline transforms physical molecular reality into computational abstraction.
                                 </figcaption>
