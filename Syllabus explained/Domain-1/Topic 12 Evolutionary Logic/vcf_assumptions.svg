@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="background-color: #0a0b10; font-family: 'Inter', sans-serif;">
+<defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="5" result="blur" />
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+</defs>
+<style>
+    .text-title { font-size: 24px; fill: #ffffff; font-weight: bold; font-family: 'Cinzel', serif; }
+    .text-main { font-size: 16px; fill: #d1d5db; }
+    .text-math { font-size: 20px; fill: #ffd54f; font-family: 'JetBrains Mono', monospace; }
+    .text-pink { font-size: 18px; fill: #ff007f; font-weight: bold; }
+    .text-cyan { font-size: 18px; fill: #00e5ff; font-weight: bold; }
+</style>
+
+    <text x="400" y="40" class="text-title" text-anchor="middle">The Hidden Assumptions of a VCF File</text>
+    
+    <g transform="translate(100, 100)">
+        <rect x="0" y="0" width="600" height="80" rx="10" fill="#1a1c29" stroke="#ff007f" stroke-width="3" filter="url(#glow)"/>
+        <text x="300" y="30" class="text-main" fill="#aab2c0" text-anchor="middle" font-family="monospace">#CHROM  POS   ID  REF  ALT  QUAL  FILTER  INFO</text>
+        <text x="300" y="60" class="text-math" text-anchor="middle">chr1   1050  .   C    T    99.9   PASS   ...</text>
+        
+        <!-- Assumptions pointing to it -->
+        <g transform="translate(100, 180)">
+            <line x1="0" y1="50" x2="100" y2="0" stroke="#d1d5db" stroke-width="2" marker-end="url(#arrow)"/>
+            <rect x="-80" y="50" width="160" height="40" rx="5" fill="#050510" stroke="#00e5ff" stroke-width="2"/>
+            <text x="0" y="75" class="text-main" text-anchor="middle">No DNA Degradation</text>
+            
+            <line x1="200" y1="50" x2="200" y2="0" stroke="#d1d5db" stroke-width="2" marker-end="url(#arrow)"/>
+            <rect x="120" y="50" width="160" height="40" rx="5" fill="#050510" stroke="#ffd54f" stroke-width="2"/>
+            <text x="200" y="75" class="text-main" text-anchor="middle">Perfect Alignment</text>
+            
+            <line x1="400" y1="50" x2="300" y2="0" stroke="#d1d5db" stroke-width="2" marker-end="url(#arrow)"/>
+            <rect x="320" y="50" width="160" height="40" rx="5" fill="#050510" stroke="#4ade80" stroke-width="2"/>
+            <text x="400" y="75" class="text-main" text-anchor="middle">Accurate Error Model</text>
+        </g>
+    </g>
+</svg>
