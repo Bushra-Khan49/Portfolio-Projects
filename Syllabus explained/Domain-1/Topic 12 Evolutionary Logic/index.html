@@ -115,16 +115,16 @@
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Physical State of the DNA</h3>
-                            <figure style="margin: 2.5rem 0; text-align: center;">
+<p>Let’s trace the physical event. Following deamination, a normal <code>C:G</code> pair becomes a <code>U:G</code> mismatch.</p>
+                            <p>The DNA double helix remains completely intact; only the chemical identity of a single base has changed. Therefore, DNA damage does not inherently mean a DNA strand break. The sugar-phosphate backbone acts as a continuous scaffold.</p>
+                            <p>Repair enzymes, such as uracil-DNA glycosylase, cleave the abnormal base from the sugar. This creates an abasic site while leaving the backbone untouched. Only afterward is the backbone opened to insert a new Cytosine.</p>
+                            <div class="math-block">\( \boxed{\text{base removed} \neq \text{strand removed}} \)</div>
+<figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="physical_state_dna.jpg" alt="Physical State of DNA" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 1:</strong> The Physical State of DNA. The sugar-phosphate backbone remains completely intact while the anomalous Uracil base is removed and replaced.
                                 </figcaption>
                             </figure>
-                            <p>Let’s trace the physical event. Following deamination, a normal <code>C:G</code> pair becomes a <code>U:G</code> mismatch.</p>
-                            <p>The DNA double helix remains completely intact; only the chemical identity of a single base has changed. Therefore, DNA damage does not inherently mean a DNA strand break. The sugar-phosphate backbone acts as a continuous scaffold.</p>
-                            <p>Repair enzymes, such as uracil-DNA glycosylase, cleave the abnormal base from the sugar. This creates an abasic site while leaving the backbone untouched. Only afterward is the backbone opened to insert a new Cytosine.</p>
-                            <div class="math-block">\( \boxed{\text{base removed} \neq \text{strand removed}} \)</div>
                         </div>
 
                         <div class="glass-card tilt-effect hover-target">
@@ -194,13 +194,7 @@
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Three Levels of the Same Event</h3>
                             <p>To analyze sequence data accurately, we must separate a mutation into three distinct conceptual levels:</p>
-                            <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="three_levels.jpg" alt="Three Levels of the Same Event" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 5:</strong> Three Levels of the Same Event. A single biological event transitions from a physical lesion, to a genetic mutation, to a statistical observation.
-                                </figcaption>
-                            </figure>
-                            <p><strong>Level 1 — Molecular</strong><br>
+<p><strong>Level 1 — Molecular</strong><br>
                             \( C:G \rightarrow U:G \)<br>
                             <span style="color: var(--text-muted);">The physical chemical damage event.</span></p>
                             <p><strong>Level 2 — Genetic</strong><br>
@@ -211,6 +205,12 @@
                             <span style="color: var(--text-muted);">The statistical observation reported in a Variant Call Format (VCF) file.</span></p>
                             <p>The VCF file reports a mathematical difference between the sample reads and the reference genome. It does not encode the underlying molecular mechanism (deamination) or the timing of the event.</p>
                             <div class="math-block">\( \boxed{ \text{VCF representation} \neq \text{molecular mechanism} } \)</div>
+<figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="three_levels.jpg" alt="Three Levels of the Same Event" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 5:</strong> Three Levels of the Same Event. A single biological event transitions from a physical lesion, to a genetic mutation, to a statistical observation.
+                                </figcaption>
+                            </figure>
                         </div>
                     </div>
                 </section>
