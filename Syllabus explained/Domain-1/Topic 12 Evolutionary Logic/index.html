@@ -273,16 +273,22 @@
                                 </figcaption>
                             </figure>
 
-                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">3. The Hidden Assumptions in a VCF</h4>
+                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">3. The Hidden Assumptions in a VCF (The Blind Output)</h4>
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="vcf_assumptions_v2.jpg" alt="Hidden VCF Assumptions" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
                                     <strong>Figure 9:</strong> The VCF Abstraction. A single row in a VCF file hides massive assumptions about molecular integrity, sequence alignment, and algorithmic error modeling.
                                 </figcaption>
                             </figure>
-                            <p>A variant call (<code>REF=C, ALT=T</code>) relies on multiple underlying assumptions: the DNA was not degraded during preparation, the base-calling error models are accurate, and the reads aligned to the correct genomic coordinate.</p>
-                            <p>Alignment is a frequent source of error. The human genome contains duplicated pseudogenes that share high sequence similarity with functional genes. If a read from a pseudogene maps incorrectly to the target gene, the slight sequence divergence will present as a heterozygous mutation.</p>
-                            <p>The variant caller will output a variant, but the observation is entirely an alignment artifact.</p>
+                            <p>When you open a VCF file, it blindly gives you a simple output: <code>REF=C, ALT=T</code> (The reference was C, but we found a T). But this single line of text hides three massive assumptions:</p>
+                            <ul style="color: #d1d5db; line-height: 1.8; margin-bottom: 2rem; padding-left: 1.5rem;">
+                                <li><strong>Assumption 1:</strong> The DNA was perfectly healthy and not chemically rotting in the test tube.</li>
+                                <li><strong>Assumption 2:</strong> The sequencer camera didn't glitch and take a blurry picture.</li>
+                                <li><strong>Assumption 3:</strong> The algorithm aligned this tiny snippet of DNA to the correct location in the genome.</li>
+                            </ul>
+                            <p>That third assumption (Alignment) is a huge trap. The human genome is full of <strong>Pseudogenes</strong>—which are essentially "dead," mutated copies of real genes.</p>
+                            <p>Imagine two identical-looking houses on completely different streets. One house is lived in (the real gene), and one is abandoned and slightly damaged (the pseudogene). When the sequencer reads a snippet of the abandoned house, the computer gets confused and accidentally maps it to the real house. Because the abandoned house has slight damages (differences in the sequence), the computer flags these as "mutations" in the real house.</p>
+                            <p>The software will boldly call this a mutation, but it is 100% fake. It is simply an alignment error.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="alignment_error_v2.jpg" alt="Pseudogene Alignment Error" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
@@ -290,10 +296,11 @@
                                 </figcaption>
                             </figure>
 
-                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">4. PCR Duplicates vs. Independent Molecules</h4>
-                            <p>If a damaged DNA molecule (e.g., containing U) undergoes PCR amplification prior to sequencing, it generates multiple identical copies.</p>
-                            <p>The sequencer may output 20 reads containing a <code>T</code>. While this appears as strong statistical evidence for a variant, the 20 reads are technical duplicates representing exactly one original physical molecule.</p>
-                            <p>To resolve this, pipelines use Unique Molecular Identifiers (UMIs)—random barcodes attached to molecules prior to amplification. If 20 <code>T</code> reads share the same UMI, the algorithm collapses them into a single observation, recovering the true independent molecule count.</p>
+                            <h4 style="color: var(--accent); margin-top: 2.5rem; font-family: 'Cinzel', serif; letter-spacing: 1px;">4. PCR Duplicates vs. UMIs (The Photocopier)</h4>
+                            <p>Before sequencing, scientists often use a chemical process called PCR to amplify (copy) the DNA so the machine has enough material to read. PCR is essentially a molecular photocopier.</p>
+                            <p>Imagine you have a document with a spelling mistake. If you put it in a photocopier and make 20 copies, it doesn't mean 20 different people made a spelling mistake. It's just one mistake, copied 20 times.</p>
+                            <p>If the sequencer reads 20 pieces of DNA with a <code>T</code> mutation, it looks like incredibly strong evidence for cancer. But if they are all just PCR photocopies of <em>one single chemically damaged molecule</em>, it's totally fake.</p>
+                            <p>To solve this, bioinformaticians use <strong>Unique Molecular Identifiers (UMIs)</strong>. UMIs are like serial numbers on a dollar bill. We attach them to the DNA <em>before</em> photocopying. Later, if the computer sees 20 mutations but they all share the exact same serial number (UMI), the computer deletes 19 of them. It knows they are fakes.</p>
                             <figure style="margin: 2.5rem 0; text-align: center;">
                                 <img src="umis_v2.jpg" alt="Unique Molecular Identifiers" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
                                 <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
