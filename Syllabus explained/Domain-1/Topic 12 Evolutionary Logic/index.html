@@ -78,7 +78,7 @@
                             <h3 class="h-secondary pink-heading">Why Are We Starting This?</h3>
                             <p>When DNA gets damaged and the cell copies it before fixing the mistake, a temporary chemical error becomes a permanent mutation.</p>
                             <p>But sequencing machines don't see that biological damage. They don't know the history of the cell. They just output a text file full of letters (A, C, G, T).</p>
-                            <p>This creates a huge gap between the physical reality of a cell and the digital data we analyze on a computer. To properly interpret bioinformatics data, we need to trace exactly how a physical chemical event turns into a statistical variant call.</p>
+                            <p>This creates a huge gap between the physical reality of a cell and the digital data we analyze on a computer. To properly interpret bioinformatics data, we need to trace exactly how a physiochemical event turns into a statistical variant call.</p>
                         </div>
                         
                         <div class="glass-card tilt-effect hover-target">
@@ -196,7 +196,7 @@
                             <p>To analyze sequence data accurately, we must separate a mutation into three distinct conceptual levels:</p>
 <p><strong>Level 1 — Molecular</strong><br>
                             \( C:G \rightarrow U:G \)<br>
-                            <span style="color: var(--text-muted);">The physical chemical damage event.</span></p>
+                            <span style="color: var(--text-muted);">The physiochemical damage event.</span></p>
                             <p><strong>Level 2 — Genetic</strong><br>
                             \( C:G \rightarrow T:A \)<br>
                             <span style="color: var(--text-muted);">The stable, heritable sequence change after replication.</span></p>
@@ -367,6 +367,20 @@ Biological interpretation</div>
 
             </div>
         </div>
+    
+        <!-- Right Column: Interactive Canvas -->
+        <div class="canvas-column">
+            <canvas id="webgl-canvas"></canvas>
+            <div class="canvas-overlay"></div>
+        </div>
     </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="script.js?v=12"></script>
 </body>
 </html>
+
