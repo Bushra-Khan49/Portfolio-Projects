@@ -27,12 +27,6 @@
             margin-bottom: 1.5rem;
         }
         
-        body { margin: 0; padding: 0; background-color: #050510; color: #f1f1f1; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .split-layout { display: flex; width: 100vw; min-height: 100vh; }
-        .content-column { flex: 1; padding: 0; overflow-y: auto; scroll-behavior: smooth; }
-        .content-inner { max-width: 1200px; margin: 0 auto; padding-bottom: 10vh; }
-        .section-block { margin-bottom: 4rem; padding: 0 2rem; }
-        
         .glass-card { 
             background: rgba(20, 20, 30, 0.6); 
             border: 1px solid rgba(255,255,255,0.05); 
@@ -46,7 +40,18 @@
         
         .h-primary { color: #ffffff !important; font-family: 'Cinzel', serif !important; text-transform: uppercase; }
         .h-secondary { font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
-        .hero-section { min-height: 55vh; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; text-align: left; padding: 5vh 2rem 5vh 2rem; }
+        .hero-section {
+            height: auto;
+            min-height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: left;
+            padding: 5vh 2rem 5vh 2rem;
+            position: relative;
+            z-index: 2;
+        }
         
         .math-block { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); overflow-x: auto; margin: 1.5rem 0; text-align: center; color: #e2e8f0; }
         .code-box { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; color: #aab2c0; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin: 1.5rem 0; white-space: pre; text-align: left; }
