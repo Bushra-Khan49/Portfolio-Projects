@@ -7,83 +7,90 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="style.css?v=13">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        :root {
-            --accent-mod2: #ff007f;
-            --accent-mod2-light: #ff4da6;
-            --accent-mod2-dark: #b30059;
-            --accent-orange: #ff5722;
-            --accent-purple: #b388ff;
-            --accent-gold: #ffd54f;
-            --text-muted: #aab2c0;
+        .pink-heading {
+            color: #ff007f !important;
+            font-weight: bold !important;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 24px rgba(255, 255, 255, 0.3) !important;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .h-primary { color: #ffffff !important; font-family: 'Cinzel', serif !important; text-transform: uppercase; }
+        .h-secondary { font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        
+        .hero-section {
+            height: auto;
+            min-height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: left;
+            padding: 5vh 2rem 5vh 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .math-block { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); overflow-x: auto; margin: 1.5rem 0; text-align: center; color: #e2e8f0; }
+        .code-box { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; color: #aab2c0; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin: 1.5rem 0; white-space: pre; text-align: left; }
+        
+        p { line-height: 1.8; margin-bottom: 1.2rem; font-size: 1.05rem; }
+        ul, ol { margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; }
+        li { margin-bottom: 0.8rem; }
+
+        .grid-layout { display: grid; gap: 2rem; margin-bottom: 2rem; }
+        .grid-2 { grid-template-columns: 1fr 1fr; }
+        .grid-1 { grid-template-columns: 1fr; }
+        @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+        
+        .glass-card { 
+            background: rgba(20, 20, 30, 0.6); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 12px; 
+            padding: 2.5rem; 
+            position: relative; 
+            overflow: hidden; 
+            height: 100%;
+            box-sizing: border-box;
         }
 
         .back-btn {
-            position: fixed;
-            top: 1.25rem;
-            left: 1.25rem;
-            z-index: 9999;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.1rem;
-            background: rgba(5, 10, 21, 0.75);
-            border: 1px solid rgba(255, 0, 127, 0.35);
-            border-radius: 999px;
-            color: var(--accent-mod2);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            text-decoration: none;
-            letter-spacing: 0.04em;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.25s ease;
-            box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
+            position: fixed; top: 1.25rem; left: 1.25rem; z-index: 9999; display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.1rem; background: rgba(5, 10, 21, 0.75); border: 1px solid rgba(255, 0, 127, 0.35);
+            border-radius: 999px; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+            text-decoration: none; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease; box-shadow: 0 0 12px rgba(255, 0, 127, 0.15);
         }
         .back-btn:hover {
-            background: rgba(255, 0, 127, 0.12);
-            border-color: rgba(255, 0, 127, 0.7);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.35);
-            transform: translateX(-2px);
+            background: rgba(255, 0, 127, 0.12); border-color: rgba(255, 0, 127, 0.7); box-shadow: 0 0 20px rgba(255, 0, 127, 0.35); transform: translateX(-2px);
         }
-        .back-btn svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
+        .back-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+        .scroll-indicator {
+            position: relative;
+            margin-top: 3rem;
+            transform: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
         }
 
-        .h-primary { color: #ffffff !important; font-family: var(--font-display) !important; text-transform: uppercase; }
-        .h-secondary { color: var(--accent-mod2) !important; font-family: var(--font-display) !important;}
-        
-        .glass-card.hover-target {
-            border-color: rgba(255, 0, 127, 0.2);
-            transition: all 0.3s ease;
-        }
-        .glass-card.hover-target:hover {
-            border-color: rgba(255, 0, 127, 0.6);
-            box-shadow: 0 8px 24px rgba(255, 0, 127, 0.15);
-        }
-        
-        p {
-            line-height: 1.7;
-            margin-bottom: 1rem;
-            color: #d1d5db;
-        }
-        
-        .step-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 0, 127, 0.15);
-            border: 2px solid var(--accent-mod2-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #fff;
-            flex-shrink: 0;
-            font-family: var(--font-mono);
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(0, 0); }
+            50% { opacity: 1; transform: translate(0, 5px); }
         }
     </style>
 </head>
@@ -94,89 +101,169 @@
         </svg>
         Portfolio
     </a>
-
     <main class="split-layout">
-        <div class="content-column" id="smooth-wrapper">
-            <div id="smooth-content" class="content-inner">
-                
+        <div class="content-column">
+            <div class="content-inner">
                 <section class="hero-section fade-up">
-                    <h5 class="eyebrow" style="color: var(--accent-mod2); font-weight: bold; letter-spacing: 2px;">TOPIC 13</h5>
-                    <h1 class="h-primary" style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">Identifying Nucleic Acids</h1>
-                    <h2 style="color: var(--text-muted); font-family: var(--font-secondary); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6;">Worked Examples from Chemical Signatures</h2>
+                    <h5 class="eyebrow" style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">TOPIC 13</h5>
+                    <h1 class="h-primary" style="font-size: clamp(3rem, 7vw, 4.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">IDENTIFYING NUCLEIC ACIDS</h1>
+                    <h2 style="color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6; max-width: 800px;">From Physical Signatures to Computational Classification</h2>
+                    <div class="scroll-indicator">
+                        <span>Scroll to Explore</span>
+                        <div class="mouse"></div>
+                    </div>
                 </section>
                 
-                <section class="section-block fade-up" style="margin-top: 2rem; margin-bottom: 4rem;">
-                    <div class="glass-card tilt-effect hover-target full-width">
-                        <p style="font-size: 1.1rem;">Let's look at how these chemical structures influence molecular identification and data parsing workflows in bioinformatics pipelines.</p>
-                        
-                        <div style="margin-top: 2rem; border-left: 3px solid var(--accent-mod2); padding-left: 1.5rem;">
-                            <h3 class="h-primary" style="margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--accent-mod2-light) !important;">Example 1:</h3>
-                            <p style="color: #fff; font-weight: bold; margin-bottom: 1.5rem;">Given a molecular diagram or chemical data object, determine if the fragment represents DNA or RNA based on structural features.</p>
-                            
-                            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                                
-                                <div style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
-                                    <div class="step-circle">1</div>
-                                    <div>
-                                        <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Inspect the 2' Carbon Position</h4>
-                                        <p style="margin-bottom: 0; font-size: 0.95rem;">Locate the pentose sugar ring and identify the 2' carbon. Check whether it terminates in a hydroxyl group (-OH) or a hydrogen atom (-H). If it is an -OH group, the molecule is RNA.</p>
-                                    </div>
-                                </div>
-                                
-                                <div style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
-                                    <div class="step-circle">2</div>
-                                    <div>
-                                        <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">Scan for Pyrimidine Substitutions</h4>
-                                        <p style="margin-bottom: 0; font-size: 0.95rem;">Examine the nitrogenous bases. Look for the presence of a methyl group at the C5 position of the pyrimidine rings. If the methyl group is present alongside a 2'-H sugar, it is Thymine (DNA). If the methyl group is missing at C5 and a 2'-OH is present, it is Uracil (RNA).</p>
-                                    </div>
-                                </div>
-                                
-                                <div style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
-                                    <div class="step-circle">3</div>
-                                    <div>
-                                        <h4 style="color: var(--accent-orange); margin-bottom: 0.5rem;">Classify the Molecule</h4>
-                                        <p style="margin-bottom: 0; font-size: 0.95rem;">Synthesize the findings. A molecule with 2'-deoxyribose and Thymine is classified as <strong>DNA</strong>; a molecule with ribose and Uracil is classified as <strong>RNA</strong>.</p>
-                                    </div>
-                                </div>
-
-                            </div>
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The Core Problem</h3>
+                            <p>This topic teaches a fundamental bioinformatics skill: How can we identify whether a nucleic-acid molecule is DNA or RNA strictly from its chemical structure? And how does that physical identification eventually become a computational classification problem?</p>
+                            <p>Suppose you are given an unknown nucleic-acid fragment. The ultimate question is:</p>
+                            <div class="math-block">\( \boxed{\text{Is this molecule DNA or RNA?}} \)</div>
+                            <p>To answer it properly without making dangerous assumptions, we must systematically move through three stages:</p>
+                            <div class="math-block">\( \boxed{\text{atomic structure}} \rightarrow \boxed{\text{molecular identity}} \rightarrow \boxed{\text{computational representation}} \)</div>
                         </div>
+                    </div>
+                </section>
 
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">1. The Ultimate Lie Detector: The 2′ Carbon</h3>
+                            <p>The most fundamental difference between DNA and RNA isn't the letters (U vs T). It's the sugar. The strongest primary discriminator is what sits at the 2′ position of the pentose ring.</p>
+                            <div class="math-block">\( \boxed{\text{RNA} = \text{ribose containing a 2′-OH}} \)</div>
+                            <div class="math-block">\( \boxed{\text{DNA} = \text{2′-deoxyribose containing a 2′-H}} \)</div>
+                            <figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="sugar_comparison.jpg" alt="Ribose vs Deoxyribose" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 1:</strong> The 2′ Carbon Difference. The presence of the 2′-OH in ribose changes molecular stability and geometry.
+                                </figcaption>
+                            </figure>
+
+                            <p>The prefix <em>deoxy-</em> literally refers to the loss of oxygen-containing functionality at this exact position. If you inspect the 2′ carbon and find a Hydrogen (2′-H), you have <strong>deoxyribose</strong>, which strongly indicates DNA. If you find a Hydroxyl group (2′-OH), you have <strong>ribose</strong>, indicating RNA.</p>
+                        </div>
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Why Does One Oxygen Matter?</h3>
+                            <p>This is where structure connects to physical chemistry. Oxygen is highly electronegative, creating a polarized bond (\(C^{\delta+}-O^{\delta-}\)). This single oxygen allows the 2′-OH to participate in hydrogen bonding and local hydration.</p>
+                            <p>More importantly, the 2′-OH acts as a nucleophile. Under appropriate conditions, that oxygen can attack its own neighboring phosphorus backbone, promoting cleavage. Because DNA lacks this oxygen (\(2′-H\)), that self-destruct pathway is blocked.</p>
+                            <div class="math-block">\( \boxed{ \text{2′-OH changes both chemistry and molecular geometry} } \)</div>
+                            <p>The 2′-OH forces the sugar into a <em>C3′-endo</em> conformation, creating an A-form helix, while the 2′-H in DNA allows a <em>C2′-endo</em> pucker, creating the classic B-form helix.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">2. The Pyrimidine Scan</h3>
+                            <p>Once we check the sugar, we move to the bases. The relevant comparison is Uracil vs Thymine. The entire structural difference comes down to a single methyl group attached at the C5 position of the pyrimidine ring.</p>
+                            <div class="math-block">\( \boxed{T = U + CH_3} \)</div>
+                            <figure style="margin: 2.5rem 0; text-align: center;">
+                                <img src="pyrimidine_comparison.jpg" alt="Uracil vs Thymine" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
+                                    <strong>Figure 2:</strong> The C5 Methyl Group. Thymine is essentially 5-methyluracil.
+                                </figcaption>
+                            </figure>
+
+                            <p>If you see a methyl group at C5, that pyrimidine is Thymine. If it is absent, it is Uracil.</p>
+                            <p>Because Thymine is canonical to DNA and Uracil is canonical to RNA, seeing a T is strong evidence for DNA. But this leads to a dangerous logical trap: <em>Characteristic does not mean required.</em></p>
+                        </div>
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Mixed Signals & Detective Work</h3>
+                            <p>What happens if you are handed a molecule that has a <strong>2′-OH</strong> sugar (RNA-like), but the base is <strong>Thymine</strong>? Do you blindly call it DNA? No.</p>
+                            <p>This is where bioinformatics requires evidence integration. The 2′-OH says "RNA-like sugar" while the T says "Thymine is present". This mixed signal could represent a modified nucleic acid, an experimental synthetic construct, or an unusual biological context.</p>
+                            <div class="math-block">\( \boxed{ \text{Evidence Integration} > \text{Single-Feature Recognition} } \)</div>
+                            <p>You must weigh all features rather than assuming a single "T" automatically means DNA.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">3. The Computational Leap</h3>
+                            <p>How does a computer understand this? A computer does not inherently know what a DNA or RNA "letter" means. We have to map physical chemistry into encoded data features.</p>
+                            <div class="code-box">
+{
+    sugar_2_prime: "OH",
+    base: "U"
+}</div>
+                            <p>A simple parser might extract these chemical properties into variables. A physical \(2'-OH\) becomes the computational feature <code>sugar_2prime = OH</code>. The physical \(C5-CH_3\) becomes <code>base = T</code>.</p>
+                            <p>A robust classifier then calculates the probability: \( \boxed{ P(\text{DNA} \mid \text{chemical features}) } \). Real data contains missing fields, modifications, and experimental errors, which is why a parser should validate evidence rather than blindly assigning a class.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The RNA-Seq Trap</h3>
+                            <p>This classification logic breaks down pipelines if ignored, particularly in RNA-seq. The biological starting material is <strong>RNA</strong>. But the workflow uses reverse transcriptase to convert it into <strong>cDNA</strong> (DNA).</p>
+                            <p>If you look at the raw data and see a "T", and you don't understand the physical transformation that occurred in the lab, you might incorrectly assume the biological molecule was DNA. It wasn't!</p>
+                            <div class="math-block">\( \boxed{ \text{sample type} \neq \text{physical molecule at every pipeline stage} } \)</div>
+                        </div>
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Three Different Questions</h3>
+                            <p>When someone hands you a dataset and asks, "Is this DNA or RNA?", you must clarify which level they mean:</p>
+                            <ul>
+                                <li><strong>1. Biological Level:</strong> What was the original source molecule? (e.g., RNA)</li>
+                                <li><strong>2. Physical Level:</strong> What molecule was physically loaded into the sequencer? (e.g., cDNA)</li>
+                                <li><strong>3. Computational Level:</strong> What alphabet is the file using? (e.g., A, T, G, C)</li>
+                            </ul>
+                            <p>Confusing these three levels causes catastrophic interpretation errors downstream.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The Universal Bioinformatics Pattern</h3>
+                            <p>The lesson here extends far beyond just identifying DNA vs RNA. We just traced a reusable intellectual pattern that defines all of modern bioinformatics:</p>
+                            <div class="math-block">\( \boxed{ \text{Observe} \rightarrow \text{Extract features} \rightarrow \text{Interpret} \rightarrow \text{Classify} \rightarrow \text{Validate} \rightarrow \text{Analyze} } \)</div>
+                            <p>Whether you are mapping instrument signals to base calls, extracting k-mers to classify sequences, or turning read alignments into variant calls, the logic is identical. <strong>You must build an unbroken chain of causality from physical chemistry, to molecular identity, to computational abstraction.</strong></p>
+                        </div>
                     </div>
                 </section>
 
                 <!-- Navigation -->
-                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem;">
+                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem; padding: 0 2rem;">
                     <a href="../Topic 12 Evolutionary Logic/index.html" style="text-decoration: none;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2);">
-                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">←</span>
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); border-radius: 50px; margin-bottom: 0;">
+                            <span style="color: var(--accent); font-size: 1.5rem;">←</span>
                             <div>
                                 <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: left;">Previous Topic</div>
                                 <div style="color: white; font-weight: bold; font-size: 1.1rem;">Topic 12</div>
                             </div>
                         </div>
                     </a>
-                    <a href="../../../index.html" style="text-decoration: none;">
-                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); text-align: right;">
+                    <a href="../Topic 7 Domain Summary/index.html" style="text-decoration: none;">
+                        <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); border-radius: 50px; text-align: right; margin-bottom: 0;">
                             <div>
-                                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: right;">Return to</div>
-                                <div style="color: white; font-weight: bold; font-size: 1.1rem;">Portfolio</div>
+                                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: right;">Next Topic</div>
+                                <div style="color: white; font-weight: bold; font-size: 1.1rem;">Domain Summary</div>
                             </div>
-                            <span style="color: var(--accent-mod2); font-size: 1.5rem;">→</span>
+                            <span style="color: var(--accent); font-size: 1.5rem;">→</span>
                         </div>
                     </a>
                 </div>
-                
-                <div class="bottom-spacer"></div>
+                <div class="bottom-spacer" style="height: 10vh;"></div>
             </div>
         </div>
+        
+        <!-- Right Column: Interactive Canvas -->
         <div class="canvas-column">
             <canvas id="webgl-canvas"></canvas>
             <div class="canvas-overlay"></div>
         </div>
     </main>
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js?v=12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="script.js?v=13"></script>
 </body>
 </html>
