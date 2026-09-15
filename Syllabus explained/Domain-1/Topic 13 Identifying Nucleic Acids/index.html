@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=14">
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -58,6 +58,10 @@
             height: 100%;
             box-sizing: border-box;
         }
+        
+        figure { margin: 2.5rem 0; text-align: center; }
+        img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        figcaption { margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic; }
 
         .back-btn {
             position: fixed; top: 1.25rem; left: 1.25rem; z-index: 9999; display: inline-flex; align-items: center; gap: 0.5rem;
@@ -107,7 +111,7 @@
                 <section class="hero-section fade-up">
                     <h5 class="eyebrow" style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">TOPIC 13</h5>
                     <h1 class="h-primary" style="font-size: clamp(3rem, 7vw, 4.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">IDENTIFYING NUCLEIC ACIDS</h1>
-                    <h2 style="color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6; max-width: 800px;">From Physical Signatures to Computational Classification</h2>
+                    <h2 style="color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6; max-width: 800px;">The Bioinformatics Trap: From Physical Reality to Digital Abstraction</h2>
                     <div class="scroll-indicator">
                         <span>Scroll to Explore</span>
                         <div class="mouse"></div>
@@ -117,12 +121,12 @@
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Core Problem</h3>
-                            <p>This topic teaches a fundamental bioinformatics skill: How can we identify whether a nucleic-acid molecule is DNA or RNA strictly from its chemical structure? And how does that physical identification eventually become a computational classification problem?</p>
-                            <p>Suppose you are given an unknown nucleic-acid fragment. The ultimate question is:</p>
-                            <div class="math-block">\( \boxed{\text{Is this molecule DNA or RNA?}} \)</div>
-                            <p>To answer it properly without making dangerous assumptions, we must systematically move through three stages:</p>
-                            <div class="math-block">\( \boxed{\text{atomic structure}} \rightarrow \boxed{\text{molecular identity}} \rightarrow \boxed{\text{computational representation}} \)</div>
+                            <h3 class="h-secondary pink-heading">The Great Bioinformatics Trap</h3>
+                            <p>Imagine we're sitting at a cafe, looking at a raw sequencing file on my laptop. I point to a line of data and ask you: <em>"Is this fragment DNA or RNA?"</em></p>
+                            <p>You might be tempted to say, "Well, if it has a U, it's RNA. If it has a T, it's DNA." But that is exactly the trap. A computer doesn't inherently know what a 'T' or a 'U' means. It just sees data.</p>
+                            <p>To understand this at a bioinformatics level, we have to look past the letters and follow the molecule through a multi-layered chain of abstractions:</p>
+                            <div class="math-block">\( \boxed{ \text{Atoms} \rightarrow \text{Bonds} \rightarrow \text{Structure} \rightarrow \text{Molecule} \rightarrow \text{Signal} \rightarrow \text{Data} \rightarrow \text{Inference} } \)</div>
+                            <p>If you misunderstand the physical molecule sitting at the start of that chain, your algorithms will perfectly analyze a ghost.</p>
                         </div>
                     </div>
                 </section>
@@ -130,99 +134,114 @@
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">1. The Ultimate Lie Detector: The 2′ Carbon</h3>
-                            <p>The most fundamental difference between DNA and RNA isn't the letters (U vs T). It's the sugar. The strongest primary discriminator is what sits at the 2′ position of the pentose ring.</p>
-                            <div class="math-block">\( \boxed{\text{RNA} = \text{ribose containing a 2′-OH}} \)</div>
-                            <div class="math-block">\( \boxed{\text{DNA} = \text{2′-deoxyribose containing a 2′-H}} \)</div>
-                            <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="sugar_comparison.jpg" alt="Ribose vs Deoxyribose" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 1:</strong> The 2′ Carbon Difference. The presence of the 2′-OH in ribose changes molecular stability and geometry.
-                                </figcaption>
-                            </figure>
-
-                            <p>The prefix <em>deoxy-</em> literally refers to the loss of oxygen-containing functionality at this exact position. If you inspect the 2′ carbon and find a Hydrogen (2′-H), you have <strong>deoxyribose</strong>, which strongly indicates DNA. If you find a Hydroxyl group (2′-OH), you have <strong>ribose</strong>, indicating RNA.</p>
+                            <h3 class="h-secondary pink-heading">1. The 2′ Carbon Lie Detector</h3>
+                            <p>Before we ever look at the bases, we have to look at the sugar. The strongest, most fundamental discriminator between DNA and RNA is exactly what sits at the 2′ position of the pentose ring.</p>
+                            <div class="math-block">\( \boxed{\text{RNA} = 2′\text{-OH}} \quad \text{vs} \quad \boxed{\text{DNA} = 2′\text{-H}} \)</div>
+                            <p>The word <em>deoxy-</em> literally means the loss of oxygen at this position. But this isn't just a geometric detail; it changes the thermodynamics of the entire molecule. The O-H bond is highly polar (\(C^{\delta+}-O^{\delta-}\)), turning the 2′-OH into an electronically active functional group.</p>
                         </div>
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">Why Does One Oxygen Matter?</h3>
-                            <p>This is where structure connects to physical chemistry. Oxygen is highly electronegative, creating a polarized bond (\(C^{\delta+}-O^{\delta-}\)). This single oxygen allows the 2′-OH to participate in hydrogen bonding and local hydration.</p>
-                            <p>More importantly, the 2′-OH acts as a nucleophile. Under appropriate conditions, that oxygen can attack its own neighboring phosphorus backbone, promoting cleavage. Because DNA lacks this oxygen (\(2′-H\)), that self-destruct pathway is blocked.</p>
-                            <div class="math-block">\( \boxed{ \text{2′-OH changes both chemistry and molecular geometry} } \)</div>
-                            <p>The 2′-OH forces the sugar into a <em>C3′-endo</em> conformation, creating an A-form helix, while the 2′-H in DNA allows a <em>C2′-endo</em> pucker, creating the classic B-form helix.</p>
+                            <h3 class="h-secondary pink-heading">Thermodynamics & Missing Data</h3>
+                            <p>Why does this matter to a bioinformatician? Because that 2′-OH is a nucleophile. It can attack its own phosphate backbone, causing RNA to self-cleave. DNA lacks this oxygen, so that self-destruct pathway is blocked.</p>
+                            <p>Because RNA degrades faster, its decay is time-dependent. The half-life is: \( t_{1/2} \approx \frac{0.693}{k} \). If Sample A degrades faster than Sample B, your sequencing library will have different amounts of material even if the starting cells were identical.</p>
+                            <div class="math-block">\( \boxed{ \text{Chemical stability} \rightarrow \text{Sequencing counts} \rightarrow \text{Inference} } \)</div>
                         </div>
                     </div>
+                    
+                    <figure>
+                        <img src="sugar_comparison.jpg" alt="Ribose vs Deoxyribose Comparison">
+                        <figcaption><strong>Figure 1:</strong> The 2′ Carbon Difference. The presence of the electronegative 2′-OH in ribose changes molecular stability, reactivity, and helix geometry, directly affecting sample integrity before it even reaches the sequencer.</figcaption>
+                    </figure>
                 </section>
 
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">2. The Pyrimidine Scan</h3>
-                            <p>Once we check the sugar, we move to the bases. The relevant comparison is Uracil vs Thymine. The entire structural difference comes down to a single methyl group attached at the C5 position of the pyrimidine ring.</p>
+                            <p>Now we look at the bases. The difference between Uracil and Thymine comes down to a single methyl group at the C5 position of the pyrimidine ring.</p>
                             <div class="math-block">\( \boxed{T = U + CH_3} \)</div>
-                            <figure style="margin: 2.5rem 0; text-align: center;">
-                                <img src="pyrimidine_comparison.jpg" alt="Uracil vs Thymine" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
-                                <figcaption style="margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic;">
-                                    <strong>Figure 2:</strong> The C5 Methyl Group. Thymine is essentially 5-methyluracil.
-                                </figcaption>
-                            </figure>
-
-                            <p>If you see a methyl group at C5, that pyrimidine is Thymine. If it is absent, it is Uracil.</p>
-                            <p>Because Thymine is canonical to DNA and Uracil is canonical to RNA, seeing a T is strong evidence for DNA. But this leads to a dangerous logical trap: <em>Characteristic does not mean required.</em></p>
+                            <p>As we explored in Topic 11, Cytosine can accidentally deaminate into Uracil. If DNA used Uracil normally, it wouldn't be able to tell real U from damaged C. By using Thymine (\(C5-CH_3\)) instead, DNA marks U as an "abnormal" base, flagging it for repair!</p>
                         </div>
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">Mixed Signals & Detective Work</h3>
-                            <p>What happens if you are handed a molecule that has a <strong>2′-OH</strong> sugar (RNA-like), but the base is <strong>Thymine</strong>? Do you blindly call it DNA? No.</p>
-                            <p>This is where bioinformatics requires evidence integration. The 2′-OH says "RNA-like sugar" while the T says "Thymine is present". This mixed signal could represent a modified nucleic acid, an experimental synthetic construct, or an unusual biological context.</p>
-                            <div class="math-block">\( \boxed{ \text{Evidence Integration} > \text{Single-Feature Recognition} } \)</div>
-                            <p>You must weigh all features rather than assuming a single "T" automatically means DNA.</p>
+                            <h3 class="h-secondary pink-heading">The Data Disconnect</h3>
+                            <p>But here is the critical bioinformatics angle: If that repair fails, and \(C \rightarrow U\) turns into a permanent \(T:A\) pair, your VCF file simply says:</p>
+                            <div class="code-box">REF = C,  ALT = T</div>
+                            <p>The VCF does <em>not</em> tell you the mechanism. It doesn't say "this was a hydrolytic deamination." We observe the <strong>data abstraction</strong>, not the history. The physical event has been flattened into a text character.</p>
                         </div>
                     </div>
+                    
+                    <figure>
+                        <img src="pyrimidine_comparison.jpg" alt="Uracil vs Thymine Comparison">
+                        <figcaption><strong>Figure 2:</strong> The C5 Methyl Group. Thymine is structurally 5-methyluracil. DNA utilizes Thymine so that accidental cytosine deaminations (which produce Uracil) can be recognized as errors and repaired.</figcaption>
+                    </figure>
                 </section>
 
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">3. The Computational Leap</h3>
-                            <p>How does a computer understand this? A computer does not inherently know what a DNA or RNA "letter" means. We have to map physical chemistry into encoded data features.</p>
-                            <div class="code-box">
-{
-    sugar_2_prime: "OH",
-    base: "U"
-}</div>
-                            <p>A simple parser might extract these chemical properties into variables. A physical \(2'-OH\) becomes the computational feature <code>sugar_2prime = OH</code>. The physical \(C5-CH_3\) becomes <code>base = T</code>.</p>
-                            <p>A robust classifier then calculates the probability: \( \boxed{ P(\text{DNA} \mid \text{chemical features}) } \). Real data contains missing fields, modifications, and experimental errors, which is why a parser should validate evidence rather than blindly assigning a class.</p>
+                            <h3 class="h-secondary pink-heading">3. The Signal-to-Data Transformation</h3>
+                            <p>How does the machine actually see this? A sequencer doesn't see "C" as a mathematical symbol. It measures physical properties—like fluorescence or ionic current—and generates a signal \(S = f(M, E, \epsilon)\).</p>
+                            <p>The base caller algorithm then calculates the probability of a base given that signal: \(P(B|S)\). This uncertainty is packaged into a mathematical Phred Quality Score (\(Q\)):</p>
+                            <div class="math-block">\( \boxed{ P_e = 10^{-Q/10} } \)</div>
+                            <p>If \(Q = 30\), the probability of an error (\(P_e\)) is 0.001 (or 0.1%). This is the very first moment where biological uncertainty becomes an explicit numerical object in our data.</p>
                         </div>
                     </div>
+                    
+                    <figure>
+                        <img src="phred_probability.jpg" alt="Phred Quality Scores and Base Calling">
+                        <figcaption><strong>Figure 3:</strong> Translating Physical Signal to Statistical Confidence. Machine learning algorithms analyze raw continuous signals and assign discrete base calls paired with a logarithmic Phred Quality Score (Q-Score).</figcaption>
+                    </figure>
                 </section>
 
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-2">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The RNA-Seq Trap</h3>
-                            <p>This classification logic breaks down pipelines if ignored, particularly in RNA-seq. The biological starting material is <strong>RNA</strong>. But the workflow uses reverse transcriptase to convert it into <strong>cDNA</strong> (DNA).</p>
-                            <p>If you look at the raw data and see a "T", and you don't understand the physical transformation that occurred in the lab, you might incorrectly assume the biological molecule was DNA. It wasn't!</p>
-                            <div class="math-block">\( \boxed{ \text{sample type} \neq \text{physical molecule at every pipeline stage} } \)</div>
+                            <h3 class="h-secondary pink-heading">The Likelihood Engine</h3>
+                            <p>In Topic 12, we talked about Bayesian variant callers separating biological signal from machine noise. Here is the mathematical engine underneath it.</p>
+                            <p>When you see a "T" in a read but the reference genome says "C", you aren't just "finding a T." You are testing hypotheses. Did a real mutation happen (\(H_1\)), or was it a sequencer error (\(H_0\))?</p>
+                            <p>The algorithm evaluates the Likelihood Ratio (LR):</p>
+                            <div class="math-block">\( \boxed{ LR = \frac{P(D|H_1)}{P(D|H_0)} } \)</div>
+                            <p>Molecular biology determines which hypotheses are <em>plausible</em>; statistics determines which hypothesis the data actually supports.</p>
                         </div>
+                        
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">Three Different Questions</h3>
-                            <p>When someone hands you a dataset and asks, "Is this DNA or RNA?", you must clarify which level they mean:</p>
-                            <ul>
-                                <li><strong>1. Biological Level:</strong> What was the original source molecule? (e.g., RNA)</li>
-                                <li><strong>2. Physical Level:</strong> What molecule was physically loaded into the sequencer? (e.g., cDNA)</li>
-                                <li><strong>3. Computational Level:</strong> What alphabet is the file using? (e.g., A, T, G, C)</li>
-                            </ul>
-                            <p>Confusing these three levels causes catastrophic interpretation errors downstream.</p>
+                            <h3 class="h-secondary pink-heading">The RNA-Seq Illusion</h3>
+                            <p>This brings us to the ultimate trap: RNA-Seq. The biological starting material is <strong>RNA</strong>. But the lab workflow uses reverse transcriptase to convert it into <strong>cDNA</strong> (DNA).</p>
+                            <p>So when you open your FASTQ file and see a "T", it does <strong>not</strong> mean the original biological molecule was DNA. The physical molecule sequenced was cDNA, but the biological source was RNA.</p>
+                            <div class="math-block">\( \boxed{ \text{RNA} \rightarrow \text{cDNA} \rightarrow \text{T} } \)</div>
+                            <p>This is why <strong>metadata is part of bioinformatics</strong>. The sequence alone is a lossy representation of physical reality.</p>
                         </div>
                     </div>
+                    
+                    <figure>
+                        <img src="bioinfo_abstraction_layers.jpg" alt="The Bioinformatics Chain of Abstraction">
+                        <figcaption><strong>Figure 4:</strong> The Chain of Abstraction. A perfectly functioning downstream algorithm cannot rescue an incorrect upstream biological assumption. If you don't know what physical molecule you are analyzing, your mathematical models will fail.</figcaption>
+                    </figure>
                 </section>
                 
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Universal Bioinformatics Pattern</h3>
-                            <p>The lesson here extends far beyond just identifying DNA vs RNA. We just traced a reusable intellectual pattern that defines all of modern bioinformatics:</p>
-                            <div class="math-block">\( \boxed{ \text{Observe} \rightarrow \text{Extract features} \rightarrow \text{Interpret} \rightarrow \text{Classify} \rightarrow \text{Validate} \rightarrow \text{Analyze} } \)</div>
-                            <p>Whether you are mapping instrument signals to base calls, extracting k-mers to classify sequences, or turning read alignments into variant calls, the logic is identical. <strong>You must build an unbroken chain of causality from physical chemistry, to molecular identity, to computational abstraction.</strong></p>
+                            <h3 class="h-secondary pink-heading">The Master Equation Chain</h3>
+                            <p>If you want one mental model to take away from our cafe chat, make it this causal chain. Do not begin with the sequence letter. Begin with the physical chemistry of the molecule itself.</p>
+                            <div class="math-block" style="text-align: left; padding: 2rem;">
+                                \( \boxed{
+                                \begin{aligned}
+                                &2′\text{-OH} \quad \text{vs} \quad 2′\text{-H} \\
+                                &\Downarrow \\
+                                &\text{Different Electronic Structure} \\
+                                &\Downarrow \\
+                                &\text{Different Chemical Reactivity} \\
+                                &\Downarrow \\
+                                &\text{Different Experimental Handling} \\
+                                &\Downarrow \\
+                                &\text{Different Data Generation Process} \\
+                                &\Downarrow \\
+                                &\text{Different Computational Assumptions} \\
+                                &\Downarrow \\
+                                &\text{Different Biological Interpretation}
+                                \end{aligned}
+                                } \)
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -264,6 +283,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="script.js?v=13"></script>
+    <script src="script.js?v=14"></script>
 </body>
 </html>
