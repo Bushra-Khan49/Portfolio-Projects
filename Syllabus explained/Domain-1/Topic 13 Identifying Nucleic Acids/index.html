@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=15">
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -36,32 +36,156 @@
             z-index: 2;
         }
 
-        .math-block { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); overflow-x: auto; margin: 1.5rem 0; text-align: center; color: #e2e8f0; }
-        .code-box { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; color: #aab2c0; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin: 1.5rem 0; white-space: pre; text-align: left; }
+        .math-block { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 1.05rem; 
+            background: rgba(0,0,0,0.45); 
+            padding: 1.25rem 1.5rem; 
+            border-radius: 8px; 
+            border-left: 4px solid var(--accent); 
+            overflow-x: auto; 
+            margin: 1.25rem 0; 
+            text-align: center; 
+            color: #e2e8f0; 
+        }
+
+        .code-box { 
+            font-family: 'JetBrains Mono', monospace; 
+            background: rgba(0,0,0,0.55); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 8px; 
+            padding: 1.25rem; 
+            color: #00e5ff; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            overflow-x: auto; 
+            margin: 1.25rem 0; 
+            white-space: pre; 
+            text-align: left; 
+        }
         
         p { line-height: 1.8; margin-bottom: 1.2rem; font-size: 1.05rem; }
-        ul, ol { margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; }
-        li { margin-bottom: 0.8rem; }
+        ul, ol { margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.8; font-size: 1.02rem; }
+        li { margin-bottom: 0.6rem; }
 
-        .grid-layout { display: grid; gap: 2rem; margin-bottom: 2rem; }
+        .grid-layout { display: grid; gap: 2rem; margin-bottom: 2.5rem; }
         .grid-2 { grid-template-columns: 1fr 1fr; }
         .grid-1 { grid-template-columns: 1fr; }
         @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
         
         .glass-card { 
-            background: rgba(20, 20, 30, 0.6); 
-            border: 1px solid rgba(255,255,255,0.05); 
+            background: rgba(20, 20, 30, 0.65); 
+            border: 1px solid rgba(255,255,255,0.06); 
             border-radius: 12px; 
-            padding: 2.5rem; 
+            padding: 2.25rem; 
             position: relative; 
             overflow: hidden; 
             height: 100%;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
-        
-        figure { margin: 2.5rem 0; text-align: center; }
-        img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-        figcaption { margin-top: 1.5rem; color: #aab2c0; font-size: 1.05rem; font-family: var(--font-sans); line-height: 1.6; text-align: center; font-style: italic; }
+
+        .equation-breakdown {
+            background: rgba(10, 15, 25, 0.75);
+            border: 1px solid rgba(255, 0, 127, 0.25);
+            border-left: 3px solid #ff007f;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .equation-breakdown h4 {
+            color: #ff4da6;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .equation-breakdown ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .equation-breakdown li {
+            margin-bottom: 0.5rem;
+            color: #d1d5db;
+        }
+
+        .equation-breakdown .calc-step {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #ffd54f;
+        }
+
+        .equation-breakdown .bio-step {
+            margin-top: 0.5rem;
+            color: #00e5ff;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.92rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .summary-table th {
+            background: rgba(255, 0, 127, 0.15);
+            color: #ffffff;
+            text-align: left;
+            padding: 0.85rem 1rem;
+            border-bottom: 2px solid rgba(255, 0, 127, 0.4);
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+        }
+
+        .summary-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: #c5cbd5;
+            line-height: 1.5;
+        }
+
+        .summary-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        figure { 
+            margin: 2rem 0 0 0; 
+            text-align: center; 
+            width: 100%;
+        }
+
+        figure img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 10px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6); 
+            display: block;
+        }
+
+        figcaption { 
+            margin-top: 1.25rem; 
+            color: #aab2c0; 
+            font-size: 0.95rem; 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            text-align: center; 
+            font-style: italic; 
+        }
 
         .back-btn {
             position: fixed; top: 1.25rem; left: 1.25rem; z-index: 9999; display: inline-flex; align-items: center; gap: 0.5rem;
@@ -108,146 +232,566 @@
     <main class="split-layout">
         <div class="content-column">
             <div class="content-inner">
+                <!-- HERO SECTION -->
                 <section class="hero-section fade-up">
                     <h5 class="eyebrow" style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">TOPIC 13</h5>
                     <h1 class="h-primary" style="font-size: clamp(3rem, 7vw, 4.5rem); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255,0,127,0.3);">IDENTIFYING NUCLEIC ACIDS</h1>
-                    <h2 style="color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6; max-width: 800px;">The Bioinformatics Trap: From Physical Reality to Digital Abstraction</h2>
+                    <h2 style="color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; line-height: 1.6; max-width: 850px;">From Chemical Signatures to Computational Classification</h2>
                     <div class="scroll-indicator">
                         <span>Scroll to Explore</span>
                         <div class="mouse"></div>
                     </div>
                 </section>
                 
-                <section class="section-block fade-up">
-                    <div class="grid-layout grid-1">
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Great Bioinformatics Trap</h3>
-                            <p>Imagine we're sitting at a cafe, looking at a raw sequencing file on my laptop. I point to a line of data and ask you: <em>"Is this fragment DNA or RNA?"</em></p>
-                            <p>You might be tempted to say, "Well, if it has a U, it's RNA. If it has a T, it's DNA." But that is exactly the trap. A computer doesn't inherently know what a 'T' or a 'U' means. It just sees data.</p>
-                            <p>To understand this at a bioinformatics level, we have to look past the letters and follow the molecule through a multi-layered chain of abstractions:</p>
-                            <div class="math-block">\( \boxed{ \text{Atoms} \rightarrow \text{Bonds} \rightarrow \text{Structure} \rightarrow \text{Molecule} \rightarrow \text{Signal} \rightarrow \text{Data} \rightarrow \text{Inference} } \)</div>
-                            <p>If you misunderstand the physical molecule sitting at the start of that chain, your algorithms will perfectly analyze a ghost.</p>
-                        </div>
-                    </div>
-                </section>
-
+                <!-- ROW 1: STARTING CARDS (WHY & WHERE) -->
                 <section class="section-block fade-up">
                     <div class="grid-layout grid-2">
+                        <!-- LEFT CARD: WHY THIS TOPIC MATTERS -->
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">1. The 2′ Carbon Lie Detector</h3>
-                            <p>Before we ever look at the bases, we have to look at the sugar. The strongest, most fundamental discriminator between DNA and RNA is exactly what sits at the 2′ position of the pentose ring.</p>
-                            <div class="math-block">\( \boxed{\text{RNA} = 2′\text{-OH}} \quad \text{vs} \quad \boxed{\text{DNA} = 2′\text{-H}} \)</div>
-                            <p>The word <em>deoxy-</em> literally means the loss of oxygen at this position. But this isn't just a geometric detail; it changes the thermodynamics of the entire molecule. The O-H bond is highly polar (\(C^{\delta+}-O^{\delta-}\)), turning the 2′-OH into an electronically active functional group.</p>
-                        </div>
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">Thermodynamics & Missing Data</h3>
-                            <p>Why does this matter to a bioinformatician? Because that 2′-OH is a nucleophile. It can attack its own phosphate backbone, causing RNA to self-cleave. DNA lacks this oxygen, so that self-destruct pathway is blocked.</p>
-                            <p>Because RNA degrades faster, its decay is time-dependent. The half-life is: \( t_{1/2} \approx \frac{0.693}{k} \). If Sample A degrades faster than Sample B, your sequencing library will have different amounts of material even if the starting cells were identical.</p>
-                            <div class="math-block">\( \boxed{ \text{Chemical stability} \rightarrow \text{Sequencing counts} \rightarrow \text{Inference} } \)</div>
-                        </div>
-                    </div>
-                    
-                    <figure>
-                        <img src="sugar_comparison.jpg" alt="Ribose vs Deoxyribose Comparison">
-                        <figcaption><strong>Figure 1:</strong> The 2′ Carbon Difference. The presence of the electronegative 2′-OH in ribose changes molecular stability, reactivity, and helix geometry, directly affecting sample integrity before it even reaches the sequencer.</figcaption>
-                    </figure>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">2. The Pyrimidine Scan</h3>
-                            <p>Now we look at the bases. The difference between Uracil and Thymine comes down to a single methyl group at the C5 position of the pyrimidine ring.</p>
-                            <div class="math-block">\( \boxed{T = U + CH_3} \)</div>
-                            <p>As we explored in Topic 11, Cytosine can accidentally deaminate into Uracil. If DNA used Uracil normally, it wouldn't be able to tell real U from damaged C. By using Thymine (\(C5-CH_3\)) instead, DNA marks U as an "abnormal" base, flagging it for repair!</p>
-                        </div>
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Data Disconnect</h3>
-                            <p>But here is the critical bioinformatics angle: If that repair fails, and \(C \rightarrow U\) turns into a permanent \(T:A\) pair, your VCF file simply says:</p>
-                            <div class="code-box">REF = C,  ALT = T</div>
-                            <p>The VCF does <em>not</em> tell you the mechanism. It doesn't say "this was a hydrolytic deamination." We observe the <strong>data abstraction</strong>, not the history. The physical event has been flattened into a text character.</p>
-                        </div>
-                    </div>
-                    
-                    <figure>
-                        <img src="pyrimidine_comparison.jpg" alt="Uracil vs Thymine Comparison">
-                        <figcaption><strong>Figure 2:</strong> The C5 Methyl Group. Thymine is structurally 5-methyluracil. DNA utilizes Thymine so that accidental cytosine deaminations (which produce Uracil) can be recognized as errors and repaired.</figcaption>
-                    </figure>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="grid-layout grid-1">
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">3. The Signal-to-Data Transformation</h3>
-                            <p>How does the machine actually see this? A sequencer doesn't see "C" as a mathematical symbol. It measures physical properties—like fluorescence or ionic current—and generates a signal \(S = f(M, E, \epsilon)\).</p>
-                            <p>The base caller algorithm then calculates the probability of a base given that signal: \(P(B|S)\). This uncertainty is packaged into a mathematical Phred Quality Score (\(Q\)):</p>
-                            <div class="math-block">\( \boxed{ P_e = 10^{-Q/10} } \)</div>
-                            <p>If \(Q = 30\), the probability of an error (\(P_e\)) is 0.001 (or 0.1%). This is the very first moment where biological uncertainty becomes an explicit numerical object in our data.</p>
-                        </div>
-                    </div>
-                    
-                    <figure>
-                        <img src="phred_probability.jpg" alt="Phred Quality Scores and Base Calling">
-                        <figcaption><strong>Figure 3:</strong> Translating Physical Signal to Statistical Confidence. Machine learning algorithms analyze raw continuous signals and assign discrete base calls paired with a logarithmic Phred Quality Score (Q-Score).</figcaption>
-                    </figure>
-                </section>
-
-                <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Likelihood Engine</h3>
-                            <p>In Topic 12, we talked about Bayesian variant callers separating biological signal from machine noise. Here is the mathematical engine underneath it.</p>
-                            <p>When you see a "T" in a read but the reference genome says "C", you aren't just "finding a T." You are testing hypotheses. Did a real mutation happen (\(H_1\)), or was it a sequencer error (\(H_0\))?</p>
-                            <p>The algorithm evaluates the Likelihood Ratio (LR):</p>
-                            <div class="math-block">\( \boxed{ LR = \frac{P(D|H_1)}{P(D|H_0)} } \)</div>
-                            <p>Molecular biology determines which hypotheses are <em>plausible</em>; statistics determines which hypothesis the data actually supports.</p>
+                            <h3 class="h-secondary pink-heading">Why Are We Starting This?</h3>
+                            <p>Imagine we're sitting in a quiet cafe with my laptop open between us. I pull up a raw bioinformatics data file and point to a single fragment: <em>"Tell me—is this fragment DNA or RNA?"</em></p>
+                            <p>Your first instinct might be: <em>"Let me search for Uracil or Thymine."</em> But that is the great bioinformatics trap! A computer does not inherently know what a 'T' or a 'U' means; it only sees ASCII characters stored in memory.</p>
+                            <p>Bioinformatics operates on <strong>representations</strong> of molecules. If you misunderstand the physical molecule sitting at the beginning of the experiment, your downstream software will faithfully compute a mathematically flawless analysis of the completely wrong biological object.</p>
+                            <div class="math-block">\( \boxed{\text{Atomic Structure}} \rightarrow \boxed{\text{Molecular Identity}} \rightarrow \boxed{\text{Computational Representation}} \)</div>
+                            <p>We are starting here because computational classification must mirror physical chemistry. To write robust algorithms, we must trace how an atom turns into a data feature.</p>
                         </div>
                         
+                        <!-- RIGHT CARD: WHERE DOES THIS FIT? -->
                         <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The RNA-Seq Illusion</h3>
-                            <p>This brings us to the ultimate trap: RNA-Seq. The biological starting material is <strong>RNA</strong>. But the lab workflow uses reverse transcriptase to convert it into <strong>cDNA</strong> (DNA).</p>
-                            <p>So when you open your FASTQ file and see a "T", it does <strong>not</strong> mean the original biological molecule was DNA. The physical molecule sequenced was cDNA, but the biological source was RNA.</p>
-                            <div class="math-block">\( \boxed{ \text{RNA} \rightarrow \text{cDNA} \rightarrow \text{T} } \)</div>
-                            <p>This is why <strong>metadata is part of bioinformatics</strong>. The sequence alone is a lossy representation of physical reality.</p>
-                        </div>
-                    </div>
-                    
-                    <figure>
-                        <img src="bioinfo_abstraction_layers.jpg" alt="The Bioinformatics Chain of Abstraction">
-                        <figcaption><strong>Figure 4:</strong> The Chain of Abstraction. A perfectly functioning downstream algorithm cannot rescue an incorrect upstream biological assumption. If you don't know what physical molecule you are analyzing, your mathematical models will fail.</figcaption>
-                    </figure>
-                </section>
-                
-                <section class="section-block fade-up">
-                    <div class="grid-layout grid-1">
-                        <div class="glass-card tilt-effect hover-target">
-                            <h3 class="h-secondary pink-heading">The Master Equation Chain</h3>
-                            <p>If you want one mental model to take away from our cafe chat, make it this causal chain. Do not begin with the sequence letter. Begin with the physical chemistry of the molecule itself.</p>
-                            <div class="math-block" style="text-align: left; padding: 2rem;">
-                                \( \boxed{
-                                \begin{aligned}
-                                &2′\text{-OH} \quad \text{vs} \quad 2′\text{-H} \\
-                                &\Downarrow \\
-                                &\text{Different Electronic Structure} \\
-                                &\Downarrow \\
-                                &\text{Different Chemical Reactivity} \\
-                                &\Downarrow \\
-                                &\text{Different Experimental Handling} \\
-                                &\Downarrow \\
-                                &\text{Different Data Generation Process} \\
-                                &\Downarrow \\
-                                &\text{Different Computational Assumptions} \\
-                                &\Downarrow \\
-                                &\text{Different Biological Interpretation}
-                                \end{aligned}
-                                } \)
+                            <h3 class="h-secondary pink-heading">Where Does This Fit?</h3>
+                            <p>This topic forms the foundational bridge connecting organic chemistry, experimental lab protocols, and software algorithms. We follow the information through four cascading layers:</p>
+                            
+                            <div class="timeline" style="border-left: 2px solid rgba(255,0,127,0.3); padding-left: 1.5rem; margin-left: 1rem; margin-top: 1.5rem;">
+                                <div style="position: relative; margin-bottom: 1.6rem;">
+                                    <div style="position: absolute; left: -1.9rem; top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></div>
+                                    <strong style="color: #fff; font-family: 'Cinzel', serif; letter-spacing: 1px; font-size: 1rem;">1. ATOMS & FUNCTIONAL GROUPS</strong><br>
+                                    <span style="color: var(--text-muted); font-size: 0.92rem;">The 2′ carbon (H vs OH) and pyrimidine C5 methyl substituent.</span>
+                                </div>
+                                <div style="position: relative; margin-bottom: 1.6rem;">
+                                    <div style="position: absolute; left: -1.9rem; top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></div>
+                                    <strong style="color: #fff; font-family: 'Cinzel', serif; letter-spacing: 1px; font-size: 1rem;">2. CHEMICAL BEHAVIOR & STABILITY</strong><br>
+                                    <span style="color: var(--text-muted); font-size: 0.92rem;">Transesterification, backbone self-cleavage, and sugar puckering.</span>
+                                </div>
+                                <div style="position: relative; margin-bottom: 1.6rem;">
+                                    <div style="position: absolute; left: -1.9rem; top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></div>
+                                    <strong style="color: #fff; font-family: 'Cinzel', serif; letter-spacing: 1px; font-size: 1rem;">3. EXPERIMENTAL MEASUREMENT</strong><br>
+                                    <span style="color: var(--text-muted); font-size: 0.92rem;">Library preparation (cDNA conversion), sequencer signals, and Phred scores.</span>
+                                </div>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; left: -1.9rem; top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></div>
+                                    <strong style="color: #fff; font-family: 'Cinzel', serif; letter-spacing: 1px; font-size: 1rem;">4. COMPUTATIONAL INFERENCE</strong><br>
+                                    <span style="color: var(--text-muted); font-size: 0.92rem;">Feature vectors, Bayesian classification, and pipeline error propagation.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Navigation -->
-                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem; padding: 0 2rem;">
+                <!-- ROW 2: NUCLEOTIDE ANATOMY & THE 2' CARBON -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <!-- CARD: FIRST PRINCIPLES & ANATOMY -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">1. First Principles: Nucleotide Anatomy</h3>
+                            <p>Before distinguishing DNA from RNA, let's nail down what we are actually classifying. When a parser encounters a record, it must separate three core structural components:</p>
+                            <div class="math-block">\( \boxed{\text{Nucleotide} = \text{Sugar} + \text{Base} + \text{Phosphate}} \)</div>
+                            <div class="math-block">\( \boxed{\text{Nucleoside} = \text{Sugar} + \text{Base}} \)</div>
+                            <p>The sugar is a 5-carbon pentose ring. In organic nomenclature, we number the sugar carbons with a <strong>prime symbol</strong>: \(1′, 2′, 3′, 4′, 5′\). That prime isn't just decoration; it distinguishes the sugar ring atoms from the unprimed positions (like \(C5\) or \(N1\)) on the nitrogenous base.</p>
+                            <p>The most fundamental physical difference between DNA and RNA is <strong>the sugar</strong>, not the base:</p>
+                            <ul>
+                                <li><strong>DNA:</strong> Contains <strong>2′-deoxyribose</strong> (bearing a \(2′\text{-H}\)).</li>
+                                <li><strong>RNA:</strong> Contains <strong>ribose</strong> (bearing a \(2′\text{-OH}\)).</li>
+                            </ul>
+                            <p>Look at the chemical formulas: Ribose is \(\mathrm{C_5H_{10}O_5}\), while 2-deoxyribose is \(\mathrm{C_5H_{10}O_4}\). The prefix <em>deoxy-</em> literally signifies the loss of that single oxygen. But what does that one missing oxygen really do?</p>
+                        </div>
+
+                        <!-- CARD: THE 2' CARBON LIE DETECTOR (WITH FIGURE 1 INSIDE) -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The 2′ Carbon: The Ultimate Lie Detector</h3>
+                            <p>This is Step 1 of our worked example. If someone gives you an unknown chemical file, you inspect the 2′ position first:</p>
+                            <div class="code-box">Case A: Found 2′-H  → 2′-deoxyribose → Strongly Supports DNA
+Case B: Found 2′-OH → Ribose         → Strongly Supports RNA</div>
+                            <p>Why does one oxygen matter so much? In \(\mathrm{C2′-H}\), the bond is essentially non-polar. But in \(\mathrm{C2′-OH}\), oxygen is brutally electronegative compared to hydrogen and carbon. This creates a strongly polarized bond:</p>
+                            <div class="math-block">\( \mathrm{C^{\delta+} - O^{\delta-}} \quad \text{and} \quad \mathrm{O^{\delta-} - H^{\delta+}} \)</div>
+                            <p>This single hydroxyl group participates in hydrogen bonding, coordinates local hydration shells, alters conformational flexibility, and—most dangerously—acts as an active nucleophile.</p>
+                            
+                            <!-- FIGURE 1 EMBEDDED INSIDE CARD -->
+                            <figure>
+                                <img src="sugar_comparison.jpg" alt="Ribose vs Deoxyribose Comparison">
+                                <figcaption><strong>Figure 1:</strong> The 2′ Carbon Difference. The presence of the electronegative 2′-OH in ribose changes molecular stability, reactivity, and helix geometry, directly affecting sample integrity before it even reaches the sequencer.</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROW 3: CHEMICAL & CONFORMATIONAL CONSEQUENCES (EQUATIONS BREAKDOWN) -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <!-- CARD: THERMODYNAMICS & BACKBONE CLEAVAGE -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Thermodynamics & Self-Cleavage</h3>
+                            <p>Because RNA contains a 2′-OH, it carries the seeds of its own destruction. Under slightly alkaline or physiological conditions, the hydroxyl oxygen deprotonates into an alkoxide ion (\(2′\mathrm{O^-}\)). This oxygen launches an intramolecular nucleophilic attack on the adjacent phosphorus atom in the phosphodiester backbone:</p>
+                            <div class="math-block">\( \boxed{ 2′\mathrm{O^-} \rightarrow \mathrm{P} } \implies \text{Intramolecular Transesterification} \)</div>
+                            <p>This produces a cyclic \(2′,3′\text{-phosphate}\) intermediate and severs the RNA strand! DNA has only a \(2′\text{-H}\), completely blocking this attack pathway. This is why intact dinosaur DNA can theoretically survive in amber for millennia, while RNA degrades in minutes on a lab bench.</p>
+                            <p>Thermodynamically, whether any molecular process or structural fold occurs depends on the <strong>Gibbs Free Energy equation</strong>:</p>
+                            <div class="math-block">\( \Delta G = \Delta H - T\Delta S \)</div>
+
+                            <!-- EQUATION BREAKDOWN BOX 1 -->
+                            <div class="equation-breakdown">
+                                <h4>Equation Breakdown: Gibbs Free Energy</h4>
+                                <ul>
+                                    <li><strong style="color: #00e5ff;">\(\Delta G\)</strong>: Gibbs Free Energy Change (\(\text{kJ/mol}\) or \(\text{kcal/mol}\)). If \(\Delta G < 0\), the process or fold is thermodynamically spontaneous.</li>
+                                    <li><strong style="color: #00e5ff;">\(\Delta H\)</strong>: Enthalpy Change. Reflects energy released from chemical bond formation, hydrogen bonding, and base stacking (\(\Delta H < 0\) is favorable).</li>
+                                    <li><strong style="color: #00e5ff;">\(T\)</strong>: Absolute Temperature in Kelvin (\(K = ^\circ\text{C} + 273.15\)).</li>
+                                    <li><strong style="color: #00e5ff;">\(\Delta S\)</strong>: Entropy Change. Measures disorder; folding a flexible single strand into a helix decreases entropy (\(\Delta S < 0\)), creating an entropic penalty \(-T\Delta S > 0\).</li>
+                                </ul>
+                                <div class="calc-step">
+                                    <strong>How it is calculated:</strong> Summing experimental nearest-neighbor enthalpy and entropy parameters (Turner Energy Rules) for all paired bases and loops.
+                                </div>
+                                <div class="bio-step">
+                                    <strong>Why it matters in Bioinformatics:</strong> Secondary structure prediction tools (like <code>RNAfold</code>) solve:
+                                    <div style="text-align: center; margin: 0.5rem 0; font-family: 'JetBrains Mono';">\( S^* = \arg\min_S \Delta G(S) \)</div>
+                                    They find the conformation \(S^*\) that minimizes \(\Delta G\). If you input an RNA sequence into an algorithm configured with DNA thermodynamics, the predicted structure is totally invalid because the \(2′\text{-OH}\) constraints were ignored!
+                                </div>
+                            </div>
+
+                            <p>Conformationally, RNA's 2′-OH creates steric hindrance that forces the ribose ring into a <strong>\(C3′\text{-endo}\)</strong> sugar pucker (favoring rigid A-form geometry), whereas B-form DNA relaxes into a <strong>\(C2′\text{-endo}\)</strong> pucker.</p>
+                        </div>
+
+                        <!-- CARD: DEGRADATION KINETICS & BIOINFORMATICS ABUNDANCE -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Degradation Kinetics & Data Bias</h3>
+                            <p>Here is where physical chemistry directly impacts computational counts. Thermodynamics tells us if a reaction is possible (\(\Delta G < 0\)), but <strong>kinetics</strong> tells us how fast it happens.</p>
+                            <p>RNA cleavage follows a first-order decay process governed by the differential rate law:</p>
+                            <div class="math-block">\( \frac{d[R]}{dt} = -k[R] \iff [R] = [R_0]e^{-kt} \)</div>
+
+                            <!-- EQUATION BREAKDOWN BOX 2 -->
+                            <div class="equation-breakdown">
+                                <h4>Equation Breakdown: First-Order RNA Degradation</h4>
+                                <ul>
+                                    <li><strong style="color: #00e5ff;">\([R]\)</strong>: Concentration of intact, full-length RNA remaining at time \(t\) (\(\text{mol/L}\) or molecules/cell).</li>
+                                    <li><strong style="color: #00e5ff;">\([R_0]\)</strong>: Initial starting concentration of intact RNA at time zero (\(t=0\)).</li>
+                                    <li><strong style="color: #00e5ff;">\(\frac{d[R]}{dt}\)</strong>: Instantaneous rate of RNA loss over time.</li>
+                                    <li><strong style="color: #00e5ff;">\(k\)</strong>: First-order degradation rate constant (\(\text{time}^{-1}\), e.g., \(\text{s}^{-1}\) or \(\text{min}^{-1}\)). Determined by temperature, pH, and divalent cations (\(\mathrm{Mg^{2+}}\)).</li>
+                                    <li><strong style="color: #00e5ff;">\(t\)</strong>: Elapsed time during sample handling, lysis, or storage.</li>
+                                    <li><strong style="color: #00e5ff;">\(e\)</strong>: Euler’s constant (\(\approx 2.71828\)), the natural base of exponential decay.</li>
+                                    <li><strong style="color: #00e5ff;">\(t_{1/2}\)</strong>: Half-life, the time required for 50% of molecules to degrade:
+                                        <div style="text-align: center; margin: 0.4rem 0; font-family: 'JetBrains Mono';">\( t_{1/2} = \frac{\ln 2}{k} \approx \frac{0.693}{k} \)</div>
+                                    </li>
+                                </ul>
+                                <div class="calc-step">
+                                    <strong>How it is calculated:</strong> By integrating \(\int_{[R_0]}^{[R]} \frac{1}{[R]}d[R] = -k \int_0^t dt\), yielding \(\ln([R]/[R_0]) = -kt\), then exponentiating both sides.
+                                </div>
+                                <div class="bio-step">
+                                    <strong>Why it matters in Bioinformatics:</strong> Imagine two clinical samples (A and B) with identical starting RNA counts: \([R_0]_A = [R_0]_B\). If sample A sat at room temperature 10 minutes longer, its degradation constant was higher (\(k_A > k_B\)).
+                                    <div style="text-align: center; margin: 0.5rem 0; font-family: 'JetBrains Mono';">\( [R]_A = [R_0]e^{-k_A t} < [R]_B = [R_0]e^{-k_B t} \)</div>
+                                    When sequenced, Sample A yields fewer reads. A naive differential expression algorithm (like DESeq2) will claim Gene X was "downregulated" in Sample A. In reality, it was just chemical degradation!
+                                </div>
+                            </div>
+
+                            <div class="math-block">\( \boxed{\text{Chemical Stability}} \rightarrow \text{Molecular Abundance} \rightarrow \text{Sequencing Counts} \rightarrow \text{Statistical Inference} \)</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROW 4: SCAN THE PYRIMIDINES & WORKED EXAMPLES -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <!-- CARD: THE PYRIMIDINE SCAN (WITH FIGURE 2 INSIDE) -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">2. Step 2 — Scan the Pyrimidines</h3>
+                            <p>Now we move from the sugar to the nitrogenous bases. The relevant comparison is <strong>Uracil vs Thymine</strong>:</p>
+                            <div class="math-block">\( \boxed{ T = U + \mathrm{CH_3} } \implies \text{Thymine is 5-methyluracil} \)</div>
+                            <p>Look closely at the pyrimidine ring: Uracil has a hydrogen at carbon 5 (\(\mathrm{C5-H}\)). Thymine has a bulky methyl group at carbon 5 (\(\mathrm{C5-CH_3}\)).</p>
+                            <p>In Topic 11, we explored why DNA invested the cellular energy to use Thymine instead of Uracil: Spontaneous cytosine deamination (\(C \rightarrow U\)) happens constantly. If DNA used Uracil normally, repair enzymes couldn't tell if a 'U' was a legitimate base or a damaged Cytosine. The methyl tag on Thymine allows repair enzymes to recognize Uracil as foreign DNA damage and replace it.</p>
+                            <p><strong>The Data Disconnect:</strong> If repair fails and \(C \rightarrow U\) replicates into a \(T:A\) base pair, your variant caller outputs a VCF record:</p>
+                            <div class="code-box">#CHROM   POS      REF   ALT
+chr12    54321    C     T</div>
+                            <p>Notice: The VCF does <strong>not</strong> say <em>"this base suffered hydrolytic deamination."</em> It only records the sequence difference. The physical mechanism has been abstracted into digital letters.</p>
+
+                            <!-- FIGURE 2 EMBEDDED INSIDE CARD -->
+                            <figure>
+                                <img src="pyrimidine_comparison.jpg" alt="Uracil vs Thymine Comparison">
+                                <figcaption><strong>Figure 2:</strong> The C5 Methyl Group. Thymine is structurally 5-methyluracil. DNA utilizes Thymine so that accidental cytosine deaminations (which produce Uracil) can be recognized as errors and repaired.</figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- CARD: LOGIC CORRECTION & WORKED EXAMPLES -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The Logic Correction & Worked Examples</h3>
+                            <p>Many textbooks state: <em>"If you see a methyl group at C5 and a 2′-H, it's Thymine/DNA; if C5 lacks methyl and 2′-OH is present, it's Uracil/RNA."</em></p>
+                            <p>Chemically, that statement is dangerous because it conflates <strong>two independent lines of evidence</strong>:</p>
+                            <ul>
+                                <li><strong>Evidence 1 (Sugar):</strong> \(2′\text{-H} \implies \text{deoxyribose}\); \(2′\text{-OH} \implies \text{ribose}\).</li>
+                                <li><strong>Evidence 2 (Base):</strong> \(\mathrm{C5-CH_3} \implies \text{Thymine}\); \(\mathrm{C5-H} \implies \text{Uracil}\).</li>
+                            </ul>
+                            <p>You must evaluate them separately, then integrate:</p>
+                            
+                            <div style="background: rgba(0,0,0,0.3); padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; font-size: 0.95rem; border-left: 3px solid var(--accent-blue);">
+                                <strong style="color: #00e5ff;">Worked Example A (Canonical DNA):</strong><br>
+                                Sugar: \(2′ = \mathrm{H}\) (\(\text{deoxyribose}\)) | Bases: A, T, G, C (\(\mathrm{C5-CH_3}\) present).<br>
+                                \(\implies \text{Combine: Deoxyribose} + \text{Thymine} \implies \mathbf{DNA}\).
+                            </div>
+
+                            <div style="background: rgba(0,0,0,0.3); padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; font-size: 0.95rem; border-left: 3px solid var(--accent-purple);">
+                                <strong style="color: #b388ff;">Worked Example B (Canonical RNA):</strong><br>
+                                Sugar: \(2′ = \mathrm{OH}\) (\(\text{ribose}\)) | Bases: A, U, G, C (\(\mathrm{C5-H}\) present).<br>
+                                \(\implies \text{Combine: Ribose} + \text{Uracil} \implies \mathbf{RNA}\).
+                            </div>
+
+                            <div style="background: rgba(255,0,127,0.1); padding: 1.25rem; border-radius: 8px; margin: 1rem 0; border: 1px solid rgba(255,0,127,0.3);">
+                                <strong style="color: #ff4da6; font-size: 1rem;">The Critical Mixed Signal Case:</strong><br>
+                                Suppose your mass spectrometer reveals: <strong>\(2′\text{-OH}\) (ribose)</strong> alongside <strong>Thymine (\(\mathrm{C5-CH_3}\))</strong>!<br><br>
+                                Do you blindly scream "DNA!" because you saw a T? <strong>Absolutely not.</strong><br>
+                                The sugar is undeniably ribose. This occurs routinely in real biology: transfer RNAs (tRNAs) feature 5-methyluridine (ribothymidine, <code>rT</code>), synthetic mRNA therapeutics (like COVID vaccines) use methylated bases to evade immune detection, and PCR assays use synthetic fluorophore-labeled chimera probes.<br>
+                                <div style="margin-top: 0.5rem; color: #ffd54f;">
+                                    \(\boxed{\text{Evidence Integration} > \text{Single-Feature Recognition}}\)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROW 5: PHYSICAL SIGNAL TO DIGITAL DATA & PHRED SCORES -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <!-- CARD: PHYSICAL SIGNAL MEASUREMENT -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Physical Signal to Base Calling</h3>
+                            <p>How does a physical molecule actually transition into a text file? A sequencer never directly sees an 'A', 'C', 'G', or 'T'. It measures raw continuous analog physics:</p>
+                            <div class="math-block">\( S = f(M, E, \epsilon) \)</div>
+
+                            <!-- EQUATION BREAKDOWN BOX 3 -->
+                            <div class="equation-breakdown">
+                                <h4>Equation Breakdown: Instrument Signal Model</h4>
+                                <ul>
+                                    <li><strong style="color: #00e5ff;">\(S\)</strong>: The observed instrument physical signal trace (e.g., photon emission intensity across color filters in Illumina, or picoampere electrical current blockade in Oxford Nanopore).</li>
+                                    <li><strong style="color: #00e5ff;">\(M\)</strong>: The true underlying physical molecular state (which base was incorporated).</li>
+                                    <li><strong style="color: #00e5ff;">\(E\)</strong>: Experimental state variables (flowcell temperature, enzyme kinetics, laser power, fluorophore fading).</li>
+                                    <li><strong style="color: #00e5ff;">\(\epsilon\)</strong>: Stochastic measurement noise (detector thermal noise, optical crosstalk, background sensor jitter).</li>
+                                    <li><strong style="color: #00e5ff;">\(P(B|S)\)</strong>: Posterior probability that candidate base \(B \in \{A,C,G,T\}\) produced signal \(S\).</li>
+                                </ul>
+                                <div class="calc-step">
+                                    <strong>How it is calculated:</strong> Deep neural networks (convolutional/recurrent models like Dorado or Guppy) evaluate the temporal signal curve \(S\) and output normalized softmax probabilities for all four bases.
+                                </div>
+                                <div class="bio-step">
+                                    <strong>Why it matters in Bioinformatics:</strong> No sequencer measurement is 100% deterministic. Computational biology must quantify the probability of error for every single nucleotide called.
+                                </div>
+                            </div>
+
+                            <p>If the signal is crisp, \(P(C|S) = 0.9999\). If fluorophores overlap or current jitters, \(P(C|S)\) drops to \(0.85\). This uncertainty is packaged mathematically into a <strong>Phred Quality Score</strong>.</p>
+                        </div>
+
+                        <!-- CARD: PHRED QUALITY SCORE (WITH FIGURE 3 INSIDE) -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The Phred Quality Score (\(Q\))</h3>
+                            <p>In 1998, Phil Green and Brent Ewing introduced the Phred score to standardize sequencer uncertainty into an explicit logarithmic scale:</p>
+                            <div class="math-block">\( Q = -10 \log_{10}(P_e) \iff P_e = 10^{-Q/10} \)</div>
+
+                            <!-- EQUATION BREAKDOWN BOX 4 -->
+                            <div class="equation-breakdown">
+                                <h4>Equation Breakdown: Phred Quality Score</h4>
+                                <ul>
+                                    <li><strong style="color: #00e5ff;">\(Q\)</strong>: Phred Quality Score (typically integer 0 to 40+).</li>
+                                    <li><strong style="color: #00e5ff;">\(-10\)</strong>: Decibel multiplier mapping microscopic decimals into intuitive positive numbers.</li>
+                                    <li><strong style="color: #00e5ff;">\(\log_{10}\)</strong>: Common base-10 logarithm.</li>
+                                    <li><strong style="color: #00e5ff;">\(P_e\)</strong>: Probability that the base call is an error.</li>
+                                </ul>
+                                <div class="calc-step">
+                                    <strong>Calculation Walkthrough:</strong>
+                                    <ul>
+                                        <li>If \(P_e = 0.1\) (1 in 10 error) \(\rightarrow Q = -10 \log_{10}(10^{-1}) = \mathbf{10}\) (90% accuracy).</li>
+                                        <li>If \(P_e = 0.01\) (1 in 100 error) \(\rightarrow Q = -10 \log_{10}(10^{-2}) = \mathbf{20}\) (99% accuracy).</li>
+                                        <li>If \(P_e = 0.001\) (1 in 1,000 error) \(\rightarrow Q = -10 \log_{10}(10^{-3}) = \mathbf{30}\) (99.9% accuracy).</li>
+                                        <li>If \(P_e = 0.0001\) (1 in 10,000 error) \(\rightarrow Q = -10 \log_{10}(10^{-4}) = \mathbf{40}\) (99.99% accuracy).</li>
+                                    </ul>
+                                </div>
+                                <div class="bio-step">
+                                    <strong>Why it matters in Bioinformatics:</strong> In FASTQ files, quality scores are stored as single ASCII characters (\(Q30\) is ASCII character '<code>?</code>', \(Q40\) is '<code>I</code>'). Alignment tools (BWA) and variant callers (GATK) use \(P_e = 10^{-Q/10}\) to weight mismatched bases when calculating alignment and genotype likelihoods!
+                                </div>
+                            </div>
+
+                            <!-- FIGURE 3 EMBEDDED INSIDE CARD -->
+                            <figure>
+                                <img src="phred_probability.jpg" alt="Phred Quality Scores and Base Calling">
+                                <figcaption><strong>Figure 3:</strong> Translating Physical Signal to Statistical Confidence. Machine learning algorithms analyze raw continuous signals and assign discrete base calls paired with a logarithmic Phred Quality Score (Q-Score).</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROW 6: STATISTICAL INFERENCE & PCR EXPANSION -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <!-- CARD: VARIANT CALLING AS A LIKELIHOOD PROBLEM -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Hypotheses & Likelihood Ratios</h3>
+                            <p>Suppose you align 100 reads covering a genomic coordinate. 80 reads show <code>C</code> and 20 reads show <code>T</code>. A naive observer calculates the Allele Fraction:</p>
+                            <div class="math-block">\( AF = \frac{\text{ALT}}{\text{REF} + \text{ALT}} = \frac{20}{80 + 20} = 0.20 \implies 20\% \)</div>
+                            <p>Does this mean 20% of the patient's cells have a mutation? <strong>Not necessarily.</strong> As we learned in Topic 12, variant callers frame this as a test between competing statistical hypotheses:</p>
+                            <ul>
+                                <li>\(H_0\): The patient is normal homozygous \(C/C\); the 20 T reads are sequencer errors.</li>
+                                <li>\(H_1\): The patient has a real biological \(C \rightarrow T\) mutation.</li>
+                            </ul>
+                            <div class="math-block">\( \boxed{ LR = \frac{P(D|H_1)}{P(D|H_0)} } \quad \text{and} \quad \boxed{ P(H_1|D) = \frac{P(D|H_1)P(H_1)}{P(D)} } \)</div>
+
+                            <!-- EQUATION BREAKDOWN BOX 5 -->
+                            <div class="equation-breakdown">
+                                <h4>Equation Breakdown: Likelihood Ratio & Bayes' Rule</h4>
+                                <ul>
+                                    <li><strong style="color: #00e5ff;">\(LR\)</strong>: Likelihood Ratio. Quantifies how many times more probable the data is under \(H_1\) than under \(H_0\).</li>
+                                    <li><strong style="color: #00e5ff;">\(D\)</strong>: The observed pileup data (all base calls and their corresponding Phred quality scores).</li>
+                                    <li><strong style="color: #00e5ff;">\(P(D|H_1)\)</strong>: Likelihood of observing these reads if a biological variant is truly present.</li>
+                                    <li><strong style="color: #00e5ff;">\(P(D|H_0)\)</strong>: Likelihood of observing these reads purely through random instrument error.</li>
+                                    <li><strong style="color: #00e5ff;">\(P(H_1)\)</strong>: Prior probability of a variant at this locus (e.g., genome mutation rate \(\approx 10^{-8}\) or known gnomAD frequency).</li>
+                                    <li><strong style="color: #00e5ff;">\(P(H_1|D)\)</strong>: Posterior probability—the final confidence that the variant is real.</li>
+                                </ul>
+                                <div class="bio-step">
+                                    <strong>Why it matters in Bioinformatics:</strong> If those 20 T reads have low quality (\(Q10\), \(P_e = 0.1\)), \(P(D|H_0)\) is high, so \(LR\) is small and the caller rejects the variant. If they are \(Q40\) (\(P_e = 0.0001\)), \(P(D|H_0)\) collapses to near zero, driving \(LR\) into millions and triggering a high-confidence call in your VCF!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CARD: PCR AMPLIFICATION & DEPENDENCE -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">PCR Amplification: Non-Independence</h3>
+                            <p>Here is another trap: <em>Are those 20 reads actually 20 independent biological observations?</em></p>
+                            <p>During library preparation, DNA molecules are amplified via Polymerase Chain Reaction (PCR). Under \(n\) cycles of thermal replication, template count expands exponentially:</p>
+                            <div class="math-block">\( N = N_0(1 + E)^n \)</div>
+
+                            <!-- EQUATION BREAKDOWN BOX 6 -->
+                            <div class="equation-breakdown">
+                                <h4>Equation Breakdown: PCR Amplification</h4>
+                                <ul>
+                                    <li><strong style="color: #00e5ff;">\(N\)</strong>: Final count of amplified DNA molecules in the library.</li>
+                                    <li><strong style="color: #00e5ff;">\(N_0\)</strong>: Initial count of starting physical template molecules.</li>
+                                    <li><strong style="color: #00e5ff;">\(E\)</strong>: Amplification efficiency per thermal cycle (\(0 \le E \le 1\); ideally \(E = 1.0\) for perfect doubling).</li>
+                                    <li><strong style="color: #00e5ff;">\(n\)</strong>: Number of PCR thermal cycles (typically 20–35).</li>
+                                </ul>
+                                <div class="calc-step">
+                                    <strong>Calculation:</strong> If \(E = 1.0\) and \(n = 25\), a single starting molecule (\(N_0 = 1\)) multiplies into:
+                                    <div style="text-align: center; margin: 0.4rem 0; font-family: 'JetBrains Mono';">\( N = 1 \times (1 + 1)^{25} = 2^{25} \approx 33,554,432 \text{ copies!} \)</div>
+                                </div>
+                                <div class="bio-step">
+                                    <strong>Why it matters in Bioinformatics:</strong> If <em>one single molecule</em> suffered chemical damage in the test tube before PCR cycle 1, PCR duplicates that damaged molecule millions of times! The sequencer reads 20 identical copies.
+                                    <div style="text-align: center; margin: 0.5rem 0; font-weight: bold; color: #ff4da6;">
+                                        \( 20\text{ Reads} \neq 20\text{ Independent Molecular Observations} \)
+                                    </div>
+                                    Bioinformatics pipelines must run deduplication tools (like <code>picard MarkDuplicates</code> or UMI molecular barcode collapsing) to prevent PCR artifacts from being called as mutations.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROW 7: COMPUTATIONAL CLASSIFICATION & THE RNA-SEQ TRAP -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-2">
+                        <!-- CARD: CHEMICAL FEATURES BECOME DATA FEATURES -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">3. Chemical Features Become Data Features</h3>
+                            <p>How does our initial physical identification problem become a machine learning classification problem? We map continuous chemical properties into discrete encoded features:</p>
+                            
+                            <table class="summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Physical Property</th>
+                                        <th>Computational Feature</th>
+                                        <th>Encoded Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>\(2′\text{-OH}\) (Ribose)</td>
+                                        <td><code>sugar_2prime</code></td>
+                                        <td><code>x₁ = 1</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>\(2′\text{-H}\) (Deoxyribose)</td>
+                                        <td><code>sugar_2prime</code></td>
+                                        <td><code>x₁ = 0</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>\(\mathrm{C5-CH_3}\) (Thymine)</td>
+                                        <td><code>base_identity</code></td>
+                                        <td><code>x₂ = 1</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>\(\mathrm{C5-H}\) (Uracil)</td>
+                                        <td><code>base_identity</code></td>
+                                        <td><code>x₂ = 0</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p>Now every nucleotide becomes a 2-dimensional feature vector: \( X = (x_1, x_2) \). A machine learning classifier estimates the class probability:</p>
+                            <div class="math-block">\( P(Y = \text{DNA} \mid X) \quad \text{vs} \quad P(Y = \text{RNA} \mid X) \)</div>
+                            
+                            <p><strong>The Decision Tree:</strong> A robust parser doesn't use rigid, brittle if-statements. It constructs a probabilistic hierarchy:</p>
+                            <div class="code-box">             Inspect 2′ Carbon
+                 /       \
+             x₁ = 0      x₁ = 1
+            (2′-H)      (2′-OH)
+              │           │
+          Deoxyribose   Ribose
+              │           │
+          Scan C5      Scan C5
+          /     \      /     \
+       x₂=1    x₂=0  x₂=1    x₂=0
+       (T)     (U)   (T)     (U)
+        │       │     │       │
+       High   Verify Verify  High
+      Conf.   Damage Hybrid Conf.
+       DNA     DNA    RNA    RNA</div>
+                            <p>Notice the terminology: The evidence <strong>supports</strong> a classification; it never blindly "proves" it without context.</p>
+                        </div>
+
+                        <!-- CARD: THE RNA-SEQ TRAP (WITH FIGURE 4 INSIDE) -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">The RNA-Seq Trap & The 3 Levels</h3>
+                            <p>Here is where confusing representations destroys real experiments: <strong>RNA Sequencing (RNA-Seq)</strong>.</p>
+                            <p>The biological starting material is <strong>RNA</strong>. But standard Illumina sequencers cannot sequence RNA directly! The molecular biology workflow uses reverse transcriptase to synthesize a complementary DNA (<strong>cDNA</strong>) strand:</p>
+                            <div class="math-block">\( \text{Biological RNA} \xrightarrow{\text{Reverse Transcriptase}} \text{cDNA (DNA)} \xrightarrow{\text{Sequencing}} \text{FASTQ (A, C, G, T)} \)</div>
+                            <p>During reverse transcription, every Uracil in the RNA templates an Adenine, which subsequently copies into a <strong>Thymine (T)</strong> in the sequenced cDNA library.</p>
+                            <p>When you open your FASTQ file and see <code>ACGTACGT</code>, if you don't know the molecular history of the sample, you might conclude: <em>"This file has Ts, so the sample was DNA."</em> <strong>Completely wrong!</strong> The biological source was RNA.</p>
+                            
+                            <div style="background: rgba(0,0,0,0.35); padding: 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--accent);">
+                                <h4 style="color: #fff; margin-top: 0; margin-bottom: 0.5rem; font-size: 0.95rem;">Always Ask These Three Questions:</h4>
+                                <ol style="margin-bottom: 0; padding-left: 1.2rem;">
+                                    <li><strong style="color: #ff4da6;">What was the biological molecule?</strong> (RNA extracted from tissue).</li>
+                                    <li><strong style="color: #00e5ff;">What molecule was physically loaded into the sequencer?</strong> (cDNA).</li>
+                                    <li><strong style="color: #ffd54f;">What alphabet does the data file use?</strong> (A, C, G, T).</li>
+                                </ol>
+                            </div>
+                            <p>This is why <strong>metadata is part of bioinformatics</strong>: \( \boxed{\text{Sequence} + \text{Metadata} > \text{Sequence Alone}} \).</p>
+
+                            <!-- FIGURE 4 EMBEDDED INSIDE CARD -->
+                            <figure>
+                                <img src="bioinfo_abstraction_layers.jpg" alt="The Bioinformatics Chain of Abstraction">
+                                <figcaption><strong>Figure 4:</strong> The Chain of Abstraction. A perfectly functioning downstream algorithm cannot rescue an incorrect upstream biological assumption. If you don't know what physical molecule you are analyzing, your mathematical models will fail.</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROW 8: ERROR PROPAGATION & THE MASTER CAUSAL CHAIN -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
+                        <!-- FULL-WIDTH CARD: ERROR PROPAGATION & MASTER MODEL -->
+                        <div class="glass-card tilt-effect hover-target">
+                            <h3 class="h-secondary pink-heading">Pipeline Error Propagation & The Master Model</h3>
+                            <p>In multivariable calculus and numerical analysis, when you pass an input \(X\) with error \(\delta X\) through a function \(Y = f(X)\), the downstream error propagates according to the partial derivatives:</p>
+                            <div class="math-block">\( \delta Y \approx \sum_i \frac{\partial f}{\partial X_i}\delta X_i \)</div>
+
+                            <!-- EQUATION BREAKDOWN BOX 7 -->
+                            <div class="equation-breakdown">
+                                <h4>Equation Breakdown: Pipeline Sensitivity & Error Propagation</h4>
+                                <ul>
+                                    <li><strong style="color: #00e5ff;">\(X_0\)</strong>: The ground-truth physical molecular state in the biological cell.</li>
+                                    <li><strong style="color: #00e5ff;">\(X_1 = f_1(X_0)\)</strong>: The experimental measurement and sequencer signal output.</li>
+                                    <li><strong style="color: #00e5ff;">\(X_2 = f_2(X_1)\)</strong>: The digital sequence representation (FASTQ / BAM alignment).</li>
+                                    <li><strong style="color: #00e5ff;">\(X_3 = f_3(X_2)\)</strong>: The downstream biological conclusion (Variant call / Gene expression estimate).</li>
+                                    <li><strong style="color: #00e5ff;">\(\frac{\partial f}{\partial X_i}\)</strong>: The sensitivity coefficient of pipeline stage \(f\) with respect to upstream error \(\delta X_i\).</li>
+                                    <li><strong style="color: #00e5ff;">\(\delta Y\)</strong>: The total cumulative error in the final biological conclusion.</li>
+                                </ul>
+                                <div class="bio-step">
+                                    <strong>Why it matters in Bioinformatics:</strong> The entire bioinformatics pipeline is a nested composite function:
+                                    <div style="text-align: center; margin: 0.5rem 0; font-family: 'JetBrains Mono';">\( X_3 = f_3(f_2(f_1(X_0))) \)</div>
+                                    If stage 1 misclassifies the molecule (\(\delta X_1 \neq 0\)), functions \(f_2\) and \(f_3\) will execute with zero software bugs, but they will amplify and propagate that upstream error into a completely invalid biological diagnosis!
+                                </div>
+                            </div>
+
+                            <p style="margin-top: 1.5rem;"><strong>The Complete Master Model:</strong> Never memorize this topic as simply <em>"U is RNA, T is DNA."</em> Carry this causal chain with you throughout your entire bioinformatics journey:</p>
+
+                            <div class="math-block" style="text-align: left; padding: 2rem; line-height: 2;">
+                                \( \boxed{
+                                \begin{aligned}
+                                &2′\text{-OH} \quad \longleftrightarrow \quad 2′\text{-H} \\
+                                &\Downarrow \\
+                                &\text{Different Electronic Structure (Polar C-O bond vs non-polar C-H)} \\
+                                &\Downarrow \\
+                                &\text{Different Chemical Reactivity (Nucleophilic attack on P vs immune backbone)} \\
+                                &\Downarrow \\
+                                &\text{Different Molecular Conformation (C3′-endo A-form vs C2′-endo B-form)} \\
+                                &\Downarrow \\
+                                &\text{Different Experimental Handling (Kinetics of degradation: } [R] = [R_0]e^{-kt}\text{)} \\
+                                &\Downarrow \\
+                                &\text{Different Data Generation Process (cDNA conversion, Phred scores: } P_e = 10^{-Q/10}\text{)} \\
+                                &\Downarrow \\
+                                &\text{Different Computational Assumptions (Likelihood ratio: } LR = \frac{P(D|H_1)}{P(D|H_0)}\text{)} \\
+                                &\Downarrow \\
+                                &\text{Accurate Biological Inference}
+                                \end{aligned}
+                                } \)
+                            </div>
+
+                            <h4 style="color: #ffffff; margin-top: 2rem; margin-bottom: 1rem; font-family: 'Cinzel', serif; font-size: 1.2rem;">Comprehensive Comparison Table</h4>
+                            <table class="summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Level of Observation</th>
+                                        <th>DNA</th>
+                                        <th>RNA</th>
+                                        <th>Bioinformatics Consequence</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>2′ Substituent</strong></td>
+                                        <td>\(2′\text{-H}\)</td>
+                                        <td>\(2′\text{-OH}\)</td>
+                                        <td>Primary classification discriminator</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sugar Type</strong></td>
+                                        <td>2′-deoxyribose (\(\mathrm{C_5H_{10}O_4}\))</td>
+                                        <td>Ribose (\(\mathrm{C_5H_{10}O_5}\))</td>
+                                        <td>Requires distinct chemical modeling</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sugar Pucker</strong></td>
+                                        <td>\(C2′\text{-endo}\) (B-form helix)</td>
+                                        <td>\(C3′\text{-endo}\) (A-form helix)</td>
+                                        <td>Distinct structural prediction parameters</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Canonical Pyrimidine</strong></td>
+                                        <td>Thymine (\(T = U + \mathrm{CH_3}\))</td>
+                                        <td>Uracil (\(U\))</td>
+                                        <td>Base identity feature in data parsers</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Chemical Stability</strong></td>
+                                        <td>Immune to \(2′\text{O^-}\) self-cleavage</td>
+                                        <td>Susceptible to transesterification</td>
+                                        <td>Differential degradation biases library counts</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Deamination Context</strong></td>
+                                        <td>\(C \rightarrow U\) recognized as damage</td>
+                                        <td>\(C \rightarrow U\) matches native base pool</td>
+                                        <td>DNA preserves genome integrity via repair</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sequencer Library</strong></td>
+                                        <td>Direct genomic DNA</td>
+                                        <td>Reverse transcribed cDNA</td>
+                                        <td>Sequenced molecules may differ from biological source</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>File Representation</strong></td>
+                                        <td>FASTQ / BAM / VCF (A, C, G, T)</td>
+                                        <td>FASTQ (A, C, G, T) or normalized (U)</td>
+                                        <td>Metadata is mandatory for interpretation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NAVIGATION BUTTONS -->
+                <div class="navigation-links" style="display: flex; justify-content: space-between; margin-top: 4rem; margin-bottom: 2rem; padding: 0 1rem; width: 100%; box-sizing: border-box;">
                     <a href="../Topic 12 Evolutionary Logic/index.html" style="text-decoration: none;">
                         <div class="glass-card hover-target" style="padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,0,127,0.2); border-radius: 50px; margin-bottom: 0;">
                             <span style="color: var(--accent); font-size: 1.5rem;">←</span>
@@ -283,6 +827,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="script.js?v=14"></script>
+    <script src="script.js?v=15"></script>
 </body>
 </html>
