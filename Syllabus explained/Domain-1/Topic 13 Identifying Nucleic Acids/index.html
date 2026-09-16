@@ -163,18 +163,20 @@
         }
 
         figure { 
-            margin: 2rem 0 0 0; 
+            margin: 2.5rem auto 0.5rem auto; 
             text-align: center; 
             width: 100%;
+            max-width: 1050px;
         }
 
         figure img { 
             width: 100%; 
             height: auto; 
-            border-radius: 10px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6); 
+            border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.12); 
+            box-shadow: 0 12px 40px rgba(0,0,0,0.7); 
             display: block;
+            margin: 0 auto;
         }
 
         figcaption { 
@@ -287,15 +289,13 @@
                     </div>
                 </section>
 
-                <!-- ROW 2: NUCLEOTIDE ANATOMY & THE 2' CARBON -->
+                <!-- ROW 2A: NUCLEOTIDE ANATOMY (GRID-1) -->
                 <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
-                        <!-- CARD: FIRST PRINCIPLES & ANATOMY -->
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">1. First Principles: Nucleotide Anatomy</h3>
                             <p>Before distinguishing DNA from RNA, let's nail down what we are actually classifying. When a parser encounters a record, it must separate three core structural components:</p>
-                            <div class="math-block">\( \boxed{\text{Nucleotide} = \text{Sugar} + \text{Base} + \text{Phosphate}} \)</div>
-                            <div class="math-block">\( \boxed{\text{Nucleoside} = \text{Sugar} + \text{Base}} \)</div>
+                            <div class="math-block">\( \boxed{\text{Nucleotide} = \text{Sugar} + \text{Base} + \text{Phosphate}} \quad \text{and} \quad \boxed{\text{Nucleoside} = \text{Sugar} + \text{Base}} \)</div>
                             <p>The sugar is a 5-carbon pentose ring. In organic nomenclature, we number the sugar carbons with a <strong>prime symbol</strong>: \(1′, 2′, 3′, 4′, 5′\). That prime isn't just decoration; it distinguishes the sugar ring atoms from the unprimed positions (like \(C5\) or \(N1\)) on the nitrogenous base.</p>
                             <p>The most fundamental physical difference between DNA and RNA is <strong>the sugar</strong>, not the base:</p>
                             <ul>
@@ -304,8 +304,12 @@
                             </ul>
                             <p>Look at the chemical formulas: Ribose is \(\mathrm{C_5H_{10}O_5}\), while 2-deoxyribose is \(\mathrm{C_5H_{10}O_4}\). The prefix <em>deoxy-</em> literally signifies the loss of that single oxygen. But what does that one missing oxygen really do?</p>
                         </div>
+                    </div>
+                </section>
 
-                        <!-- CARD: THE 2' CARBON LIE DETECTOR (WITH FIGURE 1 INSIDE) -->
+                <!-- ROW 2B: THE 2' CARBON LIE DETECTOR (SINGLE FULL-WIDTH CARD WITH FIGURE 1) -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The 2′ Carbon: The Ultimate Lie Detector</h3>
                             <p>This is Step 1 of our worked example. If someone gives you an unknown chemical file, you inspect the 2′ position first:</p>
@@ -315,7 +319,7 @@ Case B: Found 2′-OH → Ribose         → Strongly Supports RNA</div>
                             <div class="math-block">\( \mathrm{C^{\delta+} - O^{\delta-}} \quad \text{and} \quad \mathrm{O^{\delta-} - H^{\delta+}} \)</div>
                             <p>This single hydroxyl group participates in hydrogen bonding, coordinates local hydration shells, alters conformational flexibility, and—most dangerously—acts as an active nucleophile.</p>
                             
-                            <!-- FIGURE 1 EMBEDDED INSIDE CARD -->
+                            <!-- FIGURE 1 EMBEDDED INSIDE SINGLE CARD -->
                             <figure>
                                 <img src="sugar_comparison.jpg" alt="Ribose vs Deoxyribose Comparison">
                                 <figcaption><strong>Figure 1:</strong> The 2′ Carbon Difference. The presence of the electronegative 2′-OH in ribose changes molecular stability, reactivity, and helix geometry, directly affecting sample integrity before it even reaches the sequencer.</figcaption>
@@ -394,10 +398,9 @@ Case B: Found 2′-OH → Ribose         → Strongly Supports RNA</div>
                     </div>
                 </section>
 
-                <!-- ROW 4: SCAN THE PYRIMIDINES & WORKED EXAMPLES -->
+                <!-- ROW 4A: THE PYRIMIDINE SCAN (SINGLE FULL-WIDTH CARD WITH FIGURE 2) -->
                 <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
-                        <!-- CARD: THE PYRIMIDINE SCAN (WITH FIGURE 2 INSIDE) -->
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">2. Step 2 — Scan the Pyrimidines</h3>
                             <p>Now we move from the sugar to the nitrogenous bases. The relevant comparison is <strong>Uracil vs Thymine</strong>:</p>
@@ -409,14 +412,18 @@ Case B: Found 2′-OH → Ribose         → Strongly Supports RNA</div>
 chr12    54321    C     T</div>
                             <p>Notice: The VCF does <strong>not</strong> say <em>"this base suffered hydrolytic deamination."</em> It only records the sequence difference. The physical mechanism has been abstracted into digital letters.</p>
 
-                            <!-- FIGURE 2 EMBEDDED INSIDE CARD -->
+                            <!-- FIGURE 2 EMBEDDED INSIDE SINGLE FULL-WIDTH CARD -->
                             <figure>
                                 <img src="pyrimidine_comparison.jpg" alt="Uracil vs Thymine Comparison">
                                 <figcaption><strong>Figure 2:</strong> The C5 Methyl Group. Thymine is structurally 5-methyluracil. DNA utilizes Thymine so that accidental cytosine deaminations (which produce Uracil) can be recognized as errors and repaired.</figcaption>
                             </figure>
                         </div>
+                    </div>
+                </section>
 
-                        <!-- CARD: LOGIC CORRECTION & WORKED EXAMPLES -->
+                <!-- ROW 4B: LOGIC CORRECTION & WORKED EXAMPLES (GRID-1) -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Logic Correction & Worked Examples</h3>
                             <p>Many textbooks state: <em>"If you see a methyl group at C5 and a 2′-H, it's Thymine/DNA; if C5 lacks methyl and 2′-OH is present, it's Uracil/RNA."</em></p>
@@ -427,24 +434,24 @@ chr12    54321    C     T</div>
                             </ul>
                             <p>You must evaluate them separately, then integrate:</p>
                             
-                            <div style="background: rgba(0,0,0,0.3); padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; font-size: 0.95rem; border-left: 3px solid var(--accent-blue);">
+                            <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 8px; margin: 1rem 0; font-size: 0.95rem; border-left: 3px solid var(--accent-blue);">
                                 <strong style="color: #00e5ff;">Worked Example A (Canonical DNA):</strong><br>
                                 Sugar: \(2′ = \mathrm{H}\) (\(\text{deoxyribose}\)) | Bases: A, T, G, C (\(\mathrm{C5-CH_3}\) present).<br>
                                 \(\implies \text{Combine: Deoxyribose} + \text{Thymine} \implies \mathbf{DNA}\).
                             </div>
 
-                            <div style="background: rgba(0,0,0,0.3); padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; font-size: 0.95rem; border-left: 3px solid var(--accent-purple);">
+                            <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 8px; margin: 1rem 0; font-size: 0.95rem; border-left: 3px solid var(--accent-purple);">
                                 <strong style="color: #b388ff;">Worked Example B (Canonical RNA):</strong><br>
                                 Sugar: \(2′ = \mathrm{OH}\) (\(\text{ribose}\)) | Bases: A, U, G, C (\(\mathrm{C5-H}\) present).<br>
                                 \(\implies \text{Combine: Ribose} + \text{Uracil} \implies \mathbf{RNA}\).
                             </div>
 
-                            <div style="background: rgba(255,0,127,0.1); padding: 1.25rem; border-radius: 8px; margin: 1rem 0; border: 1px solid rgba(255,0,127,0.3);">
-                                <strong style="color: #ff4da6; font-size: 1rem;">The Critical Mixed Signal Case:</strong><br>
+                            <div style="background: rgba(255,0,127,0.1); padding: 1.5rem; border-radius: 8px; margin: 1.25rem 0; border: 1px solid rgba(255,0,127,0.3);">
+                                <strong style="color: #ff4da6; font-size: 1.05rem;">The Critical Mixed Signal Case:</strong><br>
                                 Suppose your mass spectrometer reveals: <strong>\(2′\text{-OH}\) (ribose)</strong> alongside <strong>Thymine (\(\mathrm{C5-CH_3}\))</strong>!<br><br>
                                 Do you blindly scream "DNA!" because you saw a T? <strong>Absolutely not.</strong><br>
                                 The sugar is undeniably ribose. This occurs routinely in real biology: transfer RNAs (tRNAs) feature 5-methyluridine (ribothymidine, <code>rT</code>), synthetic mRNA therapeutics (like COVID vaccines) use methylated bases to evade immune detection, and PCR assays use synthetic fluorophore-labeled chimera probes.<br>
-                                <div style="margin-top: 0.5rem; color: #ffd54f;">
+                                <div style="margin-top: 0.75rem; color: #ffd54f; font-size: 1.05rem;">
                                     \(\boxed{\text{Evidence Integration} > \text{Single-Feature Recognition}}\)
                                 </div>
                             </div>
@@ -452,10 +459,9 @@ chr12    54321    C     T</div>
                     </div>
                 </section>
 
-                <!-- ROW 5: PHYSICAL SIGNAL TO DIGITAL DATA & PHRED SCORES -->
+                <!-- ROW 5A: PHYSICAL SIGNAL MEASUREMENT (GRID-1) -->
                 <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
-                        <!-- CARD: PHYSICAL SIGNAL MEASUREMENT -->
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">Physical Signal to Base Calling</h3>
                             <p>How does a physical molecule actually transition into a text file? A sequencer never directly sees an 'A', 'C', 'G', or 'T'. It measures raw continuous analog physics:</p>
@@ -481,8 +487,12 @@ chr12    54321    C     T</div>
 
                             <p>If the signal is crisp, \(P(C|S) = 0.9999\). If fluorophores overlap or current jitters, \(P(C|S)\) drops to \(0.85\). This uncertainty is packaged mathematically into a <strong>Phred Quality Score</strong>.</p>
                         </div>
+                    </div>
+                </section>
 
-                        <!-- CARD: PHRED QUALITY SCORE (WITH FIGURE 3 INSIDE) -->
+                <!-- ROW 5B: PHRED QUALITY SCORE (SINGLE FULL-WIDTH CARD WITH FIGURE 3) -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The Phred Quality Score (\(Q\))</h3>
                             <p>In 1998, Phil Green and Brent Ewing introduced the Phred score to standardize sequencer uncertainty into an explicit logarithmic scale:</p>
@@ -511,7 +521,7 @@ chr12    54321    C     T</div>
                                 </div>
                             </div>
 
-                            <!-- FIGURE 3 EMBEDDED INSIDE CARD -->
+                            <!-- FIGURE 3 EMBEDDED INSIDE SINGLE FULL-WIDTH CARD -->
                             <figure>
                                 <img src="phred_probability.jpg" alt="Phred Quality Scores and Base Calling">
                                 <figcaption><strong>Figure 3:</strong> Translating Physical Signal to Statistical Confidence. Machine learning algorithms analyze raw continuous signals and assign discrete base calls paired with a logarithmic Phred Quality Score (Q-Score).</figcaption>
@@ -584,10 +594,9 @@ chr12    54321    C     T</div>
                     </div>
                 </section>
 
-                <!-- ROW 7: COMPUTATIONAL CLASSIFICATION & THE RNA-SEQ TRAP -->
+                <!-- ROW 7A: CHEMICAL FEATURES BECOME DATA FEATURES (GRID-1) -->
                 <section class="section-block fade-up">
-                    <div class="grid-layout grid-2">
-                        <!-- CARD: CHEMICAL FEATURES BECOME DATA FEATURES -->
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">3. Chemical Features Become Data Features</h3>
                             <p>How does our initial physical identification problem become a machine learning classification problem? We map continuous chemical properties into discrete encoded features:</p>
@@ -645,8 +654,12 @@ chr12    54321    C     T</div>
        DNA     DNA    RNA    RNA</div>
                             <p>Notice the terminology: The evidence <strong>supports</strong> a classification; it never blindly "proves" it without context.</p>
                         </div>
+                    </div>
+                </section>
 
-                        <!-- CARD: THE RNA-SEQ TRAP (WITH FIGURE 4 INSIDE) -->
+                <!-- ROW 7B: THE RNA-SEQ TRAP (SINGLE FULL-WIDTH CARD WITH FIGURE 4) -->
+                <section class="section-block fade-up">
+                    <div class="grid-layout grid-1">
                         <div class="glass-card tilt-effect hover-target">
                             <h3 class="h-secondary pink-heading">The RNA-Seq Trap & The 3 Levels</h3>
                             <p>Here is where confusing representations destroys real experiments: <strong>RNA Sequencing (RNA-Seq)</strong>.</p>
@@ -665,7 +678,7 @@ chr12    54321    C     T</div>
                             </div>
                             <p>This is why <strong>metadata is part of bioinformatics</strong>: \( \boxed{\text{Sequence} + \text{Metadata} > \text{Sequence Alone}} \).</p>
 
-                            <!-- FIGURE 4 EMBEDDED INSIDE CARD -->
+                            <!-- FIGURE 4 EMBEDDED INSIDE SINGLE FULL-WIDTH CARD -->
                             <figure>
                                 <img src="bioinfo_abstraction_layers.jpg" alt="The Bioinformatics Chain of Abstraction">
                                 <figcaption><strong>Figure 4:</strong> The Chain of Abstraction. A perfectly functioning downstream algorithm cannot rescue an incorrect upstream biological assumption. If you don't know what physical molecule you are analyzing, your mathematical models will fail.</figcaption>
